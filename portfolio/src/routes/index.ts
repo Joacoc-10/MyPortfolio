@@ -1,5 +1,5 @@
 export const Routes = {
   home: "/",
-  profile: "/",
-  contact: "/",
+  profile: "/rofile",
+  contact: "/contact",
 }

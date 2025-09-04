@@ -17,24 +17,23 @@ const NavbarItem: FC<NavbarItemProps> = ({
   isActive = false,
 }) => {
   const pathname = usePathname();
-  const isCurrentPage= pathname === href;
+  const isCurrentPage = pathname === href;
 
   return (
     <>
-    <li>
+      <li>
         <Link
           href={href}
           className={cs(
-            "block py-2 px-3 text-white rounded-sm ",
-            (isActive || isCurrentPage) &&
-              "block py-2 px-3 text-black rounded-sm"
+            "block py-2 px-3 text-white rounded-sm hover:text-purple-400 transition-colors",
+            (isActive || isCurrentPage) && "text-purple-400"
           )}
         >
           {label}
         </Link>
       </li>
     </>
-  )
-}
+  );
+};
 
 export default NavbarItem;
