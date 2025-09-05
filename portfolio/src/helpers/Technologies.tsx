@@ -1,4 +1,3 @@
-
 import { ITechnology } from "@/types/Technologies";
 
 export const technologies: ITechnology[] = [
@@ -56,5 +55,15 @@ export const technologies: ITechnology[] = [
     src: "https://ik.imagekit.io/i1pxujmp5t/My%20Portfolio/PostgresSQL.png?updatedAt=1757015821437",
     title: "PostgreSQL",
     href: "https://www.postgresql.org/",
+  },
+  {
+    src: "https://ik.imagekit.io/i1pxujmp5t/My%20Portfolio/Git.png?updatedAt=1757073358469",
+    title: "Git",
+    href: "https://git-scm.com/",
+  },
+  {
+    src: "https://ik.imagekit.io/i1pxujmp5t/My%20Portfolio/GitHub.png?updatedAt=1757073382568",
+    title: "GitHub",
+    href: "https://docs.github.com/es",
   },
 ];

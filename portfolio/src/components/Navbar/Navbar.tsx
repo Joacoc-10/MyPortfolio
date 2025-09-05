@@ -14,13 +14,13 @@ const Navbar = () => {
             href="/"
             className="flex items-center space-x-3 rtl:space-x-reverse"
           >
-            {/* <Image
-              src="https://ik.imagekit.io/i1pxujmp5t/My%20Portfolio/ChatGPT%20Image%204%20sept%202025,%2008_47_58%20p.m..png?updatedAt=1757011993978"
-              alt="Joacode"
-              width={80}
-              height={30}
-            /> */}
-            <span className="text-2xl font-semibold text-white">Joacode</span>
+            <Image
+              src="https://ik.imagekit.io/i1pxujmp5t/My%20Portfolio/White%20logo%20-%20no%20background.png?updatedAt=1757084781230"
+              alt="JCoding"
+              width={160}
+              height={80}
+            />
+            {/* <span className="text-2xl font-semibold text-white">Joacoding</span> */}
           </Link>
 
           {/* Links a la derecha */}

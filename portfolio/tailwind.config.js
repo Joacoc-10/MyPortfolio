@@ -11,6 +11,11 @@ module.exports = {
   ],
   theme: {
   	extend: {
+        fontFamily: {
+        // Here we add our new fonts
+        sans: ['var(--font-instrument-sans)'],
+        lexend: ['var(--font-lexend)'],
+      },
   		borderRadius: {
   			lg: 'var(--radius)',
   			md: 'calc(var(--radius) - 2px)',
