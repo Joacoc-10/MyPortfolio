@@ -17,7 +17,8 @@ const iconComponents = {
 };
 
 const SkillCard = ({ subTitle, description, icon, position }: SkillCardProps) => {
-  const cardRef = useRef(null);
+  // NOTE: el ref ahora apunta al WRAPPER exterior (para el observer)
+  const cardRef = useRef<HTMLDivElement | null>(null);
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
@@ -44,20 +45,17 @@ const SkillCard = ({ subTitle, description, icon, position }: SkillCardProps) =>
     };
   }, []);
 
-  const cardClasses = `
+  // estilos del interior de la tarjeta (sin overflow-hidden)
+  const cardInnerClasses = `
     w-full max-w-2xl bg-black/20 border border-purple-500/30 rounded-xl
-    p-6 md:p-8 flex flex-col space-y-4 relative z-10
+    p-6 md:p-8 flex flex-col space-y-4
     transition-all duration-1000 ease-out transform
     ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'}
   `;
   
-  const iconContainerClasses = `
-    absolute w-24 h-24 rounded-full border border-purple-400 flex items-center justify-center
-    ${position === 'center' ? '-top-12 left-1/2 -translate-x-1/2' : ''}
-    ${position === 'left' ? '-left-6 top-1/2 -translate-y-1/2 md:block hidden' : ''}
-    ${position === 'right' ? '-right-6 top-1/2 -translate-y-1/2 md:block hidden' : ''}
-  `;
-  
+  // NOTA: el wrapper exterior controla la posición y overflow-visible
+  const wrapperClasses = `relative overflow-visible`;
+
   const contentClasses = `
     relative z-20
     ${position === 'left' ? 'md:pl-20' : ''}
@@ -65,24 +63,42 @@ const SkillCard = ({ subTitle, description, icon, position }: SkillCardProps) =>
     ${position === 'center' ? 'pt-16 md:pt-12' : ''}
   `;
 
+  // Posición del icono (ahora fuera de la tarjeta, como sibling)
+  const iconPositionClasses = `
+    absolute w-24 h-24 rounded-full border border-purple-400 flex items-center justify-center bg-black/20
+    pointer-events-none
+    ${position === 'center' ? '-top-12 left-1/2 -translate-x-1/2' : ''}
+    ${position === 'left' ? '-left-6 top-1/2 -translate-y-1/2 md:block hidden' : ''}
+    ${position === 'right' ? '-right-6 top-1/2 -translate-y-1/2 md:block hidden' : ''}
+  `;
+
   const IconComponent = iconComponents[icon];
 
   return (
-    <div ref={cardRef} className={cardClasses}>
-      <div className={iconContainerClasses}>
-        {/* ✅ CAMBIO: Contenedor adicional para asegurar el centrado del ícono */}
+    // wrapper: ref aquí para el observer y overflow-visible para que el círculo pueda sobresalir
+    <div ref={cardRef} className={wrapperClasses}>
+      {/* tarjeta principal */}
+      <div className={`card card--border-glow ${cardInnerClasses} relative z-10`}>
+        <div className={contentClasses}>
+          <h3 className="mb-2 text-xl font-bold text-white md:text-2xl font-lexend">
+            {subTitle}
+          </h3>
+          <p className="font-sans text-gray-300">{description}</p>
+        </div>
+      </div>
+
+      {/* ícono: sibling absoluto (fuera de la .card), con zIndex alto para quedar por encima */}
+      <div
+        className={iconPositionClasses}
+        // zIndex en línea para garantizar que esté por encima de partículas/ripples (si quieres, ajusta)
+        style={{ zIndex: 1200 }}
+        aria-hidden="true"
+      >
         {IconComponent && (
           <div className="flex items-center justify-center w-full h-full">
             <IconComponent size={60} className="text-purple-400" />
           </div>
         )}
-      </div>
-      
-      <div className={contentClasses}>
-        <h3 className="mb-2 text-xl font-bold text-white md:text-2xl font-lexend">
-          {subTitle}
-        </h3>
-        <p className="font-sans text-gray-300">{description}</p>
       </div>
     </div>
   );
