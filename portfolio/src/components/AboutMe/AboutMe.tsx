@@ -3,6 +3,7 @@ import Image from "next/image";
 
 const AboutMe = () => {
   return (
+    <section id="AboutMe">
     <div className="container px-4 py-12 mx-auto md:px-0">
       <div className="grid items-center grid-cols-1 md:grid-cols-2 md:gap-12">
         <div className="items-center justify-center hidden p-8 md:flex">
@@ -41,6 +42,7 @@ const AboutMe = () => {
         </div>
       </div>
     </div>
+    </section>
   );
 };
 

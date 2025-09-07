@@ -1,18 +1,21 @@
 import { NavbarItemProps } from "@/components/Navbar/NavbarItem";
 import { Routes } from "@/routes";
 
-
 export const NavbarLinks: NavbarItemProps[] = [
   {
     label: "Inicio",
-    href: Routes.home,
+    href: Routes.Header,
   },
   {
-    label: "Perfil",
-    href: Routes.profile,
+    label: "Sobre mí",
+    href: Routes.AboutMe,
+  },
+  {
+    label: "Habilidades",
+    href: Routes.SkillSection,
   },
   {
     label: "Contacto",
-    href: Routes.contact,
+    href: Routes.Contact,
   },
-]
+];

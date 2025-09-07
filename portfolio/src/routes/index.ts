@@ -1,5 +1,6 @@
 export const Routes = {
-  home: "/",
-  profile: "/rofile",
-  contact: "/contact",
-}
+  Header: "#Header",
+  AboutMe: "#AboutMe",
+  SkillSection: "#SkillSection",
+  Contact: "#Contact",
+};

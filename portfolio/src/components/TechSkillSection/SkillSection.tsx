@@ -9,7 +9,7 @@ const SkillsSection = () => {
   const otherSkills = skillsData.slice(1);
 
   return (
-    <section className="container px-4 py-8 mx-auto mt-12">
+    <section id="SkillSection" className="container px-4 py-8 mx-auto mt-12">
       {/* Header */}
       <div className="flex flex-col items-center justify-center mb-12 text-center md:mb-24">
         <h2 className="text-5xl font-extrabold tracking-tight md:text-6xl text-whiteHeadline-500 font-lexend">
