@@ -113,45 +113,51 @@ a {
   position: absolute;
   inset: 0;
   border-radius: inherit;
-  padding: 2px; /* grosor del borde glow */
+  padding: 6px; /* grosor del borde glow */
   background: radial-gradient(
-    circle at var(--glow-x, 50%) var(--glow-y, 50%),
-    rgba(132, 0, 255, calc(var(--glow-intensity, 0) * 0.6)) 0%,
-    rgba(132, 0, 255, 0) var(--glow-radius, 300px)
+    circle at var(--glow-x, 90%) var(--glow-y, 90%),
+    rgba(168, 85, 247, calc(var(--glow-intensity, 0) * 1)) 0%,    /* núcleo violeta intenso */
+    rgba(168, 85, 247, calc(var(--glow-intensity, 0) * 0.8)) 20%, /* halo intermedio fuerte */
+    rgba(168, 85, 247, calc(var(--glow-intensity, 0) * 0.5)) 45%, /* halo translúcido */
+    rgba(168, 85, 247, calc(var(--glow-intensity, 0) * 0.25)) 65%,/* degradado tenue */
+    transparent 85%                                               /* desvanecido completo */
   );
   -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
   -webkit-mask-composite: xor;
   mask-composite: exclude;
   pointer-events: none;
   z-index: 2;
+  mix-blend-mode: screen; /* fusión tipo luz */
+  filter: blur(6px);      /* brillo difuso tipo neón */
 }
+
 
 .card--border-glow {
   position: relative;
-  border: 2px solid rgba(168, 85, 247, 0.3); /* borde base visible, suave */
+  border: 1px solid rgba(168, 85, 247, 0.2); /* borde base muy suave */
   border-radius: 1rem;
   transition: border 0.2s ease;
+  overflow: hidden;
 }
 
 .card--border-glow::after {
   content: '';
   position: absolute;
-  inset: -4px;
+  inset: 0;
   border-radius: inherit;
   background: radial-gradient(
     var(--glow-radius, 200px) circle at var(--glow-x, 50%) var(--glow-y, 50%),
-    rgba(168, 85, 247, calc(var(--glow-intensity, 0) * 0.4)) 0%,  /* más sutil */
-    rgba(168, 85, 247, calc(var(--glow-intensity, 0) * 0.2)) 35%,
+    rgba(168, 85, 247, calc(var(--glow-intensity, 0) * 0.35)) 0%,  /* más tenue aún */
+    rgba(168, 85, 247, calc(var(--glow-intensity, 0) * 0.15)) 40%,
     transparent 70%
   );
   pointer-events: none;
   z-index: 2;
-  opacity: 0;
-  transition: opacity 0.3s ease;
+  opacity: 1; /* siempre visible, depende de --glow-intensity */
+  transition: background 0.3s ease;
+  mix-blend-mode: screen; /* se fusiona como luz */
 }
 
-/* .card--border-glow:hover {
-  border-width: 4px; 
-  border-color: rgba(168, 85, 247, 0.5); 
-} */
+
+
 
