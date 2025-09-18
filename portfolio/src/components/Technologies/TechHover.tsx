@@ -23,17 +23,17 @@ const TechHover: React.FC<ITechHoverProps> = ({ title, src }) => {
         width={48}
         height={48}
         className={`transition-all duration-300 ease-in-out ${
-          isHovered ? 'grayscale-0' : 'grayscale'
+          isHovered ? 'grayscale-0' : 'grayscale invert'
         }`}
       />
-      {/* <span
+      <span
         // La opacidad del texto cambia según el estado 'isHovered'
-        className={`absolute bottom-[-1.5rem] text-sm text-gray-200 font-medium whitespace-nowrap transition-opacity duration-300 ease-in-out ${
+        className={`absolute bottom-[-1.5rem] text-sm text-gray-200 font-medium font-sans whitespace-nowrap transition-opacity duration-300 ease-in-out ${
           isHovered ? 'opacity-100' : 'opacity-0'
         }`}
       >
         {title}
-      </span> */}
+      </span>
     </div>
   );
 };

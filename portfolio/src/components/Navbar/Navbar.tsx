@@ -20,7 +20,6 @@ const Navbar = () => {
               width={160}
               height={80}
             />
-            {/* <span className="text-2xl font-semibold text-white">Joacoding</span> */}
           </Link>
 
           {/* Links a la derecha */}

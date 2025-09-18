@@ -27,7 +27,18 @@ const instrumentSans = Instrument_Sans({
 
 export const metadata: Metadata = {
   title: "JCoding Portfolio",
-  description: "Mi Portafolio",
+  description: "Desarrollador Web Full-Stack",
+  openGraph: {
+    title: "JCoding Portfolio",
+    description: "Desarrollador Web Full-Stack",
+    url: "",
+    images: [
+      {
+        url: "https://ik.imagekit.io/i1pxujmp5t/My%20Portfolio/Black%20logo%20-%20no%20background.png?updatedAt=1758109767518", 
+        alt: "Logo de JCoding",
+      },
+    ],
+  }
 };
 
 export default function RootLayout({

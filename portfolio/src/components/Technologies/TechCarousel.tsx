@@ -11,7 +11,7 @@ const TechCarousel = () => {
   }));
 
   return (
-    <div className="relative h-[100px] w-full overflow-hidden">
+    <div className="relative h-[100px] w-full overflow-hidden mt-6">
       <LogoLoop
         logos={loopLogos}
         speed={30}

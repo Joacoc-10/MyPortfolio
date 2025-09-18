@@ -213,7 +213,7 @@ const ParticleCard: React.FC<{
   }, [animateParticles, clearAllParticles, disableAnimations, enableTilt, enableMagnetism, clickEffect, glowColor]);
 
   return (
-    <div ref={cardRef} className={`${className} relative`} style={{ ...style, position: "relative", overflow: "visible" }}>
+    <div ref={cardRef} className={`${className} relative h-full`} style={{ ...style, position: "relative", overflow: "visible" }}>
       {children}
     </div>
   );

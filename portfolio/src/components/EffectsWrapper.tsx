@@ -22,11 +22,11 @@ const EffectsWrapper: React.FC<EffectsWrapperProps> = ({
   const gridRef = useRef<HTMLDivElement>(null);
 
   return (
-    <div className="relative">
+    <div className="relative h-full"> {/* Añadir h-full */}
       {enableSpotlight && (
         <GlobalSpotlight gridRef={gridRef} glowColor={glowColor} />
       )}
-      <div ref={gridRef} className="relative">
+      <div ref={gridRef} className="relative h-full"> {/* Añadir h-full */}
         {enableStars ? (
           <ParticleCard
             glowColor={glowColor}
@@ -38,7 +38,7 @@ const EffectsWrapper: React.FC<EffectsWrapperProps> = ({
             {children}
           </ParticleCard>
         ) : (
-          <div className="relative">{children}</div>
+          <div className="relative h-full">{children}</div> 
         )}
       </div>
     </div>

@@ -103,7 +103,7 @@ a {
 /* Glow dinámico para las tarjetas */
 .card {
   position: relative;
-  border-radius: 1rem; /* ajusta según tu diseño */
+  border-radius: 1rem; 
   transition: box-shadow 0.2s ease;
   overflow: hidden;
 }
@@ -116,11 +116,11 @@ a {
   padding: 6px; /* grosor del borde glow */
   background: radial-gradient(
     circle at var(--glow-x, 90%) var(--glow-y, 90%),
-    rgba(168, 85, 247, calc(var(--glow-intensity, 0) * 1)) 0%,    /* núcleo violeta intenso */
-    rgba(168, 85, 247, calc(var(--glow-intensity, 0) * 0.8)) 20%, /* halo intermedio fuerte */
-    rgba(168, 85, 247, calc(var(--glow-intensity, 0) * 0.5)) 45%, /* halo translúcido */
-    rgba(168, 85, 247, calc(var(--glow-intensity, 0) * 0.25)) 65%,/* degradado tenue */
-    transparent 85%                                               /* desvanecido completo */
+    rgba(168, 85, 247, calc(var(--glow-intensity, 0) * 1.5)) 0%,    /* núcleo violeta intenso */
+    rgba(168, 85, 247, calc(var(--glow-intensity, 0) * 1.2)) 10%, /* halo intermedio fuerte */
+    rgba(168, 85, 247, calc(var(--glow-intensity, 0) * 0.8)) 30%, /* halo translúcido */
+    rgba(168, 85, 247, calc(var(--glow-intensity, 0) * 0.4)) 55%,/* degradado tenue */
+    transparent 80%                                               /* desvanecido completo */
   );
   -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
   -webkit-mask-composite: xor;
@@ -128,13 +128,13 @@ a {
   pointer-events: none;
   z-index: 2;
   mix-blend-mode: screen; /* fusión tipo luz */
-  filter: blur(6px);      /* brillo difuso tipo neón */
+  filter: blur(8px);      /* brillo difuso tipo neón */
 }
 
 
 .card--border-glow {
   position: relative;
-  border: 1px solid rgba(168, 85, 247, 0.2); /* borde base muy suave */
+  border: 1px solid rgba(168, 85, 247, 0.3); /* borde base muy suave */
   border-radius: 1rem;
   transition: border 0.2s ease;
   overflow: hidden;
@@ -147,9 +147,9 @@ a {
   border-radius: inherit;
   background: radial-gradient(
     var(--glow-radius, 200px) circle at var(--glow-x, 50%) var(--glow-y, 50%),
-    rgba(168, 85, 247, calc(var(--glow-intensity, 0) * 0.35)) 0%,  /* más tenue aún */
-    rgba(168, 85, 247, calc(var(--glow-intensity, 0) * 0.15)) 40%,
-    transparent 70%
+    rgba(168, 85, 247, calc(var(--glow-intensity, 0) * 0.6)) 0%,  
+    rgba(168, 85, 247, calc(var(--glow-intensity, 0) * 0.3)) 20%,
+    transparent 60%
   );
   pointer-events: none;
   z-index: 2;
@@ -157,7 +157,27 @@ a {
   transition: background 0.3s ease;
   mix-blend-mode: screen; /* se fusiona como luz */
 }
+@keyframes slideInFromLeft {
+  from {
+    transform: translateX(-20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
 
+@keyframes slideInFromRight {
+  from {
+    transform: translateX(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
 
 
 

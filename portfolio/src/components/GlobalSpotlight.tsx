@@ -2,13 +2,13 @@
 import React, { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 
-const DEFAULT_SPOTLIGHT_RADIUS = 300;
+const DEFAULT_SPOTLIGHT_RADIUS = 150;
 const DEFAULT_GLOW_COLOR = "132, 0, 255";
-const MAX_GLOW_INTENSITY = 0.25;
+const MAX_GLOW_INTENSITY = 0.4;
 
 
 const calculateSpotlightValues = (radius: number) => ({
-  proximity: radius * 0.5,
+  proximity: radius * 0.4,
   fadeDistance: radius * 0.75,
 });
 
@@ -80,21 +80,29 @@ const GlobalSpotlight: React.FC<{
       let minDistance = Infinity;
 
       cards.forEach((card) => {
-        const cardElement = card as HTMLElement;
+             const cardElement = card as HTMLElement;
         const cardRect = cardElement.getBoundingClientRect();
-        const centerX = cardRect.left + cardRect.width / 2;
-        const centerY = cardRect.top + cardRect.height / 2;
-        const distance =
-          Math.hypot(e.clientX - centerX, e.clientY - centerY) -
-          Math.max(cardRect.width, cardRect.height) / 2;
-        const effectiveDistance = Math.max(0, distance);
-        minDistance = Math.min(minDistance, effectiveDistance);
 
-        let glowIntensity = 0;
-        if (effectiveDistance <= proximity) {
+        // CAMBIO CLAVE: CÁLCULO DE LA DISTANCIA AL BORDE DE LA TARJETA
+        const closestX = Math.max(cardRect.left, Math.min(e.clientX, cardRect.right));
+        const closestY = Math.max(cardRect.top, Math.min(e.clientY, cardRect.bottom));
+        const distance = Math.hypot(e.clientX - closestX, e.clientY - closestY);
+
+        minDistance = Math.min(minDistance, distance);
+
+
+           let glowIntensity = 0;
+        // CAMBIO CLAVE: Lógica invertida para glowIntensity
+        if (distance <= proximity) {
+          // El mouse está muy cerca del borde, intensidad máxima
           glowIntensity = MAX_GLOW_INTENSITY;
-        } else if (effectiveDistance <= fadeDistance) {
-          glowIntensity = (fadeDistance - effectiveDistance) / (fadeDistance - proximity);
+        } else if (distance > proximity && distance <= fadeDistance) {
+          // El mouse está entre proximity y fadeDistance, desvanece la intensidad
+          // Cuanto más cerca de 'proximity', mayor intensidad. Cuanto más cerca de 'fadeDistance', menor.
+          glowIntensity = ((fadeDistance - distance) / (fadeDistance - proximity)) * MAX_GLOW_INTENSITY;
+        } else {
+          // El mouse está demasiado lejos
+          glowIntensity = 0;
         }
 
         updateCardGlowProperties(cardElement, e.clientX, e.clientY, glowIntensity, spotlightRadius);
