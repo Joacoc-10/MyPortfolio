@@ -93,7 +93,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
           )}
         </div>
 
-        <div className="flex justify-end gap-4 mt-6 mt-auto font-sans">
+        <div className="flex justify-end gap-4 mt-auto font-sans">
           {project.links.deploy && (
             <a
               href={project.links.deploy}
@@ -125,7 +125,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
                       href={project.links.gitHubFront}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-center gap-2 transition-colors duration-300 text-whiteHeadline-300 hover:text-white"
+                      className="flex items-center gap-2 transition-colors duration-300 text-whiteHeadline-300 hover:text-purpleButton-400"
                       style={{
                         animation: "slideInFromLeft 0.6s ease-out forwards",
                       }}
@@ -136,7 +136,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
                       href={project.links.gitHubback}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-center gap-2 transition-colors duration-300 text-whiteHeadline-300 hover:text-white"
+                      className="flex items-center gap-2 transition-colors duration-300 text-whiteHeadline-300 hover:text-purpleButton-400"
                       style={{
                         animation: "slideInFromRight 0.6s ease-out forwards",
                       }}

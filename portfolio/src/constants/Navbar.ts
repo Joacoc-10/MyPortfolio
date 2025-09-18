@@ -15,7 +15,7 @@ export const NavbarLinks: NavbarItemProps[] = [
     href: Routes.SkillSection,
   },
   {
-    label: "Contacto",
-    href: Routes.Contact,
+    label: "Proyectos",
+    href: Routes.Projects,
   },
 ];
