@@ -25,8 +25,11 @@ const NavbarItem: FC<NavbarItemProps> = ({
         <Link
           href={href}
           className={cs(
-            " font-sans block py-2 px-3 text-white rounded-sm hover:text-purple-400 transition-colors ",
-            (isActive || isCurrentPage) && "text-purple-400"
+            "relative link-underline transition-colors duration-300",
+            " font-sans block py-1 px-3 text-white rounded-sm",
+            (isActive || isCurrentPage)
+              ? "text-purpleButton-400"
+              : "hover:text-purpleButton-400"
           )}
         >
           {label}

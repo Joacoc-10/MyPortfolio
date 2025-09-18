@@ -1,4 +1,5 @@
 import AboutMe from "@/components/AboutMe/AboutMe";
+import Footer from "@/components/Footer/Footer";
 import Header from "@/components/Header/Header";
 import Navbar from "@/components/Navbar/Navbar";
 import ProjectsSection from "@/components/Projects/ProjectsSection";
@@ -14,6 +15,7 @@ export default function Home() {
       <SkillsSection/>
       <TechCarousel/>
       <ProjectsSection/>
+      <Footer/>
     </>
   );
 }

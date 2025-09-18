@@ -157,6 +157,7 @@ a {
   transition: background 0.3s ease;
   mix-blend-mode: screen; /* se fusiona como luz */
 }
+
 @keyframes slideInFromLeft {
   from {
     transform: translateX(-20px);
@@ -177,6 +178,28 @@ a {
     transform: translateX(0);
     opacity: 1;
   }
+}
+
+.link-underline {
+  position: relative;
+}
+
+.link-underline::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  transform: scaleX(0);
+  height: 1px;
+  bottom: 0;
+  left: 0;
+  background-color: currentColor;
+  transform-origin: bottom right;
+  transition: transform 0.25s ease-out;
+}
+
+.link-underline:hover::after {
+  transform: scaleX(1);
+  transform-origin: bottom left;
 }
 
 
