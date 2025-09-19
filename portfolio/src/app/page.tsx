@@ -1,0 +1,21 @@
+import AboutMe from "@/components/AboutMe/AboutMe";
+import Footer from "@/components/Footer/Footer";
+import Header from "@/components/Header/Header";
+import Navbar from "@/components/Navbar/Navbar";
+import ProjectsSection from "@/components/Projects/ProjectsSection";
+import TechCarousel from "@/components/Technologies/TechCarousel";
+import SkillsSection from "@/components/TechSkillSection/SkillSection";
+
+export default function Home() {
+  return (
+   <>
+      <Navbar />
+      <Header/>
+      <AboutMe/>
+      <SkillsSection/>
+      <TechCarousel/>
+      <ProjectsSection/>
+      <Footer/>
+    </>
+  );
+}
