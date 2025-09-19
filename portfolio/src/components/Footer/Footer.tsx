@@ -2,21 +2,15 @@
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
-import {
-  FaLinkedin,
-  FaGithub,
-  FaEnvelope,
-} from "react-icons/fa";
+import { FaLinkedin, FaGithub, FaEnvelope } from "react-icons/fa";
 import { TbFileCv } from "react-icons/tb";
 import { socialLinks } from "@/helpers/SocialMedia";
 
-// Función para obtener el componente de ícono
 const getIcon = (iconName: string) => {
   switch (iconName) {
     case "LinkedIn":
       return FaLinkedin;
     case "GitHub":
-      return FaGithub;
     case "Email":
       return FaEnvelope;
     case "CV":
@@ -29,13 +23,16 @@ const getIcon = (iconName: string) => {
 const Footer = () => {
   return (
     <>
-      <footer className="m-4 font-sans rounded-lg bg-whiteHeadline-600">
+      <footer className="relative m-4 font-sans rounded-lg bg-whiteHeadline-400">
+        <div className="absolute inset-0 rounded-lg bg-white/80"></div>
         <div className="w-full max-w-screen-xl p-4 mx-auto md:py-8">
+          {/* Add 'justify-center' for mobile alignment */}
           <div className="flex flex-col items-center justify-between sm:flex-row">
             {/* Logo a la izquierda */}
+            {/* Remove 'w-full' from this Link */}
             <Link
               href="/"
-              className="flex items-center justify-center w-full space-x-3 invert rtl:space-x-reverse sm:w-auto sm:justify-start"
+              className="flex items-center justify-center space-x-3 invert rtl:space-x-reverse sm:w-auto sm:justify-start"
             >
               <Image
                 src="https://ik.imagekit.io/i1pxujmp5t/My%20Portfolio/White%20logo%20-%20no%20background.png?updatedAt=1757084781230"
@@ -44,7 +41,6 @@ const Footer = () => {
                 height={80}
               />
             </Link>
-
             {/* Lista de enlaces centrada */}
             <ul className="flex flex-wrap items-center mt-4 text-sm font-medium text-greySecondary-500 sm:mb-0 sm:mt-0">
               <li>
@@ -68,9 +64,9 @@ const Footer = () => {
                 </a>
               </li>
             </ul>
-
             {/* Íconos de redes sociales a la derecha */}
-            <div className="flex items-center justify-center w-full mt-4 space-x-4 sm:w-auto sm:justify-end sm:mt-0">
+            {/* Remove 'w-full' from this div */}
+            <div className="relative flex items-center justify-center mt-4 space-x-4 sm:w-auto sm:justify-end sm:mt-0">
               {socialLinks
                 .filter((item) => !item.subLinks)
                 .map((item) => {
@@ -89,10 +85,10 @@ const Footer = () => {
                 })}
             </div>
           </div>
-          <hr className="my-6 border-greySecondary-400 sm:mx-auto lg:my-8" />
-          <span className="block text-greySecondary-500 text-md sm:text-center ">
+          <hr className="my-4 border-greySecondary-400 sm:mx-auto lg:my-2" />
+          <span className="relative block text-center text-greySecondary-500 text-md sm:text-center ">
             © 2025
-            <Link href="/" className=" link-underline">
+            <Link href="/" className="link-underline">
               JCoding
             </Link>
             . Todos los derechos reservados.
