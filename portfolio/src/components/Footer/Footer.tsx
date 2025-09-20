@@ -24,7 +24,7 @@ const getIcon = (iconName: string) => {
 const Footer = () => {
   return (
     <>
-      <footer className="relative m-4 font-sans rounded-lg bg-[#F0F0F0] bg-opacity-90">
+      <footer className="relative m-4 font-sans rounded-lg bg-[#F0F0F0] bg-opacity-90 mt-32">
         {/* <div className="absolute inset-0 rounded-lg bg-white/80"></div> */}
         <div className="w-full max-w-screen-xl p-4 mx-auto md:py-8">
           {/* Add 'justify-center' for mobile alignment */}

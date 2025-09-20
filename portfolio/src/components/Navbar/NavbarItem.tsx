@@ -9,6 +9,7 @@ export interface NavbarItemProps {
   label: string;
   href?: string;
   isActive?: boolean;
+  onClick?: () => void;
 }
 
 const NavbarItem: FC<NavbarItemProps> = ({

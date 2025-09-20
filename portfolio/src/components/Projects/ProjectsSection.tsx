@@ -9,7 +9,7 @@ const ProjectsSection: React.FC = () => {
   return (
     <section className="py-20" id="ProjectsSection">
       <div className="container px-4 mx-auto">
-        <div className="flex flex-col items-center justify-center mb-12 text-center md:mb-24">
+        <div className="flex flex-col items-center justify-center mt-32 mb-12 text-center md:mb-24">
           <h2 className="text-5xl font-extrabold tracking-tight md:text-6xl text-whiteHeadline-500 font-lexend">
             Mis Proyectos.
           </h2>

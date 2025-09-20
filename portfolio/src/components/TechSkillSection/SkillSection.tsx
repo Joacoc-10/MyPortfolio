@@ -11,8 +11,8 @@ const SkillsSection = () => {
   return (
     <section id="SkillSection" className="container px-4 py-8 mx-auto mt-12">
       {/* Header */}
-      <div className="flex flex-col items-center justify-center mb-12 text-center md:mb-24">
-        <h2 className="text-5xl font-extrabold tracking-tight md:text-6xl text-whiteHeadline-500 font-lexend">
+      <div className="flex flex-col items-center justify-center mt-40 mb-20 text-center md:mb-24">
+        <h2 className="text-5xl font-extrabold tracking-tight md:text-6xl text-whiteHeadline-500 font-lexend ">
           Principales Tecnologias.
         </h2>
         <p className="mt-4 font-sans text-xl text-greyParagraph-500">

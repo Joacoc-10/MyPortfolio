@@ -27,7 +27,7 @@ const ContactSection = () => {
 
   return (
     <section id="ContactSection" className="py-20">
-      <div className="container flex justify-center px-4 mx-auto">
+      <div className="container flex justify-center px-4 mx-auto mt-32">
         <EffectsWrapper glowColor="127, 90, 240" particleCount={12}>
           <div
             ref={cardRef}
