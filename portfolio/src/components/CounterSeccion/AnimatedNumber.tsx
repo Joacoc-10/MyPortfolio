@@ -25,7 +25,7 @@ const AnimatedNumber: React.FC<AnimatedNumberProps> = ({ value, className, label
           {value}
         </motion.span>
       </AnimatePresence>
-      <span className="mt-2 text-sm font-normal text-gray-400">{label}</span>
+      <span className="mt-2 text-sm font-normal text-greySecondary-300">{label}</span>
     </div>
   );
 };

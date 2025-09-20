@@ -2,7 +2,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
-import { FaLinkedin, FaGithub, FaEnvelope } from "react-icons/fa";
+import { FaLinkedin, FaEnvelope, FaGithub } from "react-icons/fa";
 import { TbFileCv } from "react-icons/tb";
 import { socialLinks } from "@/helpers/SocialMedia";
 
@@ -11,6 +11,7 @@ const getIcon = (iconName: string) => {
     case "LinkedIn":
       return FaLinkedin;
     case "GitHub":
+      return FaGithub;
     case "Email":
       return FaEnvelope;
     case "CV":
@@ -23,8 +24,8 @@ const getIcon = (iconName: string) => {
 const Footer = () => {
   return (
     <>
-      <footer className="relative m-4 font-sans rounded-lg bg-whiteHeadline-400">
-        <div className="absolute inset-0 rounded-lg bg-white/80"></div>
+      <footer className="relative m-4 font-sans rounded-lg bg-[#F0F0F0] bg-opacity-90">
+        {/* <div className="absolute inset-0 rounded-lg bg-white/80"></div> */}
         <div className="w-full max-w-screen-xl p-4 mx-auto md:py-8">
           {/* Add 'justify-center' for mobile alignment */}
           <div className="flex flex-col items-center justify-between sm:flex-row">
@@ -42,7 +43,7 @@ const Footer = () => {
               />
             </Link>
             {/* Lista de enlaces centrada */}
-            <ul className="flex flex-wrap items-center mt-4 text-sm font-medium text-greySecondary-500 sm:mb-0 sm:mt-0">
+            <ul className="flex flex-wrap items-center mt-4 text-sm font-medium text-greySecondary-300 sm:mb-0 sm:mt-0">
               <li>
                 <a href="#AboutMe" className="relative transition-colors duration-300 link-underline me-4 md:me-6 hover:text-greySecondary-600">
                   Sobre mí
@@ -77,7 +78,7 @@ const Footer = () => {
                       href={item.href || "#"}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="transition-colors duration-300 text-blackPrimary-400 hover:text-blackPrimary-600"
+                      className="transition-colors duration-300 text-blackPrimary-400 hover:text-blackPrimary-100"
                     >
                       {IconComponent && <IconComponent size={24} />}
                     </Link>
@@ -86,9 +87,9 @@ const Footer = () => {
             </div>
           </div>
           <hr className="my-4 border-greySecondary-400 sm:mx-auto lg:my-2" />
-          <span className="relative block text-center text-greySecondary-500 text-md sm:text-center ">
+          <span className="relative block mt-3 text-center text-greySecondary-300 text-md sm:text-center ">
             © 2025
-            <Link href="/" className="link-underline">
+            <Link href="/" className="hover:text-greySecondary-600">
               JCoding
             </Link>
             . Todos los derechos reservados.

@@ -71,12 +71,12 @@ const ExperienceCounter: React.FC = () => {
   // Renderiza una versión estática en el servidor para evitar el error
   if (!isClient) {
     return (
-      <div className="flex flex-col items-center justify-center text-white">
-        <h1 className="mb-4 text-5xl font-extrabold tracking-tight md:text-6xl text-whiteHeadline-500 font-lexend">Experiencia</h1>
+      <div className="flex flex-col items-center justify-center">
+        <h1 className="mb-4 text-5xl font-extrabold tracking-tight md:text-6xl text-blackPrimary-500 font-lexend">Experiencia</h1>
         <div className="flex justify-center space-x-4 font-extrabold font-lexend md:space-x-8">
           <div>
             <span className="leading-none tracking-tight text-8xl md:text-9xl">-</span>
-            <span className="mt-2 text-sm font-normal text-gray-400">Años</span>
+            <span className="mt-2 text-sm font-normal text-gray-500">Años</span>
           </div>
           <div>
             <span className="text-6xl leading-tight tracking-tight md:text-7xl">-</span>
@@ -105,13 +105,13 @@ const ExperienceCounter: React.FC = () => {
 
   // Si ya estamos en el cliente, renderiza la versión animada
   return (
-    <div className="flex flex-col items-center justify-center text-blackPrimary-500">
+    <div className="flex flex-col items-center justify-center ">
       <h1 className="mb-4 text-5xl font-extrabold tracking-tight md:text-6xl text-blackPrimary-500 font-lexend">Experiencia</h1>
       <div className="flex justify-center space-x-4 font-extrabold font-lexend md:space-x-8">
         {hasOneYear ? (
           <>
-            <AnimatedNumber value={experience.years} className="leading-none tracking-tight text-8xl md:text-9xl" label="Años" />
-            <AnimatedNumber value={experience.months} className="text-6xl leading-tight tracking-tight md:text-7xl" label="Meses" />
+            <AnimatedNumber value={experience.years} className="leading-none tracking-tight text-8xl md:text-9xl " label="Años" />
+            <AnimatedNumber value={experience.months} className="text-6xl leading-tight tracking-tight md:text-7xl " label="Meses" />
             <AnimatedNumber value={experience.days} className="text-4xl leading-snug tracking-tight md:text-5xl" label="Días" />
             <AnimatedNumber value={experience.hours} className="text-2xl leading-normal tracking-tight md:text-3xl" label="Horas" />
             <AnimatedNumber value={experience.minutes} className="text-xl leading-loose tracking-tight md:text-2xl" label="Min." />
@@ -119,7 +119,7 @@ const ExperienceCounter: React.FC = () => {
           </>
         ) : (
           <>
-            <AnimatedNumber value={experience.months} className="leading-none tracking-tight text-8xl md:text-9xl" label="Meses" />
+            <AnimatedNumber value={experience.months} className="leading-none tracking-tight text-8xl md:text-9xl " label="Meses" />
             <AnimatedNumber value={experience.days} className="text-6xl leading-tight tracking-tight md:text-7xl" label="Días" />
             <AnimatedNumber value={experience.hours} className="text-4xl leading-snug tracking-tight md:text-5xl" label="Horas" />
             <AnimatedNumber value={experience.minutes} className="text-2xl leading-normal tracking-tight md:text-3xl" label="Min." />
