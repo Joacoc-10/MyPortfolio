@@ -113,28 +113,28 @@ a {
   position: absolute;
   inset: 0;
   border-radius: inherit;
-  padding: 6px; /* grosor del borde glow */
+  padding: 6px; 
   background: radial-gradient(
     circle at var(--glow-x, 90%) var(--glow-y, 90%),
-    rgba(168, 85, 247, calc(var(--glow-intensity, 0) * 1.5)) 0%,    /* núcleo violeta intenso */
-    rgba(168, 85, 247, calc(var(--glow-intensity, 0) * 1.2)) 10%, /* halo intermedio fuerte */
-    rgba(168, 85, 247, calc(var(--glow-intensity, 0) * 0.8)) 30%, /* halo translúcido */
-    rgba(168, 85, 247, calc(var(--glow-intensity, 0) * 0.4)) 55%,/* degradado tenue */
-    transparent 80%                                               /* desvanecido completo */
+    rgba(168, 85, 247, calc(var(--glow-intensity, 0) * 1.5)) 0%,    
+    rgba(168, 85, 247, calc(var(--glow-intensity, 0) * 1.2)) 10%, 
+    rgba(168, 85, 247, calc(var(--glow-intensity, 0) * 0.8)) 30%, 
+    rgba(168, 85, 247, calc(var(--glow-intensity, 0) * 0.4)) 55%,
+    transparent 80%                                               
   );
   -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
   -webkit-mask-composite: xor;
   mask-composite: exclude;
   pointer-events: none;
   z-index: 2;
-  mix-blend-mode: screen; /* fusión tipo luz */
+  mix-blend-mode: screen; 
   filter: blur(8px);      /* brillo difuso tipo neón */
 }
 
 
 .card--border-glow {
   position: relative;
-  border: 1px solid rgba(168, 85, 247, 0.3); /* borde base muy suave */
+  border: 1px solid rgba(168, 85, 247, 0.3); 
   border-radius: 1rem;
   transition: border 0.2s ease;
   overflow: hidden;
@@ -153,14 +153,16 @@ a {
   );
   pointer-events: none;
   z-index: 2;
-  opacity: 1; /* siempre visible, depende de --glow-intensity */
+  opacity: 1; 
   transition: background 0.3s ease;
-  mix-blend-mode: screen; /* se fusiona como luz */
+  mix-blend-mode: screen; 
 }
 
+
+/* Animacion de entrada icono CV */
 @keyframes slideInFromLeft {
   from {
-    transform: translateX(-20px);
+    transform: translateX(-100%);
     opacity: 0;
   }
   to {
@@ -171,7 +173,7 @@ a {
 
 @keyframes slideInFromRight {
   from {
-    transform: translateX(20px);
+    transform: translateX(100%);
     opacity: 0;
   }
   to {
@@ -180,6 +182,30 @@ a {
   }
 }
 
+/* Nuevas animaciones de salida */
+@keyframes slideOutToLeft {
+  from {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+}
+
+@keyframes slideOutToRight {
+  from {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+}
+
+/* Subrayado del navbar y footer */
 .link-underline {
   position: relative;
 }
