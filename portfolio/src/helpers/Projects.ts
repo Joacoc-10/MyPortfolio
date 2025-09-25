@@ -12,7 +12,8 @@ export const projects: IProjects[] = [
     technologies: {
       frontEnd: ["HTML", "CSS", "JavaScript"]},
     links: {
-      gitHubFront: "https://github.com/pi-rym/PM1-Joacoc-10",
+      gitHubFront: "https://github.com/Joacoc-10/PM1---Portfolio-v1",
+      deploy: "https://portfolio-v1-orcin-eta.vercel.app/",
     },
   },
 
@@ -27,7 +28,8 @@ export const projects: IProjects[] = [
     backEnd: ["Node.js", "Express.js", "MongoDB", "Mongoose"],
   },
   links: {
-    gitHubFront: "https://github.com/pi-rym/PM2-Joacoc-10"
+    gitHubFront: "https://github.com/Joacoc-10/PM2---MovieeReel",
+    deploy: "https://movieereelpm2.vercel.app/index.html"
   }
   },
 
@@ -42,7 +44,8 @@ export const projects: IProjects[] = [
       backEnd: ["Node.js", "TypeScript", " Express.js", "PostgreSQL", "TypeORM", "Bcrypt", "CORS"]
     },
     links: {
-      gitHubFront: "https://github.com/Joacoc-10/BodegaCepaReal---M3"
+      gitHubFront: "https://github.com/Joacoc-10/PM3---Bodega-Cepa-Real",
+      deploy: "https://bodega-cepa-real.vercel.app/home",
     }
   },
 
@@ -57,7 +60,7 @@ export const projects: IProjects[] = [
       backEnd: ["Node.js", "TypeScript", "Express.js", "PostgreSQL", "TypeORM", "JWT"]
     },
     links: {
-      gitHubFront: "https://github.com/Joacoc-10/Copia-PM4FE-Joacoc-10",
+      gitHubFront: "https://github.com/Joacoc-10/PM4----Futura-Tech",
     }
   },
 

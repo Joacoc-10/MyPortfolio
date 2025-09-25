@@ -21,6 +21,12 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
     ? project.description
     : `${project.description.substring(0, characterLimit)}...`;
 
+  const buttonStyle =
+    "flex items-center gap-2 px-4 py-2 font-sans font-semibold transition-transform shadow-md rounded-xl text-whiteHeadline-500 hover:scale-105";
+  const deployButtonStyle = `${buttonStyle} bg-purpleButton-400/80 hover:bg-purpleButton-300`;
+  const githubButtonStyle = `${buttonStyle} bg-secondaryBackground-600 text-whiteHeadline-500 hover:bg-secondaryBackground-300`;
+
+
   return (
     <div className="bg-black/20 border border-purple-500/30 rounded-xl shadow-lg hover:shadow-2xl  transition-all duration-300 transform hover:scale-[1.02] group card flex flex-col min-h-[700px]">
       <div className="relative w-full overflow-hidden h-60 rounded-t-xl">
@@ -93,13 +99,13 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
           )}
         </div>
 
-        <div className="flex justify-end gap-4 mt-auto font-sans">
+        <div className="flex justify-center gap-4 mt-auto font-sans text-sm"> 
           {project.links.deploy && (
             <a
               href={project.links.deploy}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-2 transition-colors text-purpleButton-300 hover:text-purpleButton-400"
+              className={deployButtonStyle} 
             >
               <BiWorld size={20} /> Deploy
             </a>
@@ -107,25 +113,23 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
 
           {hasBothRepos ? (
             <>
-              {/* Botón de GitHub que desaparece */}
               {!showGitHubButtons && (
                 <button
                   onClick={() => setShowGitHubButtons(true)}
-                  className="flex items-center gap-2 transition-all duration-300 ease-in-out text-whiteHeadline-300 hover:text-purpleButton-400"
+                  className={githubButtonStyle} 
                 >
                   <BiCodeAlt size={20} /> GitHub
                 </button>
               )}
 
-              {/* Contenedor de botones de repositorios */}
-              <div className="flex items-center gap-4">
+              <div className="flex items-center gap-4 text-sm">
                 {showGitHubButtons && (
                   <div className="flex items-center gap-4 transition-all duration-300 ease-in-out">
                     <a
                       href={project.links.gitHubFront}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-center gap-2 transition-colors duration-300 text-whiteHeadline-300 hover:text-purpleButton-400"
+                      className={githubButtonStyle} 
                       style={{
                         animation: "slideInFromLeft 0.6s ease-out forwards",
                       }}
@@ -136,7 +140,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
                       href={project.links.gitHubback}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-center gap-2 transition-colors duration-300 text-whiteHeadline-300 hover:text-purpleButton-400"
+                      className={githubButtonStyle} 
                       style={{
                         animation: "slideInFromRight 0.6s ease-out forwards",
                       }}
@@ -153,7 +157,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
                 href={project.links.gitHubFront}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-2 transition-colors text-whiteHeadline-300 hover:text-purpleButton-400"
+                className={githubButtonStyle} 
               >
                 <BiCodeAlt size={20} /> GitHub
               </a>
