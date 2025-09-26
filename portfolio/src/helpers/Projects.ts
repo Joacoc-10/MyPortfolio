@@ -45,7 +45,7 @@ export const projects: IProjects[] = [
     },
     links: {
       gitHubFront: "https://github.com/Joacoc-10/PM3---Bodega-Cepa-Real",
-      deploy: "https://bodega-cepa-real.vercel.app/home",
+      deploy: "https://bodega-cepa-real.vercel.app/",
     }
   },
 

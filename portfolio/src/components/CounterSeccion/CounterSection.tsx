@@ -1,3 +1,4 @@
+import ScrollFloat from "../ScrollFloat";
 import ExperienceCounter from "./ExperienceCounter";
 import ProjectCounter from "./ProjectCounter";
 
@@ -12,8 +13,23 @@ const CounterSection = () => {
       {/* Este es el contenedor de contenido que tiene el mismo ancho que el footer */}
       <div className="w-full max-w-screen-xl p-4 mx-auto md:py-8">
         <div className="flex flex-col space-y-8 md:flex-row justify-evenly md:space-y-0">
-          <ExperienceCounter />
-          <ProjectCounter />
+          
+          <ScrollFloat 
+            animationDuration={1.5}
+            ease="power3.out"
+            scrollStart="top bottom-=150"
+          >
+            <ExperienceCounter />
+          </ScrollFloat>
+
+          <ScrollFloat
+            animationDuration={1.5}
+            ease="power3.out"
+            scrollStart="top bottom-=100" 
+          >
+            <ProjectCounter />
+          </ScrollFloat>
+          
         </div>
       </div>
     </div>

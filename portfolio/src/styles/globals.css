@@ -228,5 +228,8 @@ a {
   transform-origin: bottom left;
 }
 
+.shadow-reflector {
+   text-shadow: 0px 10px 10px rgba(0, 0, 0, 0.9);
+}
 
 
