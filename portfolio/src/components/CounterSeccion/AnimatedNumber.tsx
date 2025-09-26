@@ -3,7 +3,6 @@
 import React from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
-// Define the interface for the component's props
 interface AnimatedNumberProps {
   value: number;
   className: string;

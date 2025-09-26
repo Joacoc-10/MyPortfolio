@@ -61,6 +61,7 @@ export const projects: IProjects[] = [
     },
     links: {
       gitHubFront: "https://github.com/Joacoc-10/PM4----Futura-Tech",
+      deploy: "https://futuratech.vercel.app/",
     }
   },
 

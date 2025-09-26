@@ -4,9 +4,9 @@ import ProjectCounter from "./ProjectCounter";
 const CounterSection = () => {
   return (
     <div
-      className="m-4 font-sans rounded-lg bg-[#F0F0F0] bg-opacity-90 mt-40 "
+      className="m-4 mt-40 font-sans rounded-lg bg-opacity-90 "
       style={{
-        boxShadow: "0 -4px 7px 0 #94a1b2, 0 7px 15px 0 #94a1b2",
+        boxShadow: "0 -4px 7px 0 #7f5af0, 0 7px 15px 0 #7f5af0",
       }}
     >
       {/* Este es el contenedor de contenido que tiene el mismo ancho que el footer */}

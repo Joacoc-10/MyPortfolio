@@ -6,7 +6,8 @@ const Header = () => {
     <>
       <section id="Header">
         <div className="relative w-full h-[650px]">
-          <DarkVeil />
+          <DarkVeil   />
+         {/* hueShift={230} */}
           <div className="absolute inset-0 flex items-center justify-center">
             <h1
               className="text-white text-xl font-bold  md:text-3xl font-lexend text-center max-w-[70%] leading-relaxed my-0"
