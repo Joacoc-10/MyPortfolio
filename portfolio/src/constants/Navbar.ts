@@ -3,10 +3,6 @@ import { Routes } from "@/routes";
 
 export const NavbarLinks: NavbarItemProps[] = [
   {
-    label: "Inicio",
-    href: Routes.Header,
-  },
-  {
     label: "Sobre mí",
     href: Routes.AboutMe,
   },
@@ -17,5 +13,9 @@ export const NavbarLinks: NavbarItemProps[] = [
   {
     label: "Proyectos",
     href: Routes.Projects,
+  },
+   {
+    label: "Contacto",
+    href: Routes.Contact,
   },
 ];

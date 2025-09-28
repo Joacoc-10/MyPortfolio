@@ -3,7 +3,7 @@ import React, { useRef, useEffect, useCallback } from "react";
 import { gsap } from "gsap";
 
 const DEFAULT_PARTICLE_COUNT = 12;
-const DEFAULT_GLOW_COLOR = "132, 0, 255";
+const DEFAULT_GLOW_COLOR = "176,44,2";
 
 const createParticleElement = (
   x: number,
@@ -14,11 +14,11 @@ const createParticleElement = (
   el.className = "particle";
   el.style.cssText = `
     position: absolute;
-    width: 4px;
-    height: 4px;
+    width: 6px;
+    height: 6px;
     border-radius: 50%;
     background: rgba(${color}, 1);
-    box-shadow: 0 0 6px rgba(${color}, 0.6);
+    box-shadow: 0 0 10px 1px rgba(${color}, 0.8);
     pointer-events: none;
     z-index: 100;
     left: ${x}px;

@@ -28,7 +28,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
 
 
   return (
-    <div className="bg-black/20 border border-purple-500/30 rounded-xl shadow-lg hover:shadow-2xl  transition-all duration-300 transform hover:scale-[1.02] group card flex flex-col min-h-[700px]">
+    <div className="bg-black/20 border border-purpleButton-500/60 rounded-xl shadow-lg hover:shadow-2xl  transition-all duration-300 transform hover:scale-[1.02] group card flex flex-col min-h-[700px]">
       <div className="relative w-full overflow-hidden h-60 rounded-t-xl">
         <Image
           src={project.imageSrc}
@@ -45,7 +45,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
         </h3>
 
         <div className="mb-4 text-right">
-          <span className="inline-block px-2 py-1 mb-4 font-sans font-medium text-purple-300 rounded-full text-mb bg-purple-600/30">
+          <span className="inline-block px-2 py-1 mb-4 font-sans font-medium rounded-full text-purpleButton-300 text-mb bg-purpleButton-600/30">
             {project.rol}
           </span>
         </div>
@@ -55,7 +55,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
           {showReadMoreButton && (
             <button
               onClick={() => setShowFullDescription(!showFullDescription)}
-              className="ml-1 font-medium transition-colors text-purpleButton-300 hover:text-purple-300"
+              className="ml-1 font-medium transition-colors text-purpleButton-300 hover:text-purpleButton-200"
             >
               {showFullDescription ? "Leer menos" : "Leer más"}
             </button>

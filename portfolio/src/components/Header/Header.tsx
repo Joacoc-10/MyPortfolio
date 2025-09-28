@@ -15,8 +15,8 @@ const Header = () => {
     <>
       <section id="Header">
         <div className="relative w-full h-[650px]">
-          <DarkVeil /> 
-          {/* hueShift={50} */}
+          
+          <DarkVeil hueShift={225} /> 
           <div className="absolute inset-0 flex items-center justify-center">
             
             {/* CONTENEDOR PRINCIPAL DEL TÍTULO */}
@@ -27,7 +27,7 @@ const Header = () => {
               <span className="mr-3 shadow-reflector">Desarrollo</span>
               
               
-              {/* <div className="h-16 overflow-hidden md:h-24"> 
+              <div className="h-16 overflow-hidden md:h-24"> 
                 <RotatingText
                   texts={professionalTexts}
                   rotationInterval={4500} // Lento: 4.5 segundos por frase
@@ -36,7 +36,7 @@ const Header = () => {
                   mainClassName="text-purpleButton-500 font-lexend"
                   elementLevelClassName="shadow-reflector" 
                 />
-              </div> */}
+              </div>
               
             </h1>
           </div>

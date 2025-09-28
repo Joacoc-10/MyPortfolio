@@ -16,7 +16,7 @@ const EffectsWrapper: React.FC<EffectsWrapperProps> = ({
   children,
   enableStars = true,
   enableSpotlight = true,
-  glowColor = "132, 0, 255",
+  glowColor = "176,44,2",
   particleCount = 12,
 }) => {
   const gridRef = useRef<HTMLDivElement>(null);

@@ -7,13 +7,13 @@ const AboutMe = () => {
       <div className="container px-4 py-12 mx-auto md:px-0">
         <div className="grid items-center grid-cols-1 md:grid-cols-2 md:gap-12">
           <div className="items-center justify-center hidden p-8 md:flex">
-            <div className="w-64 overflow-hidden border-4 shadow-lg h-82 border-purpleButton-500">
+            <div className="w-64 overflow-hidden border-4 rounded-full shadow-lg h-82 border-purpleButton-500">
               <Image
-                src="https://ik.imagekit.io/i1pxujmp5t/My%20Portfolio/IMG_7124.jpg?updatedAt=1757089382845"
+                src="https://ik.imagekit.io/i1pxujmp5t/My%20Portfolio/36507850-FEF9-4BB5-A425-3FE29636C98A%202.jpg?updatedAt=1759064561805"
                 alt="Joaquín, Full-Stack Developer"
                 width={256}
                 height={256}
-                className="object-cover w-full h-full"
+                className="object-cover w-full h-full "
               />
             </div>
           </div>

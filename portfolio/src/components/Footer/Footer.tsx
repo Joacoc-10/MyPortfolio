@@ -5,6 +5,7 @@ import React from "react";
 import { FaLinkedin, FaEnvelope, FaGithub } from "react-icons/fa";
 import { TbFileCv } from "react-icons/tb";
 import { socialLinks } from "@/helpers/SocialMedia";
+import ScrollFloat from "../ScrollFloat";
 
 const getIcon = (iconName: string) => {
   switch (iconName) {
@@ -25,12 +26,11 @@ const Footer = () => {
   return (
     <>
       <footer className="relative m-4 font-sans rounded-lg bg-[#F0F0F0] bg-opacity-90 mt-32">
-        {/* <div className="absolute inset-0 rounded-lg bg-white/80"></div> */}
         <div className="w-full max-w-screen-xl p-4 mx-auto md:py-8">
-          {/* Add 'justify-center' for mobile alignment */}
           <div className="flex flex-col items-center justify-between sm:flex-row">
+            
+            
             {/* Logo a la izquierda */}
-            {/* Remove 'w-full' from this Link */}
             <Link
               href="/"
               className="flex items-center justify-center space-x-3 invert rtl:space-x-reverse sm:w-auto sm:justify-start"
@@ -42,6 +42,8 @@ const Footer = () => {
                 height={80}
               />
             </Link>
+
+            
             {/* Lista de enlaces centrada */}
             <ul className="flex flex-wrap items-center mt-4 text-sm font-medium text-greySecondary-300 sm:mb-0 sm:mt-0">
               <li>
@@ -65,8 +67,9 @@ const Footer = () => {
                 </a>
               </li>
             </ul>
+
+            
             {/* Íconos de redes sociales a la derecha */}
-            {/* Remove 'w-full' from this div */}
             <div className="relative flex items-center justify-center mt-4 space-x-4 sm:w-auto sm:justify-end sm:mt-0">
               {socialLinks
                 .filter((item) => !item.subLinks)
