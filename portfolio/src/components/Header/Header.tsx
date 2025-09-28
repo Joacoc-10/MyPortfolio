@@ -27,13 +27,13 @@ const Header = () => {
               <span className="mr-3 shadow-reflector">Desarrollo</span>
               
               
-              <div className="h-32 overflow-hidden md:h-24"> 
+              <div className="h-32 overflow-hidden text-center md:h-24"> 
                 <RotatingText
                   texts={professionalTexts}
                   rotationInterval={4500} // Lento: 4.5 segundos por frase
                   staggerDuration={0.03}
                   animatePresenceMode="wait"
-                  mainClassName="text-purpleButton-500 font-lexend"
+                  mainClassName="text-purpleButton-500 font-lexend "
                   elementLevelClassName="shadow-reflector" 
                 />
               </div>

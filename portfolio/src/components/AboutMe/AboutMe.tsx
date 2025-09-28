@@ -11,14 +11,14 @@ const AboutMe = () => {
           {/* Mi foto */}
           <div className="flex items-center justify-center p-4 mb-8 md:p-8 md:mb-0">
             <div
-              className="w-64 overflow-hidden border-4 rounded-full shadow-lg h-88 border-purpleButton-500"
+              className="w-64 overflow-hidden border-4 rounded-full shadow-lg bg-blackPrimary-100/30 h-88 border-purpleButton-500"
               style={{
                 boxShadow:
                   "0 0 15px rgba(1, 130, 138, 0.5), 0 0 30px rgba(1, 170, 180, 0.4)",
               }}
             >
               <Image
-                src="https://ik.imagekit.io/i1pxujmp5t/My%20Portfolio/36507850-FEF9-4BB5-A425-3FE29636C98A%202.jpg?updatedAt=1759064561805"
+                src="https://ik.imagekit.io/i1pxujmp5t/My%20Portfolio/36507850-FEF9-4BB5-A425-3FE29636C98A%202-Photoroom.png?updatedAt=1759089604038"
                 alt="Joaquín, Full-Stack Developer"
                 width={256}
                 height={256}
@@ -60,7 +60,7 @@ const AboutMe = () => {
             {/* Call to action  */}
             <div className="flex flex-col items-center justify-center pt-12 space-y-2 font-sans md:flex-row md:space-x-4 md:space-y-0 text-greyParagraph-500">
               <h4>
-              ¡Listo para empezar un nuevo proyecto!
+              ¡Estoy listo para empezar un nuevo proyecto!
               </h4>
               <a
                 href="mailto:joacoc-10@hotmail.com"
