@@ -76,27 +76,27 @@ const ExperienceCounter: React.FC = () => {
         <div className="flex justify-center space-x-4 font-extrabold font-lexend md:space-x-8">
           <div>
             <span className="leading-none tracking-tight text-8xl md:text-9xl">-</span>
-            <span className="mt-2 text-sm font-normal text-gray-500">Años</span>
+            <span className="mt-2 text-sm font-normal text-greyParagraph-500">Años</span>
           </div>
           <div>
             <span className="text-6xl leading-tight tracking-tight md:text-7xl">-</span>
-            <span className="mt-2 text-sm font-normal text-gray-400">Meses</span>
+            <span className="mt-2 text-sm font-normal text-greyParagraph-500">Meses</span>
           </div>
           <div>
             <span className="text-4xl leading-snug tracking-tight md:text-5xl">-</span>
-            <span className="mt-2 text-sm font-normal text-gray-400">Días</span>
+            <span className="mt-2 text-sm font-normal text-greyParagraph-500">Días</span>
           </div>
           <div>
             <span className="text-2xl leading-normal tracking-tight md:text-3xl">-</span>
-            <span className="mt-2 text-sm font-normal text-gray-400">Horas</span>
+            <span className="mt-2 text-sm font-normal text-greyParagraph-500">Horas</span>
           </div>
           <div>
             <span className="text-xl leading-loose tracking-tight md:text-2xl">-</span>
-            <span className="mt-2 text-sm font-normal text-gray-400">Min.</span>
+            <span className="mt-2 text-sm font-normal text-greyParagraph-500">Min.</span>
           </div>
           <div>
             <span className="text-lg leading-relaxed tracking-tight md:text-xl">-</span>
-            <span className="mt-2 text-sm font-normal text-gray-400">Seg.</span>
+            <span className="mt-2 text-sm font-normal text-greyParagraph-500">Seg.</span>
           </div>
         </div>
       </div>

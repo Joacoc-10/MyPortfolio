@@ -97,7 +97,7 @@ const SocialMedia: React.FC<SocialMediaProps> = ({ isMenuOpen }) => {
                   <span
                     ref={cvButtonRef}
                     onClick={toggleCvMenu}
-                    className="text-white cursor-pointer hover:text-purpleButton-300"
+                    className="text-white cursor-pointer hover:text-purpleButton-400 focus:text-purpleButton-400"
                   >
                     {IconComponent && <IconComponent size={30} />}
                   </span>

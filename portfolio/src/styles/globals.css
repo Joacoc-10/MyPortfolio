@@ -115,12 +115,12 @@ a {
   padding: 6px; 
   background: radial-gradient(
     circle at var(--glow-x, 90%) var(--glow-y, 90%),
-    /* Nuevo Naranja Rojo (#b02c02 = 176, 44, 2) */
-    rgba(176, 44, 2, calc(var(--glow-intensity, 0) * 2.0)) 0%,    
-    rgba(176, 44, 2, calc(var(--glow-intensity, 0) * 1.6)) 10%, 
-    rgba(176, 44, 2, calc(var(--glow-intensity, 0) * 1.2)) 30%, 
-    rgba(176, 44, 2, calc(var(--glow-intensity, 0) * 0.6)) 55%,
-    transparent 80%                                               
+     /* Verde base con halo más claro */
+    rgba(1, 94, 100, calc(var(--glow-intensity, 0) * 2.0)) 0%,    
+    rgba(1, 130, 138, calc(var(--glow-intensity, 0) * 1.6)) 10%, 
+    rgba(1, 170, 180, calc(var(--glow-intensity, 0) * 1.2)) 30%, 
+    rgba(1, 94, 100, calc(var(--glow-intensity, 0) * 0.6)) 55%,
+    transparent 80%                                             
   );
   -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
   -webkit-mask-composite: xor;
@@ -134,10 +134,11 @@ a {
 
 .card--border-glow {
   position: relative;
-  border: 1px solid rgba(192, 58, 21, 0.5);
+  border: 1px solid rgba(1, 94, 100, 0.5);
   border-radius: 1rem;
   transition: border 0.2s ease;
   overflow: hidden;
+  /* box-shadow: "0 0 15px rgba(1, 130, 138, 0.5), 0 0 30px rgba(1, 170, 180, 0.4)"; */
 }
 
 .card--border-glow::after {
@@ -146,10 +147,9 @@ a {
   inset: 0;
   border-radius: inherit;
   background: radial-gradient(
-     var(--glow-radius, 200px) circle at var(--glow-x, 50%) var(--glow-y, 50%),
-    /* Nuevo Naranja Rojo (#b02c02 = 176, 44, 2) */
-    rgba(176, 44, 2, calc(var(--glow-intensity, 0) * 0.8)) 0%,  
-    rgba(176, 44, 2, calc(var(--glow-intensity, 0) * 0.3)) 20%,
+    var(--glow-radius, 200px) circle at var(--glow-x, 50%) var(--glow-y, 50%),
+    rgba(1, 130, 138, calc(var(--glow-intensity, 0) * 0.8)) 0%,  
+    rgba(1, 170, 180, calc(var(--glow-intensity, 0) * 0.3)) 20%,
     transparent 60%
 
   );

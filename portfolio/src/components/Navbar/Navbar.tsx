@@ -59,7 +59,7 @@ const Navbar = () => {
           <button
             ref={buttonRef} 
             onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="text-white bg-transparent md:hidden focus:outline-none hover:text-violet-500"
+            className="text-white bg-transparent md:hidden focus:outline-none hover:text-purpleButton-500 focus:text-purpleButton-500"
           >
             <svg
               className="w-8 h-8"

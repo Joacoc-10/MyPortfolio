@@ -53,7 +53,7 @@ const SkillsSection = () => {
           <ScrollFloat
             animationDuration={1.3}
             ease="power3.out"
-            scrollStart="top bottom-=100"
+            scrollStart="top bottom-=50"
             key={index}
           >
             <div className="flex justify-start w-full">

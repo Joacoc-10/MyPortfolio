@@ -5,7 +5,6 @@ import React from "react";
 import { FaLinkedin, FaEnvelope, FaGithub } from "react-icons/fa";
 import { TbFileCv } from "react-icons/tb";
 import { socialLinks } from "@/helpers/SocialMedia";
-import ScrollFloat from "../ScrollFloat";
 
 const getIcon = (iconName: string) => {
   switch (iconName) {
@@ -25,7 +24,7 @@ const getIcon = (iconName: string) => {
 const Footer = () => {
   return (
     <>
-      <footer className="relative m-4 font-sans rounded-lg bg-[#F0F0F0] bg-opacity-90 mt-32">
+      <footer className="relative m-4 mt-32 font-sans rounded-lg bg-secondaryBackground-500 bg-opacity-90">
         <div className="w-full max-w-screen-xl p-4 mx-auto md:py-8">
           <div className="flex flex-col items-center justify-between sm:flex-row">
             
@@ -33,7 +32,7 @@ const Footer = () => {
             {/* Logo a la izquierda */}
             <Link
               href="/"
-              className="flex items-center justify-center space-x-3 invert rtl:space-x-reverse sm:w-auto sm:justify-start"
+              className="flex items-center justify-center space-x-3 rtl:space-x-reverse sm:w-auto sm:justify-start"
             >
               <Image
                 src="https://ik.imagekit.io/i1pxujmp5t/My%20Portfolio/White%20logo%20-%20no%20background.png?updatedAt=1757084781230"
@@ -45,24 +44,24 @@ const Footer = () => {
 
             
             {/* Lista de enlaces centrada */}
-            <ul className="flex flex-wrap items-center mt-4 text-sm font-medium text-greySecondary-300 sm:mb-0 sm:mt-0">
+            <ul className="flex flex-wrap items-center mt-4 text-sm font-medium text-greyParagraph-600 sm:mb-0 sm:mt-0">
               <li>
-                <a href="#AboutMe" className="relative transition-colors duration-300 link-underline me-4 md:me-6 hover:text-greySecondary-600">
+                <a href="#AboutMe" className="relative transition-colors duration-300 link-underline me-4 md:me-6 hover:text-greyParagraph-300">
                   Sobre mí
                 </a>
               </li>
               <li>
-                <a href="#SkillSection" className="relative transition-colors duration-300 link-underline me-4 md:me-6 hover:text-greySecondary-600">
+                <a href="#SkillSection" className="relative transition-colors duration-300 link-underline me-4 md:me-6 hover:text-greyParagraph-300">
                   Habilidades
                 </a>
               </li>
               <li>
-                <a href="#ProjectsSection" className="relative transition-colors duration-300 link-underline me-4 md:me-6 hover:text-greySecondary-600">
+                <a href="#ProjectsSection" className="relative transition-colors duration-300 link-underline me-4 md:me-6 hover:text-greyParagraph-300">
                   Proyectos
                 </a>
               </li>
               <li>
-                <a href="#" className="relative transition-colors duration-300 link-underline hover:text-greySecondary-600">
+                <a href="#" className="relative transition-colors duration-300 link-underline hover:text-greyParagraph-300">
                   Contacto
                 </a>
               </li>
@@ -81,7 +80,7 @@ const Footer = () => {
                       href={item.href || "#"}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="transition-colors duration-300 text-blackPrimary-400 hover:text-blackPrimary-100"
+                      className="transition-colors duration-300 text-greyParagraph-600 hover:text-greyParagraph-300"
                     >
                       {IconComponent && <IconComponent size={24} />}
                     </Link>
@@ -89,10 +88,10 @@ const Footer = () => {
                 })}
             </div>
           </div>
-          <hr className="my-4 border-greySecondary-400 sm:mx-auto lg:my-2" />
-          <span className="relative block mt-3 text-center text-greySecondary-300 text-md sm:text-center ">
+          <hr className="my-4 border-greyParagraph-600 sm:mx-auto lg:my-2" />
+          <span className="relative block mt-3 text-center text-greyParagraph-600 text-md sm:text-center ">
             © 2025
-            <Link href="/" className="hover:text-greySecondary-600">
+            <Link href="/" className="hover:text-greyParagraph-400">
               JCoding
             </Link>
             . Todos los derechos reservados.
