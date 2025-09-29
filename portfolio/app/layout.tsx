@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
-import "../styles/reset.css";
-import "../styles/globals.css";
+import "../src/styles/reset.css";
+import "../src/styles/globals.css";
 import { Lexend, Instrument_Sans, Geist, Geist_Mono } from "next/font/google";
 
 const geistSans = Geist({
@@ -15,13 +15,13 @@ const geistMono = Geist_Mono({
 
 const lexend = Lexend({
   subsets: ["latin"],
-  weight: ["400", "700", "800"], // Example weights for titles (Regular, Bold, ExtraBold)
+  weight: ["400", "700", "800"], 
   variable: "--font-lexend",
 });
 
 const instrumentSans = Instrument_Sans({
   subsets: ["latin"],
-  weight: ["400", "500"], // Example weights for body text (Regular, Medium)
+  weight: ["400", "500"], 
   variable: "--font-instrument-sans",
 });
 
