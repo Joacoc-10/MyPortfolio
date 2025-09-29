@@ -6,6 +6,10 @@ import { FaLinkedin, FaGithub, FaEnvelope } from "react-icons/fa";
 import { socialLinks } from "@/helpers/SocialMedia";
 import { IoDocumentText } from "react-icons/io5";
 
+interface SocialMediaProps {
+  isMenuOpen?: boolean;
+}
+
 const getIcon = (iconName: string) => {
   switch (iconName) {
     case "LinkedIn":
@@ -21,19 +25,45 @@ const getIcon = (iconName: string) => {
   }
 };
 
-const SocialMedia = () => {
+const SocialMedia: React.FC<SocialMediaProps> = ({ isMenuOpen }) => {
   const [isCvMenuOpen, setIsCvMenuOpen] = useState(false);
+  const [isClosing, setIsClosing] = useState(false); 
   const menuRef = useRef<HTMLDivElement>(null);
+  const cvButtonRef = useRef<HTMLSpanElement>(null);
+
+  useEffect(() => {
+    // Si el menú principal del Navbar se cierra, iniciamos el cierre del submenú de CV
+    if (isMenuOpen === false) {
+      setIsClosing(true);
+    }
+  }, [isMenuOpen]);
+
+  useEffect(() => {
+    // Este useEffect maneja la lógica de cierre del submenú de CV
+    if (isClosing) {
+      const timer = setTimeout(() => {
+        setIsCvMenuOpen(false);
+        setIsClosing(false); 
+      }, 600); 
+
+      return () => clearTimeout(timer);
+    }
+  }, [isClosing]);
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
-      if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
-        setIsCvMenuOpen(false);
+      const clickedInsideMenu = menuRef.current && menuRef.current.contains(event.target as Node);
+      const clickedOnCvButton = cvButtonRef.current && cvButtonRef.current.contains(event.target as Node);
+
+      if (isCvMenuOpen && !clickedInsideMenu && !clickedOnCvButton) {
+        setIsClosing(true); 
       }
     };
     
     const handleScroll = () => {
-      setIsCvMenuOpen(false);
+      if (isCvMenuOpen) {
+        setIsClosing(true); 
+      }
     };
 
     document.addEventListener("mousedown", handleClickOutside);
@@ -43,75 +73,144 @@ const SocialMedia = () => {
       document.removeEventListener("mousedown", handleClickOutside);
       window.removeEventListener("scroll", handleScroll);
     };
-  }, [menuRef]);
+  }, [isCvMenuOpen]);
+
+  const toggleCvMenu = () => {
+    if (isCvMenuOpen) {
+      setIsClosing(true); 
+    } else {
+      setIsCvMenuOpen(true); 
+    }
+  };
 
   return (
-    <div className="items-center hidden space-x-5 md:flex">
+    <div className="flex items-center space-x-5">
       {socialLinks.map((item) => {
         const IconComponent = getIcon(item.name);
-        return (
-          <div key={item.name} className="relative">
-            {item.subLinks ? (
-              <div ref={menuRef}>
-                <span
-                  onClick={() => setIsCvMenuOpen(!isCvMenuOpen)}
-                  className="text-white cursor-pointer hover:text-purpleButton-300"
-                >
-                  {IconComponent && <IconComponent size={30} />}
-                </span>
-                
-                <div
-                  className={`absolute left-1/2 -translate-x-1/2 z-50 p-2 mt-2 w-56 rounded-lg ${
-                    isCvMenuOpen ? 'block' : 'hidden'
-                  }`}
-                >
-                  {isCvMenuOpen && (
-                    <div className="flex justify-around gap-2">
-                      <Link
-                        key={item.subLinks[0].label}
-                        href={item.subLinks[0].href}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex flex-col items-center justify-center p-2 rounded-lg hover:bg-white/10"
-                        style={{
-                          animation: "slideInFromLeft 0.6s ease-out forwards",
-                        }}
-                      >
-                        <IoDocumentText size={25} className="text-white" />
-                        <span className="mt-1 font-sans text-xs font-medium text-center text-white whitespace-nowrap">
-                          {item.subLinks[0].label}
-                        </span>
-                      </Link>
 
-                      <Link
-                        key={item.subLinks[1].label}
-                        href={item.subLinks[1].href}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex flex-col items-center justify-center p-2 rounded-lg hover:bg-white/10"
-                        style={{
-                          animation: "slideInFromRight 0.6s ease-out forwards",
-                        }}
-                      >
-                        <IoDocumentText size={25} className="text-white" />
-                        <span className="mt-1 font-sans text-xs font-medium text-center text-white whitespace-nowrap">
-                          {item.subLinks[1].label}
-                        </span>
-                      </Link>
-                    </div>
-                  )}
+        if (item.subLinks) {
+          return (
+            <div key={item.name} className="relative">
+              {/* Opción para pantallas medianas y grandes (con menú desplegable) */}
+              <div className="relative hidden md:block">
+                <div ref={menuRef}>
+                  <span
+                    ref={cvButtonRef}
+                    onClick={toggleCvMenu}
+                    className="text-white cursor-pointer hover:text-purpleButton-400 focus:text-purpleButton-400"
+                  >
+                    {IconComponent && <IconComponent size={30} />}
+                  </span>
+                  <div
+                    className={`absolute left-1/2 -translate-x-1/2 z-50 p-2 mt-2 w-56 rounded-lg 
+                      overflow-hidden transition-all duration-300 ease-in-out
+                      ${isCvMenuOpen ? 'max-h-28' : 'max-h-0'}`}
+                  >
+                    {(isCvMenuOpen || isClosing) && ( 
+                      <div className="flex justify-around gap-2">
+                        <Link
+                          key={item.subLinks[0].label}
+                          href={item.subLinks[0].href}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="flex flex-col items-center justify-center p-2 rounded-lg hover:bg-white/10"
+                          style={{
+                            animation: isClosing 
+                              ? "slideOutToLeft 0.6s ease-out forwards" 
+                              : "slideInFromLeft 0.6s ease-out forwards",
+                          }}
+                        >
+                          <IoDocumentText size={25} className="text-white" />
+                          <span className="mt-1 font-sans text-xs font-medium text-center text-white whitespace-nowrap">
+                            {item.subLinks[0].label}
+                          </span>
+                        </Link>
+                        <Link
+                          key={item.subLinks[1].label}
+                          href={item.subLinks[1].href}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="flex flex-col items-center justify-center p-2 rounded-lg hover:bg-white/10"
+                          style={{
+                            animation: isClosing
+                              ? "slideOutToRight 0.6s ease-out forwards"
+                              : "slideInFromRight 0.6s ease-out forwards",
+                          }}
+                        >
+                          <IoDocumentText size={25} className="text-white" />
+                          <span className="mt-1 font-sans text-xs font-medium text-center text-white whitespace-nowrap">
+                            {item.subLinks[1].label}
+                          </span>
+                        </Link>
+                      </div>
+                    )}
+                  </div>
                 </div>
               </div>
-            ) : (
-              <Link
-                href={item.href || "#"}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-white hover:text-purpleButton-300"
-              >
-                {IconComponent && <IconComponent size={24} />}
-              </Link>
-            )}
+              {/* Opción para pantallas pequeñas (reemplaza el icono del CV por los enlaces) */}
+              <div className="md:hidden">
+                {!isCvMenuOpen && !isClosing ? (
+                  <span
+                    ref={cvButtonRef}
+                    onClick={toggleCvMenu}
+                    className="text-white cursor-pointer hover:text-purpleButton-300"
+                  >
+                    {IconComponent && <IconComponent size={30} />}
+                  </span>
+                ) : (
+                  <div className="flex justify-center space-x-4">
+                    <Link
+                      key={item.subLinks[0].label}
+                      href={item.subLinks[0].href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex flex-col items-center justify-center p-2 rounded-lg hover:bg-white/10"
+                      style={{
+                        animation: isClosing
+                          ? "slideOutToLeft 0.6s ease-out forwards"
+                          : "slideInFromLeft 0.6s ease-out forwards",
+                      }}
+                    >
+                      <IoDocumentText size={25} className="text-white" />
+                      <span className="mt-1 font-sans text-xs font-medium text-center text-white whitespace-nowrap">
+                        {item.subLinks[0].label}
+                      </span>
+                    </Link>
+                    <Link
+                      key={item.subLinks[1].label}
+                      href={item.subLinks[1].href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex flex-col items-center justify-center p-2 rounded-lg hover:bg-white/10"
+                      style={{
+                        animation: isClosing
+                          ? "slideOutToRight 0.6s ease-out forwards"
+                          : "slideInFromRight 0.6s ease-out forwards",
+                      }}
+                    >
+                      <IoDocumentText size={25} className="text-white" />
+                      <span className="mt-1 font-sans text-xs font-medium text-center text-white whitespace-nowrap">
+                        {item.subLinks[1].label}
+                      </span>
+                    </Link>
+                  </div>
+                )}
+              </div>
+            </div>
+          );
+        }
+
+        // Lógica para otros iconos
+        return (
+          <div key={item.name} className="relative">
+            <Link
+              href={item.href || "#"}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-white hover:text-purpleButton-300"
+            >
+              {IconComponent && <IconComponent size={24} />}
+            </Link>
           </div>
         );
       })}

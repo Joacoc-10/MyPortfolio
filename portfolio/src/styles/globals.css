@@ -32,7 +32,6 @@ a {
 }
 
 
-
 @layer base {
   :root {
     --background: 0 0% 100%;
@@ -90,7 +89,6 @@ a {
 }
 
 
-
 @layer base {
   * {
     @apply border-border;
@@ -108,36 +106,39 @@ a {
   overflow: hidden;
 }
 
+
 .card::before {
   content: "";
   position: absolute;
   inset: 0;
   border-radius: inherit;
-  padding: 6px; /* grosor del borde glow */
+  padding: 6px; 
   background: radial-gradient(
     circle at var(--glow-x, 90%) var(--glow-y, 90%),
-    rgba(168, 85, 247, calc(var(--glow-intensity, 0) * 1.5)) 0%,    /* núcleo violeta intenso */
-    rgba(168, 85, 247, calc(var(--glow-intensity, 0) * 1.2)) 10%, /* halo intermedio fuerte */
-    rgba(168, 85, 247, calc(var(--glow-intensity, 0) * 0.8)) 30%, /* halo translúcido */
-    rgba(168, 85, 247, calc(var(--glow-intensity, 0) * 0.4)) 55%,/* degradado tenue */
-    transparent 80%                                               /* desvanecido completo */
+     /* Verde base con halo más claro */
+    rgba(1, 94, 100, calc(var(--glow-intensity, 0) * 2.0)) 0%,    
+    rgba(1, 130, 138, calc(var(--glow-intensity, 0) * 1.6)) 10%, 
+    rgba(1, 170, 180, calc(var(--glow-intensity, 0) * 1.2)) 30%, 
+    rgba(1, 94, 100, calc(var(--glow-intensity, 0) * 0.6)) 55%,
+    transparent 80%                                             
   );
   -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
   -webkit-mask-composite: xor;
   mask-composite: exclude;
   pointer-events: none;
   z-index: 2;
-  mix-blend-mode: screen; /* fusión tipo luz */
+  mix-blend-mode: screen; 
   filter: blur(8px);      /* brillo difuso tipo neón */
 }
 
 
 .card--border-glow {
   position: relative;
-  border: 1px solid rgba(168, 85, 247, 0.3); /* borde base muy suave */
+  border: 1px solid rgba(1, 94, 100, 0.5);
   border-radius: 1rem;
   transition: border 0.2s ease;
   overflow: hidden;
+  /* box-shadow: "0 0 15px rgba(1, 130, 138, 0.5), 0 0 30px rgba(1, 170, 180, 0.4)"; */
 }
 
 .card--border-glow::after {
@@ -147,20 +148,23 @@ a {
   border-radius: inherit;
   background: radial-gradient(
     var(--glow-radius, 200px) circle at var(--glow-x, 50%) var(--glow-y, 50%),
-    rgba(168, 85, 247, calc(var(--glow-intensity, 0) * 0.6)) 0%,  
-    rgba(168, 85, 247, calc(var(--glow-intensity, 0) * 0.3)) 20%,
+    rgba(1, 130, 138, calc(var(--glow-intensity, 0) * 0.8)) 0%,  
+    rgba(1, 170, 180, calc(var(--glow-intensity, 0) * 0.3)) 20%,
     transparent 60%
+
   );
   pointer-events: none;
   z-index: 2;
-  opacity: 1; /* siempre visible, depende de --glow-intensity */
+  opacity: 1; 
   transition: background 0.3s ease;
-  mix-blend-mode: screen; /* se fusiona como luz */
+  mix-blend-mode: screen; 
 }
 
+
+/* Animacion de entrada icono CV */
 @keyframes slideInFromLeft {
   from {
-    transform: translateX(-20px);
+    transform: translateX(-100%);
     opacity: 0;
   }
   to {
@@ -168,10 +172,11 @@ a {
     opacity: 1;
   }
 }
+
 
 @keyframes slideInFromRight {
   from {
-    transform: translateX(20px);
+    transform: translateX(100%);
     opacity: 0;
   }
   to {
@@ -180,9 +185,37 @@ a {
   }
 }
 
+
+/* Animaciones de salida CV */
+@keyframes slideOutToLeft {
+  from {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+}
+
+
+@keyframes slideOutToRight {
+  from {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+}
+
+
+/* Subrayado del navbar y footer */
 .link-underline {
   position: relative;
 }
+
 
 .link-underline::after {
   content: '';
@@ -197,10 +230,18 @@ a {
   transition: transform 0.25s ease-out;
 }
 
+
 .link-underline:hover::after {
   transform: scaleX(1);
   transform-origin: bottom left;
 }
 
+/* Sombra de letras negro */
+.shadow-reflector {
+   text-shadow: 0px 10px 10px rgba(0, 0, 0, 0.9);
+}
 
-
+/* Sombra para titulos blancos */
+.shadow-reflector-white {
+ text-shadow: 0px 10px 10px rgba(80, 79, 79, 0.638);
+}

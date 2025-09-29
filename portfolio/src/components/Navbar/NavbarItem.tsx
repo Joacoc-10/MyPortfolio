@@ -9,6 +9,7 @@ export interface NavbarItemProps {
   label: string;
   href?: string;
   isActive?: boolean;
+  onClick?: () => void;
 }
 
 const NavbarItem: FC<NavbarItemProps> = ({
@@ -29,7 +30,7 @@ const NavbarItem: FC<NavbarItemProps> = ({
             " font-sans block py-1 px-3 text-white rounded-sm",
             (isActive || isCurrentPage)
               ? "text-purpleButton-400"
-              : "hover:text-purpleButton-400"
+              : "hover:text-purpleButton-400 focus:text-purpleButton-400 focus-visible:link-underline"
           )}
         >
           {label}

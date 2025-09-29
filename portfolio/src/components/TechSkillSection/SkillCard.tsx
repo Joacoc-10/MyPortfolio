@@ -45,7 +45,7 @@ const SkillCard = ({ subTitle, description, icon, position }: SkillCardProps) =>
     };
   }, []);
 
-  // estilos del interior de la tarjeta (sin overflow-hidden)
+  // estilos del interior de la tarjeta 
   const cardInnerClasses = `
     w-full max-w-2xl bg-black/20 border border-purple-500/30 rounded-xl
     p-6 md:p-8 flex flex-col space-y-4
@@ -65,7 +65,7 @@ const SkillCard = ({ subTitle, description, icon, position }: SkillCardProps) =>
 
   // Posición del icono (ahora fuera de la tarjeta, como sibling)
   const iconPositionClasses = `
-    absolute w-24 h-24 rounded-full border border-purple-400 flex items-center justify-center bg-black/20
+    absolute w-24 h-24 rounded-full border border-purpleButton-400 flex items-center justify-center bg-black/20
     pointer-events-none
     ${position === 'center' ? '-top-12 left-1/2 -translate-x-1/2' : ''}
     ${position === 'left' ? '-left-6 top-1/2 -translate-y-1/2 md:block hidden' : ''}
@@ -96,7 +96,7 @@ const SkillCard = ({ subTitle, description, icon, position }: SkillCardProps) =>
       >
         {IconComponent && (
           <div className="flex items-center justify-center w-full h-full">
-            <IconComponent size={60} className="text-purple-400" />
+            <IconComponent size={60} className="text-purpleButton-400" />
           </div>
         )}
       </div>

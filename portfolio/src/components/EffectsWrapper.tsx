@@ -16,29 +16,33 @@ const EffectsWrapper: React.FC<EffectsWrapperProps> = ({
   children,
   enableStars = true,
   enableSpotlight = true,
-  glowColor = "132, 0, 255",
+  glowColor = "1, 94, 100",
   particleCount = 12,
 }) => {
   const gridRef = useRef<HTMLDivElement>(null);
 
   return (
-    <div className="relative h-full"> {/* Añadir h-full */}
+    <div className="relative h-full">
+      {" "}
+      {/* Añadir h-full */}
       {enableSpotlight && (
         <GlobalSpotlight gridRef={gridRef} glowColor={glowColor} />
       )}
-      <div ref={gridRef} className="relative h-full"> {/* Añadir h-full */}
+      <div ref={gridRef} className="relative h-full">
+        {" "}
+        {/* Añadir h-full */}
         {enableStars ? (
           <ParticleCard
             glowColor={glowColor}
             particleCount={particleCount}
-            enableTilt= {false}
-            enableMagnetism = {false}
+            enableTilt={false}
+            enableMagnetism={false}
             clickEffect
           >
             {children}
           </ParticleCard>
         ) : (
-          <div className="relative h-full">{children}</div> 
+          <div className="relative h-full">{children}</div>
         )}
       </div>
     </div>

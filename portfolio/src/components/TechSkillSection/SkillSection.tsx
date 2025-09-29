@@ -3,6 +3,7 @@ import React from "react";
 import SkillCard from "./SkillCard";
 import { skillsData } from "@/helpers/TechSkills";
 import EffectsWrapper from "../EffectsWrapper";
+import ScrollFloat from "../ScrollFloat";
 
 const SkillsSection = () => {
   const mainSkill = skillsData[0];
@@ -10,49 +11,68 @@ const SkillsSection = () => {
 
   return (
     <section id="SkillSection" className="container px-4 py-8 mx-auto mt-12">
-      {/* Header */}
-      <div className="flex flex-col items-center justify-center mb-12 text-center md:mb-24">
-        <h2 className="text-5xl font-extrabold tracking-tight md:text-6xl text-whiteHeadline-500 font-lexend">
-          Principales Tecnologias.
-        </h2>
-        <p className="mt-4 font-sans text-xl text-greyParagraph-500">
-          Full-stack skills.
-        </p>
-      </div>
+      {/* Tiutlo de Skill Section */}
+      <ScrollFloat
+        animationDuration={1.5}
+        ease="power3.out"
+        scrollStart="top bottom-=150"
+      >
+        <div className="flex flex-col items-center justify-center mt-40 mb-20 text-center md:mb-24">
+          <h1 className="text-5xl font-extrabold tracking-tight md:text-6xl text-whiteHeadline-500 font-lexend ">
+            Principales Tecnologias
+          </h1>
+          <h2 className="mt-4 font-sans text-xl text-greyParagraph-500">
+            Full-stack skills
+          </h2>
+        </div>
+      </ScrollFloat>
 
       {/* Main Skill (centrada) */}
       <div className="flex justify-center w-full mb-12">
-        <EffectsWrapper>
-          <SkillCard
-            title={mainSkill.title}
-            subTitle={mainSkill.subTitle}
-            description={mainSkill.description}
-            icon={mainSkill.icon}
-            position="center"
-          />
-        </EffectsWrapper>
+        <ScrollFloat
+          animationDuration={1.3}
+          ease="power3.out"
+          scrollStart="top bottom-=100"
+        >
+          <EffectsWrapper>
+            <SkillCard
+              title={mainSkill.title}
+              subTitle={mainSkill.subTitle}
+              description={mainSkill.description}
+              icon={mainSkill.icon}
+              position="center"
+            />
+          </EffectsWrapper>
+        </ScrollFloat>
       </div>
 
       {/* Otras Skills (izquierda/derecha) */}
       <div className="flex flex-col space-y-6 md:space-y-10">
         {otherSkills.map((skill, index) => (
-          <div key={index} className="flex justify-start w-full">
-            <div
-              className={`relative w-full max-w-2xl ${
-                index % 2 !== 0 ? "ml-auto" : ""
-              }`}
-            >
-              <EffectsWrapper>
-                <SkillCard
-                  title={skill.title}
-                  subTitle={skill.subTitle}
-                  description={skill.description}
-                  icon={skill.icon}
-                  position={index % 2 === 0 ? "left" : "right"}
-                />
-              </EffectsWrapper>
+          <ScrollFloat
+            animationDuration={1.3}
+            ease="power3.out"
+            scrollStart="top bottom-=50"
+            key={index}
+          >
+            <div className="flex justify-start w-full">
+              <div
+                className={`relative w-full max-w-2xl ${
+                  index % 2 !== 0 ? "ml-auto" : ""
+                }`}
+              >
+                <EffectsWrapper>
+                  <SkillCard
+                    title={skill.title}
+                    subTitle={skill.subTitle}
+                    description={skill.description}
+                    icon={skill.icon}
+                    position={index % 2 === 0 ? "left" : "right"}
+                  />
+                </EffectsWrapper>
+              </div>
             </div>
-          </div>
+          </ScrollFloat>
         ))}
       </div>
     </section>

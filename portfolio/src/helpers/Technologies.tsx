@@ -62,7 +62,7 @@ export const technologies: ITechnology[] = [
     href: "https://git-scm.com/",
   },
   {
-    src: "https://ik.imagekit.io/i1pxujmp5t/My%20Portfolio/GitHub.png?updatedAt=1757073382568",
+    src: "https://ik.imagekit.io/i1pxujmp5t/My%20Portfolio/github_logo_icon_229278.png?updatedAt=1758917528564",
     title: "GitHub",
     href: "https://docs.github.com/es",
   },
