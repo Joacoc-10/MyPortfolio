@@ -4,7 +4,6 @@ import SkillCard from "./SkillCard";
 import { skillsData } from "@/helpers/TechSkills";
 import EffectsWrapper from "../EffectsWrapper";
 import ScrollFloat from "../ScrollFloat";
-import { Scroll } from "lucide-react";
 
 const SkillsSection = () => {
   const mainSkill = skillsData[0];
@@ -19,12 +18,12 @@ const SkillsSection = () => {
         scrollStart="top bottom-=150"
       >
         <div className="flex flex-col items-center justify-center mt-40 mb-20 text-center md:mb-24">
-          <h2 className="text-5xl font-extrabold tracking-tight md:text-6xl text-whiteHeadline-500 font-lexend ">
-            Principales Tecnologias.
+          <h1 className="text-5xl font-extrabold tracking-tight md:text-6xl text-whiteHeadline-500 font-lexend ">
+            Principales Tecnologias
+          </h1>
+          <h2 className="mt-4 font-sans text-xl text-greyParagraph-500">
+            Full-stack skills
           </h2>
-          <p className="mt-4 font-sans text-xl text-greyParagraph-500">
-            Full-stack skills.
-          </p>
         </div>
       </ScrollFloat>
 

@@ -7,7 +7,6 @@ const AboutMe = () => {
     <section id="AboutMe">
       <div className="container px-4 py-12 mx-auto md:px-0">
         <div className="flex flex-col items-center grid-cols-1 md:grid md:grid-cols-2 md:gap-12">
-          
           {/* Mi foto */}
           <div className="flex items-center justify-center p-4 mb-8 md:p-8 md:mb-0">
             <div
@@ -30,11 +29,11 @@ const AboutMe = () => {
           {/* Seccion sobre mi  */}
           <div className="flex flex-col space-y-4 text-center md:pr-12 md:text-left">
             <h2 className="mb-4 text-2xl font-bold tracking-tight md:text-6xl text-whiteHeadline-500 font-lexend">
-              Sobre mí.
+              Sobre mí
             </h2>
             <p className="font-sans text-lg leading-relaxed text-whiteHeadline-500 ">
-              "Soy Joaquín, un <strong> Desarrollador Full Stack </strong> con
-              un fuerte enfoque en
+              &quot;Soy Joaquín, un <strong> Desarrollador Full Stack </strong>{" "}
+              con un fuerte enfoque en
               <strong> Front-End </strong> y la creación de
               <strong> experiencias digitales intuitivas y funcionales</strong>.
               Comencé desde cero en el
@@ -54,19 +53,17 @@ const AboutMe = () => {
               vez que sigo{" "}
               <strong>aprendiendo de profesionales experimentados</strong> y
               colaborando activamente, mientras construyo{" "}
-              <strong>mi carrera en tecnología</strong>."
+              <strong>mi carrera en tecnología</strong>.&quot;
             </p>
 
             {/* Call to action  */}
-            <div className="flex flex-col items-center justify-center pt-12 space-y-2 font-sans md:flex-row md:space-x-4 md:space-y-0 text-greyParagraph-500">
-              <h4>
-              ¡Estoy listo para empezar un nuevo proyecto!
-              </h4>
+            <div className="flex flex-col items-center justify-center pt-10 space-y-2 font-sans md:space-x-4 md:space-y-0 text-greyParagraph-500">
+              <h4>¡Estoy listo para empezar un nuevo proyecto!</h4>
               <a
                 href="mailto:joacoc-10@hotmail.com"
-                className="flex items-center gap-2 hover:text-purpleButton-400 link-underline"
+                className="flex items-center gap-2 pt-4 font-semibold hover:text-purpleButton-400 link-underline"
               >
-                ¡Conectemos!
+                Conectemos
                 {/* <FaEnvelope /> */}
               </a>
             </div>

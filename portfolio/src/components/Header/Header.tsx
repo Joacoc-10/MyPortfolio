@@ -23,10 +23,12 @@ const Header = () => {
             <h1
               className="text-whiteHeadline-500 text-4xl font-extrabold md:text-6xl font-lexend text-center max-w-[90%] leading-tight flex flex-wrap justify-center mx-auto"
             >
+              {/* Titulo Fijo */}
+              <span className="mr-3 shadow-reflector">
+                Desarrollo
+                </span>
               
-              <span className="mr-3 shadow-reflector">Desarrollo</span>
-              
-              
+              {/* Titulo rotativo  */}
               <div className="h-32 overflow-hidden text-center md:h-24"> 
                 <RotatingText
                   texts={professionalTexts}
