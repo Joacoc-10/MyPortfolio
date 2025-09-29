@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
-import "../src/styles/reset.css";
-import "../src/styles/globals.css";
+import "../styles/reset.css";
+import "../styles/globals.css";
 import { Lexend, Instrument_Sans, Geist, Geist_Mono } from "next/font/google";
 
 const geistSans = Geist({
