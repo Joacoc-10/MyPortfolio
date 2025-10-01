@@ -10,7 +10,7 @@ const AboutMe = () => {
           {/* Mi foto */}
           <div className="flex items-center justify-center p-4 mb-8 md:p-8 md:mb-0">
             <div
-              className="w-64 overflow-hidden border-4 rounded-full shadow-lg bg-blackPrimary-100/30 h-88 border-purpleButton-500"
+              className="w-64 overflow-hidden border-4 rounded-full shadow-lg bg-blackPrimary-100/30 h-88 border-esmeraldButton-500"
               style={{
                 boxShadow:
                   "0 0 15px rgba(1, 130, 138, 0.5), 0 0 30px rgba(1, 170, 180, 0.4)",
@@ -61,7 +61,7 @@ const AboutMe = () => {
               <h4>¡Estoy listo para empezar un nuevo proyecto!</h4>
               <a
                 href="mailto:joacoc-10@hotmail.com"
-                className="flex items-center gap-2 pt-4 font-semibold hover:text-purpleButton-400 link-underline"
+                className="flex items-center gap-2 pt-4 font-semibold hover:text-esmeraldButton-400 link-underline"
               >
                 Conectemos
                 {/* <FaEnvelope /> */}

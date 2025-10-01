@@ -28,9 +28,9 @@ const NavbarItem: FC<NavbarItemProps> = ({
           className={cs(
             "relative link-underline transition-colors duration-300",
             " font-sans block py-1 px-3 text-white rounded-sm",
-            (isActive || isCurrentPage)
-              ? "text-purpleButton-400"
-              : "hover:text-purpleButton-400 focus:text-purpleButton-400 focus-visible:link-underline"
+            isActive || isCurrentPage
+              ? "text-esmeraldButton-400"
+              : "hover:text-esmeraldButton-400 focus:text-esmeraldButton-400 focus-visible:link-underline"
           )}
         >
           {label}

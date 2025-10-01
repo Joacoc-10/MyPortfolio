@@ -23,12 +23,11 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
 
   const buttonStyle =
     "flex items-center gap-2 px-4 py-2 font-sans font-semibold transition-transform shadow-md rounded-xl text-whiteHeadline-500 hover:scale-105";
-  const deployButtonStyle = `${buttonStyle} bg-purpleButton-400/80 hover:bg-purpleButton-300`;
+  const deployButtonStyle = `${buttonStyle} bg-esmeraldButton-400/80 hover:bg-esmeraldButton-300`;
   const githubButtonStyle = `${buttonStyle} bg-secondaryBackground-600 text-whiteHeadline-500 hover:bg-secondaryBackground-300`;
 
-
   return (
-    <div className="bg-black/20 border border-purpleButton-500/60 rounded-xl shadow-lg hover:shadow-2xl  transition-all duration-300 transform hover:scale-[1.02] group card flex flex-col min-h-[700px]">
+    <div className="bg-black/20 border border-esmeraldButton-500/60 rounded-xl shadow-lg hover:shadow-2xl  transition-all duration-300 transform hover:scale-[1.02] group card flex flex-col min-h-[700px]">
       <div className="relative w-full overflow-hidden h-60 rounded-t-xl">
         <Image
           src={project.imageSrc}
@@ -45,7 +44,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
         </h3>
 
         <div className="mb-4 text-right">
-          <span className="inline-block px-2 py-1 mb-4 font-sans font-medium rounded-full text-purpleButton-300 text-mb bg-purpleButton-600/30">
+          <span className="inline-block px-2 py-1 mb-4 font-sans font-medium rounded-full text-esmeraldButton-300 text-mb bg-esmeraldButton-600/30">
             {project.rol}
           </span>
         </div>
@@ -55,7 +54,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
           {showReadMoreButton && (
             <button
               onClick={() => setShowFullDescription(!showFullDescription)}
-              className="ml-1 font-medium transition-colors text-purpleButton-300 hover:text-purpleButton-200"
+              className="ml-1 font-medium transition-colors text-esmeraldButton-300 hover:text-esmeraldButton-200"
             >
               {showFullDescription ? "Leer menos" : "Leer más"}
             </button>
@@ -99,15 +98,15 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
           )}
         </div>
 
-        <div className="flex justify-center gap-4 mt-auto font-sans text-sm"> 
+        <div className="flex justify-center gap-4 mt-auto font-sans text-sm">
           {project.links.deploy && (
             <a
               href={project.links.deploy}
               target="_blank"
               rel="noopener noreferrer"
-              className={deployButtonStyle} 
+              className={deployButtonStyle}
             >
-              <BiWorld size={20} /> Deploy
+              <BiWorld size={20} /> Ver Proyecto
             </a>
           )}
 
@@ -116,7 +115,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
               {!showGitHubButtons && (
                 <button
                   onClick={() => setShowGitHubButtons(true)}
-                  className={githubButtonStyle} 
+                  className={githubButtonStyle}
                 >
                   <BiCodeAlt size={20} /> GitHub
                 </button>
@@ -129,7 +128,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
                       href={project.links.gitHubFront}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className={githubButtonStyle} 
+                      className={githubButtonStyle}
                       style={{
                         animation: "slideInFromLeft 0.6s ease-out forwards",
                       }}
@@ -140,7 +139,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
                       href={project.links.gitHubback}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className={githubButtonStyle} 
+                      className={githubButtonStyle}
                       style={{
                         animation: "slideInFromRight 0.6s ease-out forwards",
                       }}
@@ -157,7 +156,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
                 href={project.links.gitHubFront}
                 target="_blank"
                 rel="noopener noreferrer"
-                className={githubButtonStyle} 
+                className={githubButtonStyle}
               >
                 <BiCodeAlt size={20} /> GitHub
               </a>

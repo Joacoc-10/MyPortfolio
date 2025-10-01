@@ -10,7 +10,7 @@ import SocialMedia from "../SocialMedia/SocialMedia";
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
-  const buttonRef = useRef<HTMLButtonElement>(null); 
+  const buttonRef = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -57,9 +57,9 @@ const Navbar = () => {
           </Link>
 
           <button
-            ref={buttonRef} 
+            ref={buttonRef}
             onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="text-white bg-transparent md:hidden focus:outline-none hover:text-purpleButton-500 focus:text-purpleButton-500"
+            className="text-white bg-transparent md:hidden focus:outline-none hover:text-esmeraldButton-500 focus:text-esmeraldButton-500"
           >
             <svg
               className="w-8 h-8"
