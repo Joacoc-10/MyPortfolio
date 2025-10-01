@@ -86,7 +86,7 @@ module.exports = {
           500: "#94a1b2", // base
           600: "#7f8b98",
         },
-        purpleButton: {
+        esmeraldButton: {
           100: "#6ED1D2",
           200: "#43B6B7",
           300: "#1D9C9D",

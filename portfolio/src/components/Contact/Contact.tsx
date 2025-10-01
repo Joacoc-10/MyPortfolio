@@ -38,7 +38,7 @@ const ContactSection = () => {
             <div
               ref={cardRef}
               className={`
-              relative max-w-3xl w-full bg-secondaryBackground-500 bg-opacity-90 border border-purpleButton-500
+              relative max-w-3xl w-full bg-secondaryBackground-500 bg-opacity-90 border border-esmeraldButton-500
               rounded-2xl shadow-2xl p-10 flex flex-col items-center text-center space-y-6
               transition-transform duration-500  ${
                 isVisible
@@ -65,7 +65,7 @@ const ContactSection = () => {
                   href="https://www.linkedin.com/in/j-coding/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-2 px-6 py-3 font-sans font-semibold transition-transform shadow-md rounded-xl bg-purpleButton-400 text-whiteHeadline-500 hover:bg-purpleButton-300 hover:scale-105"
+                  className="flex items-center gap-2 px-6 py-3 font-sans font-semibold transition-transform shadow-md rounded-xl bg-esmeraldButton-400 text-whiteHeadline-500 hover:bg-esmeraldButton-300 hover:scale-105"
                 >
                   <FaLinkedin size={22} />
                   <span>LinkedIn</span>

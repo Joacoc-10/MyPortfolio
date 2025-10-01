@@ -27,7 +27,7 @@ const getIcon = (iconName: string) => {
 
 const SocialMedia: React.FC<SocialMediaProps> = ({ isMenuOpen }) => {
   const [isCvMenuOpen, setIsCvMenuOpen] = useState(false);
-  const [isClosing, setIsClosing] = useState(false); 
+  const [isClosing, setIsClosing] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
   const cvButtonRef = useRef<HTMLSpanElement>(null);
 
@@ -43,8 +43,8 @@ const SocialMedia: React.FC<SocialMediaProps> = ({ isMenuOpen }) => {
     if (isClosing) {
       const timer = setTimeout(() => {
         setIsCvMenuOpen(false);
-        setIsClosing(false); 
-      }, 600); 
+        setIsClosing(false);
+      }, 600);
 
       return () => clearTimeout(timer);
     }
@@ -52,17 +52,20 @@ const SocialMedia: React.FC<SocialMediaProps> = ({ isMenuOpen }) => {
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
-      const clickedInsideMenu = menuRef.current && menuRef.current.contains(event.target as Node);
-      const clickedOnCvButton = cvButtonRef.current && cvButtonRef.current.contains(event.target as Node);
+      const clickedInsideMenu =
+        menuRef.current && menuRef.current.contains(event.target as Node);
+      const clickedOnCvButton =
+        cvButtonRef.current &&
+        cvButtonRef.current.contains(event.target as Node);
 
       if (isCvMenuOpen && !clickedInsideMenu && !clickedOnCvButton) {
-        setIsClosing(true); 
+        setIsClosing(true);
       }
     };
-    
+
     const handleScroll = () => {
       if (isCvMenuOpen) {
-        setIsClosing(true); 
+        setIsClosing(true);
       }
     };
 
@@ -77,9 +80,9 @@ const SocialMedia: React.FC<SocialMediaProps> = ({ isMenuOpen }) => {
 
   const toggleCvMenu = () => {
     if (isCvMenuOpen) {
-      setIsClosing(true); 
+      setIsClosing(true);
     } else {
-      setIsCvMenuOpen(true); 
+      setIsCvMenuOpen(true);
     }
   };
 
@@ -97,16 +100,16 @@ const SocialMedia: React.FC<SocialMediaProps> = ({ isMenuOpen }) => {
                   <span
                     ref={cvButtonRef}
                     onClick={toggleCvMenu}
-                    className="text-white cursor-pointer hover:text-purpleButton-400 focus:text-purpleButton-400"
+                    className="text-white cursor-pointer hover:text-esmeraldButton-400 focus:text-esmeraldButton-400"
                   >
                     {IconComponent && <IconComponent size={30} />}
                   </span>
                   <div
                     className={`absolute left-1/2 -translate-x-1/2 z-50 p-2 mt-2 w-56 rounded-lg 
                       overflow-hidden transition-all duration-300 ease-in-out
-                      ${isCvMenuOpen ? 'max-h-28' : 'max-h-0'}`}
+                      ${isCvMenuOpen ? "max-h-28" : "max-h-0"}`}
                   >
-                    {(isCvMenuOpen || isClosing) && ( 
+                    {(isCvMenuOpen || isClosing) && (
                       <div className="flex justify-around gap-2">
                         <Link
                           key={item.subLinks[0].label}
@@ -115,8 +118,8 @@ const SocialMedia: React.FC<SocialMediaProps> = ({ isMenuOpen }) => {
                           rel="noopener noreferrer"
                           className="flex flex-col items-center justify-center p-2 rounded-lg hover:bg-white/10"
                           style={{
-                            animation: isClosing 
-                              ? "slideOutToLeft 0.6s ease-out forwards" 
+                            animation: isClosing
+                              ? "slideOutToLeft 0.6s ease-out forwards"
                               : "slideInFromLeft 0.6s ease-out forwards",
                           }}
                         >
@@ -153,7 +156,7 @@ const SocialMedia: React.FC<SocialMediaProps> = ({ isMenuOpen }) => {
                   <span
                     ref={cvButtonRef}
                     onClick={toggleCvMenu}
-                    className="text-white cursor-pointer hover:text-purpleButton-300"
+                    className="text-white cursor-pointer hover:text-esmeraldButton-300"
                   >
                     {IconComponent && <IconComponent size={30} />}
                   </span>
@@ -207,7 +210,7 @@ const SocialMedia: React.FC<SocialMediaProps> = ({ isMenuOpen }) => {
               href={item.href || "#"}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-white hover:text-purpleButton-300"
+              className="text-white hover:text-esmeraldButton-300"
             >
               {IconComponent && <IconComponent size={24} />}
             </Link>
