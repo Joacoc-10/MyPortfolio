@@ -38,7 +38,7 @@ export const projects: IProjects[] = [
     name: "Bodega Cepa Real",
     imageSrc: "https://ik.imagekit.io/i1pxujmp5t/My%20Portfolio/Captura%20de%20pantalla%20PM3.png?updatedAt=1758201256355",
     rol: "Full-stack",
-    description: "Proyecto Full-stack enfocado en el manejo de turnos. El objetivo era crear una aplicacion donde el usuario pudiera registrarse, reservar y cancelar turnos.",
+    description: "El proyecto se centra en crear un flujo de datos completo que permite a los usuarios registrarse y autenticarse para, posteriormente, administrar sus propias reservas de cata de vinos. La solución garantiza la autonomía del usuario para la creación y cancelación de turnos y demuestra la capacidad de construir un sistema simple pero funcional.",
     technologies: {
       frontEnd: ["React", "Vite" , "React Router Dom", "CSS Modules", "JavaScript", "Axios"],
       backEnd: ["Node.js", "TypeScript", " Express.js", "PostgreSQL", "TypeORM", "Bcrypt", "CORS"]
