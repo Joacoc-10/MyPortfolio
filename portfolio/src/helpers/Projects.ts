@@ -29,7 +29,7 @@ export const projects: IProjects[] = [
   },
   links: {
     // gitHubFront: "https://github.com/Joacoc-10/PM2---MovieeReel",
-    deploy: "https://movieereelpm2.vercel.app/index.html"
+    deploy: "https://movieereelpm2.vercel.app/index.html",
   }
   },
 
