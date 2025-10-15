@@ -5,11 +5,9 @@
   "soluciones tecnológicas completas.": "complete technological solutions.",
   "experiencias web intuitivas.": "intuitive web experiences.",
 
-
   "Habilidades": "Skills",
   "Proyectos": "Projects",
   "Contacto": "Contact",
-
 
   "Sobre mí": "About me",
   "Soy Joaquín, un": "I'm Joaquín, a",
@@ -19,12 +17,36 @@
   "¡Estoy listo para empezar un nuevo proyecto!": "I'm ready to start a new project!",
   "Conectemos": "Let's connect",
 
-
   "Experiencia": "Experience",
   "Años": "Years",
   "Meses": "Months",
   "Días": "Days",
   "Horas": "Hours",
   "Min.": "Min.",
-  "Seg.": "Sec."
+  "Seg.": "Sec.",
+
+  "Principales Tecnologias": "Key Technologies",
+
+  "Next.js y React": "Next.js & React",
+  "Creando interfaces de usuario modernas y de alto rendimiento, utilizando las últimas tecnologías para una experiencia fluida.": "Creating modern, high-performance user interfaces using the latest technologies for a fluid experience.",
+
+  "Versionamiento": "Version Control",
+  "Git y GitHub": "Git & GitHub",
+  "Dominio de control de versiones para la colaboración en equipo y la gestión eficiente del código fuente.": "Proficiency in version control for team collaboration and efficient management of source code.",
+
+  "Lenguajes": "Languages",
+  "JavaScript y TypeScript": "JavaScript & TypeScript",
+  "Desarrollo de lógica del lado del cliente y del servidor con la robustez y escalabilidad de TypeScript.": "Developing client-side and server-side logic with the robustness and scalability of TypeScript.",
+
+  "Estilos": "Styling",
+  "Tailwind y Bootstrap": "Tailwind & Bootstrap",
+  "Construcción de diseños responsivos y estilizados, utilizando frameworks CSS modernos para un desarrollo ágil.": "Building responsive and stylized designs using modern CSS frameworks for agile development.",
+
+  "Bases de Datos": "Databases",
+  "MongoDB y PostgreSQL": "MongoDB & PostgreSQL",
+  "Gestión de bases de datos relacionales y no-relacionales, diseñando esquemas eficientes para almacenar y consultar datos.": "Managing relational and non-relational databases, designing efficient schemas for data storage and querying.",
+
+  "Despliegue": "Deployment",
+  "Vercel y Railway": "Vercel & Railway",
+  "Implementación y despliegue continuo de aplicaciones, asegurando alta disponibilidad y escalabilidad en la nube.": "Continuous implementation and deployment of applications, ensuring high availability and scalability in the cloud."
 }
