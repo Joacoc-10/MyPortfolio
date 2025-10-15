@@ -1,13 +1,18 @@
+"use client";
 import React from "react";
 import DarkVeil from "./DarkVeil";
 import RotatingText from "../RotatingText";
+import { useLanguage } from "@/context/LanguageContext";
 
 const Header = () => {
+
+  const { t } = useLanguage();
+  
   const professionalTexts = [
-    "aplicaciones web modernas.",
-    "plataformas digitales escalables.",
-    "soluciones tecnológicas completas.",
-    "experiencias web intuitivas.",
+    t("aplicaciones web modernas."),
+    t("plataformas digitales escalables."),
+    t("soluciones tecnológicas completas."),
+    t("experiencias web intuitivas."),
   ];
 
   return (
@@ -19,7 +24,7 @@ const Header = () => {
             {/* CONTENEDOR PRINCIPAL DEL TÍTULO */}
             <h1 className="text-whiteHeadline-500 text-4xl font-extrabold md:text-6xl font-lexend text-center max-w-[90%] leading-tight flex flex-wrap justify-center mx-auto">
               {/* Titulo Fijo */}
-              <span className="mr-3 shadow-reflector">Desarrollo</span>
+              <span className="mr-3 shadow-reflector">{t("Desarrollo")}</span>
 
               {/* Titulo rotativo  */}
               <div className="h-32 overflow-hidden text-center md:h-24">

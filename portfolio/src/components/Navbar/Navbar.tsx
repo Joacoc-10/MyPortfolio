@@ -6,11 +6,14 @@ import { NavbarLinks } from "@/constants/Navbar";
 import Link from "next/link";
 import Image from "next/image";
 import SocialMedia from "../SocialMedia/SocialMedia";
+import LanguageSwitcher from "../LanguageSwitcher";
+import { useLanguage } from "@/context/LanguageContext";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
   const buttonRef = useRef<HTMLButtonElement>(null);
+  const { t } = useLanguage();
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -82,7 +85,7 @@ const Navbar = () => {
               {NavbarLinks.map((item) => (
                 <NavbarItem
                   key={item.label}
-                  label={item.label}
+                  label={t(item.label)}
                   href={item.href}
                 />
               ))}
@@ -92,8 +95,10 @@ const Navbar = () => {
           <div className="hidden md:block">
             <SocialMedia />
           </div>
+          <LanguageSwitcher />
         </div>
 
+        {/* Mobile*/}
         <div
           ref={menuRef}
           className={`md:hidden ${
@@ -104,7 +109,7 @@ const Navbar = () => {
             {NavbarLinks.map((item) => (
               <NavbarItem
                 key={item.label}
-                label={item.label}
+                label={t(item.label)}
                 href={item.href}
                 onClick={() => setIsMenuOpen(false)}
               />
@@ -113,6 +118,7 @@ const Navbar = () => {
           <div className="flex justify-center pb-4 text-white">
             <SocialMedia />
           </div>
+          <LanguageSwitcher />
         </div>
       </nav>
     </>
