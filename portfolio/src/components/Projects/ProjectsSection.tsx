@@ -1,11 +1,14 @@
 // src/components/Projects/ProjectSection.tsx
+"use client";
 import { projects } from "@/helpers/Projects";
 import ProjectCard from "./ProjectCard";
 import EffectsWrapper from "../EffectsWrapper";
 import ScrollFloat from "../ScrollFloat";
+import { useLanguage } from "@/context/LanguageContext";
 
 const ProjectsSection: React.FC = () => {
   const sortedProjects = [...projects].sort((a, b) => b.id - a.id);
+  const { t } = useLanguage();
 
   return (
     <section className="py-20" id="ProjectsSection">
@@ -18,7 +21,7 @@ const ProjectsSection: React.FC = () => {
         >
           <div className="flex flex-col items-center justify-center mt-32 mb-12 text-center md:mb-24">
             <h2 className="text-5xl font-extrabold tracking-tight md:text-6xl text-whiteHeadline-500 font-lexend">
-              Mis Proyectos
+              {t("Mis Proyectos")}
             </h2>
           </div>
         </ScrollFloat>

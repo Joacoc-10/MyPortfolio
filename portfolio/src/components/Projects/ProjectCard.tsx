@@ -4,12 +4,16 @@ import Image from "next/image";
 import { IProjects } from "@/types/Pojects";
 import { BiWorld, BiCodeAlt } from "react-icons/bi";
 import { useState } from "react";
+import { useLanguage } from "@/context/LanguageContext";
 
 interface ProjectCardProps {
   project: IProjects;
 }
 
 const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
+  const { t } = useLanguage();
+  const fullDescription = t(project.description);
+  
   const [showGitHubButtons, setShowGitHubButtons] = useState(false);
   const [showFullDescription, setShowFullDescription] = useState(false);
 
@@ -18,8 +22,8 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
   const characterLimit = 150;
   const showReadMoreButton = project.description.length > characterLimit;
   const truncatedDescription = showFullDescription
-    ? project.description
-    : `${project.description.substring(0, characterLimit)}...`;
+    ? fullDescription
+    : `${fullDescription.substring(0, characterLimit)}...`;
 
   const buttonStyle =
     "flex items-center gap-2 px-4 py-2 font-sans font-semibold transition-transform shadow-md rounded-xl text-whiteHeadline-500 hover:scale-105";
@@ -56,7 +60,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
               onClick={() => setShowFullDescription(!showFullDescription)}
               className="ml-1 font-medium transition-colors text-esmeraldButton-300 hover:text-esmeraldButton-200"
             >
-              {showFullDescription ? "Leer menos" : "Leer más"}
+              {showFullDescription ? t("Leer menos") : t("Leer más")}
             </button>
           )}
         </p>
@@ -106,7 +110,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
               rel="noopener noreferrer"
               className={deployButtonStyle}
             >
-              <BiWorld size={20} /> Ver Proyecto
+              <BiWorld size={20} /> {t("Ver Proyecto")}
             </a>
           )}
 
