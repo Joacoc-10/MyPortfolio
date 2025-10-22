@@ -1,0 +1,83 @@
+{
+  "Desarrollo": "Develop",
+  "aplicaciones web modernas.": "modern web applications.",
+  "plataformas digitales escalables.": "scalable digital platforms.",
+  "soluciones tecnológicas completas.": "complete technological solutions.",
+  "experiencias web intuitivas.": "intuitive web experiences.",
+
+
+
+  "Habilidades": "Skills",
+  "Proyectos": "Projects",
+  "Contacto": "Contact",
+
+
+
+  "Sobre mí": "About me",
+  "Soy Joaquín, un": "I'm Joaquín, a",
+  "Desarrollador Full Stack": "Full Stack Developer",
+  "con un fuerte enfoque en Front-End y la creación de experiencias digitales intuitivas y funcionales. Comencé desde cero en el bootcamp intensivo de Henry, y desde entonces descubrí una pasión por aprender y dedicarme al código con curiosidad y entusiasmo.": "with a strong focus on Front-End and creating intuitive, functional digital experiences. I started from scratch in Henry's intensive bootcamp, and since then I've discovered a passion for learning and dedicating myself to code with curiosity and enthusiasm.",
+  "Me considero empático, detallista, comprometido y con muchas ganas de crecer constantemente. Disfruto trabajar en equipos dinámicos, aportar ideas y seguir desarrollando mis habilidades. Puedo aportar soluciones concretas en proyectos a la vez que sigo aprendiendo de profesionales experimentados y colaborando activamente, mientras construyo mi carrera en tecnología.": "I consider myself empathetic, detail-oriented, committed, and eager to grow constantly. I enjoy working in dynamic teams, contributing ideas, and continuing to develop my skills. I can provide concrete solutions in projects while learning from experienced professionals and collaborating actively as I build my career in technology.",
+  "¡Estoy listo para empezar un nuevo proyecto!": "I'm ready to start a new project!",
+  "Conectemos": "Let's connect",
+
+
+
+  "Experiencia": "Experience",
+  "Años": "Years",
+  "Meses": "Months",
+  "Días": "Days",
+  "Horas": "Hours",
+  "Min.": "Min.",
+  "Seg.": "Sec.",
+
+
+
+  "Principales Tecnologias": "Key Technologies",
+
+  "Next.js y React": "Next.js & React",
+  "Creando interfaces de usuario modernas y de alto rendimiento, utilizando las últimas tecnologías para una experiencia fluida.": "Creating modern, high-performance user interfaces using the latest technologies for a fluid experience.",
+
+  "Versionamiento": "Version Control",
+  "Git y GitHub": "Git & GitHub",
+  "Dominio de control de versiones para la colaboración en equipo y la gestión eficiente del código fuente.": "Proficiency in version control for team collaboration and efficient management of source code.",
+
+  "Lenguajes": "Languages",
+  "JavaScript y TypeScript": "JavaScript & TypeScript",
+  "Desarrollo de lógica del lado del cliente y del servidor con la robustez y escalabilidad de TypeScript.": "Developing client-side and server-side logic with the robustness and scalability of TypeScript.",
+
+  "Estilos": "Styling",
+  "Tailwind y Bootstrap": "Tailwind & Bootstrap",
+  "Construcción de diseños responsivos y estilizados, utilizando frameworks CSS modernos para un desarrollo ágil.": "Building responsive and stylized designs using modern CSS frameworks for agile development.",
+
+  "Bases de Datos": "Databases",
+  "MongoDB y PostgreSQL": "MongoDB & PostgreSQL",
+  "Gestión de bases de datos relacionales y no-relacionales, diseñando esquemas eficientes para almacenar y consultar datos.": "Managing relational and non-relational databases, designing efficient schemas for data storage and querying.",
+
+  "Despliegue": "Deployment",
+  "Vercel y Railway": "Vercel & Railway",
+  "Implementación y despliegue continuo de aplicaciones, asegurando alta disponibilidad y escalabilidad en la nube.": "Continuous implementation and deployment of applications, ensuring high availability and scalability in the cloud.",
+
+
+
+  "Mis Proyectos": "My Projects",
+  "Ver Proyecto": "View Project",
+  "Leer más": "Read more",
+  "Leer menos": "Read less",
+
+  "Desarrollé este proyecto durante el M1 del Bootcamp de Henry para aplicar los fundamentos del desarrollo front-end. El objetivo era construir un portafolio web estático e incorporar un formulario controlado para registrar una sección de cosas que me gustan hacer, con los datos guardados únicamente en LocalStorage.": "I developed this project during Module 1 of the Henry Bootcamp to apply frontend development fundamentals. The goal was to build a static portfolio website and include a controlled form to record a list of things I enjoy, with data stored only in LocalStorage.",
+
+  "Este fue mi primer proyecto Full-stack, diseñado para poner en práctica la conexión entre el frontend y el backend. El objetivo era construir una cartelera de películas funcional, donde los usuarios pudieran crear, almacenar y visualizar películas en una base de datos. Incluye un formulario controlado en el frontend y comunicación con el backend usando Axios.": "This was my first Full-stack project, designed to practice connecting frontend and backend. The objective was to build a functional movie listing where users could create, store and view movies in a database. It includes a controlled form on the frontend and communication with the backend using Axios.",
+
+  "El proyecto se centra en crear un flujo de datos completo que permite a los usuarios registrarse y autenticarse para, posteriormente, administrar sus propias reservas de cata de vinos. La solución garantiza la autonomía del usuario para la creación y cancelación de turnos y demuestra la capacidad de construir un sistema simple pero funcional.": "The project focuses on creating a complete data flow that allows users to register and authenticate, and then manage their own wine tasting reservations. The solution ensures user autonomy for creating and cancelling bookings and demonstrates the ability to build a simple yet functional system.",
+
+  "Proyecto de especialización en Front End para construir un e-commerce de tecnología, conectando con un backend ya proporcionado. Mi objetivo fue desarrollar un Front End completo y funcional, incluyendo registro de usuarios, navegación de productos, carrito de compras y flujo de checkout simulado, aplicando buenas prácticas, estilos consistentes y animaciones con React, Next.js y Tailwind CSS.": "A Front End specialization project to build a tech e-commerce connected to a provided backend. My goal was to develop a complete, functional Front End including user registration, product browsing, shopping cart and a simulated checkout flow, applying best practices, consistent styling and animations with React, Next.js and Tailwind CSS.",
+
+  "Como parte del proyecto final del bootcamp, realicé con un equipo de 6 desarrolladores para construir un e-commerce de comida personalizado. Mi rol se centró en el desarrollo front-end y el diseño de la interfaz de usuario, con el objetivo de crear una experiencia intuitiva y fluida. Implementamos un flujo de trabajo completo que incluyó un robusto sistema de autenticación con Auth0 y una pasarela de pago simulada con Stripe. Este proyecto fue una experiencia invaluable en trabajo en equipo y comunicación, demostrando nuestra capacidad para gestionar un proyecto de principio a fin.": "As part of the bootcamp final project, I worked with a team of 6 developers to build a custom food e-commerce. My role focused on front-end development and UI design, aiming to create an intuitive, smooth experience. We implemented a full workflow including a robust authentication system with Auth0 and a simulated Stripe payment gateway. This project was invaluable for teamwork and communication, demonstrating our ability to manage a project end-to-end.",
+
+
+
+  "¿Tienes un proyecto en mente?": "Do you have a project in mind?",
+  "Me encantaría ayudarte a hacerlo realidad. Ponte en contacto conmigo y hablemos sobre tu idea.": "I’d love to help you bring it to life. Get in touch and let’s talk about your idea.",
+  "Todos los derechos reservados.": "All rights reserved."
+}

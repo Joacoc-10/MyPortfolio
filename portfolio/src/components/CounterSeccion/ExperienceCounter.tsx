@@ -1,6 +1,7 @@
 "use client";
 import React, { useState, useEffect } from 'react';
 import AnimatedNumber from './AnimatedNumber';
+import { useLanguage } from '@/context/LanguageContext';
 
 interface ExperienceData {
   years: number;
@@ -44,6 +45,7 @@ function calculateExperience(): ExperienceData {
 
 const ExperienceCounter: React.FC = () => {
   // Estado para saber si estamos en el cliente
+  const { t } = useLanguage();
   const [isClient, setIsClient] = useState(false);
   const [experience, setExperience] = useState<ExperienceData>({
     years: 0,
@@ -72,31 +74,31 @@ const ExperienceCounter: React.FC = () => {
   if (!isClient) {
     return (
       <div className="flex flex-col items-center justify-center">
-        <h1 className="mb-4 text-5xl font-extrabold tracking-tight md:text-6xl text-whiteHeadline-500 font-lexend">Experiencia</h1>
+        <h1 className="mb-4 text-5xl font-extrabold tracking-tight md:text-6xl text-whiteHeadline-500 font-lexend">{t("Experiencia")}</h1>
         <div className="flex justify-center space-x-4 font-extrabold font-lexend md:space-x-8">
           <div>
             <span className="leading-none tracking-tight text-8xl md:text-9xl">-</span>
-            <span className="mt-2 text-sm font-normal text-greyParagraph-500">Años</span>
+            <span className="mt-2 text-sm font-normal text-greyParagraph-500">{t("Años")}</span>
           </div>
           <div>
             <span className="text-6xl leading-tight tracking-tight md:text-7xl">-</span>
-            <span className="mt-2 text-sm font-normal text-greyParagraph-500">Meses</span>
+            <span className="mt-2 text-sm font-normal text-greyParagraph-500">{t("Meses")}</span>
           </div>
           <div>
             <span className="text-4xl leading-snug tracking-tight md:text-5xl">-</span>
-            <span className="mt-2 text-sm font-normal text-greyParagraph-500">Días</span>
+            <span className="mt-2 text-sm font-normal text-greyParagraph-500">{t("Días")}</span>
           </div>
           <div>
             <span className="text-2xl leading-normal tracking-tight md:text-3xl">-</span>
-            <span className="mt-2 text-sm font-normal text-greyParagraph-500">Horas</span>
+            <span className="mt-2 text-sm font-normal text-greyParagraph-500">{t("Horas")}</span>
           </div>
           <div>
             <span className="text-xl leading-loose tracking-tight md:text-2xl">-</span>
-            <span className="mt-2 text-sm font-normal text-greyParagraph-500">Min.</span>
+            <span className="mt-2 text-sm font-normal text-greyParagraph-500">{t("Min.")}</span>
           </div>
           <div>
             <span className="text-lg leading-relaxed tracking-tight md:text-xl">-</span>
-            <span className="mt-2 text-sm font-normal text-greyParagraph-500">Seg.</span>
+            <span className="mt-2 text-sm font-normal text-greyParagraph-500">{t("Seg.")}</span>
           </div>
         </div>
       </div>
@@ -106,24 +108,24 @@ const ExperienceCounter: React.FC = () => {
   // Si ya estamos en el cliente, renderiza la versión animada
   return (
     <div className="flex flex-col items-center justify-center ">
-      <h1 className="mb-4 text-5xl font-extrabold tracking-tight md:text-6xl text-whiteHeadline-500 font-lexend">Experiencia</h1>
+      <h1 className="mb-4 text-5xl font-extrabold tracking-tight md:text-6xl text-whiteHeadline-500 font-lexend">{t("Experiencia")}</h1>
       <div className="flex justify-center space-x-4 font-extrabold font-lexend md:space-x-8">
         {hasOneYear ? (
           <>
-            <AnimatedNumber value={experience.years} className="leading-none tracking-tight text-8xl md:text-9xl text-whiteHeadline-500" label="Años" />
-            <AnimatedNumber value={experience.months} className="text-6xl leading-tight tracking-tight md:text-7xl text-whiteHeadline-500" label="Meses" />
-            <AnimatedNumber value={experience.days} className="text-4xl leading-snug tracking-tight md:text-5xl text-whiteHeadline-500"  label="Días" />
-            <AnimatedNumber value={experience.hours} className="text-2xl leading-normal tracking-tight md:text-3xl text-whiteHeadline-500" label="Horas" />
-            <AnimatedNumber value={experience.minutes} className="text-xl leading-loose tracking-tight md:text-2xl text-whiteHeadline-500" label="Min." />
-            <AnimatedNumber value={experience.seconds} className="text-lg leading-relaxed tracking-tight md:text-xl text-whiteHeadline-500" label="Seg." />
+            <AnimatedNumber value={experience.years} className="leading-none tracking-tight text-8xl md:text-9xl text-whiteHeadline-500" label={t("Años")} />
+            <AnimatedNumber value={experience.months} className="text-6xl leading-tight tracking-tight md:text-7xl text-whiteHeadline-500" label={t("Meses")} />
+            <AnimatedNumber value={experience.days} className="text-4xl leading-snug tracking-tight md:text-5xl text-whiteHeadline-500"  label={t("Días")} />
+            <AnimatedNumber value={experience.hours} className="text-2xl leading-normal tracking-tight md:text-3xl text-whiteHeadline-500" label={t("Horas")} />
+            <AnimatedNumber value={experience.minutes} className="text-xl leading-loose tracking-tight md:text-2xl text-whiteHeadline-500" label={t("Min." )}/>
+            <AnimatedNumber value={experience.seconds} className="text-lg leading-relaxed tracking-tight md:text-xl text-whiteHeadline-500" label={t("Seg.")} />
           </>
         ) : (
           <>
-            <AnimatedNumber value={experience.months} className="leading-none tracking-tight text-8xl md:text-9xl text-whiteHeadline-500" label="Meses" />
-            <AnimatedNumber value={experience.days} className="text-6xl leading-tight tracking-tight md:text-7xl text-whiteHeadline-500" label="Días" />
-            <AnimatedNumber value={experience.hours} className="text-4xl leading-snug tracking-tight md:text-5xl text-whiteHeadline-500" label="Horas" />
-            <AnimatedNumber value={experience.minutes} className="text-2xl leading-normal tracking-tight md:text-3xl text-whiteHeadline-500" label="Min." />
-            <AnimatedNumber value={experience.seconds} className="text-xl leading-loose tracking-tight md:text-2xl text-whiteHeadline-500" label="Seg." />
+            <AnimatedNumber value={experience.months} className="leading-none tracking-tight text-8xl md:text-9xl text-whiteHeadline-500" label={t("Meses")} />
+            <AnimatedNumber value={experience.days} className="text-6xl leading-tight tracking-tight md:text-7xl text-whiteHeadline-500" label={t("Días")} />
+            <AnimatedNumber value={experience.hours} className="text-4xl leading-snug tracking-tight md:text-5xl text-whiteHeadline-500" label={t("Horas")} />
+            <AnimatedNumber value={experience.minutes} className="text-2xl leading-normal tracking-tight md:text-3xl text-whiteHeadline-500" label={t("Min.")} />
+            <AnimatedNumber value={experience.seconds} className="text-xl leading-loose tracking-tight md:text-2xl text-whiteHeadline-500" label={t("Seg.")} />
           </>
         )}
       </div>

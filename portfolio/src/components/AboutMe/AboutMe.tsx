@@ -1,8 +1,12 @@
+"use client";
 import React from "react";
 import Image from "next/image";
-import { FaEnvelope } from "react-icons/fa";
+// import { FaEnvelope } from "react-icons/fa";
+import { useLanguage } from "@/context/LanguageContext";
 
 const AboutMe = () => {
+  const { t } = useLanguage();
+
   return (
     <section id="AboutMe">
       <div className="container px-4 py-12 mx-auto md:px-0">
@@ -29,41 +33,24 @@ const AboutMe = () => {
           {/* Seccion sobre mi  */}
           <div className="flex flex-col space-y-4 text-center md:pr-12 md:text-left">
             <h2 className="mb-4 text-2xl font-bold tracking-tight md:text-6xl text-whiteHeadline-500 font-lexend">
-              Sobre mí
+              {t("Sobre mí")}
             </h2>
             <p className="font-sans text-lg leading-relaxed text-whiteHeadline-500 ">
-              &quot;Soy Joaquín, un <strong> Desarrollador Full Stack </strong>{" "}
-              con un fuerte enfoque en
-              <strong> Front-End </strong> y la creación de
-              <strong> experiencias digitales intuitivas y funcionales</strong>.
-              Comencé desde cero en el
-              <strong> bootcamp intensivo de Henry</strong>, y desde entonces
-              descubrí una pasión por <strong>aprender</strong> y dedicarme al
-              <strong> código</strong> con <strong>curiosidad</strong> y
-              <strong> entusiasmo</strong>.
+              &quot;{t("Soy Joaquín, un")} <strong> {t("Desarrollador Full Stack")} </strong>
+              {t("con un fuerte enfoque en Front-End y la creación de experiencias digitales intuitivas y funcionales. Comencé desde cero en el bootcamp intensivo de Henry, y desde entonces descubrí una pasión por aprender y dedicarme al código con curiosidad y entusiasmo.")}
             </p>
             <p className="font-sans text-lg leading-relaxed text-whiteHeadline-500">
-              Me considero <strong>empático</strong> ,
-              <strong> detallista</strong>, <strong>comprometido</strong> y con
-              muchas <strong>ganas de crecer constantemente</strong>. Disfruto
-              trabajar en <strong>equipos dinámicos</strong>,{" "}
-              <strong>aportar ideas</strong> y seguir desarrollando mis{" "}
-              <strong>habilidades</strong>. Puedo{" "}
-              <strong>aportar soluciones concretas en proyectos</strong> a la
-              vez que sigo{" "}
-              <strong>aprendiendo de profesionales experimentados</strong> y
-              colaborando activamente, mientras construyo{" "}
-              <strong>mi carrera en tecnología</strong>.&quot;
+             {t("Me considero empático, detallista, comprometido y con muchas ganas de crecer constantemente. Disfruto trabajar en equipos dinámicos, aportar ideas y seguir desarrollando mis habilidades. Puedo aportar soluciones concretas en proyectos a la vez que sigo aprendiendo de profesionales experimentados y colaborando activamente, mientras construyo mi carrera en tecnología.")}&quot;
             </p>
 
             {/* Call to action  */}
             <div className="flex flex-col items-center justify-center pt-10 space-y-2 font-sans md:space-x-4 md:space-y-0 text-greyParagraph-500">
-              <h4>¡Estoy listo para empezar un nuevo proyecto!</h4>
+              <h4>{t("¡Estoy listo para empezar un nuevo proyecto!")}</h4>
               <a
                 href="mailto:joacoc-10@hotmail.com"
                 className="flex items-center gap-2 pt-4 font-semibold hover:text-esmeraldButton-400 link-underline"
               >
-                Conectemos
+                {t("Conectemos")}
                 {/* <FaEnvelope /> */}
               </a>
             </div>

@@ -1,13 +1,16 @@
 // components/SkillsSection.tsx
+"use client";
 import React from "react";
 import SkillCard from "./SkillCard";
 import { skillsData } from "@/helpers/TechSkills";
 import EffectsWrapper from "../EffectsWrapper";
 import ScrollFloat from "../ScrollFloat";
+import { useLanguage } from "@/context/LanguageContext";
 
 const SkillsSection = () => {
   const mainSkill = skillsData[0];
   const otherSkills = skillsData.slice(1);
+  const { t } = useLanguage();
 
   return (
     <section id="SkillSection" className="container px-4 py-8 mx-auto mt-12">
@@ -19,7 +22,7 @@ const SkillsSection = () => {
       >
         <div className="flex flex-col items-center justify-center mt-40 mb-20 text-center md:mb-24">
           <h1 className="text-5xl font-extrabold tracking-tight md:text-6xl text-whiteHeadline-500 font-lexend ">
-            Principales Tecnologias
+            {t("Principales Tecnologias")}
           </h1>
           <h2 className="mt-4 font-sans text-xl text-greyParagraph-500">
             Full-stack skills
@@ -36,9 +39,9 @@ const SkillsSection = () => {
         >
           <EffectsWrapper>
             <SkillCard
-              title={mainSkill.title}
-              subTitle={mainSkill.subTitle}
-              description={mainSkill.description}
+              title={t(mainSkill.title)}
+              subTitle={t(mainSkill.subTitle)}
+              description={t(mainSkill.description)}
               icon={mainSkill.icon}
               position="center"
             />
@@ -63,9 +66,9 @@ const SkillsSection = () => {
               >
                 <EffectsWrapper>
                   <SkillCard
-                    title={skill.title}
-                    subTitle={skill.subTitle}
-                    description={skill.description}
+                    title={t(skill.title)}
+                    subTitle={t(skill.subTitle)}
+                    description={t(skill.description)}
                     icon={skill.icon}
                     position={index % 2 === 0 ? "left" : "right"}
                   />

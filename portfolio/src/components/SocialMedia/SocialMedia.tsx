@@ -1,4 +1,3 @@
-// src/components/SocialMedia/SocialMedia.tsx
 "use client";
 import React, { useState, useRef, useEffect } from "react";
 import Link from "next/link";
@@ -32,14 +31,12 @@ const SocialMedia: React.FC<SocialMediaProps> = ({ isMenuOpen }) => {
   const cvButtonRef = useRef<HTMLSpanElement>(null);
 
   useEffect(() => {
-    // Si el menú principal del Navbar se cierra, iniciamos el cierre del submenú de CV
     if (isMenuOpen === false) {
       setIsClosing(true);
     }
   }, [isMenuOpen]);
 
   useEffect(() => {
-    // Este useEffect maneja la lógica de cierre del submenú de CV
     if (isClosing) {
       const timer = setTimeout(() => {
         setIsCvMenuOpen(false);
@@ -94,6 +91,7 @@ const SocialMedia: React.FC<SocialMediaProps> = ({ isMenuOpen }) => {
         if (item.subLinks) {
           return (
             <div key={item.name} className="relative">
+              
               {/* Opción para pantallas medianas y grandes (con menú desplegable) */}
               <div className="relative hidden md:block">
                 <div ref={menuRef}>
@@ -150,6 +148,7 @@ const SocialMedia: React.FC<SocialMediaProps> = ({ isMenuOpen }) => {
                   </div>
                 </div>
               </div>
+              
               {/* Opción para pantallas pequeñas (reemplaza el icono del CV por los enlaces) */}
               <div className="md:hidden">
                 {!isCvMenuOpen && !isClosing ? (

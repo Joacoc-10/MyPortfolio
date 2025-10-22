@@ -1,10 +1,12 @@
 // src/components/Footer.tsx
+"use client";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import { FaLinkedin, FaEnvelope, FaGithub } from "react-icons/fa";
 import { TbFileCv } from "react-icons/tb";
 import { socialLinks } from "@/helpers/SocialMedia";
+import { useLanguage } from "@/context/LanguageContext";
 
 const getIcon = (iconName: string) => {
   switch (iconName) {
@@ -22,6 +24,8 @@ const getIcon = (iconName: string) => {
 };
 
 const Footer = () => {
+  const { t } = useLanguage();
+  
   return (
     <>
       <footer className="relative m-4 mt-32 font-sans rounded-lg bg-secondaryBackground-500 bg-opacity-90">
@@ -47,22 +51,22 @@ const Footer = () => {
             <ul className="flex flex-wrap items-center mt-4 text-sm font-medium text-greyParagraph-600 sm:mb-0 sm:mt-0">
               <li>
                 <a href="#AboutMe" className="relative transition-colors duration-300 link-underline me-4 md:me-6 hover:text-greyParagraph-300">
-                  Sobre mí
+                  {t("Sobre mí")}
                 </a>
               </li>
               <li>
                 <a href="#SkillSection" className="relative transition-colors duration-300 link-underline me-4 md:me-6 hover:text-greyParagraph-300">
-                  Habilidades
+                  {t("Habilidades")}
                 </a>
               </li>
               <li>
                 <a href="#ProjectsSection" className="relative transition-colors duration-300 link-underline me-4 md:me-6 hover:text-greyParagraph-300">
-                  Proyectos
+                  {t("Proyectos")}
                 </a>
               </li>
               <li>
                 <a href="#" className="relative transition-colors duration-300 link-underline hover:text-greyParagraph-300">
-                  Contacto
+                  {t("Contacto")}
                 </a>
               </li>
             </ul>
@@ -94,7 +98,7 @@ const Footer = () => {
             <Link href="/" className="hover:text-greyParagraph-400">
               JCoding
             </Link>
-            . Todos los derechos reservados.
+             .  {t("Todos los derechos reservados.")}
           </span>
         </div>
       </footer>

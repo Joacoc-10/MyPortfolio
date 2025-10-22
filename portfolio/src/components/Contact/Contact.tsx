@@ -3,10 +3,12 @@ import { FaLinkedin, FaEnvelope } from "react-icons/fa";
 import EffectsWrapper from "@/components/EffectsWrapper";
 import { useRef, useEffect, useState } from "react";
 import ScrollFloat from "../ScrollFloat";
+import { useLanguage } from "@/context/LanguageContext";
 
 const ContactSection = () => {
   const cardRef = useRef<HTMLDivElement | null>(null);
   const [isVisible, setIsVisible] = useState(false);
+  const { t } = useLanguage();
 
   useEffect(() => {
     const element = cardRef.current;
@@ -53,11 +55,10 @@ const ContactSection = () => {
               }}
             >
               <h2 className="text-4xl font-extrabold md:text-5xl text-whiteHeadline-500 font-lexend">
-                ¿Tienes un proyecto en mente?
+                {t("¿Tienes un proyecto en mente?")}
               </h2>
               <p className="max-w-xl font-sans text-lg text-greyParagraph-500">
-                Me encantaría ayudarte a hacerlo realidad. Ponte en contacto
-                conmigo y hablemos sobre tu idea.
+               {t("Me encantaría ayudarte a hacerlo realidad. Ponte en contacto conmigo y hablemos sobre tu idea.")}
               </p>
 
               <div className="flex flex-col gap-4 mt-4 sm:flex-row">
