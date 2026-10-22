@@ -3,6 +3,7 @@ import { TechChip } from "@/components/TechChip";
 import { Card } from "@/components/ui/Card";
 import { Reveal } from "@/components/ui/Reveal";
 import { Section } from "@/components/ui/Section";
+import { TechMarquee } from "./TechMarquee";
 import { getStack, stackCategories } from "@/data";
 
 /** Ancho de cada categoría en la grilla de 6 columnas (escritorio). */
@@ -48,6 +49,8 @@ export async function Stack() {
           </Reveal>
         ))}
       </div>
+
+      <TechMarquee />
     </Section>
   );
 }

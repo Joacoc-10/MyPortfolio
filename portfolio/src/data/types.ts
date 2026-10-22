@@ -17,6 +17,8 @@ export interface Technology {
   name: string;
   category: TechCategory;
   url?: string;
+  /** Color de marca (hex) para resaltar el logo al pasar el cursor. Solo si tiene buen contraste sobre fondo oscuro. */
+  brandColor?: string;
   /** Si aparece en la sección Stack (el resto solo se muestra dentro de proyectos). */
   inStack: boolean;
 }

@@ -54,3 +54,7 @@ export const getStack = () =>
     category,
     items: technologies.filter((t) => t.inStack && t.category === category),
   }));
+
+/** Las mismas tecnologías en una sola lista, en el orden de las categorías (usada por el carrusel). */
+export const getStackTechnologies = (): Technology[] =>
+  getStack().flatMap(({ items }) => items);
