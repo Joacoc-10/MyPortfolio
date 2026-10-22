@@ -28,8 +28,8 @@ const Footer = () => {
   
   return (
     <>
-      <footer className="relative m-4 mt-32 font-sans rounded-lg bg-secondaryBackground-500 bg-opacity-90">
-        <div className="w-full max-w-screen-xl p-4 mx-auto md:py-8">
+      <footer className="relative m-4 mt-32 font-sans rounded-lg bg-secondaryBackground-500/90">
+        <div className="w-full max-w-(--breakpoint-xl) p-4 mx-auto md:py-8">
           <div className="flex flex-col items-center justify-between sm:flex-row">
             
             

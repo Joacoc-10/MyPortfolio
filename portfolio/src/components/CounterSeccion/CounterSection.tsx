@@ -11,14 +11,14 @@ const CounterSection = () => {
       scrollStart="top bottom-=150"
     >
       <div
-        className="m-4 mt-40 font-sans rounded-lg bg-opacity-90 "
+        className="m-4 mt-40 font-sans rounded-lg"
         style={{
           boxShadow: "0 0 15px rgba(1, 130, 138, 0.5), 0 0 30px rgba(1, 170, 180, 0.4)",
         }}
       >
         <EffectsWrapper>
         {/* Este es el contenedor de contenido que tiene el mismo ancho que el footer */}
-        <div className="w-full max-w-screen-xl p-4 mx-auto md:py-8">
+        <div className="w-full max-w-(--breakpoint-xl) p-4 mx-auto md:py-8">
           <div className="flex flex-col space-y-8 md:flex-row justify-evenly md:space-y-0">
             <ScrollFloat
               animationDuration={1.5}

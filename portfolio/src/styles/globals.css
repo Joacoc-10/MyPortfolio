@@ -1,33 +1,148 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss';
+@import './reset.css' layer(base);
 
-html,
-body {
-  max-width: 100vw;
-  overflow-x: hidden;
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --font-sans: var(--font-instrument-sans);
+  --font-lexend: var(--font-lexend);
 }
 
-body {
-  @apply bg-blackPrimary-500;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@theme {
+  --radius-lg: var(--radius);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-sm: calc(var(--radius) - 4px);
+
+  --color-background: hsl(var(--background));
+  --color-foreground: hsl(var(--foreground));
+
+  --color-card: hsl(var(--card));
+  --color-card-foreground: hsl(var(--card-foreground));
+
+  --color-popover: hsl(var(--popover));
+  --color-popover-foreground: hsl(var(--popover-foreground));
+
+  --color-primary: hsl(var(--primary));
+  --color-primary-foreground: hsl(var(--primary-foreground));
+
+  --color-secondary: hsl(var(--secondary));
+  --color-secondary-foreground: hsl(var(--secondary-foreground));
+
+  --color-muted: hsl(var(--muted));
+  --color-muted-foreground: hsl(var(--muted-foreground));
+
+  --color-accent: hsl(var(--accent));
+  --color-accent-foreground: hsl(var(--accent-foreground));
+
+  --color-destructive: hsl(var(--destructive));
+  --color-destructive-foreground: hsl(var(--destructive-foreground));
+
+  --color-border: hsl(var(--border));
+  --color-input: hsl(var(--input));
+  --color-ring: hsl(var(--ring));
+
+  --color-chart-1: hsl(var(--chart-1));
+  --color-chart-2: hsl(var(--chart-2));
+  --color-chart-3: hsl(var(--chart-3));
+  --color-chart-4: hsl(var(--chart-4));
+  --color-chart-5: hsl(var(--chart-5));
+
+  --color-secondaryBackground-100: #2b2b32;
+  --color-secondaryBackground-200: #232329;
+  --color-secondaryBackground-300: #1c1c20;
+  --color-secondaryBackground-400: #17171a;
+  --color-secondaryBackground-500: #16161a;
+  --color-secondaryBackground-600: #0d0d0f;
+
+  --color-whiteHeadline-100: #ffffff;
+  --color-whiteHeadline-200: #fefefe;
+  --color-whiteHeadline-300: #fdfdfd;
+  --color-whiteHeadline-400: #fcfcfc;
+  --color-whiteHeadline-500: #fffffe;
+  --color-whiteHeadline-600: #e6e6e6;
+
+  --color-greyParagraph-100: #c8cfd8;
+  --color-greyParagraph-200: #b3bac4;
+  --color-greyParagraph-300: #9ea5b0;
+  --color-greyParagraph-400: #8990a0;
+  --color-greyParagraph-500: #94a1b2;
+  --color-greyParagraph-600: #7f8b98;
+
+  --color-esmeraldButton-100: #6ed1d2;
+  --color-esmeraldButton-200: #43b6b7;
+  --color-esmeraldButton-300: #1d9c9d;
+  --color-esmeraldButton-400: #087f83;
+  --color-esmeraldButton-500: #015e64;
+  --color-esmeraldButton-600: #00484c;
+
+  --color-blackPrimary-100: #333333;
+  --color-blackPrimary-200: #262626;
+  --color-blackPrimary-300: #1a1a1a;
+  --color-blackPrimary-400: #0d0d0d;
+  --color-blackPrimary-500: #010101;
+  --color-blackPrimary-600: #000000;
+
+  --color-greySecondary-100: #b5b5ba;
+  --color-greySecondary-200: #9e9ea4;
+  --color-greySecondary-300: #87878e;
+  --color-greySecondary-400: #707076;
+  --color-greySecondary-500: #72757e;
+  --color-greySecondary-600: #5b5d63;
+
+  --color-greenTertiary-100: #66d0a7;
+  --color-greenTertiary-200: #4fc68e;
+  --color-greenTertiary-300: #38bc74;
+  --color-greenTertiary-400: #21b05b;
+  --color-greenTertiary-500: #2cb67d;
+  --color-greenTertiary-600: #239a66;
 }
 
-* {
-  box-sizing: border-box;
-  padding: 0;
-  margin: 0;
+/*
+  The default border color has changed to `currentcolor` in Tailwind CSS v4,
+  so we've added these compatibility styles to make sure everything still
+  looks the same as it did with Tailwind CSS v3.
+
+  If we ever want to remove these styles, we need to add an explicit border
+  color utility to any element that depends on these defaults.
+*/
+@layer base {
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-gray-200, currentcolor);
+  }
 }
 
-a {
-  color: inherit;
-  text-decoration: none;
-}
+@layer base {
+  html,
+  body {
+    max-width: 100vw;
+    overflow-x: hidden;
+  }
 
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
+  body {
+    @apply bg-blackPrimary-500;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  * {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    html {
+      color-scheme: dark;
+    }
   }
 }
 
@@ -92,9 +207,6 @@ a {
 @layer base {
   * {
     @apply border-border;
-  }
-  body {
-    @apply bg-background text-foreground;
   }
 }
 

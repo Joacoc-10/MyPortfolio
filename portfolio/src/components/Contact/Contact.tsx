@@ -40,7 +40,7 @@ const ContactSection = () => {
             <div
               ref={cardRef}
               className={`
-              relative max-w-3xl w-full bg-secondaryBackground-500 bg-opacity-90 border border-esmeraldButton-500
+              relative max-w-3xl w-full bg-secondaryBackground-500/90 border border-esmeraldButton-500
               rounded-2xl shadow-2xl p-10 flex flex-col items-center text-center space-y-6
               transition-transform duration-500  ${
                 isVisible

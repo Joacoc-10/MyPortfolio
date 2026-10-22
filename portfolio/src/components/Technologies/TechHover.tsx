@@ -28,7 +28,7 @@ const TechHover: React.FC<ITechHoverProps> = ({ title, src }) => {
       />
       <span
         // La opacidad del texto cambia según el estado 'isHovered'
-        className={`absolute bottom-[-1.5rem] text-sm text-gray-200 font-medium font-sans whitespace-nowrap transition-opacity duration-300 ease-in-out ${
+        className={`absolute -bottom-6 text-sm text-gray-200 font-medium font-sans whitespace-nowrap transition-opacity duration-300 ease-in-out ${
           isHovered ? 'opacity-100' : 'opacity-0'
         }`}
       >
