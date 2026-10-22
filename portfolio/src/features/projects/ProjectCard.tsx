@@ -56,7 +56,11 @@ export async function ProjectCard({
         : null;
 
   return (
-    <Card className={cn("flex h-full flex-col", wide && "lg:flex-row", className)}>
+    <Card
+      // Proyectos independientes: detalle luminoso discreto; los profesionales mantienen solo el borde brillante.
+      sparkles={project.kind === "professional" ? undefined : "hover"}
+      className={cn("flex h-full flex-col", wide && "lg:flex-row", className)}
+    >
       {project.image && (
         <div className="relative aspect-[16/10] shrink-0 overflow-hidden border-b border-line">
           <Image

@@ -148,6 +148,112 @@
     transform-origin: left;
   }
 
+  /* Tarjetas con brillo (ver components/ui/Card.tsx):
+     ::before = luz suave bajo el cursor, ::after = borde esmeralda de 1px que sigue al cursor. */
+  .card-glow::before,
+  .card-glow::after {
+    content: "";
+    position: absolute;
+    border-radius: inherit;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.35s ease;
+  }
+  .card-glow::before {
+    inset: 0;
+    z-index: 10;
+    background: radial-gradient(
+      360px circle at var(--mx, 50%) var(--my, 50%),
+      rgb(45 212 191 / 0.08),
+      transparent 65%
+    );
+  }
+  .card-glow::after {
+    inset: 0;
+    z-index: 11;
+    padding: 1px;
+    background: radial-gradient(
+      240px circle at var(--mx, 50%) var(--my, 50%),
+      rgb(45 212 191 / 0.9),
+      transparent 70%
+    );
+    -webkit-mask:
+      linear-gradient(#000 0 0) content-box,
+      linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask:
+      linear-gradient(#000 0 0) content-box,
+      linear-gradient(#000 0 0);
+    mask-composite: exclude;
+  }
+  .card-glow:focus-within::after {
+    opacity: 0.55;
+  }
+  @media (hover: hover) {
+    .card-glow:hover::before,
+    .card-glow:hover::after {
+      opacity: 1;
+    }
+  }
+
+  /* Destacada: borde esmeralda visible aunque no haya cursor (también en móvil) */
+  .card-glow--featured::after {
+    opacity: 0.75;
+    background:
+      radial-gradient(
+        240px circle at var(--mx, 88%) var(--my, 0%),
+        rgb(45 212 191 / 0.9),
+        transparent 70%
+      ),
+      linear-gradient(
+        135deg,
+        rgb(45 212 191 / 0.55),
+        transparent 38%,
+        transparent 70%,
+        rgb(45 212 191 / 0.3)
+      );
+  }
+
+  /* Puntos luminosos decorativos */
+  .sparkles {
+    position: absolute;
+    inset: 0;
+    z-index: 12;
+    pointer-events: none;
+  }
+  .sparkles i {
+    position: absolute;
+    left: var(--x);
+    top: var(--y);
+    width: 3px;
+    height: 3px;
+    border-radius: 9999px;
+    background: rgb(167 243 233);
+    box-shadow: 0 0 6px 1px rgb(45 212 191 / 0.8);
+    opacity: 0.15;
+    animation: twinkle var(--duration, 4s) ease-in-out infinite;
+    animation-delay: var(--delay, 0s);
+  }
+  .sparkles[data-mode="hover"] {
+    opacity: 0;
+    transition: opacity 0.4s ease;
+  }
+  .sparkles[data-mode="hover"] i {
+    animation-play-state: paused;
+  }
+  .card-glow:hover .sparkles[data-mode="hover"] {
+    opacity: 1;
+  }
+  .card-glow:hover .sparkles[data-mode="hover"] i {
+    animation-play-state: running;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .sparkles i {
+      animation: none;
+      opacity: 0.55;
+    }
+  }
+
   /* Carrusel de tecnologías (ver features/stack/TechMarquee.tsx) */
   .marquee {
     overflow: hidden;
@@ -223,5 +329,17 @@
 @keyframes marquee {
   to {
     transform: translateX(-50%);
+  }
+}
+
+@keyframes twinkle {
+  0%,
+  100% {
+    opacity: 0.15;
+    transform: scale(0.7);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.15);
   }
 }

@@ -21,7 +21,7 @@ export async function FeaturedProject({
   const contributions = project.contributions ? localize(project.contributions, locale) : [];
 
   return (
-    <Card className="border-brand/25 bg-linear-to-br from-brand/[0.07] via-surface to-surface p-6 sm:p-8 lg:p-10">
+    <Card glow="featured" sparkles="always" className="border-brand/25 bg-linear-to-br from-brand/[0.07] via-surface to-surface p-6 sm:p-8 lg:p-10">
       <div className="flex flex-wrap items-center gap-2">
         <Chip tone="brand">{t("featured")}</Chip>
         <Chip>{stack("frontend")}</Chip>

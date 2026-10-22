@@ -1,16 +1,27 @@
 "use client";
 
 import { cn } from "@/lib/utils";
+import { Sparkles } from "./Sparkles";
+
+type CardProps = React.ComponentPropsWithoutRef<"div"> & {
+  /** "featured": borde esmeralda siempre visible, para el proyecto destacado. */
+  glow?: "default" | "featured";
+  /** Puntos luminosos decorativos. */
+  sparkles?: "hover" | "always";
+};
 
 /**
- * Tarjeta con spotlight que sigue al puntero (solo CSS + dos variables).
- * Los hijos pueden ser Server Components.
+ * Tarjeta con spotlight y borde brillante que siguen al puntero (CSS + dos variables, sin librerías).
+ * Los estilos están en `.card-glow` de globals.css. Los hijos pueden ser Server Components.
  */
 export function Card({
+  glow = "default",
+  sparkles,
   className,
   onPointerMove,
+  children,
   ...props
-}: React.ComponentPropsWithoutRef<"div">) {
+}: CardProps) {
   return (
     <div
       onPointerMove={(event) => {
@@ -20,12 +31,14 @@ export function Card({
         onPointerMove?.(event);
       }}
       className={cn(
-        "group/card relative overflow-hidden rounded-2xl border border-line bg-surface transition-colors duration-300 hover:border-line-strong",
-        "before:pointer-events-none before:absolute before:inset-0 before:z-10 before:opacity-0 before:transition-opacity before:duration-300 before:content-['']",
-        "before:bg-[radial-gradient(360px_circle_at_var(--mx,50%)_var(--my,50%),rgb(45_212_191/0.09),transparent_65%)] hover:before:opacity-100",
+        "card-glow group/card relative overflow-hidden rounded-2xl border border-line bg-surface transition-colors duration-300 hover:border-line-strong",
+        glow === "featured" && "card-glow--featured",
         className,
       )}
       {...props}
-    />
+    >
+      {sparkles && <Sparkles mode={sparkles} />}
+      {children}
+    </div>
   );
 }
