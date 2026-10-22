@@ -81,9 +81,19 @@ type Props = {
   speed?: number;
   scanlineFrequency?: number;
   warpAmount?: number;
+  /** Fracción de la resolución real a la que se renderiza (el canvas se estira por CSS). */
   resolutionScale?: number;
+  /** Tope de cuadros por segundo. */
+  maxFps?: number;
 };
 
+/**
+ * Fondo WebGL. Optimizado respecto de la versión original:
+ * - renderiza a menor resolución y con DPR 1,
+ * - limita los cuadros por segundo,
+ * - se pausa cuando está fuera de pantalla o la pestaña está oculta,
+ * - aparece con fade-in al dibujar el primer cuadro.
+ */
 export default function DarkVeil({
   hueShift = 0,
   noiseIntensity = 0,
@@ -91,18 +101,16 @@ export default function DarkVeil({
   speed = 0.5,
   scanlineFrequency = 0,
   warpAmount = 0,
-  resolutionScale = 1
+  resolutionScale = 0.5,
+  maxFps = 30,
 }: Props) {
   const ref = useRef<HTMLCanvasElement>(null);
+
   useEffect(() => {
     const canvas = ref.current as HTMLCanvasElement;
     const parent = canvas.parentElement as HTMLElement;
 
-    const renderer = new Renderer({
-      dpr: Math.min(window.devicePixelRatio, 2),
-      canvas
-    });
-
+    const renderer = new Renderer({ dpr: 1, canvas, alpha: false });
     const gl = renderer.gl;
     const geometry = new Triangle(gl);
 
@@ -116,42 +124,87 @@ export default function DarkVeil({
         uNoise: { value: noiseIntensity },
         uScan: { value: scanlineIntensity },
         uScanFreq: { value: scanlineFrequency },
-        uWarp: { value: warpAmount }
-      }
+        uWarp: { value: warpAmount },
+      },
     });
 
     const mesh = new Mesh(gl, { geometry, program });
 
     const resize = () => {
-      const w = parent.clientWidth,
-        h = parent.clientHeight;
-      renderer.setSize(w * resolutionScale, h * resolutionScale);
+      const w = Math.max(1, Math.round(parent.clientWidth * resolutionScale));
+      const h = Math.max(1, Math.round(parent.clientHeight * resolutionScale));
+      renderer.setSize(w, h);
+      // setSize fija el tamaño CSS en píxeles; el canvas debe llenar al contenedor.
+      canvas.style.width = "100%";
+      canvas.style.height = "100%";
       program.uniforms.uResolution.value.set(w, h);
     };
 
-    window.addEventListener('resize', resize);
+    const resizeObserver = new ResizeObserver(resize);
+    resizeObserver.observe(parent);
     resize();
 
-    const start = performance.now();
+    const frameInterval = 1000 / maxFps;
+    const startedAt = performance.now();
     let frame = 0;
+    let lastDraw = 0;
+    let shown = false;
+    let inView = true;
 
-    const loop = () => {
-      program.uniforms.uTime.value = ((performance.now() - start) / 1000) * speed;
-      program.uniforms.uHueShift.value = hueShift;
-      program.uniforms.uNoise.value = noiseIntensity;
-      program.uniforms.uScan.value = scanlineIntensity;
-      program.uniforms.uScanFreq.value = scanlineFrequency;
-      program.uniforms.uWarp.value = warpAmount;
+    const draw = (now: number) => {
+      frame = requestAnimationFrame(draw);
+      if (now - lastDraw < frameInterval) return;
+      lastDraw = now;
+      program.uniforms.uTime.value = ((now - startedAt) / 1000) * speed;
       renderer.render({ scene: mesh });
-      frame = requestAnimationFrame(loop);
+      if (!shown) {
+        shown = true;
+        canvas.style.opacity = "1";
+      }
     };
 
-    loop();
+    const play = () => {
+      if (frame || !inView || document.hidden) return;
+      frame = requestAnimationFrame(draw);
+    };
+    const pause = () => {
+      cancelAnimationFrame(frame);
+      frame = 0;
+    };
+
+    const intersection = new IntersectionObserver(([entry]) => {
+      inView = entry.isIntersecting;
+      if (inView) play();
+      else pause();
+    });
+    intersection.observe(canvas);
+
+    const onVisibility = () => (document.hidden ? pause() : play());
+    document.addEventListener("visibilitychange", onVisibility);
+
+    play();
 
     return () => {
-      cancelAnimationFrame(frame);
-      window.removeEventListener('resize', resize);
+      pause();
+      intersection.disconnect();
+      resizeObserver.disconnect();
+      document.removeEventListener("visibilitychange", onVisibility);
     };
-  }, [hueShift, noiseIntensity, scanlineIntensity, speed, scanlineFrequency, warpAmount, resolutionScale]);
-  return <canvas ref={ref} className="block w-full h-full" />;
+  }, [
+    hueShift,
+    noiseIntensity,
+    scanlineIntensity,
+    speed,
+    scanlineFrequency,
+    warpAmount,
+    resolutionScale,
+    maxFps,
+  ]);
+
+  return (
+    <canvas
+      ref={ref}
+      className="block h-full w-full opacity-0 transition-opacity duration-1000"
+    />
+  );
 }

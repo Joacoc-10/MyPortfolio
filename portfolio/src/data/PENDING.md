@@ -31,3 +31,7 @@ en la web: los campos opcionales se omiten hasta que haya información confirmad
 
 - Imagen Open Graph propia (Fase 5).
 - OliBar: captura de pantalla y descripción más detallada (opcionales).
+
+## Verificación manual
+
+- LinkedIn (`links.ts`) responde 999 a clientes automatizados; abrir el perfil manualmente para confirmar que el enlace funciona.

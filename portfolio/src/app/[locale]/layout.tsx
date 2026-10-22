@@ -6,7 +6,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "@/styles/globals.css";
 import { siteUrl } from "@/data";
 import { routing } from "@/i18n/routing";
-import { LanguageProvider } from "@/context/LanguageContext";
+import { Navbar } from "@/components/layout/Navbar";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -64,15 +64,20 @@ export default async function LocaleLayout({ children, params }: Props) {
   const { locale } = await params;
   if (!hasLocale(routing.locales, locale)) notFound();
   setRequestLocale(locale);
+  const t = await getTranslations("Common");
 
   return (
     <html lang={locale}>
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
         <NextIntlClientProvider>
-          {/* LEGACY: se elimina en la Fase 3 junto con los componentes anteriores */}
-          <LanguageProvider initialEnglish={locale === "en"}>
-            {children}
-          </LanguageProvider>
+          <a
+            href="#main"
+            className="sr-only z-[60] rounded-lg bg-brand px-4 py-2 font-medium text-brand-ink focus:not-sr-only focus:fixed focus:top-3 focus:left-3"
+          >
+            {t("skipToContent")}
+          </a>
+          <Navbar />
+          {children}
         </NextIntlClientProvider>
       </body>
     </html>
