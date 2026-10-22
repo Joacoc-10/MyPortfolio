@@ -36,7 +36,7 @@ export async function Hero() {
     <section className="relative isolate overflow-hidden">
       <HeroBackground />
 
-      <Container className="grid min-h-svh items-center gap-12 pt-28 pb-16 lg:grid-cols-12 lg:gap-8 lg:pt-24">
+      <Container className="grid items-center gap-10 pt-24 pb-14 sm:pt-28 sm:pb-16 lg:min-h-svh lg:grid-cols-12 lg:gap-8 lg:pt-24">
         <div className="lg:col-span-7">
           <p
             className="inline-flex animate-fade-up items-center gap-2.5 rounded-full border border-brand/30 bg-brand/10 py-1.5 pr-3.5 pl-3 text-xs text-brand sm:text-sm"
@@ -50,7 +50,7 @@ export async function Hero() {
           </p>
 
           <h1
-            className="mt-6 animate-fade-up text-5xl leading-[1.05] font-semibold tracking-tight text-balance sm:text-6xl lg:text-7xl"
+            className="mt-5 animate-fade-up text-5xl leading-[1.05] font-semibold tracking-tight text-balance sm:text-6xl lg:text-7xl"
             style={delay(100)}
           >
             {profile.name}{" "}
@@ -60,14 +60,14 @@ export async function Hero() {
           </h1>
 
           <p
-            className="mt-6 max-w-xl animate-fade-up text-lg leading-relaxed text-ink-muted text-pretty"
+            className="mt-5 max-w-xl animate-fade-up text-lg leading-relaxed text-ink-muted text-pretty"
             style={delay(200)}
           >
             {localize(profile.valueProposition, locale)}
           </p>
 
           <div
-            className="mt-9 flex animate-fade-up flex-wrap items-center gap-3"
+            className="mt-7 flex animate-fade-up flex-wrap items-center gap-3"
             style={delay(300)}
           >
             <Button href={`#${contactId}`} size="lg">
@@ -130,7 +130,7 @@ export async function Hero() {
             className="animate-fade-up lg:col-span-5 lg:justify-self-end"
             style={delay(350)}
           >
-            <div className="w-full rounded-2xl border border-line bg-surface/70 p-6 shadow-2xl shadow-black/40 backdrop-blur-md sm:p-7 lg:max-w-md">
+            <div className="w-full rounded-2xl border border-line bg-surface/70 p-5 shadow-2xl shadow-black/40 backdrop-blur-md sm:p-7 lg:max-w-md">
               <div className="flex items-center gap-2 font-mono text-xs text-ink-subtle">
                 <span
                   className="size-1.5 rounded-full bg-signal"
@@ -139,7 +139,7 @@ export async function Hero() {
                 {t("factsLabel")}
               </div>
 
-              <dl className="mt-5 divide-y divide-line">
+              <dl className="mt-4 divide-y divide-line">
                 <Fact label={t("factRole")}>
                   {localize(company.role, locale)}
                 </Fact>
@@ -166,9 +166,6 @@ export async function Hero() {
                     <span className="first-letter:uppercase">{since}</span>
                   </Fact>
                 )}
-                <Fact label={t("factAvailability")}>
-                  {t("factAvailabilityValue")}
-                </Fact>
               </dl>
             </div>
           </aside>

@@ -17,12 +17,32 @@ export function Navbar() {
   const [open, setOpen] = useState(false);
   const headerRef = useRef<HTMLElement>(null);
   const toggleRef = useRef<HTMLButtonElement>(null);
+  const [activeId, setActiveId] = useState<string | null>(null);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 8);
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  // Resalta la sección que está en el centro de la pantalla.
+  useEffect(() => {
+    const targets = [...navItems.map((item) => item.id), contactId]
+      .map((id) => document.getElementById(id))
+      .filter((element): element is HTMLElement => element !== null);
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (entry.isIntersecting) setActiveId(entry.target.id);
+          else setActiveId((current) => (current === entry.target.id ? null : current));
+        }
+      },
+      { rootMargin: "-45% 0px -50% 0px" },
+    );
+    targets.forEach((target) => observer.observe(target));
+    return () => observer.disconnect();
   }, []);
 
   // Cierra el menú con Escape (devolviendo el foco al botón), al tocar fuera o al pasar a escritorio.
@@ -81,7 +101,11 @@ export function Navbar() {
               <li key={item.id}>
                 <a
                   href={`#${item.id}`}
-                  className="link-underline text-ink-muted transition-colors hover:text-ink"
+                  aria-current={activeId === item.id ? "location" : undefined}
+                  className={cn(
+                    "link-underline transition-colors hover:text-ink",
+                    activeId === item.id ? "text-ink" : "text-ink-muted",
+                  )}
                 >
                   {t(item.labelKey)}
                 </a>
@@ -123,7 +147,11 @@ export function Navbar() {
                     <a
                       href={`#${item.id}`}
                       onClick={closeMenu}
-                      className="flex h-12 items-center text-lg text-ink"
+                      aria-current={activeId === item.id ? "location" : undefined}
+                      className={cn(
+                        "flex h-12 items-center text-lg",
+                        activeId === item.id ? "text-brand" : "text-ink",
+                      )}
                     >
                       {item.label}
                     </a>
