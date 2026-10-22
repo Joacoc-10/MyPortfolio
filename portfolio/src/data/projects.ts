@@ -99,8 +99,25 @@ export const projects: Project[] = [
       es: "Plataforma POS y de gestión de inventario para pequeños comercios, con funcionalidades de ventas, productos, stock y seguimiento de operaciones.",
       en: "A POS and inventory management platform for small businesses, with features for sales, products, stock and operations tracking.",
     },
-    // PENDING: tecnologías usadas y contribuciones propias, a la espera de validación (ver PENDING.md)
-    techIds: [],
+    // Contribuciones y tecnologías confirmadas por Joaquín a partir de la auditoría del repositorio (ZatoBox/main).
+    // Formik no se incluye: pendiente de confirmar.
+    contributions: {
+      es: [
+        "Interfaces de productos, inventario y perfil siguiendo diseños de Figma",
+        "Adaptación responsive de las pantallas de productos, inventario y perfil",
+        "Refactorización y modularización del formulario de productos",
+        "Paginación del listado principal e integración con el endpoint correspondiente",
+        "Unificación de estilos y encabezados",
+      ],
+      en: [
+        "Product, inventory and profile interfaces following Figma designs",
+        "Responsive adaptation of the product, inventory and profile screens",
+        "Refactoring and modularization of the product form",
+        "Pagination of the main listing and integration with its endpoint",
+        "Unified styles and headers",
+      ],
+    },
+    techIds: ["nextjs", "react", "typescript", "tailwindcss", "react-icons"],
     links: { deploy: "https://www.zatobox.io/" },
   },
 

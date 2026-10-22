@@ -15,6 +15,7 @@ export const technologies: Technology[] = [
   { id: "css-modules", name: "CSS Modules", category: "frontend", inStack: false },
   { id: "axios", name: "Axios", category: "frontend", inStack: false },
   { id: "formik", name: "Formik", category: "frontend", inStack: false },
+  { id: "react-icons", name: "React Icons", category: "frontend", url: "https://react-icons.github.io/react-icons/", inStack: false },
   { id: "framer-motion", name: "Framer Motion", category: "frontend", inStack: false },
 
   // Backend

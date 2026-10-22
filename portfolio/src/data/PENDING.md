@@ -11,20 +11,13 @@ en la web: los campos opcionales se omiten hasta que haya información confirmad
 
 ## Experiencia
 
-- **ZatoBox** (`companies.ts` y proyecto `zatobox` en `projects.ts`): confirmados rol (Frontend Developer),
-  modalidad (prácticas profesionales), duración (6 meses), sitio web (https://www.zatobox.io/), estado
-  (en producción) y qué es la plataforma (POS y gestión de inventario para pequeños comercios).
-  Pendiente de validar antes de publicar (hallazgos de la auditoría de https://github.com/ZatoBox/main, 18 commits y
-  11 PRs de `Joacoc-10` entre 2025-09-08 y 2025-10-09; ver informe en la conversación):
-  - Fechas exactas de las prácticas (los commits solo acotan un período de actividad en ese repositorio).
-  - Contribuciones propias (`contributions`): candidatas con evidencia en commits/PRs, aún sin cargar.
-  - Tecnologías que usé (`techIds`): con evidencia en el código que escribí: Next.js, React, TypeScript, Tailwind CSS
-    y react-icons (la dependencia fue agregada en un commit propio). Formik: evidencia parcial (extracción de un
-    componente de formulario que lo usa). No hay evidencia para Radix UI, Zustand, i18next, Axios, react-hook-form,
-    Recharts ni el resto del stack del proyecto, y Lucide/Yup solo aparecen en cambios de formato de comillas.
+- **ZatoBox** (`companies.ts` y proyecto `zatobox` en `projects.ts`): confirmados rol, modalidad, período
+  (ago–dic 2025), sitio web, estado de producción, las 5 contribuciones y las tecnologías Next.js, React, TypeScript,
+  Tailwind CSS y React Icons. La duración de "6 meses" se omitió para no contradecir el período; reincorporarla solo si se
+  define de forma consistente. Pendiente:
+  - Formik: no confirmado, no se muestra.
   - Nombre del proyecto en la ficha: hoy "ZatoBox POS" (nombre descriptivo para no repetir el de la empresa); confirmar.
-  - Commit `5ae63fe` (2025-10-08) agrega 19 archivos ajenos (entornos virtuales, webhooks, rutas de API) y el PR #126
-    quedó cerrado sin merge; no se atribuye nada de ahí. Confirmar si alguna parte es propia.
+  - Commit `5ae63fe` del repositorio (19 archivos ajenos): no se atribuye nada; confirmar si alguna parte es propia.
 - **Coralunity** (`companies.ts`): descripción propia de la empresa (hoy solo se describe tu participación).
 
 ## Textos redactados como borrador (validar)

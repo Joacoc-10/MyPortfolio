@@ -34,6 +34,19 @@ export async function ProjectCard({
   const techs = getTechnologies(project.techIds);
   const contributions = project.contributions && localize(project.contributions, locale);
   const wide = layout === "wide";
+  const hasAside = wide && Boolean(contributions && contributions.length > 0);
+
+  const link = project.links.deploy && (
+    <Button
+      href={project.links.deploy}
+      external
+      variant="secondary"
+      aria-label={`${tx("visitProject", { name: project.name })} (${common("opensInNewTab")})`}
+    >
+      {t("viewProject")}
+      <LuArrowUpRight size={16} aria-hidden="true" />
+    </Button>
+  );
 
   const kindLabel =
     project.kind === "personal"
@@ -56,8 +69,13 @@ export async function ProjectCard({
         </div>
       )}
 
-      <div className={cn("flex flex-1 flex-col p-6", wide && "lg:grid lg:grid-cols-2 lg:gap-10 lg:p-8")}>
-        <div>
+      <div
+        className={cn(
+          "flex flex-1 flex-col p-6",
+          hasAside && "lg:grid lg:grid-cols-12 lg:gap-10 lg:p-8",
+        )}
+      >
+        <div className={cn("flex flex-1 flex-col", hasAside && "lg:col-span-7")}>
           <div className="flex flex-wrap items-center gap-2">
             {kindLabel && (
               <Chip tone={project.kind === "personal" ? "brand" : "neutral"}>
@@ -79,25 +97,11 @@ export async function ProjectCard({
             />
           </div>
 
-          {contributions && contributions.length > 0 && (
-            <ul className="mt-4 space-y-2 text-sm text-ink-muted">
-              {contributions.map((item) => (
-                <li key={item} className="flex gap-2.5">
-                  <LuCheck
-                    size={16}
-                    aria-hidden="true"
-                    className="mt-0.5 shrink-0 text-brand"
-                  />
-                  {item}
-                </li>
-              ))}
-            </ul>
-          )}
-        </div>
+          {/* En tarjetas anchas con contribuciones, la lista va en la columna lateral */}
+          {contributions && !hasAside && <ContributionList items={contributions} />}
 
-        <div className={cn("mt-5 flex flex-1 flex-col", wide && "lg:mt-0 lg:justify-between")}>
           {techs.length > 0 && (
-            <div>
+            <div className="mt-5">
               <p className="sr-only">{t("technologies")}</p>
               <ul className="flex flex-wrap gap-2">
                 {techs.map((tech) => (
@@ -109,21 +113,39 @@ export async function ProjectCard({
             </div>
           )}
 
-          {project.links.deploy && (
-            <div className="mt-auto pt-6">
-              <Button
-                href={project.links.deploy}
-                external
-                variant="secondary"
-                aria-label={`${tx("visitProject", { name: project.name })} (${common("opensInNewTab")})`}
-              >
-                {t("viewProject")}
-                <LuArrowUpRight size={16} aria-hidden="true" />
-              </Button>
-            </div>
-          )}
+          {link && !hasAside && <div className="mt-auto pt-6">{link}</div>}
         </div>
+
+        {hasAside && contributions && (
+          <div className="mt-6 flex flex-col lg:col-span-5 lg:mt-0 lg:border-l lg:border-line lg:pl-10">
+            <ContributionList items={contributions} className="mt-0" />
+            {link && <div className="mt-auto pt-6">{link}</div>}
+          </div>
+        )}
       </div>
     </Card>
+  );
+}
+
+function ContributionList({
+  items,
+  className,
+}: {
+  items: string[];
+  className?: string;
+}) {
+  return (
+    <ul className={cn("mt-4 space-y-2 text-sm text-ink-muted", className)}>
+      {items.map((item) => (
+        <li key={item} className="flex gap-2.5">
+          <LuCheck
+            size={16}
+            aria-hidden="true"
+            className="mt-0.5 shrink-0 text-brand"
+          />
+          {item}
+        </li>
+      ))}
+    </ul>
   );
 }

@@ -19,19 +19,21 @@ export async function Experience() {
   const common = await getTranslations("Common");
   const format = await getFormatter();
 
-  const monthYear = (value: string) =>
-    format.dateTime(new Date(`${value}-01T00:00:00Z`), {
+  const monthYear = (value: string) => {
+    const text = format.dateTime(new Date(`${value}-01T00:00:00Z`), {
       month: "short",
       year: "numeric",
       timeZone: "UTC",
     });
+    return text.charAt(0).toUpperCase() + text.slice(1);
+  };
 
   const periodLabel = (company: Company) => {
     if (company.period) {
       const end = company.period.end
         ? monthYear(company.period.end)
         : t("present");
-      return `${monthYear(company.period.start)} — ${end}`;
+      return `${monthYear(company.period.start)} – ${end}`;
     }
     return company.durationMonths
       ? t("months", { count: company.durationMonths })

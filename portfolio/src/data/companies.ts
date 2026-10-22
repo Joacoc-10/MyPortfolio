@@ -22,8 +22,8 @@ export const companies: Company[] = [
       es: "Prácticas profesionales",
       en: "Professional internship",
     },
-    durationMonths: 6,
+    period: { start: "2025-08", end: "2025-12" },
+    // Duración (6 meses) omitida a propósito: no coincide con el período confirmado (ago–dic 2025).
     // La plataforma se describe en el proyecto "zatobox" (projects.ts).
-    // PENDING: fechas exactas de las prácticas (ver PENDING.md)
   },
 ];
