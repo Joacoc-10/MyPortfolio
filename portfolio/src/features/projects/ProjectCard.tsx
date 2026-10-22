@@ -7,6 +7,7 @@ import { Card } from "@/components/ui/Card";
 import { Chip } from "@/components/ui/Chip";
 import { ExpandableText } from "@/components/ui/ExpandableText";
 import { getTechnologies, localize, type Project } from "@/data";
+import { ProductionBadge } from "./ProductionBadge";
 import type { Locale } from "@/i18n/routing";
 import { cn } from "@/lib/utils";
 
@@ -31,7 +32,7 @@ export async function ProjectCard({
   const common = await getTranslations("Common");
 
   const techs = getTechnologies(project.techIds);
-  const highlights = project.highlights && localize(project.highlights, locale);
+  const contributions = project.contributions && localize(project.contributions, locale);
   const wide = layout === "wide";
 
   const kindLabel =
@@ -63,9 +64,7 @@ export async function ProjectCard({
                 {kindLabel}
               </Chip>
             )}
-            {project.inProduction && (
-              <Chip tone="signal">{tx("inProduction")}</Chip>
-            )}
+            <ProductionBadge project={project} />
           </div>
 
           <h3 className="mt-4 text-xl font-semibold tracking-tight">
@@ -80,9 +79,9 @@ export async function ProjectCard({
             />
           </div>
 
-          {highlights && highlights.length > 0 && (
+          {contributions && contributions.length > 0 && (
             <ul className="mt-4 space-y-2 text-sm text-ink-muted">
-              {highlights.map((item) => (
+              {contributions.map((item) => (
                 <li key={item} className="flex gap-2.5">
                   <LuCheck
                     size={16}

@@ -23,11 +23,7 @@ export const companies: Company[] = [
       en: "Professional internship",
     },
     durationMonths: 6,
-    // Describe la plataforma (dato confirmado), no atribuye funcionalidades ni tecnologías a mi trabajo.
-    // PENDING: fechas exactas, tecnologías y responsabilidades propias (ver PENDING.md)
-    summary: {
-      es: "Plataforma POS y de gestión de inventario para pequeños comercios, con funcionalidades de ventas, productos, stock y seguimiento de operaciones.",
-      en: "A POS and inventory management platform for small businesses, with features for sales, products, stock and operations tracking.",
-    },
+    // La plataforma se describe en el proyecto "zatobox" (projects.ts).
+    // PENDING: fechas exactas de las prácticas (ver PENDING.md)
   },
 ];

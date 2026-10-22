@@ -119,12 +119,18 @@ export async function Experience() {
                         <FeaturedProject project={featured} locale={locale} />
                       )}
                       {others.length > 0 && (
-                        <div className="grid gap-5 md:grid-cols-2">
+                        <div
+                          className={cn(
+                            "grid gap-5",
+                            others.length > 1 && "md:grid-cols-2",
+                          )}
+                        >
                           {others.map((project) => (
                             <ProjectCard
                               key={project.id}
                               project={project}
                               locale={locale}
+                              layout={others.length === 1 ? "wide" : "default"}
                             />
                           ))}
                         </div>

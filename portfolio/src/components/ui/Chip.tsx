@@ -1,14 +1,15 @@
 import { cn } from "@/lib/utils";
 
 type ChipProps = React.ComponentPropsWithoutRef<"span"> & {
-  /** "signal" resalta estados como "Actual" o "En producción". */
-  tone?: "neutral" | "brand" | "signal";
+  /** "signal": estado laboral ("Actual"). "live": proyecto en producción. */
+  tone?: "neutral" | "brand" | "signal" | "live";
 };
 
 const tones = {
   neutral: "border-line bg-surface text-ink-muted",
   brand: "border-brand/30 bg-brand/10 text-brand",
   signal: "border-signal/30 bg-signal/10 text-signal",
+  live: "border-live/30 bg-live/10 text-live",
 };
 
 export function Chip({ tone = "neutral", className, ...props }: ChipProps) {

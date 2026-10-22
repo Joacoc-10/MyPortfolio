@@ -13,11 +13,12 @@ export const projects: Project[] = [
     companyId: "coralunity",
     name: "Ordera",
     featured: true,
+    inProduction: true,
     summary: {
       es: "Plataforma que desarrollé prácticamente en su totalidad.",
       en: "A platform I built almost entirely on my own.",
     },
-    highlights: {
+    contributions: {
       es: [
         "Responsable de las funcionalidades de frontend",
         "Responsable de las funcionalidades de backend",
@@ -40,10 +41,10 @@ export const projects: Project[] = [
     name: "Nexvia",
     inProduction: true,
     summary: {
-      es: "Participación como Full Stack Developer desde las primeras etapas de la plataforma, que hoy está en producción.",
-      en: "Full Stack Developer on the platform from its early stages; it is now in production.",
+      es: "Participación como Full Stack Developer desde las primeras etapas de la plataforma.",
+      en: "Full Stack Developer on the platform from its early stages.",
     },
-    highlights: {
+    contributions: {
       es: [
         "Migración de la landing",
         "Reestructuración de secciones y pantallas",
@@ -66,11 +67,12 @@ export const projects: Project[] = [
     kind: "professional",
     companyId: "coralunity",
     name: "UES × Mercado Libre",
+    inProduction: true,
     summary: {
       es: "Integración de sistemas logísticos con Mercado Libre.",
       en: "Integration of logistics systems with Mercado Libre.",
     },
-    highlights: {
+    contributions: {
       es: [
         "Desarrollo de funcionalidades frontend y backend",
         "APIs REST, webhooks, procesamiento asíncrono, OAuth y auditoría",
@@ -83,6 +85,23 @@ export const projects: Project[] = [
     techIds: ["java", "spring-boot", "react", "typescript", "mariadb", "docker", "sqs"],
     // PENDING: URL pública (si existe). No se usan logos de UES ni de Mercado Libre.
     links: {},
+  },
+
+  // ───────────── Profesionales · ZatoBox ─────────────
+  {
+    id: "zatobox",
+    kind: "professional",
+    companyId: "zatobox",
+    // Nombre descriptivo del proyecto dentro de la empresa; confirmar con Joaquín (ver PENDING.md)
+    name: "ZatoBox POS",
+    inProduction: true,
+    summary: {
+      es: "Plataforma POS y de gestión de inventario para pequeños comercios, con funcionalidades de ventas, productos, stock y seguimiento de operaciones.",
+      en: "A POS and inventory management platform for small businesses, with features for sales, products, stock and operations tracking.",
+    },
+    // PENDING: tecnologías usadas y contribuciones propias, a la espera de validación (ver PENDING.md)
+    techIds: [],
+    links: { deploy: "https://www.zatobox.io/" },
   },
 
   // ───────────── Personales ─────────────

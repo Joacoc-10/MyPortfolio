@@ -11,15 +11,20 @@ en la web: los campos opcionales se omiten hasta que haya información confirmad
 
 ## Experiencia
 
-- **ZatoBox** (`companies.ts`): confirmados rol (Frontend Developer), modalidad (prácticas profesionales),
-  duración (6 meses), sitio web (https://www.zatobox.io/) y qué es la plataforma (POS y gestión de inventario
-  para pequeños comercios). Pendiente de confirmar:
-  - Fechas exactas (inicio y fin).
-  - Tecnologías que usé personalmente. El README público (https://github.com/ZatoBox/main) documenta Next.js,
-    React, TypeScript, Tailwind CSS, Radix UI, Zustand y otras herramientas frontend, pero no se atribuye ninguna
-    a mi trabajo hasta confirmarlo.
-  - Responsabilidades y funcionalidades en las que participé (se puede auditar el historial de contribuciones del repositorio).
-  - Si se agregan tecnologías, cargarlas en `technologies.ts` y referenciarlas con `techIds` (hoy las empresas no tienen `techIds`; habría que asociar un proyecto o ampliar el modelo).
+- **ZatoBox** (`companies.ts` y proyecto `zatobox` en `projects.ts`): confirmados rol (Frontend Developer),
+  modalidad (prácticas profesionales), duración (6 meses), sitio web (https://www.zatobox.io/), estado
+  (en producción) y qué es la plataforma (POS y gestión de inventario para pequeños comercios).
+  Pendiente de validar antes de publicar (hallazgos de la auditoría de https://github.com/ZatoBox/main, 18 commits y
+  11 PRs de `Joacoc-10` entre 2025-09-08 y 2025-10-09; ver informe en la conversación):
+  - Fechas exactas de las prácticas (los commits solo acotan un período de actividad en ese repositorio).
+  - Contribuciones propias (`contributions`): candidatas con evidencia en commits/PRs, aún sin cargar.
+  - Tecnologías que usé (`techIds`): con evidencia en el código que escribí: Next.js, React, TypeScript, Tailwind CSS
+    y react-icons (la dependencia fue agregada en un commit propio). Formik: evidencia parcial (extracción de un
+    componente de formulario que lo usa). No hay evidencia para Radix UI, Zustand, i18next, Axios, react-hook-form,
+    Recharts ni el resto del stack del proyecto, y Lucide/Yup solo aparecen en cambios de formato de comillas.
+  - Nombre del proyecto en la ficha: hoy "ZatoBox POS" (nombre descriptivo para no repetir el de la empresa); confirmar.
+  - Commit `5ae63fe` (2025-10-08) agrega 19 archivos ajenos (entornos virtuales, webhooks, rutas de API) y el PR #126
+    quedó cerrado sin merge; no se atribuye nada de ahí. Confirmar si alguna parte es propia.
 - **Coralunity** (`companies.ts`): descripción propia de la empresa (hoy solo se describe tu participación).
 
 ## Textos redactados como borrador (validar)

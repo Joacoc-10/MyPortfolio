@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/Button";
 import { Card } from "@/components/ui/Card";
 import { Chip } from "@/components/ui/Chip";
 import { localize, type Project } from "@/data";
+import { ProductionBadge } from "@/features/projects/ProductionBadge";
 import type { Locale } from "@/i18n/routing";
 
 /** Proyecto destacado de una empresa (Ordera): más espacio y protagonismo que el resto. */
@@ -17,7 +18,7 @@ export async function FeaturedProject({
   const t = await getTranslations("Experience");
   const stack = await getTranslations("Stack.categories");
   const common = await getTranslations("Common");
-  const highlights = project.highlights ? localize(project.highlights, locale) : [];
+  const contributions = project.contributions ? localize(project.contributions, locale) : [];
 
   return (
     <Card className="border-brand/25 bg-linear-to-br from-brand/[0.07] via-surface to-surface p-6 sm:p-8 lg:p-10">
@@ -25,6 +26,7 @@ export async function FeaturedProject({
         <Chip tone="brand">{t("featured")}</Chip>
         <Chip>{stack("frontend")}</Chip>
         <Chip>{stack("backend")}</Chip>
+        <ProductionBadge project={project} />
       </div>
 
       <div className="mt-5 grid gap-8 lg:grid-cols-12 lg:gap-12">
@@ -49,9 +51,9 @@ export async function FeaturedProject({
           )}
         </div>
 
-        {highlights.length > 0 && (
+        {contributions.length > 0 && (
           <ul className="space-y-4 lg:col-span-5 lg:border-l lg:border-line lg:pl-10">
-            {highlights.map((item) => (
+            {contributions.map((item) => (
               <li key={item} className="flex gap-3 text-ink">
                 <LuCheck
                   size={18}

@@ -26,8 +26,11 @@
   --color-brand-strong: #14b8a6;
   --color-brand-ink: #04201c;
 
-  /* Señal cálida: solo para estados "actual" / "en producción" */
+  /* Señal cálida: estado laboral ("Actual") */
   --color-signal: #f5b454;
+
+  /* Estado de producción de un proyecto ("En producción" / "Live") */
+  --color-live: #4ade80;
 
   --container-page: 72rem;
 

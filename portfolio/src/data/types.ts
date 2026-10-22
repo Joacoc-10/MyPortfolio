@@ -60,10 +60,13 @@ export interface Project {
   companyId?: string;
   name: string;
   summary: Localized;
-  highlights?: Localized<string[]>;
+  /** Contribuciones propias confirmadas. No incluir nada que no esté verificado. */
+  contributions?: Localized<string[]>;
+  /** Tecnologías que efectivamente usé en este proyecto (no el stack completo del proyecto). */
   techIds: string[];
   image?: string;
   featured?: boolean;
+  /** Estado del proyecto, independiente del estado laboral de la empresa. */
   inProduction?: boolean;
   links: { deploy?: string; repo?: string };
 }

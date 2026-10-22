@@ -5,7 +5,8 @@
   },
   "Common": {
     "skipToContent": "Saltar al contenido",
-    "opensInNewTab": "se abre en una pestaña nueva"
+    "opensInNewTab": "se abre en una pestaña nueva",
+    "inProduction": "En producción"
   },
   "Nav": {
     "label": "Principal",
@@ -53,7 +54,6 @@
     "months": "{count, plural, one {# mes} other {# meses}}",
     "projectsHeading": "Proyectos en {company}",
     "featured": "Proyecto destacado",
-    "inProduction": "En producción",
     "visitSite": "Visitar sitio",
     "visitCompany": "Sitio web de {company}",
     "visitProject": "Visitar {name}",
