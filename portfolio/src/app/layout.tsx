@@ -1,28 +1,18 @@
 import type { Metadata } from "next";
 import "../styles/globals.css";
-import { Lexend, Instrument_Sans, Geist, Geist_Mono } from "next/font/google";
+import { Geist, Geist_Mono } from "next/font/google";
 import { LanguageProvider } from "@/context/LanguageContext";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
+  display: "swap",
 });
 
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
-});
-
-const lexend = Lexend({
-  subsets: ["latin"],
-  weight: ["400", "700", "800"], 
-  variable: "--font-lexend",
-});
-
-const instrumentSans = Instrument_Sans({
-  subsets: ["latin"],
-  weight: ["400", "500"], 
-  variable: "--font-instrument-sans",
+  display: "swap",
 });
 
 export const metadata: Metadata = {
@@ -34,11 +24,11 @@ export const metadata: Metadata = {
     url: "",
     images: [
       {
-        url: "https://ik.imagekit.io/i1pxujmp5t/My%20Portfolio/Black%20logo%20-%20no%20background.png?updatedAt=1758109767518", 
+        url: "https://ik.imagekit.io/i1pxujmp5t/My%20Portfolio/Black%20logo%20-%20no%20background.png?updatedAt=1758109767518",
         alt: "Logo de JCoding",
       },
     ],
-  }
+  },
 };
 
 export default function RootLayout({
@@ -48,10 +38,8 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="es">
-      <body className={`${geistSans.variable} ${geistMono.variable} ${lexend.variable} ${instrumentSans.variable}`}>
-        <LanguageProvider>
-        {children}
-        </LanguageProvider>
+      <body className={`${geistSans.variable} ${geistMono.variable}`}>
+        <LanguageProvider>{children}</LanguageProvider>
       </body>
     </html>
   );

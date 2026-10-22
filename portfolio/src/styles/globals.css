@@ -1,13 +1,43 @@
 @import 'tailwindcss';
-@import './reset.css' layer(base);
 
 @custom-variant dark (&:is(.dark *));
 
+/* ============================================================
+   Sistema de diseño 2026
+   ============================================================ */
 @theme inline {
-  --font-sans: var(--font-instrument-sans);
-  --font-lexend: var(--font-lexend);
+  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, SFMono-Regular, monospace;
+  /* LEGACY: alias para componentes anteriores al rediseño. Eliminar en Fase 3. */
+  --font-lexend: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
 }
 
+@theme {
+  /* Superficies */
+  --color-canvas: #0b0d0e;
+  --color-surface: #121517;
+  --color-surface-raised: #181c1f;
+  --color-line: #232a2e;
+  --color-line-strong: #34404a;
+
+  /* Texto */
+  --color-ink: #edf1f2;
+  --color-ink-muted: #9aa6ab;
+  --color-ink-subtle: #6b777c;
+
+  /* Acento de marca (derivado del esmeralda original) */
+  --color-brand: #2dd4bf;
+  --color-brand-strong: #14b8a6;
+  --color-brand-ink: #04201c;
+
+  /* Señal cálida: solo para estados "actual" / "en producción" */
+  --color-signal: #f5b454;
+
+  --breakpoint-3xl: 120rem;
+  --container-page: 72rem;
+}
+
+/* LEGACY (shadcn + paleta anterior): eliminar en Fase 3 */
 @theme {
   --radius-lg: var(--radius);
   --radius-md: calc(var(--radius) - 2px);
@@ -123,7 +153,7 @@
   }
 
   body {
-    @apply bg-blackPrimary-500;
+    @apply bg-canvas text-ink font-sans;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
@@ -356,4 +386,40 @@
 /* Sombra para titulos blancos */
 .shadow-reflector-white {
  text-shadow: 0px 10px 10px rgba(80, 79, 79, 0.638);
+}
+
+
+/* ============================================================
+   Base del nuevo sistema
+   ============================================================ */
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 5rem;
+    text-rendering: optimizeLegibility;
+  }
+
+  ::selection {
+    background: color-mix(in oklab, var(--color-brand) 35%, transparent);
+    color: var(--color-ink);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-brand);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
 }
