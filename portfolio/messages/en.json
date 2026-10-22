@@ -1,0 +1,43 @@
+{
+  "Metadata": {
+    "title": "Joaquín Curbelo | Full Stack Developer",
+    "description": "Full Stack Developer. I build web applications, platforms and integrations end to end. Open to job opportunities and freelance projects."
+  },
+  "Common": {
+    "skipToContent": "Skip to content",
+    "opensInNewTab": "opens in a new tab"
+  },
+  "Nav": {
+    "label": "Main",
+    "about": "About",
+    "experience": "Experience",
+    "projects": "Projects",
+    "stack": "Stack",
+    "contact": "Contact",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu",
+    "language": "Language",
+    "switchToEnglish": "Switch to English",
+    "switchToSpanish": "Switch to Spanish"
+  },
+  "Hero": {
+    "currentRole": "{role} at {company}",
+    "ctaContact": "Let's talk",
+    "ctaCv": "Download CV",
+    "cvOtherLanguage": "Spanish version",
+    "cvOtherLanguageLabel": "Download CV in Spanish",
+    "factsLabel": "Current details",
+    "factRole": "Role",
+    "factCompany": "Company",
+    "factSince": "Since",
+    "factAvailability": "Availability",
+    "factAvailabilityValue": "Full-time and freelance",
+    "github": "GitHub",
+    "linkedin": "LinkedIn"
+  },
+  "NotFound": {
+    "title": "Page not found",
+    "description": "The page you are looking for does not exist.",
+    "back": "Back to home"
+  }
+}

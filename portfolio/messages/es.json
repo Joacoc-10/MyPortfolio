@@ -1,0 +1,43 @@
+{
+  "Metadata": {
+    "title": "Joaquín Curbelo | Full Stack Developer",
+    "description": "Full Stack Developer. Desarrollo aplicaciones web, plataformas e integraciones de punta a punta. Abierto a oportunidades laborales y proyectos freelance."
+  },
+  "Common": {
+    "skipToContent": "Saltar al contenido",
+    "opensInNewTab": "se abre en una pestaña nueva"
+  },
+  "Nav": {
+    "label": "Principal",
+    "about": "Sobre mí",
+    "experience": "Experiencia",
+    "projects": "Proyectos",
+    "stack": "Stack",
+    "contact": "Contacto",
+    "openMenu": "Abrir menú",
+    "closeMenu": "Cerrar menú",
+    "language": "Idioma",
+    "switchToEnglish": "Cambiar a inglés",
+    "switchToSpanish": "Cambiar a español"
+  },
+  "Hero": {
+    "currentRole": "{role} en {company}",
+    "ctaContact": "Hablemos",
+    "ctaCv": "Descargar CV",
+    "cvOtherLanguage": "Versión en inglés",
+    "cvOtherLanguageLabel": "Descargar CV en inglés",
+    "factsLabel": "Datos actuales",
+    "factRole": "Rol",
+    "factCompany": "Empresa",
+    "factSince": "Desde",
+    "factAvailability": "Disponibilidad",
+    "factAvailabilityValue": "Laboral y freelance",
+    "github": "GitHub",
+    "linkedin": "LinkedIn"
+  },
+  "NotFound": {
+    "title": "Página no encontrada",
+    "description": "La página que buscás no existe.",
+    "back": "Volver al inicio"
+  }
+}
