@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import React, { FC } from "react";
-import cs from "classnames";
+import { cn as cs } from "@/lib/utils";
 
 export interface NavbarItemProps {
   label: string;
