@@ -14,8 +14,20 @@ export const projects: Project[] = [
     name: "Ordera",
     featured: true,
     summary: {
-      es: "Plataforma desarrollada prácticamente en su totalidad por mí, con responsabilidad sobre las funcionalidades de frontend y backend y participación integral en su construcción.",
-      en: "A platform I built almost entirely on my own, responsible for both frontend and backend features and involved end to end in its construction.",
+      es: "Plataforma que desarrollé prácticamente en su totalidad.",
+      en: "A platform I built almost entirely on my own.",
+    },
+    highlights: {
+      es: [
+        "Responsable de las funcionalidades de frontend",
+        "Responsable de las funcionalidades de backend",
+        "Participación integral en la construcción de la plataforma",
+      ],
+      en: [
+        "Responsible for frontend features",
+        "Responsible for backend features",
+        "Involved end to end in building the platform",
+      ],
     },
     // PENDING: stack, funcionalidades y contribuciones verificables (auditoría del repo)
     techIds: [],
@@ -79,8 +91,8 @@ export const projects: Project[] = [
     kind: "personal",
     name: "OliBar",
     summary: {
-      es: "Menú digital responsive. Proyecto personal, independiente de Coralunity.",
-      en: "Responsive digital menu. A personal project, independent from Coralunity.",
+      es: "Menú digital responsive. Desarrollado de forma independiente, fuera de mi trabajo en Coralunity.",
+      en: "Responsive digital menu. Built independently, outside my work at Coralunity.",
     },
     techIds: ["react", "typescript", "tailwindcss", "vercel"],
     links: { deploy: "https://oli-bar.vercel.app/" },
