@@ -11,7 +11,15 @@ en la web: los campos opcionales se omiten hasta que haya información confirmad
 
 ## Experiencia
 
-- **ZatoBox** (`companies.ts`): cargo exacto, fechas, tecnologías, responsabilidades y sitio web. Hoy solo figura "Prácticas profesionales · 6 meses".
+- **ZatoBox** (`companies.ts`): confirmados rol (Frontend Developer), modalidad (prácticas profesionales),
+  duración (6 meses), sitio web (https://www.zatobox.io/) y qué es la plataforma (POS y gestión de inventario
+  para pequeños comercios). Pendiente de confirmar:
+  - Fechas exactas (inicio y fin).
+  - Tecnologías que usé personalmente. El README público (https://github.com/ZatoBox/main) documenta Next.js,
+    React, TypeScript, Tailwind CSS, Radix UI, Zustand y otras herramientas frontend, pero no se atribuye ninguna
+    a mi trabajo hasta confirmarlo.
+  - Responsabilidades y funcionalidades en las que participé (se puede auditar el historial de contribuciones del repositorio).
+  - Si se agregan tecnologías, cargarlas en `technologies.ts` y referenciarlas con `techIds` (hoy las empresas no tienen `techIds`; habría que asociar un proyecto o ampliar el modelo).
 - **Coralunity** (`companies.ts`): descripción propia de la empresa (hoy solo se describe tu participación).
 
 ## Textos redactados como borrador (validar)

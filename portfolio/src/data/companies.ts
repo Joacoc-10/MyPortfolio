@@ -16,11 +16,18 @@ export const companies: Company[] = [
   {
     id: "zatobox",
     name: "ZatoBox",
-    // PENDING: cargo exacto, fechas, tecnologías y responsabilidades (ver PENDING.md)
-    role: {
+    website: "https://www.zatobox.io/",
+    role: { es: "Frontend Developer", en: "Frontend Developer" },
+    employmentType: {
       es: "Prácticas profesionales",
       en: "Professional internship",
     },
     durationMonths: 6,
+    // Describe la plataforma (dato confirmado), no atribuye funcionalidades ni tecnologías a mi trabajo.
+    // PENDING: fechas exactas, tecnologías y responsabilidades propias (ver PENDING.md)
+    summary: {
+      es: "Plataforma POS y de gestión de inventario para pequeños comercios, con funcionalidades de ventas, productos, stock y seguimiento de operaciones.",
+      en: "A POS and inventory management platform for small businesses, with features for sales, products, stock and operations tracking.",
+    },
   },
 ];

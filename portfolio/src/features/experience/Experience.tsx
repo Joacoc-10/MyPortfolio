@@ -100,6 +100,8 @@ export async function Experience() {
                 </h3>
                 <p className="mt-1 text-ink-muted">
                   {localize(company.role, locale)}
+                  {company.employmentType &&
+                    ` · ${localize(company.employmentType, locale)}`}
                 </p>
                 {company.summary && (
                   <p className="mt-4 max-w-2xl text-lg leading-relaxed text-ink-muted text-pretty">

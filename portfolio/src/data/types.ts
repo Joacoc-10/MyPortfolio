@@ -42,6 +42,8 @@ export interface Company {
   name: string;
   website?: string;
   role: Localized;
+  /** Modalidad de la experiencia (ej. prácticas profesionales). Se muestra junto al rol. */
+  employmentType?: Localized;
   /** Formato AAAA-MM. `end: null` significa "actualidad". */
   period?: { start: string; end: string | null };
   /** Para experiencias sin fechas exactas confirmadas. */
