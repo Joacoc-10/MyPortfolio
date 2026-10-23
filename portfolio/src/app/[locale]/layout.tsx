@@ -40,6 +40,14 @@ export async function generateMetadata({
     metadataBase: new URL(siteUrl),
     title: t("title"),
     description: t("description"),
+    icons: { apple: "/apple-touch-icon.png" },
+    robots: { index: true, follow: true },
+    twitter: {
+      card: "summary_large_image",
+      title: t("title"),
+      description: t("description"),
+      images: [{ url: "/share.png", alt: "JCoding — Joaquín Curbelo, Full Stack Developer" }],
+    },
     alternates: {
       canonical: `/${locale}`,
       languages: {
@@ -50,6 +58,7 @@ export async function generateMetadata({
     },
     openGraph: {
       type: "website",
+      images: [{ url: "/share.png", width: 1200, height: 630, alt: "JCoding — Joaquín Curbelo, Full Stack Developer" }],
       url: `/${locale}`,
       siteName: "JCoding",
       title: t("title"),
