@@ -63,25 +63,33 @@ export const projects: Project[] = [
     name: "Nexvia",
     inProduction: true,
     summary: {
-      es: "Participación como Full Stack Developer desde las primeras etapas de la plataforma.",
-      en: "Full Stack Developer on the platform from its early stages.",
+      es: "Marketplace de transporte y logística que conecta personas y empresas con transportistas disponibles, permitiendo publicar solicitudes, recibir cotizaciones y comparar ofertas.",
+      en: "A transport and logistics marketplace connecting individuals and businesses with available carriers, allowing users to post shipment requests, receive quotes and compare offers.",
     },
+    problem: {
+      es: "Simplifica la contratación de transporte al centralizar solicitudes, transportistas y cotizaciones en una sola plataforma. Opera en Uruguay.",
+      en: "It simplifies hiring transport by bringing requests, carriers and quotes together in a single platform. Operating in Uruguay.",
+    },
+    // Auditoría de los repositorios (app, landing y API) y confirmación de Joaquín. Participación principalmente frontend:
+    // sin backend. Las pantallas de vehículo y mudanza están en una rama de feature; no se afirma que estén desplegadas.
     contributions: {
       es: [
-        "Migración de la landing",
-        "Reestructuración de secciones y pantallas",
-        "Desarrollo de formularios",
-        "Implementación de funcionalidades de la plataforma",
+        "Migración de la landing de React a Astro, con mejoras de SEO y rendimiento móvil",
+        "Interfaces responsive a partir de los diseños disponibles durante mi participación",
+        "Formularios de registro de transportistas y de contacto, conectados con la API",
+        "Historial de envíos y visualización de cotizaciones",
+        "Login, borradores y parte del flujo de creación de envíos",
       ],
       en: [
-        "Landing page migration",
-        "Restructuring of sections and screens",
-        "Form development",
-        "Implementation of platform features",
+        "Migration of the landing page from React to Astro, with SEO and mobile performance improvements",
+        "Responsive interfaces built from the designs available during my time on the project",
+        "Carrier registration and contact forms, connected to the API",
+        "Shipment history and quote viewing",
+        "Login, drafts and part of the shipment creation flow",
       ],
     },
-    // PENDING: stack (auditoría del repo)
-    techIds: [],
+    // JavaScript (JSX); TypeScript solo aparece de forma marginal (tema), por eso no se lista.
+    techIds: ["astro", "react", "javascript", "mui", "formik", "yup", "axios", "framer-motion"],
     links: { deploy: "https://nexvia.io/" },
   },
   {

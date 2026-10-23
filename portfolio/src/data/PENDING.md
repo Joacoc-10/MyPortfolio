@@ -5,7 +5,6 @@ en la web: los campos opcionales se omiten hasta que haya información confirmad
 
 ## Auditorías de repositorios (siguiente etapa)
 
-- **Nexvia** (`projects.ts`): stack real (hoy `techIds: []`).
 - **UES × Mercado Libre** (`projects.ts`): URL pública si existe y detalles autorizados. No usar logos de UES ni de Mercado Libre; ante la duda sobre confidencialidad, omitir.
 
 ## Experiencia

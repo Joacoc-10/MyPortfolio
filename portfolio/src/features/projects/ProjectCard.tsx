@@ -101,8 +101,19 @@ export async function ProjectCard({
             />
           </div>
 
+          {project.problem && (
+            <p className="mt-3 text-sm leading-relaxed text-ink text-pretty">
+              {localize(project.problem, locale)}
+            </p>
+          )}
+
           {/* En tarjetas anchas con contribuciones, la lista va en la columna lateral */}
-          {contributions && !hasAside && <ContributionList items={contributions} />}
+          {contributions && !hasAside && (
+            <ContributionList
+              items={contributions}
+              heading={project.problem ? tx("contributionsHeading") : undefined}
+            />
+          )}
 
           {techs.length > 0 && (
             <div className="mt-5">
@@ -133,23 +144,33 @@ export async function ProjectCard({
 
 function ContributionList({
   items,
+  heading,
   className,
 }: {
   items: string[];
+  /** Encabezado opcional (solo en fichas ampliadas, las que incluyen `problem`). */
+  heading?: string;
   className?: string;
 }) {
   return (
-    <ul className={cn("mt-4 space-y-2 text-sm text-ink-muted", className)}>
-      {items.map((item) => (
-        <li key={item} className="flex gap-2.5">
-          <LuCheck
-            size={16}
-            aria-hidden="true"
-            className="mt-0.5 shrink-0 text-brand"
-          />
-          {item}
-        </li>
-      ))}
-    </ul>
+    <div className={cn("mt-4", className)}>
+      {heading && (
+        <p className="font-mono text-xs tracking-wide text-ink-subtle uppercase">
+          {heading}
+        </p>
+      )}
+      <ul className={cn("space-y-2 text-sm text-ink-muted", heading && "mt-3")}>
+        {items.map((item) => (
+          <li key={item} className="flex gap-2.5">
+            <LuCheck
+              size={16}
+              aria-hidden="true"
+              className="mt-0.5 shrink-0 text-brand"
+            />
+            {item}
+          </li>
+        ))}
+      </ul>
+    </div>
   );
 }

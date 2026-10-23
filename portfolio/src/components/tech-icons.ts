@@ -3,6 +3,7 @@ import { FaIcons, FaJava } from "react-icons/fa";
 import {
   SiAmazonsqs,
   SiAuth0,
+  SiAstro,
   SiAxios,
   SiBootstrap,
   SiCloudinary,
@@ -44,6 +45,7 @@ import {
 } from "react-icons/si";
 /** Íconos de marca por id de tecnología. Las que no tienen ícono se muestran solo con texto. */
 const icons: Record<string, IconType> = {
+  astro: SiAstro,
   html5: SiHtml5,
   css3: SiCss3,
   javascript: SiJavascript,
