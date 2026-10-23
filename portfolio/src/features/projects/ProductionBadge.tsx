@@ -17,3 +17,11 @@ export async function ProductionBadge({ project }: { project: Project }) {
     </Chip>
   );
 }
+
+/** Etiqueta secundaria "Piloto activo": etapa comercial, distinta de estar en producción. */
+export async function StageBadge({ project }: { project: Project }) {
+  if (project.stage !== "pilot") return null;
+  const t = await getTranslations("Common");
+
+  return <Chip tone="signal">{t("activePilot")}</Chip>;
+}

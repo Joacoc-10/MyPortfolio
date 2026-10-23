@@ -32,7 +32,7 @@ export async function About() {
           {rest.map((paragraph) => (
             <p
               key={paragraph}
-              className="text-lg leading-relaxed text-ink-muted text-pretty"
+              className="text-base leading-relaxed text-ink-muted text-pretty sm:text-lg"
             >
               {paragraph}
             </p>

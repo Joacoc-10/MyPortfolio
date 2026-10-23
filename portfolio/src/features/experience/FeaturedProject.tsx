@@ -2,12 +2,13 @@ import { getTranslations } from "next-intl/server";
 import { LuArrowUpRight, LuCheck } from "react-icons/lu";
 import { Button } from "@/components/ui/Button";
 import { Card } from "@/components/ui/Card";
+import { TechChip } from "@/components/TechChip";
 import { Chip } from "@/components/ui/Chip";
-import { localize, type Project } from "@/data";
-import { ProductionBadge } from "@/features/projects/ProductionBadge";
+import { getTechnologies, localize, type Project } from "@/data";
+import { ProductionBadge, StageBadge } from "@/features/projects/ProductionBadge";
 import type { Locale } from "@/i18n/routing";
 
-/** Proyecto destacado de una empresa (Ordera): más espacio y protagonismo que el resto. */
+/** Proyecto destacado de una empresa (Order-A): más espacio y protagonismo que el resto. */
 export async function FeaturedProject({
   project,
   locale,
@@ -16,17 +17,16 @@ export async function FeaturedProject({
   locale: Locale;
 }) {
   const t = await getTranslations("Experience");
-  const stack = await getTranslations("Stack.categories");
   const common = await getTranslations("Common");
   const contributions = project.contributions ? localize(project.contributions, locale) : [];
+  const techs = getTechnologies(project.techIds);
 
   return (
     <Card glow="featured" sparkles="always" className="border-brand/25 bg-linear-to-br from-brand/[0.07] via-surface to-surface p-6 sm:p-8 lg:p-10">
       <div className="flex flex-wrap items-center gap-2">
         <Chip tone="brand">{t("featured")}</Chip>
-        <Chip>{stack("frontend")}</Chip>
-        <Chip>{stack("backend")}</Chip>
         <ProductionBadge project={project} />
+        <StageBadge project={project} />
       </div>
 
       <div className="mt-5 grid gap-8 lg:grid-cols-12 lg:gap-12">
@@ -37,6 +37,11 @@ export async function FeaturedProject({
           <p className="mt-3 max-w-xl text-lg leading-relaxed text-ink-muted text-pretty">
             {localize(project.summary, locale)}
           </p>
+          {project.problem && (
+            <p className="mt-4 max-w-xl leading-relaxed text-ink text-pretty">
+              {localize(project.problem, locale)}
+            </p>
+          )}
           {project.links.deploy && (
             <Button
               href={project.links.deploy}
@@ -52,20 +57,40 @@ export async function FeaturedProject({
         </div>
 
         {contributions.length > 0 && (
-          <ul className="space-y-4 lg:col-span-5 lg:border-l lg:border-line lg:pl-10">
-            {contributions.map((item) => (
-              <li key={item} className="flex gap-3 text-ink">
-                <LuCheck
-                  size={18}
-                  aria-hidden="true"
-                  className="mt-1 shrink-0 text-brand"
-                />
-                {item}
+          <div className="lg:col-span-5 lg:border-l lg:border-line lg:pl-10">
+            <p className="font-mono text-xs tracking-wide text-ink-subtle uppercase">
+              {t("contributionsHeading")}
+            </p>
+            <ul className="mt-4 space-y-3.5">
+              {contributions.map((item) => (
+                <li key={item} className="flex gap-3 text-ink">
+                  <LuCheck
+                    size={18}
+                    aria-hidden="true"
+                    className="mt-1 shrink-0 text-brand"
+                  />
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
+      </div>
+
+      {techs.length > 0 && (
+        <div className="mt-8 border-t border-line pt-6">
+          <p className="font-mono text-xs tracking-wide text-ink-subtle uppercase">
+            {t("technologies")}
+          </p>
+          <ul className="mt-3 flex flex-wrap gap-2">
+            {techs.map((tech) => (
+              <li key={tech.id}>
+                <TechChip tech={tech} size="md" />
               </li>
             ))}
           </ul>
-        )}
-      </div>
+        </div>
+      )}
     </Card>
   );
 }
