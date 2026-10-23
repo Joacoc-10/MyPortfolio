@@ -189,6 +189,9 @@ export default function DarkVeil({
       intersection.disconnect();
       resizeObserver.disconnect();
       document.removeEventListener("visibilitychange", onVisibility);
+      geometry.remove();
+      program.remove();
+      gl.getExtension("WEBGL_lose_context")?.loseContext();
     };
   }, [
     hueShift,

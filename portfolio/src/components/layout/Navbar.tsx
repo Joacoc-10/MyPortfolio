@@ -91,6 +91,8 @@ export function Navbar() {
             width={800}
             height={183}
             priority
+            fetchPriority="high"
+            sizes="123px"
             className="h-7 w-auto"
           />
         </Link>

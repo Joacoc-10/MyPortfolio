@@ -187,7 +187,7 @@ export const projects: Project[] = [
       en: "Final project of the bootcamp: a custom food e-commerce built with a team of 6 developers. My role focused on frontend development and UI design, aiming for an intuitive, smooth experience. It includes authentication with Auth0 and a simulated payment gateway with Stripe. It was a great experience in teamwork and communication, managing a project from start to finish.",
     },
     techIds: ["nextjs", "react", "typescript", "tailwindcss", "nestjs", "postgresql", "auth0", "stripe"],
-    image: "https://ik.imagekit.io/i1pxujmp5t/My%20Portfolio/Captura%20de%20pantalla%20PF.png?updatedAt=1758201256430",
+    image: "/images/projects/bootcamp-1.png",
     links: { deploy: "https://lienzofront.vercel.app/" },
   },
   {
@@ -199,7 +199,7 @@ export const projects: Project[] = [
       en: "Front End specialization project: a tech e-commerce connected to a provided backend. I built a complete frontend with user registration, product browsing, a shopping cart and a simulated checkout, using React, Next.js and Tailwind CSS, with consistent styling and animations.",
     },
     techIds: ["nextjs", "react", "typescript", "tailwindcss", "formik", "axios"],
-    image: "https://ik.imagekit.io/i1pxujmp5t/My%20Portfolio/Captura%20de%20pantalla%20PM4.png?updatedAt=1758201255537",
+    image: "/images/projects/bootcamp-2.jpg",
     links: { deploy: "https://futuratech.vercel.app/" },
   },
   {
@@ -211,7 +211,7 @@ export const projects: Project[] = [
       en: "An app where users sign up, log in and manage their own wine tasting reservations, creating and cancelling bookings. A simple but working system covering the full data flow, from the frontend to the database.",
     },
     techIds: ["react", "vite", "react-router", "typescript", "nodejs", "express", "postgresql", "typeorm"],
-    image: "https://ik.imagekit.io/i1pxujmp5t/My%20Portfolio/Captura%20de%20pantalla%20PM3.png?updatedAt=1758201256355",
+    image: "/images/projects/bootcamp-3.jpg",
     links: { deploy: "https://bodega-cepa-real.vercel.app/" },
   },
   {
@@ -223,7 +223,7 @@ export const projects: Project[] = [
       en: "My first Full Stack project, built to practice connecting frontend and backend. A movie listing where users can create, store and view movies in a database, with a controlled form on the frontend and backend communication through Axios.",
     },
     techIds: ["html5", "css3", "javascript", "axios", "nodejs", "express", "mongodb", "mongoose"],
-    image: "https://ik.imagekit.io/i1pxujmp5t/My%20Portfolio/Captura%20de%20pantalla%20PM2.png?updatedAt=1758201256321",
+    image: "/images/projects/bootcamp-4.png",
     links: { deploy: "https://movieereelpm2.vercel.app/index.html" },
   },
   {
@@ -235,7 +235,7 @@ export const projects: Project[] = [
       en: "Built during Module 1 of the Henry Bootcamp to apply frontend fundamentals: a static portfolio website with a controlled form to record things I enjoy, stored only in LocalStorage.",
     },
     techIds: ["html5", "css3", "javascript"],
-    image: "https://ik.imagekit.io/i1pxujmp5t/My%20Portfolio/Captura%20de%20pantalla%20PM1.png?updatedAt=1758201256159",
+    image: "/images/projects/bootcamp-5.png",
     links: { deploy: "https://portfolio-v1-orcin-eta.vercel.app/" },
   },
 ];
