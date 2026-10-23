@@ -125,12 +125,12 @@ export function Navbar() {
           ref={toggleRef}
           type="button"
           aria-expanded={open}
-          aria-controls="mobile-menu"
+          aria-controls={open ? "mobile-menu" : undefined}
           aria-label={open ? t("closeMenu") : t("openMenu")}
           onClick={() => setOpen((value) => !value)}
           className="grid size-10 place-items-center rounded-lg border border-line bg-surface text-ink transition-colors hover:border-line-strong lg:hidden"
         >
-          {open ? <LuX size={20} /> : <LuMenu size={20} />}
+          {open ? <LuX size={20} aria-hidden="true" /> : <LuMenu size={20} aria-hidden="true" />}
         </button>
       </Container>
 

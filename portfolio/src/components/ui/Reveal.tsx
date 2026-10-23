@@ -40,6 +40,7 @@ export function Reveal({ delay = 0, className, style, ...props }: RevealProps) {
   return (
     <div
       ref={ref}
+      data-reveal={state}
       className={cn(
         state === "hidden" && "translate-y-5 opacity-0",
         state === "shown" &&

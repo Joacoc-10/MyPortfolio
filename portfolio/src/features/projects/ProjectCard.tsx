@@ -44,7 +44,7 @@ export async function ProjectCard({
       href={project.links.deploy}
       external
       variant="secondary"
-      aria-label={`${tx("visitProject", { name: project.name })} (${common("opensInNewTab")})`}
+      aria-label={`${t("viewProject")}: ${tx("visitProject", { name: project.name })} (${common("opensInNewTab")})`}
     >
       {t("viewProject")}
       <LuArrowUpRight size={16} aria-hidden="true" />

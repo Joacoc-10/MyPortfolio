@@ -116,7 +116,7 @@ export async function Hero() {
               href={links.cv[otherLocale]}
               download
               lang={otherLocale}
-              aria-label={t("cvOtherLanguageLabel")}
+              aria-label={`${t("cvOtherLanguage")}: ${t("cvOtherLanguageLabel")}`}
               className="link-underline text-sm text-ink-muted transition-colors hover:text-ink"
             >
               {t("cvOtherLanguage")}

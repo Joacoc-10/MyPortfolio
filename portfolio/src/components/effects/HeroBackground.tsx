@@ -31,7 +31,9 @@ export function HeroBackground() {
 
     if (reducedMotion.matches || saveData || !supportsWebGL()) return;
 
-    const enable = () => setAnimated(true);
+    const enable = () => {
+      if (!reducedMotion.matches) setAnimated(true);
+    };
     // Safari no implementa requestIdleCallback.
     const hasIdleCallback = typeof window.requestIdleCallback === "function";
     const handle = hasIdleCallback

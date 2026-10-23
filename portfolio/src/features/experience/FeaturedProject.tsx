@@ -48,7 +48,7 @@ export async function FeaturedProject({
                 href={project.links.deploy}
                 external
                 size="lg"
-                aria-label={`${t("visitProject", { name: project.name })} (${common("opensInNewTab")})`}
+                aria-label={`${t("visitSite")}: ${t("visitProject", { name: project.name })} (${common("opensInNewTab")})`}
               >
                 {t("visitSite")}
                 <LuArrowUpRight size={18} aria-hidden="true" />
