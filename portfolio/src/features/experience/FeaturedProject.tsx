@@ -29,8 +29,8 @@ export async function FeaturedProject({
         <StageBadge project={project} />
       </div>
 
-      <div className="mt-5 grid gap-8 lg:grid-cols-12 lg:gap-12">
-        <div className="lg:col-span-7">
+      <div className="mt-5 grid gap-8 xl:grid-cols-12 xl:gap-12">
+        <div className="flex flex-col xl:col-span-6">
           <h4 className="text-3xl font-semibold tracking-tight sm:text-4xl">
             {project.name}
           </h4>
@@ -43,21 +43,22 @@ export async function FeaturedProject({
             </p>
           )}
           {project.links.deploy && (
-            <Button
-              href={project.links.deploy}
-              external
-              size="lg"
-              className="mt-7"
-              aria-label={`${t("visitProject", { name: project.name })} (${common("opensInNewTab")})`}
-            >
-              {t("visitSite")}
-              <LuArrowUpRight size={18} aria-hidden="true" />
-            </Button>
+            <div className="mt-7 xl:mt-auto xl:pt-7">
+              <Button
+                href={project.links.deploy}
+                external
+                size="lg"
+                aria-label={`${t("visitProject", { name: project.name })} (${common("opensInNewTab")})`}
+              >
+                {t("visitSite")}
+                <LuArrowUpRight size={18} aria-hidden="true" />
+              </Button>
+            </div>
           )}
         </div>
 
         {contributions.length > 0 && (
-          <div className="lg:col-span-5 lg:border-l lg:border-line lg:pl-10">
+          <div className="xl:col-span-6 xl:border-l xl:border-line xl:pl-10">
             <p className="font-mono text-xs tracking-wide text-ink-subtle uppercase">
               {t("contributionsHeading")}
             </p>

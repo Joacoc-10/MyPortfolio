@@ -30,7 +30,12 @@ export async function Projects() {
             <div className="mt-4 space-y-5">
               {personal.map((project) => (
                 <Reveal key={project.id}>
-                  <ProjectCard project={project} locale={locale} layout="wide" />
+                  <ProjectCard
+                    project={project}
+                    locale={locale}
+                    layout="wide"
+                    headingAs="h4"
+                  />
                 </Reveal>
               ))}
             </div>
@@ -61,6 +66,7 @@ export async function Projects() {
                   <ProjectCard
                     project={project}
                     locale={locale}
+                    headingAs="h4"
                     imageSizes={
                       index < 3
                         ? "(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"

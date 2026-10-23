@@ -124,7 +124,7 @@ export async function Experience() {
                         <div
                           className={cn(
                             "grid gap-5",
-                            others.length > 1 && "md:grid-cols-2",
+                            others.length > 1 && "xl:grid-cols-2",
                           )}
                         >
                           {others.map((project) => (
@@ -133,6 +133,7 @@ export async function Experience() {
                               project={project}
                               locale={locale}
                               layout={others.length === 1 ? "wide" : "default"}
+                              headingAs="h4"
                             />
                           ))}
                         </div>

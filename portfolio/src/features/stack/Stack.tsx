@@ -8,8 +8,8 @@ import { getStack, stackCategories } from "@/data";
 
 /** Ancho de cada categoría en la grilla de 6 columnas (escritorio). */
 const spans: Record<(typeof stackCategories)[number], string> = {
-  frontend: "lg:col-span-4",
-  backend: "lg:col-span-2",
+  frontend: "lg:col-span-3",
+  backend: "lg:col-span-3",
   database: "lg:col-span-2",
   devops: "lg:col-span-2",
   tools: "lg:col-span-2",

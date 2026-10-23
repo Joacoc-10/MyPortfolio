@@ -19,7 +19,7 @@
   /* Texto */
   --color-ink: #edf1f2;
   --color-ink-muted: #9aa6ab;
-  --color-ink-subtle: #6b777c;
+  --color-ink-subtle: #808c91; /* ≥ 4.5:1 sobre canvas, surface y surface-raised (WCAG AA) */
 
   /* Acento de marca (derivado del esmeralda original) */
   --color-brand: #2dd4bf;

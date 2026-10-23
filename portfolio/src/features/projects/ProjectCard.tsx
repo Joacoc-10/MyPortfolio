@@ -17,6 +17,8 @@ type ProjectCardProps = {
   /** "wide" apila el contenido en una fila en escritorio (para proyectos sin captura). */
   layout?: "default" | "wide";
   imageSizes?: string;
+  /** Nivel del encabezado: h4 cuando la tarjeta cuelga de un h3 (empresa o grupo). */
+  headingAs?: "h3" | "h4";
   className?: string;
 };
 
@@ -25,6 +27,7 @@ export async function ProjectCard({
   locale,
   layout = "default",
   imageSizes = "(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw",
+  headingAs: Heading = "h3",
   className,
 }: ProjectCardProps) {
   const t = await getTranslations("Projects");
@@ -89,9 +92,9 @@ export async function ProjectCard({
             <ProductionBadge project={project} />
           </div>
 
-          <h3 className="mt-4 text-xl font-semibold tracking-tight">
+          <Heading className="mt-4 text-xl font-semibold tracking-tight">
             {project.name}
-          </h3>
+          </Heading>
 
           <div className="mt-3 text-sm leading-relaxed text-ink-muted">
             <ExpandableText

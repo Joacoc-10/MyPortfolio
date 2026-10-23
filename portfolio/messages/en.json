@@ -55,7 +55,7 @@
     "months": "{count, plural, one {# month} other {# months}}",
     "projectsHeading": "Projects at {company}",
     "featured": "Featured project",
-    "contributionsHeading": "My contribution",
+    "contributionsHeading": "My involvement",
     "visitSite": "Visit site",
     "visitCompany": "{company} website",
     "visitProject": "Visit {name}",

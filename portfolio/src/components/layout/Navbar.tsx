@@ -79,7 +79,7 @@ export function Navbar() {
       className={cn(
         "fixed inset-x-0 top-0 z-50 border-b transition-colors duration-300",
         scrolled || open
-          ? "border-line bg-canvas/80 backdrop-blur-xl"
+          ? cn("border-line backdrop-blur-xl", open ? "bg-canvas" : "bg-canvas/80")
           : "border-transparent bg-transparent",
       )}
     >
