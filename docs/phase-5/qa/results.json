@@ -1,0 +1,450 @@
+{
+  "cases": [
+    {
+      "locale": "es",
+      "width": 390,
+      "keyboard": true,
+      "menu": true,
+      "languageSwitch": true,
+      "download": true,
+      "clipboard": true,
+      "images": true,
+      "anchors": true,
+      "reducedMotion": true
+    },
+    {
+      "locale": "es",
+      "width": 820,
+      "keyboard": true,
+      "menu": true,
+      "languageSwitch": true,
+      "download": true,
+      "clipboard": true,
+      "images": true,
+      "anchors": true,
+      "reducedMotion": true
+    },
+    {
+      "locale": "es",
+      "width": 1280,
+      "keyboard": true,
+      "menu": false,
+      "languageSwitch": true,
+      "download": true,
+      "clipboard": true,
+      "images": true,
+      "anchors": true,
+      "reducedMotion": true
+    },
+    {
+      "locale": "es",
+      "width": 1440,
+      "keyboard": true,
+      "menu": false,
+      "languageSwitch": true,
+      "download": true,
+      "clipboard": true,
+      "images": true,
+      "anchors": true,
+      "reducedMotion": true
+    },
+    {
+      "locale": "en",
+      "width": 390,
+      "keyboard": true,
+      "menu": true,
+      "languageSwitch": true,
+      "download": true,
+      "clipboard": true,
+      "images": true,
+      "anchors": true,
+      "reducedMotion": true
+    },
+    {
+      "locale": "en",
+      "width": 820,
+      "keyboard": true,
+      "menu": true,
+      "languageSwitch": true,
+      "download": true,
+      "clipboard": true,
+      "images": true,
+      "anchors": true,
+      "reducedMotion": true
+    },
+    {
+      "locale": "en",
+      "width": 1280,
+      "keyboard": true,
+      "menu": false,
+      "languageSwitch": true,
+      "download": true,
+      "clipboard": true,
+      "images": true,
+      "anchors": true,
+      "reducedMotion": true
+    },
+    {
+      "locale": "en",
+      "width": 1440,
+      "keyboard": true,
+      "menu": false,
+      "languageSwitch": true,
+      "download": true,
+      "clipboard": true,
+      "images": true,
+      "anchors": true,
+      "reducedMotion": true
+    }
+  ],
+  "http": [
+    {
+      "path": "/",
+      "status": 307,
+      "location": "http://localhost:4015/en"
+    },
+    {
+      "path": "/es",
+      "status": 200,
+      "type": "text/html; charset=utf-8"
+    },
+    {
+      "path": "/en",
+      "status": 200,
+      "type": "text/html; charset=utf-8"
+    },
+    {
+      "path": "/robots.txt",
+      "status": 200,
+      "type": "text/plain"
+    },
+    {
+      "path": "/sitemap.xml",
+      "status": 200,
+      "type": "application/xml"
+    },
+    {
+      "path": "/share.png",
+      "status": 200,
+      "type": "image/png"
+    },
+    {
+      "path": "/favicon.ico",
+      "status": 200,
+      "type": "image/x-icon"
+    },
+    {
+      "path": "/apple-touch-icon.png",
+      "status": 200,
+      "type": "image/png"
+    },
+    {
+      "path": "/CV_JCoding_ES.pdf",
+      "status": 200,
+      "type": "application/pdf"
+    },
+    {
+      "path": "/CV_JCoding_EN.pdf",
+      "status": 200,
+      "type": "application/pdf"
+    },
+    {
+      "path": "/es/missing",
+      "status": 404,
+      "link": "</_next/static/media/22a5144ee8d83bca-s.p.woff2>; rel=preload; as=\"font\"; crossorigin=\"\"; type=\"font/woff2\", </_next/static/media/7d4881bb7e1bf84d-s.p.woff2>; rel=preload; as=\"font\"; crossorigin=\"\"; type=\"font/woff2\"",
+      "type": "text/html; charset=utf-8",
+      "noindex": true
+    },
+    {
+      "path": "/en/missing",
+      "status": 404,
+      "link": "</_next/static/media/22a5144ee8d83bca-s.p.woff2>; rel=preload; as=\"font\"; crossorigin=\"\"; type=\"font/woff2\", </_next/static/media/7d4881bb7e1bf84d-s.p.woff2>; rel=preload; as=\"font\"; crossorigin=\"\"; type=\"font/woff2\"",
+      "type": "text/html; charset=utf-8",
+      "noindex": true
+    },
+    {
+      "path": "/fr",
+      "status": 307,
+      "location": "http://localhost:4015/en/fr",
+      "noindex": false
+    },
+    {
+      "path": "/en/fr",
+      "status": 404,
+      "link": "</_next/static/media/22a5144ee8d83bca-s.p.woff2>; rel=preload; as=\"font\"; crossorigin=\"\"; type=\"font/woff2\", </_next/static/media/7d4881bb7e1bf84d-s.p.woff2>; rel=preload; as=\"font\"; crossorigin=\"\"; type=\"font/woff2\"",
+      "type": "text/html; charset=utf-8"
+    },
+    {
+      "path": "/es/fr",
+      "status": 404,
+      "link": "</_next/static/media/22a5144ee8d83bca-s.p.woff2>; rel=preload; as=\"font\"; crossorigin=\"\"; type=\"font/woff2\", </_next/static/media/7d4881bb7e1bf84d-s.p.woff2>; rel=preload; as=\"font\"; crossorigin=\"\"; type=\"font/woff2\"",
+      "type": "text/html; charset=utf-8"
+    },
+    {
+      "path": "/api/missing",
+      "status": 404,
+      "link": "</_next/static/media/22a5144ee8d83bca-s.p.woff2>; rel=preload; as=\"font\"; crossorigin=\"\"; type=\"font/woff2\", </_next/static/media/7d4881bb7e1bf84d-s.p.woff2>; rel=preload; as=\"font\"; crossorigin=\"\"; type=\"font/woff2\"",
+      "type": "text/html; charset=utf-8",
+      "noindex": true
+    },
+    {
+      "path": "/missing.png",
+      "status": 404,
+      "type": "text/html; charset=utf-8",
+      "noindex": true
+    },
+    {
+      "path": "/ Accept-Language=en",
+      "status": 307,
+      "location": "http://localhost:4015/es"
+    }
+  ],
+  "errors": [],
+  "network": [],
+  "metadata": {
+    "es": {
+      "titles": [
+        "Joaquín Curbelo | Full Stack Developer"
+      ],
+      "canonical": [
+        "https://jcoding.vercel.app/es"
+      ],
+      "metas": [
+        [
+          "viewport",
+          "width=device-width, initial-scale=1"
+        ],
+        [
+          "next-size-adjust",
+          ""
+        ],
+        [
+          "description",
+          "Full Stack Developer. Desarrollo aplicaciones web, plataformas e integraciones de punta a punta. Abierto a oportunidades laborales y proyectos freelance."
+        ],
+        [
+          "robots",
+          "index, follow"
+        ],
+        [
+          "og:title",
+          "Joaquín Curbelo | Full Stack Developer"
+        ],
+        [
+          "og:description",
+          "Full Stack Developer. Desarrollo aplicaciones web, plataformas e integraciones de punta a punta. Abierto a oportunidades laborales y proyectos freelance."
+        ],
+        [
+          "og:url",
+          "https://jcoding.vercel.app/es"
+        ],
+        [
+          "og:site_name",
+          "JCoding"
+        ],
+        [
+          "og:locale",
+          "es_ES"
+        ],
+        [
+          "og:image",
+          "https://jcoding.vercel.app/share.png"
+        ],
+        [
+          "og:image:width",
+          "1200"
+        ],
+        [
+          "og:image:height",
+          "630"
+        ],
+        [
+          "og:image:alt",
+          "JCoding — Joaquín Curbelo, Full Stack Developer"
+        ],
+        [
+          "og:locale:alternate",
+          "en_US"
+        ],
+        [
+          "og:type",
+          "website"
+        ],
+        [
+          "twitter:card",
+          "summary_large_image"
+        ],
+        [
+          "twitter:title",
+          "Joaquín Curbelo | Full Stack Developer"
+        ],
+        [
+          "twitter:description",
+          "Full Stack Developer. Desarrollo aplicaciones web, plataformas e integraciones de punta a punta. Abierto a oportunidades laborales y proyectos freelance."
+        ],
+        [
+          "twitter:image",
+          "https://jcoding.vercel.app/share.png"
+        ],
+        [
+          "twitter:image:alt",
+          "JCoding — Joaquín Curbelo, Full Stack Developer"
+        ]
+      ],
+      "alternates": [
+        [
+          "es",
+          "https://jcoding.vercel.app/es"
+        ],
+        [
+          "en",
+          "https://jcoding.vercel.app/en"
+        ],
+        [
+          "x-default",
+          "https://jcoding.vercel.app/es"
+        ]
+      ]
+    },
+    "en": {
+      "titles": [
+        "Joaquín Curbelo | Full Stack Developer"
+      ],
+      "canonical": [
+        "https://jcoding.vercel.app/en"
+      ],
+      "metas": [
+        [
+          "viewport",
+          "width=device-width, initial-scale=1"
+        ],
+        [
+          "next-size-adjust",
+          ""
+        ],
+        [
+          "description",
+          "Full Stack Developer. I build web applications, platforms and integrations end to end. Open to job opportunities and freelance projects."
+        ],
+        [
+          "robots",
+          "index, follow"
+        ],
+        [
+          "og:title",
+          "Joaquín Curbelo | Full Stack Developer"
+        ],
+        [
+          "og:description",
+          "Full Stack Developer. I build web applications, platforms and integrations end to end. Open to job opportunities and freelance projects."
+        ],
+        [
+          "og:url",
+          "https://jcoding.vercel.app/en"
+        ],
+        [
+          "og:site_name",
+          "JCoding"
+        ],
+        [
+          "og:locale",
+          "en_US"
+        ],
+        [
+          "og:image",
+          "https://jcoding.vercel.app/share.png"
+        ],
+        [
+          "og:image:width",
+          "1200"
+        ],
+        [
+          "og:image:height",
+          "630"
+        ],
+        [
+          "og:image:alt",
+          "JCoding — Joaquín Curbelo, Full Stack Developer"
+        ],
+        [
+          "og:locale:alternate",
+          "es_ES"
+        ],
+        [
+          "og:type",
+          "website"
+        ],
+        [
+          "twitter:card",
+          "summary_large_image"
+        ],
+        [
+          "twitter:title",
+          "Joaquín Curbelo | Full Stack Developer"
+        ],
+        [
+          "twitter:description",
+          "Full Stack Developer. I build web applications, platforms and integrations end to end. Open to job opportunities and freelance projects."
+        ],
+        [
+          "twitter:image",
+          "https://jcoding.vercel.app/share.png"
+        ],
+        [
+          "twitter:image:alt",
+          "JCoding — Joaquín Curbelo, Full Stack Developer"
+        ]
+      ],
+      "alternates": [
+        [
+          "es",
+          "https://jcoding.vercel.app/es"
+        ],
+        [
+          "en",
+          "https://jcoding.vercel.app/en"
+        ],
+        [
+          "x-default",
+          "https://jcoding.vercel.app/es"
+        ]
+      ]
+    }
+  },
+  "axe": [
+    {
+      "locale": "es",
+      "width": 390,
+      "violations": []
+    },
+    {
+      "locale": "es",
+      "width": 1440,
+      "violations": []
+    },
+    {
+      "locale": "en",
+      "width": 390,
+      "violations": []
+    },
+    {
+      "locale": "en",
+      "width": 1440,
+      "violations": []
+    }
+  ],
+  "links": [
+    "https://github.com/Joacoc-10",
+    "https://www.linkedin.com/in/j-coding/",
+    "https://coralunity.com/es",
+    "https://order-a.com/",
+    "https://nexvia.io/",
+    "https://www.zatobox.io/",
+    "https://oli-bar.vercel.app/",
+    "https://lienzofront.vercel.app/",
+    "https://futuratech.vercel.app/",
+    "https://bodega-cepa-real.vercel.app/",
+    "https://movieereelpm2.vercel.app/index.html",
+    "https://portfolio-v1-orcin-eta.vercel.app/"
+  ]
+}

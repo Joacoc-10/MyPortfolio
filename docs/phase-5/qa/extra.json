@@ -1,0 +1,40 @@
+[
+  {
+    "locale": "es",
+    "heroCTA": true,
+    "outsideMenuClose": true,
+    "resizeMenuClose": true,
+    "cardHover": true,
+    "keyboardFocusOutline": true,
+    "dynamicReducedMotion": true
+  },
+  {
+    "locale": "es",
+    "noJavaScriptContentVisible": true
+  },
+  {
+    "locale": "en",
+    "heroCTA": true,
+    "outsideMenuClose": true,
+    "resizeMenuClose": true,
+    "cardHover": true,
+    "keyboardFocusOutline": true,
+    "dynamicReducedMotion": true
+  },
+  {
+    "locale": "en",
+    "noJavaScriptContentVisible": true
+  },
+  {
+    "locale": "es",
+    "notFoundNoindex": true,
+    "noInvalidCanonical": true,
+    "noAlternateHeader": true
+  },
+  {
+    "locale": "en",
+    "notFoundNoindex": true,
+    "noInvalidCanonical": true,
+    "noAlternateHeader": true
+  }
+]

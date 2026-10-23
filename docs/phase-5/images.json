@@ -1,0 +1,52 @@
+[
+  {
+    "url": "https://ik.imagekit.io/i1pxujmp5t/My%20Portfolio/Captura%20de%20pantalla%20PF.png?updatedAt=1758201256430",
+    "file": "/images/projects/bootcamp-1.png",
+    "bytes": 8055404,
+    "local": "/images/projects/bootcamp-1.png",
+    "sha256": "f1c716bd33760bc3ad003d5446f53b798b1da20b5db3da26f015066a56aee35a",
+    "width": 3420,
+    "height": 2214,
+    "byteIdentical": true
+  },
+  {
+    "url": "https://ik.imagekit.io/i1pxujmp5t/My%20Portfolio/Captura%20de%20pantalla%20PM4.png?updatedAt=1758201255537",
+    "file": "/images/projects/bootcamp-2.png",
+    "bytes": 417494,
+    "local": "/images/projects/bootcamp-2.jpg",
+    "sha256": "b874df9422ff694b03b1ab9769bee538ab94f2e1940266bb3a0d75c609dcd557",
+    "width": 3420,
+    "height": 2064,
+    "byteIdentical": true
+  },
+  {
+    "url": "https://ik.imagekit.io/i1pxujmp5t/My%20Portfolio/Captura%20de%20pantalla%20PM3.png?updatedAt=1758201256355",
+    "file": "/images/projects/bootcamp-3.png",
+    "bytes": 1089607,
+    "local": "/images/projects/bootcamp-3.jpg",
+    "sha256": "a3467f2f2c86dbf31caf15ca26bd6b82940c4e21f7b481336dc1e98aa0a09b6b",
+    "width": 3420,
+    "height": 2064,
+    "byteIdentical": true
+  },
+  {
+    "url": "https://ik.imagekit.io/i1pxujmp5t/My%20Portfolio/Captura%20de%20pantalla%20PM2.png?updatedAt=1758201256321",
+    "file": "/images/projects/bootcamp-4.png",
+    "bytes": 7429883,
+    "local": "/images/projects/bootcamp-4.png",
+    "sha256": "7ed4ca0a5b5e31bc0997ad9b22905a2b1b26527a3a01c763f30c322ba949c708",
+    "width": 3420,
+    "height": 2214,
+    "byteIdentical": true
+  },
+  {
+    "url": "https://ik.imagekit.io/i1pxujmp5t/My%20Portfolio/Captura%20de%20pantalla%20PM1.png?updatedAt=1758201256159",
+    "file": "/images/projects/bootcamp-5.png",
+    "bytes": 6320058,
+    "local": "/images/projects/bootcamp-5.png",
+    "sha256": "42996490d7f7f6cf674142026a1084f5aa9fe3c97a6148b7dd2810c4bad212c2",
+    "width": 3420,
+    "height": 2214,
+    "byteIdentical": true
+  }
+]

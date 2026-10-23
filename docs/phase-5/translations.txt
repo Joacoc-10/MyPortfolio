@@ -1,0 +1,1 @@
+ES/EN: misma estructura de claves; sin claves ausentes.

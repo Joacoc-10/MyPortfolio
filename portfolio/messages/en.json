@@ -1,0 +1,111 @@
+{
+  "Metadata": {
+    "title": "Joaquín Curbelo | Full Stack Developer",
+    "description": "Full Stack Developer. I build web applications, platforms and integrations end to end. Open to job opportunities and freelance projects."
+  },
+  "Common": {
+    "skipToContent": "Skip to content",
+    "opensInNewTab": "opens in a new tab",
+    "inProduction": "Live",
+    "activePilot": "Active pilot"
+  },
+  "Nav": {
+    "label": "Main",
+    "about": "About",
+    "experience": "Experience",
+    "projects": "Projects",
+    "stack": "Stack",
+    "contact": "Contact",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu",
+    "language": "Language",
+    "switchToEnglish": "Switch to English",
+    "switchToSpanish": "Switch to Spanish"
+  },
+  "Hero": {
+    "currentRole": "{role} at {company}",
+    "ctaContact": "Let's talk",
+    "ctaCv": "Download CV",
+    "cvOtherLanguage": "Spanish version",
+    "cvOtherLanguageLabel": "Download CV in Spanish",
+    "factsLabel": "Current details",
+    "factRole": "Role",
+    "factCompany": "Company",
+    "factSince": "Since",
+    "github": "GitHub",
+    "linkedin": "LinkedIn"
+  },
+  "NotFound": {
+    "title": "Page not found",
+    "description": "The page you are looking for does not exist.",
+    "back": "Back to home"
+  },
+  "About": {
+    "eyebrow": "About",
+    "title": "I enjoy turning ideas into reality",
+    "photoAlt": "Portrait of Joaquín Curbelo"
+  },
+  "Experience": {
+    "eyebrow": "Experience",
+    "title": "Professional experience",
+    "description": "Companies I've worked at and the projects I built at each one.",
+    "present": "Present",
+    "current": "Current",
+    "previous": "Previous",
+    "months": "{count, plural, one {# month} other {# months}}",
+    "projectsHeading": "Projects at {company}",
+    "featured": "Featured project",
+    "contributionsHeading": "My involvement",
+    "visitSite": "Visit site",
+    "visitCompany": "{company} website",
+    "visitProject": "Visit {name}",
+    "technologies": "Technologies",
+    "timeline": "Professional timeline"
+  },
+  "Stack": {
+    "eyebrow": "Stack",
+    "title": "Technologies I work with",
+    "description": "Tools I use in my projects, grouped by area.",
+    "categories": {
+      "frontend": "Frontend",
+      "backend": "Backend",
+      "database": "Databases",
+      "devops": "DevOps & infrastructure",
+      "tools": "Development tools"
+    }
+  },
+  "Projects": {
+    "eyebrow": "Projects",
+    "title": "Independent projects",
+    "description": "Personal and academic projects, separate from my professional work.",
+    "personalHeading": "Personal",
+    "bootcampHeading": "Henry Bootcamp",
+    "bootcampDescription": "Academic projects from Henry's intensive bootcamp, built during the program.",
+    "kindPersonal": "Personal project",
+    "kindBootcamp": "Henry Bootcamp",
+    "readMore": "Read more",
+    "readLess": "Read less",
+    "viewProject": "View project",
+    "imageAlt": "Screenshot of the {name} project",
+    "technologies": "Technologies"
+  },
+  "Contact": {
+    "eyebrow": "Contact",
+    "title": "Shall we work together?",
+    "description": "I'm open to job opportunities and freelance projects. Drop me a line and let's talk.",
+    "sendEmail": "Send email",
+    "copyEmail": "Copy email",
+    "copied": "Email copied to clipboard",
+    "email": "Email",
+    "linkedin": "LinkedIn",
+    "github": "GitHub",
+    "cvEs": "CV in Spanish",
+    "cvEn": "CV in English",
+    "elsewhere": "Also on"
+  },
+  "Footer": {
+    "label": "Footer",
+    "rights": "All rights reserved.",
+    "backToTop": "Back to top"
+  }
+}
