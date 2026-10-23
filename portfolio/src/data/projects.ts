@@ -8,30 +8,52 @@ import type { Project } from "./types";
 export const projects: Project[] = [
   // ───────────── Profesionales · Coralunity ─────────────
   {
-    id: "ordera",
+    id: "order-a",
     kind: "professional",
     companyId: "coralunity",
-    name: "Ordera",
+    name: "Order-A",
     featured: true,
     inProduction: true,
+    stage: "pilot",
     summary: {
-      es: "Plataforma que desarrollé prácticamente en su totalidad.",
-      en: "A platform I built almost entirely on my own.",
+      es: "Plataforma SaaS de gestión integral para restaurantes y comercios gastronómicos. Los clientes escanean un código QR, consultan el menú y piden desde su teléfono, sin instalar ninguna aplicación; el comercio gestiona pedidos, mesas, cocina, caja y reservas desde un sistema centralizado, con información en tiempo real.",
+      en: "An all-in-one SaaS platform for restaurants and food businesses. Customers scan a QR code, browse the menu and order from their phones with no app to install, while the business manages orders, tables, kitchen, cashier and reservations from a single system with real-time information.",
     },
+    problem: {
+      es: "Digitaliza y simplifica la operación gastronómica, reduce errores y mejora la coordinación entre salón, cocina y caja.",
+      en: "It digitizes and simplifies restaurant operations, reduces errors and improves coordination between the floor, kitchen and cashier.",
+    },
+    // Contribuciones verificadas con la auditoría del repositorio (historial de Git) y confirmadas por Joaquín.
     contributions: {
       es: [
-        "Responsable de las funcionalidades de frontend",
-        "Responsable de las funcionalidades de backend",
-        "Participación integral en la construcción de la plataforma",
+        "Diseño de interfaces y experiencia de usuario, y desarrollo de gran parte del frontend y backend",
+        "Módulos de pedidos, mesas, cocina, caja y reservas",
+        "Suscripciones y facturación con Stripe",
+        "Mecanismos antifraude y verificación de clientes",
+        "Backoffice administrativo, APIs e integraciones con servicios externos; participación en arquitectura de datos, seguridad y despliegues automatizados",
       ],
       en: [
-        "Responsible for frontend features",
-        "Responsible for backend features",
-        "Involved end to end in building the platform",
+        "Interface and user experience design, and development of a large part of the frontend and backend",
+        "Order, table, kitchen, cashier and reservation modules",
+        "Subscriptions and billing with Stripe",
+        "Anti-fraud mechanisms and customer verification",
+        "Administrative backoffice, APIs and third-party integrations; involved in data architecture, security and automated deployments",
       ],
     },
-    // PENDING: stack, funcionalidades y contribuciones verificables (auditoría del repo)
-    techIds: [],
+    techIds: [
+      "react",
+      "typescript",
+      "mui",
+      "nestjs",
+      "prisma",
+      "postgresql",
+      "socketio",
+      "stripe",
+      "firebase",
+      "whatsapp-cloud-api",
+      "github-actions",
+      "digitalocean",
+    ],
     links: { deploy: "https://order-a.com/" },
   },
   {

@@ -62,6 +62,8 @@ export interface Project {
   companyId?: string;
   name: string;
   summary: Localized;
+  /** Problema que resuelve el producto (opcional; se muestra bajo el resumen en el proyecto destacado). */
+  problem?: Localized;
   /** Contribuciones propias confirmadas. No incluir nada que no esté verificado. */
   contributions?: Localized<string[]>;
   /** Tecnologías que efectivamente usé en este proyecto (no el stack completo del proyecto). */
@@ -70,5 +72,7 @@ export interface Project {
   featured?: boolean;
   /** Estado del proyecto, independiente del estado laboral de la empresa. */
   inProduction?: boolean;
+  /** Etapa comercial, independiente de `inProduction` (ej. "pilot": en producción pero aún en piloto con comercios reales). */
+  stage?: "pilot";
   links: { deploy?: string; repo?: string };
 }

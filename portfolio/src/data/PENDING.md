@@ -5,7 +5,6 @@ en la web: los campos opcionales se omiten hasta que haya información confirmad
 
 ## Auditorías de repositorios (siguiente etapa)
 
-- **Ordera** (`projects.ts`): stack real, funcionalidades implementadas y contribuciones verificables.
 - **Nexvia** (`projects.ts`): stack real (hoy `techIds: []`).
 - **UES × Mercado Libre** (`projects.ts`): URL pública si existe y detalles autorizados. No usar logos de UES ni de Mercado Libre; ante la duda sobre confidencialidad, omitir.
 
@@ -22,8 +21,8 @@ en la web: los campos opcionales se omiten hasta que haya información confirmad
 
 ## Textos redactados como borrador (validar)
 
-- `profile.ts` → `name` (apellido tomado del email/git: "Curbelo"), `valueProposition` y `about`.
-  Redactados solo con hechos confirmados; revisar tono y redacción.
+- `profile.ts` → `name` (apellido tomado del email/git: "Curbelo") y `valueProposition`.
+  Redactados solo con hechos confirmados; revisar tono y redacción. (`about` ya fue redactado y confirmado.)
 
 ## Proyectos del bootcamp Henry
 

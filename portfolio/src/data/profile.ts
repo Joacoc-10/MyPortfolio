@@ -15,17 +15,18 @@ export const profile: Profile = {
     es: "Abierto a oportunidades laborales y proyectos freelance",
     en: "Open to job opportunities and freelance projects",
   },
-  // PENDING: borrador de texto, validar con Joaquín (ver PENDING.md)
   about: {
     es: [
-      "En Coralunity desarrollé Ordera prácticamente en su totalidad, tanto en frontend como en backend. También participé en Nexvia desde sus primeras etapas y en una integración de sistemas logísticos con Mercado Libre.",
-      "Empecé desde cero en el bootcamp intensivo de Henry y desde entonces me dedico al código con curiosidad y ganas de seguir creciendo.",
-      "Me considero empático, detallista y comprometido, y disfruto trabajar en equipo.",
+      "Soy Joaquín, desarrollador Full Stack, y lo que más disfruto de programar es la libertad de crear. Me entusiasma empezar con una idea, explorar diferentes posibilidades y ver cómo, poco a poco, una aplicación va tomando forma hasta convertirse en un producto funcional.",
+      "Una de las cosas que más me atrae del desarrollo es que siempre hay algo nuevo por construir. Me gusta poder involucrarme tanto en el diseño y la experiencia de usuario como en la lógica y el funcionamiento que hay detrás de cada aplicación.",
+      "Soy curioso, autodidacta y disfruto enfrentar nuevos desafíos. Me gusta aprender mientras construyo, experimentar con nuevas herramientas y encontrar mejores formas de hacer las cosas.",
+      "Busco seguir creciendo como desarrollador, participar en proyectos interesantes y aprovechar esa libertad creativa para construir productos que aporten valor.",
     ],
     en: [
-      "At Coralunity I built Ordera almost entirely on my own, on both the frontend and the backend. I also joined Nexvia from its early stages and worked on a logistics systems integration with Mercado Libre.",
-      "I started from scratch in Henry's intensive bootcamp and have been dedicated to code ever since, with curiosity and a drive to keep growing.",
-      "I consider myself empathetic, detail-oriented and committed, and I enjoy working in a team.",
+      "I'm Joaquín, a Full Stack developer, and what I enjoy most about programming is the freedom to create. I love starting with an idea, exploring different possibilities and watching an application gradually take shape until it becomes a working product.",
+      "One of the things I like most about development is that there's always something new to build. I enjoy being involved in both the design and user experience and the logic that powers every application.",
+      "I'm curious, self-taught and I enjoy taking on new challenges. I like learning as I build, experimenting with new tools and finding better ways to do things.",
+      "I'm looking to keep growing as a developer, take part in interesting projects and use that creative freedom to build products that bring real value.",
     ],
   },
 };

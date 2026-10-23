@@ -6,7 +6,8 @@
   "Common": {
     "skipToContent": "Saltar al contenido",
     "opensInNewTab": "se abre en una pestaña nueva",
-    "inProduction": "En producción"
+    "inProduction": "En producción",
+    "activePilot": "Piloto activo"
   },
   "Nav": {
     "label": "Principal",
@@ -41,7 +42,7 @@
   },
   "About": {
     "eyebrow": "Sobre mí",
-    "title": "Del bootcamp a construir productos reales",
+    "title": "Me gusta convertir ideas en algo real",
     "photoAlt": "Retrato de Joaquín Curbelo"
   },
   "Experience": {
@@ -54,6 +55,7 @@
     "months": "{count, plural, one {# mes} other {# meses}}",
     "projectsHeading": "Proyectos en {company}",
     "featured": "Proyecto destacado",
+    "contributionsHeading": "Mi participación",
     "visitSite": "Visitar sitio",
     "visitCompany": "Sitio web de {company}",
     "visitProject": "Visitar {name}",
