@@ -99,21 +99,33 @@ export const projects: Project[] = [
     name: "UES × Mercado Libre",
     inProduction: true,
     summary: {
-      es: "Integración de sistemas logísticos con Mercado Libre.",
-      en: "Integration of logistics systems with Mercado Libre.",
+      es: "Hub de integración logística que conecta Mercado Libre con el sistema de paquetería de UES, automatizando la creación y gestión de envíos a partir de las operaciones del marketplace.",
+      en: "A logistics integration hub connecting Mercado Libre with UES's shipping system, automating shipment creation and management from marketplace transactions.",
     },
+    problem: {
+      es: "Automatiza procesos logísticos que antes requerían intervención manual, evita operaciones duplicadas y mejora la trazabilidad de los envíos.",
+      en: "Automates previously manual logistics processes, prevents duplicate operations and improves shipment traceability.",
+    },
+    // Auditoría de ues-meli-hub y confirmación de Joaquín. Trabajó bajo el liderazgo técnico de Alvin (estructura inicial del backend Java
+    // y decisiones de arquitectura). Sistema interno de un cliente: sin enlace, métricas ni detalles técnicos confidenciales.
     contributions: {
       es: [
-        "Desarrollo de funcionalidades frontend y backend",
-        "APIs REST, webhooks, procesamiento asíncrono, OAuth y auditoría",
+        "Desarrollo de servicios backend e integraciones con Java, Spring Boot y APIs externas",
+        "Implementación de webhooks, colas de mensajes y procesamiento asíncrono",
+        "Mecanismos de reintentos, recuperación de eventos y manejo de errores",
+        "Interfaces administrativas para gestionar clientes, cuentas y auditoría de operaciones",
+        "Participación en la migración del backend a Java y Spring Boot, y desarrollo de pruebas automatizadas",
       ],
       en: [
-        "Frontend and backend feature development",
-        "REST APIs, webhooks, asynchronous processing, OAuth and auditing",
+        "Development of backend services and integrations with Java, Spring Boot and external APIs",
+        "Implementation of webhooks, message queues and asynchronous processing",
+        "Retry, event recovery and error handling mechanisms",
+        "Admin interfaces to manage clients, accounts and operation auditing",
+        "Involved in migrating the backend to Java and Spring Boot, and in building automated tests",
       ],
     },
-    techIds: ["java", "spring-boot", "react", "typescript", "mariadb", "docker", "sqs"],
-    // PENDING: URL pública (si existe). No se usan logos de UES ni de Mercado Libre.
+    techIds: ["java", "spring-boot", "hibernate", "flyway", "mariadb", "sqs", "react", "typescript", "docker"],
+    // Sistema interno: sin URL pública. No se usan logos de UES ni de Mercado Libre.
     links: {},
   },
 

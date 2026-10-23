@@ -3,10 +3,6 @@
 Registro de datos que faltan o son borradores. Nada de esto se muestra como placeholder
 en la web: los campos opcionales se omiten hasta que haya información confirmada.
 
-## Auditorías de repositorios (siguiente etapa)
-
-- **UES × Mercado Libre** (`projects.ts`): URL pública si existe y detalles autorizados. No usar logos de UES ni de Mercado Libre; ante la duda sobre confidencialidad, omitir.
-
 ## Experiencia
 
 - **ZatoBox** (`companies.ts` y proyecto `zatobox` en `projects.ts`): confirmados rol, modalidad, período

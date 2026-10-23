@@ -26,6 +26,8 @@ export const technologies: Technology[] = [
   { id: "express", name: "Express.js", category: "backend", url: "https://expressjs.com/", inStack: true },
   { id: "java", name: "Java", category: "backend", brandColor: "#E76F00", inStack: true },
   { id: "spring-boot", name: "Spring Boot", category: "backend", brandColor: "#6DB33F", url: "https://spring.io/projects/spring-boot", inStack: true },
+  { id: "hibernate", name: "JPA / Hibernate", category: "backend", url: "https://hibernate.org/", inStack: false },
+  { id: "flyway", name: "Flyway", category: "backend", url: "https://flywaydb.org/", inStack: false },
   { id: "nestjs", name: "NestJS", category: "backend", url: "https://nestjs.com/", inStack: true },
   { id: "typeorm", name: "TypeORM", category: "backend", inStack: false },
   { id: "prisma", name: "Prisma", category: "backend", url: "https://www.prisma.io/", inStack: true },
