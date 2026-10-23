@@ -249,8 +249,9 @@
   }
   @media (prefers-reduced-motion: reduce) {
     [data-reveal="hidden"] {
-      opacity: 1;
-      transform: none;
+      opacity: 1 !important;
+      translate: none !important;
+      transform: none !important;
     }
     .sparkles i {
       animation: none;

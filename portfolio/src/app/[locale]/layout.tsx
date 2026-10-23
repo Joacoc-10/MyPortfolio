@@ -29,45 +29,11 @@ export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
 }
 
-export async function generateMetadata({
-  params,
-}: Omit<Props, "children">): Promise<Metadata> {
-  const { locale } = await params;
-  if (!hasLocale(routing.locales, locale)) return {};
-  const t = await getTranslations({ locale, namespace: "Metadata" });
-
-  return {
-    metadataBase: new URL(siteUrl),
-    title: t("title"),
-    description: t("description"),
-    icons: { apple: "/apple-touch-icon.png" },
-    robots: { index: true, follow: true },
-    twitter: {
-      card: "summary_large_image",
-      title: t("title"),
-      description: t("description"),
-      images: [{ url: "/share.png", alt: "JCoding — Joaquín Curbelo, Full Stack Developer" }],
-    },
-    alternates: {
-      canonical: `/${locale}`,
-      languages: {
-        es: "/es",
-        en: "/en",
-        "x-default": "/es",
-      },
-    },
-    openGraph: {
-      type: "website",
-      images: [{ url: "/share.png", width: 1200, height: 630, alt: "JCoding — Joaquín Curbelo, Full Stack Developer" }],
-      url: `/${locale}`,
-      siteName: "JCoding",
-      title: t("title"),
-      description: t("description"),
-      locale: locale === "es" ? "es_ES" : "en_US",
-      alternateLocale: locale === "es" ? "en_US" : "es_ES",
-    },
-  };
-}
+export const metadata: Metadata = {
+  metadataBase: new URL(siteUrl),
+  title: "JCoding",
+  icons: { apple: "/apple-touch-icon.png" },
+};
 
 export default async function LocaleLayout({ children, params }: Props) {
   const { locale } = await params;

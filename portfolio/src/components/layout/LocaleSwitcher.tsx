@@ -35,7 +35,7 @@ export function LocaleSwitcher() {
             lang={target}
             hrefLang={target}
             aria-label={
-              target === "en" ? t("switchToEnglish") : t("switchToSpanish")
+              `${target.toUpperCase()}: ${target === "en" ? t("switchToEnglish") : t("switchToSpanish")}`
             }
             className="rounded-md px-2.5 py-1.5 text-ink-muted transition-colors hover:text-ink"
           >

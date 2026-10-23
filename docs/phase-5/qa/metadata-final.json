@@ -1,0 +1,82 @@
+[
+  {
+    "locale": "es",
+    "metadata": {
+      "title": [
+        "Joaquín Curbelo | Full Stack Developer"
+      ],
+      "canonical": [
+        "https://jcoding.vercel.app/es"
+      ],
+      "description": [
+        "Full Stack Developer. Desarrollo aplicaciones web, plataformas e integraciones de punta a punta. Abierto a oportunidades laborales y proyectos freelance."
+      ],
+      "robots": [
+        "index, follow"
+      ],
+      "alternates": [
+        [
+          "es",
+          "https://jcoding.vercel.app/es"
+        ],
+        [
+          "en",
+          "https://jcoding.vercel.app/en"
+        ],
+        [
+          "x-default",
+          "https://jcoding.vercel.app/es"
+        ]
+      ],
+      "og": [
+        "https://jcoding.vercel.app/share.png"
+      ],
+      "twitter": [
+        "summary_large_image"
+      ]
+    },
+    "axeDesktop": [],
+    "axeMobileOpen": [],
+    "trailingSlash": 308
+  },
+  {
+    "locale": "en",
+    "metadata": {
+      "title": [
+        "Joaquín Curbelo | Full Stack Developer"
+      ],
+      "canonical": [
+        "https://jcoding.vercel.app/en"
+      ],
+      "description": [
+        "Full Stack Developer. I build web applications, platforms and integrations end to end. Open to job opportunities and freelance projects."
+      ],
+      "robots": [
+        "index, follow"
+      ],
+      "alternates": [
+        [
+          "es",
+          "https://jcoding.vercel.app/es"
+        ],
+        [
+          "en",
+          "https://jcoding.vercel.app/en"
+        ],
+        [
+          "x-default",
+          "https://jcoding.vercel.app/es"
+        ]
+      ],
+      "og": [
+        "https://jcoding.vercel.app/share.png"
+      ],
+      "twitter": [
+        "summary_large_image"
+      ]
+    },
+    "axeDesktop": [],
+    "axeMobileOpen": [],
+    "trailingSlash": 308
+  }
+]

@@ -23,13 +23,13 @@ en la web: los campos opcionales se omiten hasta que haya información confirmad
 
 - Los links a repositorios de GitHub estaban comentados en la versión anterior
   (`gitHubFront` / `gitHubback`). Decidir si se publican; si es así, agregar `links.repo`.
-- Las capturas siguen cargándose desde ImageKit; se migran a `public/` en la Fase 5.
+- Fase 5: las cinco capturas se migraron a `public/images/projects/`, con bytes originales y SHA-256 documentados en `docs/phase-5/images.json`.
 - Las tecnologías de cada proyecto se unificaron en una lista plana (antes separadas en Front-end / Back-end);
   la categoría de cada tecnología sigue disponible en `technologies.ts`.
 
 ## Otros
 
-- Imagen Open Graph propia (Fase 5).
+- Fase 5: imagen Open Graph propia implementada en `public/share.png`; preview real de plataformas pendiente del lanzamiento autorizado.
 - OliBar: captura de pantalla y descripción más detallada (opcionales).
 
 ## Verificación manual
