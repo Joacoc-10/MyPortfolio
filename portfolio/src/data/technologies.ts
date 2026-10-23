@@ -27,7 +27,7 @@ export const technologies: Technology[] = [
   { id: "nestjs", name: "NestJS", category: "backend", url: "https://nestjs.com/", inStack: true },
   { id: "typeorm", name: "TypeORM", category: "backend", inStack: false },
   { id: "prisma", name: "Prisma", category: "backend", url: "https://www.prisma.io/", inStack: true },
-  { id: "socketio", name: "Socket.IO", category: "backend", url: "https://socket.io/", inStack: false },
+  { id: "socketio", name: "Socket.IO", category: "backend", url: "https://socket.io/", inStack: true },
   { id: "mongoose", name: "Mongoose", category: "backend", inStack: false },
   { id: "jwt", name: "JWT", category: "backend", inStack: false },
   { id: "bcrypt", name: "Bcrypt", category: "backend", inStack: false },
@@ -52,7 +52,7 @@ export const technologies: Technology[] = [
 
   // Servicios de terceros usados en proyectos
   { id: "auth0", name: "Auth0", category: "services", inStack: false },
-  { id: "stripe", name: "Stripe", category: "tools", url: "https://stripe.com/", inStack: true },
+  { id: "stripe", name: "Stripe", category: "services", inStack: false },
   { id: "cloudinary", name: "Cloudinary", category: "services", inStack: false },
   { id: "firebase", name: "Firebase", category: "services", url: "https://firebase.google.com/", inStack: false },
   { id: "whatsapp-cloud-api", name: "WhatsApp Cloud API", category: "services", url: "https://developers.facebook.com/docs/whatsapp/cloud-api", inStack: false },
