@@ -24,9 +24,9 @@ export const technologies: Technology[] = [
   { id: "express", name: "Express.js", category: "backend", url: "https://expressjs.com/", inStack: true },
   { id: "java", name: "Java", category: "backend", brandColor: "#E76F00", inStack: true },
   { id: "spring-boot", name: "Spring Boot", category: "backend", brandColor: "#6DB33F", url: "https://spring.io/projects/spring-boot", inStack: true },
-  { id: "nestjs", name: "NestJS", category: "backend", inStack: false },
+  { id: "nestjs", name: "NestJS", category: "backend", url: "https://nestjs.com/", inStack: true },
   { id: "typeorm", name: "TypeORM", category: "backend", inStack: false },
-  { id: "prisma", name: "Prisma", category: "backend", url: "https://www.prisma.io/", inStack: false },
+  { id: "prisma", name: "Prisma", category: "backend", url: "https://www.prisma.io/", inStack: true },
   { id: "socketio", name: "Socket.IO", category: "backend", url: "https://socket.io/", inStack: false },
   { id: "mongoose", name: "Mongoose", category: "backend", inStack: false },
   { id: "jwt", name: "JWT", category: "backend", inStack: false },
@@ -43,8 +43,8 @@ export const technologies: Technology[] = [
   { id: "sqs", name: "SQS", category: "devops", brandColor: "#FF4F8B", inStack: true },
   { id: "vercel", name: "Vercel", category: "devops", url: "https://vercel.com/", inStack: true },
   { id: "railway", name: "Railway", category: "devops", url: "https://railway.com/", inStack: true },
-  { id: "github-actions", name: "GitHub Actions", category: "devops", url: "https://github.com/features/actions", inStack: false },
-  { id: "digitalocean", name: "DigitalOcean", category: "devops", url: "https://www.digitalocean.com/", inStack: false },
+  { id: "github-actions", name: "GitHub Actions", category: "devops", url: "https://github.com/features/actions", inStack: true },
+  { id: "digitalocean", name: "DigitalOcean", category: "devops", url: "https://www.digitalocean.com/", inStack: true },
 
   // Herramientas
   { id: "git", name: "Git", category: "tools", brandColor: "#F05032", url: "https://git-scm.com/", inStack: true },
@@ -52,7 +52,7 @@ export const technologies: Technology[] = [
 
   // Servicios de terceros usados en proyectos
   { id: "auth0", name: "Auth0", category: "services", inStack: false },
-  { id: "stripe", name: "Stripe", category: "services", inStack: false },
+  { id: "stripe", name: "Stripe", category: "tools", url: "https://stripe.com/", inStack: true },
   { id: "cloudinary", name: "Cloudinary", category: "services", inStack: false },
   { id: "firebase", name: "Firebase", category: "services", url: "https://firebase.google.com/", inStack: false },
   { id: "whatsapp-cloud-api", name: "WhatsApp Cloud API", category: "services", url: "https://developers.facebook.com/docs/whatsapp/cloud-api", inStack: false },

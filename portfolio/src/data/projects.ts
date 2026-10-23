@@ -30,14 +30,14 @@ export const projects: Project[] = [
         "Módulos de pedidos, mesas, cocina, caja y reservas",
         "Suscripciones y facturación con Stripe",
         "Mecanismos antifraude y verificación de clientes",
-        "Backoffice administrativo, APIs e integraciones con servicios externos; participación en arquitectura de datos, seguridad y despliegues automatizados",
+        "Desarrollo de backoffice administrativo, APIs e integraciones externas, con participación en arquitectura, seguridad y despliegues",
       ],
       en: [
         "Interface and user experience design, and development of a large part of the frontend and backend",
         "Order, table, kitchen, cashier and reservation modules",
         "Subscriptions and billing with Stripe",
         "Anti-fraud mechanisms and customer verification",
-        "Administrative backoffice, APIs and third-party integrations; involved in data architecture, security and automated deployments",
+        "Development of the administrative backoffice, APIs and external integrations, with involvement in architecture, security and deployments",
       ],
     },
     techIds: [
