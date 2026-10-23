@@ -104,11 +104,17 @@ export default function DarkVeil({
   resolutionScale = 0.5,
   maxFps = 30,
 }: Props) {
-  const ref = useRef<HTMLCanvasElement>(null);
+  const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const canvas = ref.current as HTMLCanvasElement;
-    const parent = canvas.parentElement as HTMLElement;
+    const parent = ref.current as HTMLDivElement;
+    // El canvas se crea y se descarta con cada efecto: un canvas cuyo contexto se perdió
+    // (loseContext en la limpieza) devuelve ese mismo contexto muerto al volver a pedirlo,
+    // y en Strict Mode el efecto corre dos veces sobre el mismo elemento.
+    const canvas = document.createElement("canvas");
+    canvas.className =
+      "block h-full w-full opacity-0 transition-opacity duration-1000";
+    parent.appendChild(canvas);
 
     const renderer = new Renderer({ dpr: 1, canvas, alpha: false });
     const gl = renderer.gl;
@@ -192,6 +198,7 @@ export default function DarkVeil({
       geometry.remove();
       program.remove();
       gl.getExtension("WEBGL_lose_context")?.loseContext();
+      canvas.remove();
     };
   }, [
     hueShift,
@@ -205,9 +212,6 @@ export default function DarkVeil({
   ]);
 
   return (
-    <canvas
-      ref={ref}
-      className="block h-full w-full opacity-0 transition-opacity duration-1000"
-    />
+    <div ref={ref} className="h-full w-full" />
   );
 }
