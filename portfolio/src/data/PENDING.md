@@ -23,14 +23,17 @@ en la web: los campos opcionales se omiten hasta que haya información confirmad
 
 - Los links a repositorios de GitHub estaban comentados en la versión anterior
   (`gitHubFront` / `gitHubback`). Decidir si se publican; si es así, agregar `links.repo`.
-- Fase 5: las cinco capturas se migraron a `public/images/projects/`, con bytes originales y SHA-256 documentados en `docs/phase-5/images.json`.
+- Fase 5: las cinco capturas se migraron a `public/images/projects/` con bytes originales y SHA-256 documentados en `docs/phase-5/images.json` (los originales se retiraron en la Fase 6; ver más abajo).
+- Previsualizaciones: versiones WebP en `public/images/projects/<id>/` (registro en `images.json`, campo `optimized`). Fase 6: los originales `bootcamp-1…5` (23.312.446 bytes) se eliminaron del árbol de trabajo; siguen disponibles en el historial de git (commit d4cca42) y sus hashes SHA-256 se conservan en `images.json`.
 - Las tecnologías de cada proyecto se unificaron en una lista plana (antes separadas en Front-end / Back-end);
   la categoría de cada tecnología sigue disponible en `technologies.ts`.
 
 ## Otros
 
 - Fase 5: imagen Open Graph propia implementada en `public/share.png`; preview real de plataformas pendiente del lanzamiento autorizado.
-- OliBar: captura de pantalla y descripción más detallada (opcionales).
+- OliBar: descripción más detallada (opcional). Capturas incorporadas.
+- UES × Mercado Libre: sin capturas (sistema interno; pendiente de material autorizado).
+- Capturas de Florencia y Fabio omiten a propósito las secciones de contacto/formulario (teléfonos y correos visibles). Las imágenes de Fabio son ilustraciones de IA marcadas «ilustrativa» en el sitio.
 
 ## Verificación manual
 

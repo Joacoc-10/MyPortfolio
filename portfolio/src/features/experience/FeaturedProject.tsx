@@ -6,6 +6,7 @@ import { TechChip } from "@/components/TechChip";
 import { Chip } from "@/components/ui/Chip";
 import { getTechnologies, localize, type Project } from "@/data";
 import { ProductionBadge, StageBadge } from "@/features/projects/ProductionBadge";
+import { getCover, ProjectCover } from "@/features/projects/ProjectCover";
 import type { Locale } from "@/i18n/routing";
 
 /** Proyecto destacado de una empresa (Order-A): más espacio y protagonismo que el resto. */
@@ -20,16 +21,28 @@ export async function FeaturedProject({
   const common = await getTranslations("Common");
   const contributions = project.contributions ? localize(project.contributions, locale) : [];
   const techs = getTechnologies(project.techIds);
+  const hasCover = Boolean(getCover(project));
 
   return (
-    <Card glow="featured" sparkles="always" className="border-brand/25 bg-linear-to-br from-brand/[0.07] via-surface to-surface p-6 sm:p-8 lg:p-10">
+    <Card data-carousel-scope glow="featured" sparkles="always" className="border-brand/25 bg-linear-to-br from-brand/[0.07] via-surface to-surface p-6 sm:p-8 lg:p-10">
       <div className="flex flex-wrap items-center gap-2">
         <Chip tone="brand">{t("featured")}</Chip>
         <ProductionBadge project={project} />
         <StageBadge project={project} />
       </div>
 
-      <div className="mt-5 grid gap-8 xl:grid-cols-12 xl:gap-12">
+      {hasCover && (
+        <ProjectCover
+          project={project}
+          locale={locale}
+          // El contenido mide ~800 px como máximo (columna de la línea de tiempo): 1x/2x cubiertos con 800/1600.
+          sizes="(min-width: 1280px) 800px, (min-width: 640px) 90vw, 100vw"
+          // Más panorámica en escritorio: la captura no domina la tarjeta y el texto queda cerca del pliegue.
+          className="mt-5 rounded-xl border border-line-strong lg:aspect-[2/1]"
+        />
+      )}
+
+      <div className="mt-6 grid gap-8 sm:mt-8 xl:grid-cols-12 xl:gap-12">
         <div className="flex flex-col xl:col-span-6">
           <h4 className="text-3xl font-semibold tracking-tight sm:text-4xl">
             {project.name}
@@ -58,7 +71,9 @@ export async function FeaturedProject({
         </div>
 
         {contributions.length > 0 && (
-          <div className="xl:col-span-6 xl:border-l xl:border-line xl:pl-10">
+          <div
+            className="xl:col-span-6 xl:border-l xl:border-line xl:pl-10"
+          >
             <p className="font-mono text-xs tracking-wide text-ink-subtle uppercase">
               {t("contributionsHeading")}
             </p>

@@ -85,8 +85,10 @@
     "kindBootcamp": "Bootcamp Henry",
     "readMore": "Leer más",
     "readLess": "Leer menos",
-    "viewProject": "Ver proyecto",
-    "imageAlt": "Captura del proyecto {name}",
+    "visitSite": "Visitar sitio",
+    "visitSiteLabel": "Visitar sitio: {name}",
+    "viewRepo": "Código",
+    "viewRepoLabel": "Código: repositorio de {name}",
     "technologies": "Tecnologías"
   },
   "Contact": {

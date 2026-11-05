@@ -54,6 +54,40 @@ export const projects: Project[] = [
       "github-actions",
       "digitalocean",
     ],
+    media: [
+      {
+        type: "image",
+        src: "/images/projects/order-a/shot-01-inicio.webp",
+        alt: { es: "Captura de Order-A: Inicio", en: "Screenshot of Order-A: Home" },
+        caption: { es: "Inicio", en: "Home" },
+        width: 1920,
+        height: 1200,
+      },
+      {
+        type: "image",
+        src: "/images/projects/order-a/shot-02-como-funciona.webp",
+        alt: { es: "Captura de Order-A: Cómo funciona", en: "Screenshot of Order-A: How it works" },
+        caption: { es: "Cómo funciona", en: "How it works" },
+        width: 1920,
+        height: 1200,
+      },
+      {
+        type: "image",
+        src: "/images/projects/order-a/shot-03-rubros.webp",
+        alt: { es: "Captura de Order-A: Rubros", en: "Screenshot of Order-A: Business types" },
+        caption: { es: "Rubros", en: "Business types" },
+        width: 1920,
+        height: 1200,
+      },
+      {
+        type: "image",
+        src: "/images/projects/order-a/shot-04-planes.webp",
+        alt: { es: "Captura de Order-A: Planes", en: "Screenshot of Order-A: Plans" },
+        caption: { es: "Planes", en: "Plans" },
+        width: 1920,
+        height: 1200,
+      },
+    ],
     links: { deploy: "https://order-a.com/" },
   },
   {
@@ -90,6 +124,40 @@ export const projects: Project[] = [
     },
     // JavaScript (JSX); TypeScript solo aparece de forma marginal (tema), por eso no se lista.
     techIds: ["astro", "react", "javascript", "mui", "formik", "yup", "axios", "framer-motion"],
+    media: [
+      {
+        type: "image",
+        src: "/images/projects/nexvia/shot-01-inicio.webp",
+        alt: { es: "Captura de Nexvia: Inicio", en: "Screenshot of Nexvia: Home" },
+        caption: { es: "Inicio", en: "Home" },
+        width: 1920,
+        height: 1200,
+      },
+      {
+        type: "image",
+        src: "/images/projects/nexvia/shot-02-como-usar.webp",
+        alt: { es: "Captura de Nexvia: Cómo usar la plataforma", en: "Screenshot of Nexvia: How to use the platform" },
+        caption: { es: "Cómo usar la plataforma", en: "How to use the platform" },
+        width: 1920,
+        height: 1200,
+      },
+      {
+        type: "image",
+        src: "/images/projects/nexvia/shot-03-formulario-envio.webp",
+        alt: { es: "Captura de Nexvia: Formulario de envío", en: "Screenshot of Nexvia: Shipment form" },
+        caption: { es: "Formulario de envío", en: "Shipment form" },
+        width: 1920,
+        height: 1200,
+      },
+      {
+        type: "image",
+        src: "/images/projects/nexvia/shot-04-seguridad.webp",
+        alt: { es: "Captura de Nexvia: Seguridad", en: "Screenshot of Nexvia: Security" },
+        caption: { es: "Seguridad", en: "Security" },
+        width: 1920,
+        height: 1200,
+      },
+    ],
     links: { deploy: "https://nexvia.io/" },
   },
   {
@@ -160,20 +228,184 @@ export const projects: Project[] = [
       ],
     },
     techIds: ["nextjs", "react", "typescript", "tailwindcss", "react-icons"],
+    media: [
+      {
+        type: "image",
+        src: "/images/projects/zatobox/shot-01-inicio.webp",
+        alt: { es: "Captura de ZatoBox POS: Inicio", en: "Screenshot of ZatoBox POS: Home" },
+        caption: { es: "Inicio", en: "Home" },
+        width: 1920,
+        height: 1200,
+      },
+      {
+        type: "image",
+        src: "/images/projects/zatobox/shot-02-funciones.webp",
+        alt: { es: "Captura de ZatoBox POS: Funciones", en: "Screenshot of ZatoBox POS: Features" },
+        caption: { es: "Funciones", en: "Features" },
+        width: 1920,
+        height: 1200,
+      },
+      {
+        type: "image",
+        src: "/images/projects/zatobox/shot-03-planes.webp",
+        alt: { es: "Captura de ZatoBox POS: Planes", en: "Screenshot of ZatoBox POS: Plans" },
+        caption: { es: "Planes", en: "Plans" },
+        width: 1920,
+        height: 1200,
+      },
+    ],
     links: { deploy: "https://www.zatobox.io/" },
   },
 
   // ───────────── Personales ─────────────
   {
+    id: "fabio-producciones",
+    kind: "personal",
+    inProduction: true,
+    name: "Fabio Producciones",
+    summary: {
+      es: "Sitio web para una empresa de producción de eventos: presenta sus servicios de audio, luces y escenario portátil, los tipos de evento, una galería multimedia y un formulario de presupuesto por pasos, con animaciones al desplazarse.",
+      en: "Website for an event production company: it presents its audio, lighting and portable stage services, the types of events, a media gallery and a step-by-step quote form, with scroll animations.",
+    },
+    // Tecnologías verificadas en el repositorio (package.json) y en el sitio publicado.
+    techIds: ["nextjs", "react", "typescript", "tailwindcss", "gsap", "lenis", "emailjs", "vercel"],
+    media: [
+      {
+        type: "image",
+        src: "/images/projects/fabio-producciones/shot-01-inicio.webp",
+        alt: { es: "Captura de Fabio Producciones: Inicio", en: "Screenshot of Fabio Producciones: Home" },
+        caption: { es: "Inicio", en: "Home" },
+        width: 1920,
+        height: 1200,
+      },
+      {
+        type: "image",
+        src: "/images/projects/fabio-producciones/shot-02-eventos.webp",
+        alt: { es: "Captura de Fabio Producciones: Tipos de evento", en: "Screenshot of Fabio Producciones: Event types" },
+        caption: { es: "Tipos de evento", en: "Event types" },
+        width: 1920,
+        height: 1200,
+      },
+      {
+        type: "image",
+        src: "/images/projects/fabio-producciones/shot-03-servicios.webp",
+        alt: { es: "Captura de Fabio Producciones: Servicios", en: "Screenshot of Fabio Producciones: Services" },
+        caption: { es: "Servicios", en: "Services" },
+        width: 1920,
+        height: 1200,
+      },
+      {
+        type: "image",
+        src: "/images/projects/fabio-producciones/shot-04-escenario.webp",
+        alt: { es: "Captura de Fabio Producciones: Armado del escenario", en: "Screenshot of Fabio Producciones: Stage assembly" },
+        caption: { es: "Armado del escenario", en: "Stage assembly" },
+        width: 1920,
+        height: 1200,
+      },
+      {
+        type: "image",
+        src: "/images/projects/fabio-producciones/shot-05-galeria.webp",
+        alt: { es: "Captura de Fabio Producciones: Galería. Algunas imágenes están marcadas como ilustrativas en el sitio", en: "Screenshot of Fabio Producciones: Gallery. Some images are labeled as illustrative on the site" },
+        caption: { es: "Galería", en: "Gallery" },
+        width: 1920,
+        height: 1200,
+      },
+    ],
+    // Repositorio público confirmado con la API de GitHub.
+    links: {
+      deploy: "https://fabioproducciones.vercel.app/",
+      repo: "https://github.com/Joacoc-10/FProducciones-",
+    },
+  },
+  {
+    id: "florencia-biaturi",
+    kind: "personal",
+    inProduction: true,
+    name: "Dra. Florencia Biaturi",
+    summary: {
+      es: "Landing profesional para una abogada en Uruguay: presenta sus áreas de práctica (laboral, penal, civil y familia) y cuenta con un formulario de contacto, con diseño responsive y animaciones.",
+      en: "Professional landing page for a lawyer in Uruguay: it presents her practice areas (labor, criminal, civil and family law) and includes a contact form, with a responsive design and animations.",
+    },
+    // Tecnologías verificadas en el repositorio (package.json) y en el sitio publicado.
+    techIds: ["react", "vite", "tailwindcss", "mui", "emailjs", "vercel"],
+    media: [
+      {
+        type: "image",
+        src: "/images/projects/florencia-biaturi/shot-01-inicio.webp",
+        alt: { es: "Captura de Dra. Florencia Biaturi: Inicio", en: "Screenshot of Dra. Florencia Biaturi: Home" },
+        caption: { es: "Inicio", en: "Home" },
+        width: 1920,
+        height: 1200,
+      },
+      {
+        type: "image",
+        src: "/images/projects/florencia-biaturi/shot-02-sobre-mi.webp",
+        alt: { es: "Captura de Dra. Florencia Biaturi: Sobre mí", en: "Screenshot of Dra. Florencia Biaturi: About" },
+        caption: { es: "Sobre mí", en: "About" },
+        width: 1920,
+        height: 1200,
+      },
+      {
+        type: "image",
+        src: "/images/projects/florencia-biaturi/shot-03-areas-de-practica.webp",
+        alt: { es: "Captura de Dra. Florencia Biaturi: Áreas de práctica", en: "Screenshot of Dra. Florencia Biaturi: Practice areas" },
+        caption: { es: "Áreas de práctica", en: "Practice areas" },
+        width: 1920,
+        height: 1200,
+      },
+      {
+        type: "image",
+        src: "/images/projects/florencia-biaturi/shot-04-movil.webp",
+        alt: { es: "Captura de Dra. Florencia Biaturi: Versión móvil", en: "Screenshot of Dra. Florencia Biaturi: Mobile version" },
+        caption: { es: "Versión móvil", en: "Mobile version" },
+        width: 1920,
+        height: 1200,
+      },
+    ],
+    // El repositorio es privado: no se enlaza.
+    links: { deploy: "https://dra.florenciabiaturi.com/" },
+  },
+  {
     id: "olibar",
     kind: "personal",
     name: "OliBar",
     summary: {
-      es: "Menú digital responsive. Desarrollado de forma independiente, fuera de mi trabajo en Coralunity.",
-      en: "Responsive digital menu. Built independently, outside my work at Coralunity.",
+      es: "Carta digital para un bar y cocina, pensada para consultarse desde el teléfono: platos organizados por categorías con navegación fija, descripción y precio de cada uno. Desarrollada de forma independiente, fuera de mi trabajo en Coralunity.",
+      en: "Digital menu for a bar and kitchen, designed to be read on a phone: dishes organized by category with sticky navigation, each with its description and price. Built independently, outside my work at Coralunity.",
     },
-    techIds: ["react", "typescript", "tailwindcss", "vercel"],
-    links: { deploy: "https://oli-bar.vercel.app/" },
+    // Vite confirmado en el package.json del repositorio.
+    techIds: ["react", "vite", "typescript", "tailwindcss", "vercel"],
+    media: [
+      {
+        type: "image",
+        src: "/images/projects/olibar/shot-01-inicio.webp",
+        alt: { es: "Captura de OliBar: Inicio", en: "Screenshot of OliBar: Home" },
+        caption: { es: "Inicio", en: "Home" },
+        width: 1920,
+        height: 1200,
+      },
+      {
+        type: "image",
+        src: "/images/projects/olibar/shot-02-carta.webp",
+        alt: { es: "Captura de OliBar: Carta digital", en: "Screenshot of OliBar: Digital menu" },
+        caption: { es: "Carta digital", en: "Digital menu" },
+        width: 1920,
+        height: 1200,
+      },
+      {
+        type: "image",
+        src: "/images/projects/olibar/shot-03-movil.webp",
+        alt: { es: "Captura de OliBar: Versión móvil", en: "Screenshot of OliBar: Mobile version" },
+        caption: { es: "Versión móvil", en: "Mobile version" },
+        width: 1920,
+        height: 1200,
+      },
+    ],
+    links: {
+      deploy: "https://oli-bar.vercel.app/",
+      // Repositorio público confirmado con la API de GitHub.
+      repo: "https://github.com/Joacoc-10/OliBar",
+    },
   },
 
   // ───────────── Bootcamp Henry ─────────────
@@ -183,11 +415,19 @@ export const projects: Project[] = [
     kind: "bootcamp",
     name: "Lienzo Culinario",
     summary: {
-      es: "Proyecto final del bootcamp: un e-commerce de comida personalizada desarrollado junto a un equipo de 6 desarrolladores. Mi rol se centró en el frontend y el diseño de la interfaz, buscando una experiencia intuitiva y fluida. Incluye autenticación con Auth0 y una pasarela de pago simulada con Stripe. Fue una gran experiencia de trabajo en equipo y comunicación, gestionando un proyecto de principio a fin.",
-      en: "Final project of the bootcamp: a custom food e-commerce built with a team of 6 developers. My role focused on frontend development and UI design, aiming for an intuitive, smooth experience. It includes authentication with Auth0 and a simulated payment gateway with Stripe. It was a great experience in teamwork and communication, managing a project from start to finish.",
+      es: "Proyecto final del bootcamp: un e-commerce de comida personalizada desarrollado en un equipo de 6 desarrolladores. Mi rol se centró en el frontend y el diseño de la interfaz, buscando una experiencia intuitiva. Incluye autenticación con Auth0 y una pasarela de pago simulada con Stripe.",
+      en: "Final project of the bootcamp: a custom food e-commerce built by a team of 6 developers. My role focused on frontend development and UI design, aiming for an intuitive experience. It includes authentication with Auth0 and a simulated payment gateway with Stripe.",
     },
     techIds: ["nextjs", "react", "typescript", "tailwindcss", "nestjs", "postgresql", "auth0", "stripe"],
-    image: "/images/projects/bootcamp-1.png",
+    media: [
+      {
+        type: "image",
+        src: "/images/projects/lienzo-culinario/shot-01-inicio.webp",
+        alt: { es: "Captura del proyecto Lienzo Culinario", en: "Screenshot of the Lienzo Culinario project" },
+        width: 1920,
+        height: 1243,
+      },
+    ],
     links: { deploy: "https://lienzofront.vercel.app/" },
   },
   {
@@ -196,10 +436,18 @@ export const projects: Project[] = [
     name: "Futura Tech",
     summary: {
       es: "Proyecto de especialización en Front End: un e-commerce de tecnología conectado a un backend ya provisto. Desarrollé un frontend completo con registro de usuarios, navegación de productos, carrito y un checkout simulado, con React, Next.js y Tailwind CSS, cuidando los estilos y las animaciones.",
-      en: "Front End specialization project: a tech e-commerce connected to a provided backend. I built a complete frontend with user registration, product browsing, a shopping cart and a simulated checkout, using React, Next.js and Tailwind CSS, with consistent styling and animations.",
+      en: "Front End specialization project: a tech e-commerce connected to a provided backend. I built a complete frontend with user registration, product browsing, a shopping cart and a simulated checkout, using React, Next.js and Tailwind CSS, with careful styling and animations.",
     },
     techIds: ["nextjs", "react", "typescript", "tailwindcss", "formik", "axios"],
-    image: "/images/projects/bootcamp-2.jpg",
+    media: [
+      {
+        type: "image",
+        src: "/images/projects/futura-tech/shot-01-inicio.webp",
+        alt: { es: "Captura del proyecto Futura Tech", en: "Screenshot of the Futura Tech project" },
+        width: 1920,
+        height: 1159,
+      },
+    ],
     links: { deploy: "https://futuratech.vercel.app/" },
   },
   {
@@ -211,7 +459,15 @@ export const projects: Project[] = [
       en: "An app where users sign up, log in and manage their own wine tasting reservations, creating and cancelling bookings. A simple but working system covering the full data flow, from the frontend to the database.",
     },
     techIds: ["react", "vite", "react-router", "typescript", "nodejs", "express", "postgresql", "typeorm"],
-    image: "/images/projects/bootcamp-3.jpg",
+    media: [
+      {
+        type: "image",
+        src: "/images/projects/bodega-cepa-real/shot-01-inicio.webp",
+        alt: { es: "Captura del proyecto Bodega Cepa Real", en: "Screenshot of the Bodega Cepa Real project" },
+        width: 1920,
+        height: 1159,
+      },
+    ],
     links: { deploy: "https://bodega-cepa-real.vercel.app/" },
   },
   {
@@ -223,7 +479,15 @@ export const projects: Project[] = [
       en: "My first Full Stack project, built to practice connecting frontend and backend. A movie listing where users can create, store and view movies in a database, with a controlled form on the frontend and backend communication through Axios.",
     },
     techIds: ["html5", "css3", "javascript", "axios", "nodejs", "express", "mongodb", "mongoose"],
-    image: "/images/projects/bootcamp-4.png",
+    media: [
+      {
+        type: "image",
+        src: "/images/projects/movie-reel/shot-01-inicio.webp",
+        alt: { es: "Captura del proyecto Movie Reel", en: "Screenshot of the Movie Reel project" },
+        width: 1920,
+        height: 1243,
+      },
+    ],
     links: { deploy: "https://movieereelpm2.vercel.app/index.html" },
   },
   {
@@ -235,7 +499,15 @@ export const projects: Project[] = [
       en: "Built during Module 1 of the Henry Bootcamp to apply frontend fundamentals: a static portfolio website with a controlled form to record things I enjoy, stored only in LocalStorage.",
     },
     techIds: ["html5", "css3", "javascript"],
-    image: "/images/projects/bootcamp-5.png",
+    media: [
+      {
+        type: "image",
+        src: "/images/projects/portfolio-v1/shot-01-inicio.webp",
+        alt: { es: "Captura del proyecto Portfolio v1", en: "Screenshot of the Portfolio v1 project" },
+        width: 1920,
+        height: 1243,
+      },
+    ],
     links: { deploy: "https://portfolio-v1-orcin-eta.vercel.app/" },
   },
 ];

@@ -1,0 +1,82 @@
+[
+  {
+    "locale": "es",
+    "width": 390,
+    "section": "experience",
+    "violations": [],
+    "passes": 22,
+    "incomplete": [
+      "color-contrast"
+    ]
+  },
+  {
+    "locale": "es",
+    "width": 390,
+    "section": "projects",
+    "violations": [],
+    "passes": 23,
+    "incomplete": [
+      "color-contrast"
+    ]
+  },
+  {
+    "locale": "es",
+    "width": 1440,
+    "section": "experience",
+    "violations": [],
+    "passes": 22,
+    "incomplete": [
+      "color-contrast"
+    ]
+  },
+  {
+    "locale": "es",
+    "width": 1440,
+    "section": "projects",
+    "violations": [],
+    "passes": 23,
+    "incomplete": [
+      "color-contrast"
+    ]
+  },
+  {
+    "locale": "en",
+    "width": 390,
+    "section": "experience",
+    "violations": [],
+    "passes": 22,
+    "incomplete": [
+      "color-contrast"
+    ]
+  },
+  {
+    "locale": "en",
+    "width": 390,
+    "section": "projects",
+    "violations": [],
+    "passes": 23,
+    "incomplete": [
+      "color-contrast"
+    ]
+  },
+  {
+    "locale": "en",
+    "width": 1440,
+    "section": "experience",
+    "violations": [],
+    "passes": 22,
+    "incomplete": [
+      "color-contrast"
+    ]
+  },
+  {
+    "locale": "en",
+    "width": 1440,
+    "section": "projects",
+    "violations": [],
+    "passes": 23,
+    "incomplete": [
+      "color-contrast"
+    ]
+  }
+]

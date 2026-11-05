@@ -1,0 +1,421 @@
+{
+  "results": [
+    {
+      "ok": true,
+      "m": "carga inicial: 0 capturas de proyectos descargadas (0)"
+    },
+    {
+      "ok": true,
+      "m": "Order-A: 1 sola imagen montada al entrar (1)"
+    },
+    {
+      "ok": true,
+      "m": "Order-A: rota automáticamente (2 montadas)"
+    },
+    {
+      "ok": true,
+      "m": "Order-A: altura de tarjeta estable (1182→1182px)"
+    },
+    {
+      "ok": true,
+      "m": "Order-A: hover pausa"
+    },
+    {
+      "ok": true,
+      "m": "Order-A: reanuda al salir"
+    },
+    {
+      "ok": true,
+      "m": "Order-A: foco en la tarjeta pausa"
+    },
+    {
+      "ok": true,
+      "m": "Order-A: reanuda al salir el foco"
+    },
+    {
+      "ok": true,
+      "m": "Order-A: inactivas alt=\"\"+aria-hidden (0 mal), sin aria-live (0), activa con alt"
+    },
+    {
+      "ok": true,
+      "m": "Nexvia: rota automáticamente (4 montadas)"
+    },
+    {
+      "ok": true,
+      "m": "Nexvia: altura de tarjeta estable (1007→1007px)"
+    },
+    {
+      "ok": true,
+      "m": "Nexvia: hover pausa"
+    },
+    {
+      "ok": true,
+      "m": "Nexvia: reanuda al salir"
+    },
+    {
+      "ok": true,
+      "m": "Nexvia: foco en la tarjeta pausa"
+    },
+    {
+      "ok": true,
+      "m": "Nexvia: reanuda al salir el foco"
+    },
+    {
+      "ok": true,
+      "m": "Nexvia: inactivas alt=\"\"+aria-hidden (0 mal), sin aria-live (0), activa con alt"
+    },
+    {
+      "ok": true,
+      "m": "UES × Mercado Libre: sin imágenes (diseño sin cambios)"
+    },
+    {
+      "ok": true,
+      "m": "ZatoBox POS: rota automáticamente (3 montadas)"
+    },
+    {
+      "ok": true,
+      "m": "ZatoBox POS: altura de tarjeta estable (577→577px)"
+    },
+    {
+      "ok": true,
+      "m": "ZatoBox POS: hover pausa"
+    },
+    {
+      "ok": true,
+      "m": "ZatoBox POS: reanuda al salir"
+    },
+    {
+      "ok": true,
+      "m": "ZatoBox POS: foco en la tarjeta pausa"
+    },
+    {
+      "ok": true,
+      "m": "ZatoBox POS: reanuda al salir el foco"
+    },
+    {
+      "ok": true,
+      "m": "ZatoBox POS: inactivas alt=\"\"+aria-hidden (0 mal), sin aria-live (0), activa con alt"
+    },
+    {
+      "ok": true,
+      "m": "Fabio Producciones: rota automáticamente (3 montadas)"
+    },
+    {
+      "ok": true,
+      "m": "Fabio Producciones: altura de tarjeta estable (656→656px)"
+    },
+    {
+      "ok": true,
+      "m": "Fabio Producciones: hover pausa"
+    },
+    {
+      "ok": true,
+      "m": "Fabio Producciones: reanuda al salir"
+    },
+    {
+      "ok": true,
+      "m": "Fabio Producciones: foco en la tarjeta pausa"
+    },
+    {
+      "ok": true,
+      "m": "Fabio Producciones: reanuda al salir el foco"
+    },
+    {
+      "ok": true,
+      "m": "Fabio Producciones: inactivas alt=\"\"+aria-hidden (0 mal), sin aria-live (0), activa con alt"
+    },
+    {
+      "ok": true,
+      "m": "Dra. Florencia Biaturi: rota automáticamente (4 montadas)"
+    },
+    {
+      "ok": true,
+      "m": "Dra. Florencia Biaturi: altura de tarjeta estable (656→656px)"
+    },
+    {
+      "ok": true,
+      "m": "Dra. Florencia Biaturi: hover pausa"
+    },
+    {
+      "ok": true,
+      "m": "Dra. Florencia Biaturi: reanuda al salir"
+    },
+    {
+      "ok": true,
+      "m": "Dra. Florencia Biaturi: foco en la tarjeta pausa"
+    },
+    {
+      "ok": true,
+      "m": "Dra. Florencia Biaturi: reanuda al salir el foco"
+    },
+    {
+      "ok": true,
+      "m": "Dra. Florencia Biaturi: inactivas alt=\"\"+aria-hidden (0 mal), sin aria-live (0), activa con alt"
+    },
+    {
+      "ok": true,
+      "m": "OliBar: rota automáticamente (3 montadas)"
+    },
+    {
+      "ok": true,
+      "m": "OliBar: altura de tarjeta estable (656→656px)"
+    },
+    {
+      "ok": true,
+      "m": "OliBar: hover pausa"
+    },
+    {
+      "ok": true,
+      "m": "OliBar: reanuda al salir"
+    },
+    {
+      "ok": true,
+      "m": "OliBar: foco en la tarjeta pausa"
+    },
+    {
+      "ok": true,
+      "m": "OliBar: reanuda al salir el foco"
+    },
+    {
+      "ok": true,
+      "m": "OliBar: inactivas alt=\"\"+aria-hidden (0 mal), sin aria-live (0), activa con alt"
+    },
+    {
+      "ok": true,
+      "m": "Lienzo Culinario: estática (1 imagen)"
+    },
+    {
+      "ok": true,
+      "m": "Lienzo Culinario: altura de tarjeta estable (694→694px)"
+    },
+    {
+      "ok": true,
+      "m": "Lienzo Culinario: inactivas alt=\"\"+aria-hidden (0 mal), sin aria-live (0), activa con alt"
+    },
+    {
+      "ok": true,
+      "m": "Futura Tech: estática (1 imagen)"
+    },
+    {
+      "ok": true,
+      "m": "Futura Tech: altura de tarjeta estable (694→694px)"
+    },
+    {
+      "ok": true,
+      "m": "Futura Tech: inactivas alt=\"\"+aria-hidden (0 mal), sin aria-live (0), activa con alt"
+    },
+    {
+      "ok": true,
+      "m": "Bodega Cepa Real: estática (1 imagen)"
+    },
+    {
+      "ok": true,
+      "m": "Bodega Cepa Real: altura de tarjeta estable (694→694px)"
+    },
+    {
+      "ok": true,
+      "m": "Bodega Cepa Real: inactivas alt=\"\"+aria-hidden (0 mal), sin aria-live (0), activa con alt"
+    },
+    {
+      "ok": true,
+      "m": "Movie Reel: estática (1 imagen)"
+    },
+    {
+      "ok": true,
+      "m": "Movie Reel: altura de tarjeta estable (733→733px)"
+    },
+    {
+      "ok": true,
+      "m": "Movie Reel: inactivas alt=\"\"+aria-hidden (0 mal), sin aria-live (0), activa con alt"
+    },
+    {
+      "ok": true,
+      "m": "Portfolio v1: estática (1 imagen)"
+    },
+    {
+      "ok": true,
+      "m": "Portfolio v1: altura de tarjeta estable (733→733px)"
+    },
+    {
+      "ok": true,
+      "m": "Portfolio v1: inactivas alt=\"\"+aria-hidden (0 mal), sin aria-live (0), activa con alt"
+    },
+    {
+      "ok": true,
+      "m": "proyectos con rotación: 6 (esperado 6: Order-A, Nexvia, ZatoBox, Fabio, Florencia, OliBar); resto: Lienzo Culinario [estática], Futura Tech [estática], Bodega Cepa Real [estática], Movie Reel [estática], Portfolio v1 [estática]"
+    },
+    {
+      "ok": true,
+      "m": "CLS acumulado 0"
+    },
+    {
+      "ok": true,
+      "m": "en/390 Fabio Producciones: rota y altura estable"
+    },
+    {
+      "ok": true,
+      "m": "en/390 Dra. Florencia Biaturi: rota y altura estable"
+    },
+    {
+      "ok": true,
+      "m": "en/390 13 enlaces con nombre, rel seguro, ≥40px"
+    },
+    {
+      "ok": true,
+      "m": "en/390 2 botones Código"
+    },
+    {
+      "ok": true,
+      "m": "en/390 sin scroll horizontal"
+    },
+    {
+      "ok": true,
+      "m": "en/390 CLS 0"
+    },
+    {
+      "ok": true,
+      "m": "es/820 Fabio Producciones: rota y altura estable"
+    },
+    {
+      "ok": true,
+      "m": "es/820 Dra. Florencia Biaturi: rota y altura estable"
+    },
+    {
+      "ok": true,
+      "m": "es/820 13 enlaces con nombre, rel seguro, ≥40px"
+    },
+    {
+      "ok": true,
+      "m": "es/820 2 botones Código"
+    },
+    {
+      "ok": true,
+      "m": "es/820 sin scroll horizontal"
+    },
+    {
+      "ok": true,
+      "m": "es/820 CLS 0"
+    },
+    {
+      "ok": true,
+      "m": "en/1280 Fabio Producciones: rota y altura estable"
+    },
+    {
+      "ok": true,
+      "m": "en/1280 Dra. Florencia Biaturi: rota y altura estable"
+    },
+    {
+      "ok": true,
+      "m": "en/1280 13 enlaces con nombre, rel seguro, ≥40px"
+    },
+    {
+      "ok": true,
+      "m": "en/1280 2 botones Código"
+    },
+    {
+      "ok": true,
+      "m": "en/1280 sin scroll horizontal"
+    },
+    {
+      "ok": true,
+      "m": "en/1280 CLS 0"
+    },
+    {
+      "ok": true,
+      "m": "es/1440 Fabio Producciones: rota y altura estable"
+    },
+    {
+      "ok": true,
+      "m": "es/1440 Dra. Florencia Biaturi: rota y altura estable"
+    },
+    {
+      "ok": true,
+      "m": "es/1440 13 enlaces con nombre, rel seguro, ≥40px"
+    },
+    {
+      "ok": true,
+      "m": "es/1440 2 botones Código"
+    },
+    {
+      "ok": true,
+      "m": "es/1440 sin scroll horizontal"
+    },
+    {
+      "ok": true,
+      "m": "es/1440 CLS 0"
+    },
+    {
+      "ok": true,
+      "m": "enlace https://order-a.com/ → 200"
+    },
+    {
+      "ok": true,
+      "m": "enlace https://nexvia.io/ → 200"
+    },
+    {
+      "ok": true,
+      "m": "enlace https://www.zatobox.io/ → 200"
+    },
+    {
+      "ok": true,
+      "m": "enlace https://fabioproducciones.vercel.app/ → 200"
+    },
+    {
+      "ok": true,
+      "m": "enlace https://github.com/Joacoc-10/FProducciones- → 200"
+    },
+    {
+      "ok": true,
+      "m": "enlace https://dra.florenciabiaturi.com/ → 200"
+    },
+    {
+      "ok": true,
+      "m": "enlace https://oli-bar.vercel.app/ → 200"
+    },
+    {
+      "ok": true,
+      "m": "enlace https://github.com/Joacoc-10/OliBar → 200"
+    },
+    {
+      "ok": true,
+      "m": "enlace https://lienzofront.vercel.app/ → 200"
+    },
+    {
+      "ok": true,
+      "m": "enlace https://futuratech.vercel.app/ → 200"
+    },
+    {
+      "ok": true,
+      "m": "enlace https://bodega-cepa-real.vercel.app/ → 200"
+    },
+    {
+      "ok": true,
+      "m": "enlace https://movieereelpm2.vercel.app/index.html → 200"
+    },
+    {
+      "ok": true,
+      "m": "enlace https://portfolio-v1-orcin-eta.vercel.app/ → 200"
+    },
+    {
+      "ok": true,
+      "m": "foco visible en enlace de tarjeta (outline 2px solid)"
+    },
+    {
+      "ok": true,
+      "m": "reduced-motion Fabio: estático, 1 imagen montada (1→1)"
+    },
+    {
+      "ok": true,
+      "m": "reduced-motion Lienzo: estático, 1 imagen montada (1→1)"
+    },
+    {
+      "ok": true,
+      "m": "reduced-motion Order-A: estático, 1 imagen montada (1→1)"
+    },
+    {
+      "ok": true,
+      "m": "sin errores de consola"
+    }
+  ],
+  "errors": []
+}

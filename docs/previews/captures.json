@@ -1,0 +1,204 @@
+{
+  "fecha": "2026-11-05",
+  "herramienta": "Playwright 1.64.1 + Google Chrome (headless), viewport 1440x900 @2x (móvil 390x844 @3x), WebP calidad 80",
+  "capturas": {
+    "florencia-biaturi": [
+      {
+        "file": "/images/projects/florencia-biaturi/shot-01-inicio.webp",
+        "bytes": 62790,
+        "width": 1920,
+        "height": 1200,
+        "sha256": "cf96c9e428c1babdcd32bd4f6fb6df05445bdbad46a51ee58a3661f5817b0d5f",
+        "capturedFrom": "florencia/hero"
+      },
+      {
+        "file": "/images/projects/florencia-biaturi/shot-02-sobre-mi.webp",
+        "bytes": 92410,
+        "width": 1920,
+        "height": 1200,
+        "sha256": "85a536d32299b8d82dfff834e1c9fae38bd5210c749fd5b7d5c1f512520804b2",
+        "capturedFrom": "florencia/sobre-mi"
+      },
+      {
+        "file": "/images/projects/florencia-biaturi/shot-03-areas-de-practica.webp",
+        "bytes": 43624,
+        "width": 1920,
+        "height": 1200,
+        "sha256": "a8d4651c3809657d8b55a0e84f3b6de6e1200c864184f50d00c7d4bac1ccb688",
+        "capturedFrom": "florencia/servicios"
+      },
+      {
+        "file": "/images/projects/florencia-biaturi/shot-04-movil.webp",
+        "bytes": 28264,
+        "width": 1920,
+        "height": 1200,
+        "sha256": "08b3a073fc884c650ad2245f671b25a1e75f8d644fd0a64cf1c07e56898b77c4",
+        "capturedFrom": "florencia/m-hero"
+      }
+    ],
+    "fabio-producciones": [
+      {
+        "file": "/images/projects/fabio-producciones/shot-01-inicio.webp",
+        "bytes": 61966,
+        "width": 1920,
+        "height": 1200,
+        "sha256": "a619c909b33f5a4131646cc75428700e329e5b26fad5d3541c7d1c971fbdf92b",
+        "capturedFrom": "fabio/hero"
+      },
+      {
+        "file": "/images/projects/fabio-producciones/shot-02-eventos.webp",
+        "bytes": 156410,
+        "width": 1920,
+        "height": 1200,
+        "sha256": "fe45049dca878306d9dd3c8ccedae659bb2cdc8fb2c33db3cc3c61402a6f5a8d",
+        "capturedFrom": "fabio/eventos"
+      },
+      {
+        "file": "/images/projects/fabio-producciones/shot-03-servicios.webp",
+        "bytes": 80334,
+        "width": 1920,
+        "height": 1200,
+        "sha256": "aabb5e84c2b0cc67d61791f7725a8d5de4dfeee5d6ca8aeb14b81f522d01b47e",
+        "capturedFrom": "fabio/servicios"
+      },
+      {
+        "file": "/images/projects/fabio-producciones/shot-04-escenario.webp",
+        "bytes": 131250,
+        "width": 1920,
+        "height": 1200,
+        "sha256": "9a99f22bafc353ab27fa617dce0362ec1aa7dd85d8ba4a41b5181e91cac1c2cb",
+        "capturedFrom": "fabio/escenario"
+      },
+      {
+        "file": "/images/projects/fabio-producciones/shot-05-galeria.webp",
+        "bytes": 157242,
+        "width": 1920,
+        "height": 1200,
+        "sha256": "c1c22b2848af8713f80c9411f748e86d1f95c5fd88ce0d5742cf82d7bececc0b",
+        "capturedFrom": "fabio/galeria"
+      }
+    ],
+    "olibar": [
+      {
+        "file": "/images/projects/olibar/shot-01-inicio.webp",
+        "bytes": 39360,
+        "width": 1920,
+        "height": 1200,
+        "sha256": "cdb9fa31774c50b9383cf06d2cfcc55558a1fef4e646bb5abea5ee76df3332b2",
+        "capturedFrom": "olibar/inicio",
+        "nota": "Recapturada en la Fase 6 ocultando la dirección del local (sin confirmación expresa del cliente); el sitio original no se modificó."
+      },
+      {
+        "file": "/images/projects/olibar/shot-02-carta.webp",
+        "bytes": 40514,
+        "width": 1920,
+        "height": 1200,
+        "sha256": "46af0a6769dfef19f804b8df7a2f1c03b2b2253ea7aaf43d3343b8a00da9b28c",
+        "capturedFrom": "olibar/milanesas"
+      },
+      {
+        "file": "/images/projects/olibar/shot-03-movil.webp",
+        "bytes": 57386,
+        "width": 1920,
+        "height": 1200,
+        "sha256": "55dd4aceff56fb191889f5dd4005003df11d05e98d0e253b7173958321eeb1fb",
+        "capturedFrom": "olibar/m-inicio+m-milanesas",
+        "nota": "Recapturada en la Fase 6 ocultando la dirección del local (sin confirmación expresa del cliente); el sitio original no se modificó."
+      }
+    ],
+    "order-a": [
+      {
+        "file": "/images/projects/order-a/shot-01-inicio.webp",
+        "bytes": 93922,
+        "width": 1920,
+        "height": 1200,
+        "sha256": "5aefbe48cff99f9b50f39efeff9ffb8aed7dc2c7343257ab85f65a9d8de826e8",
+        "capturedFrom": "ordera/hero"
+      },
+      {
+        "file": "/images/projects/order-a/shot-02-como-funciona.webp",
+        "bytes": 131420,
+        "width": 1920,
+        "height": 1200,
+        "sha256": "cfab7148d107bbca19ece00becf637c2094f23de4ab3f484f7c5177073271c28",
+        "capturedFrom": "ordera/como-funciona"
+      },
+      {
+        "file": "/images/projects/order-a/shot-03-rubros.webp",
+        "bytes": 174538,
+        "width": 1920,
+        "height": 1200,
+        "sha256": "b35a71995ea023ca9adbe481ec9b12d666fd27b0535a78e938d537e0d2aa9c07",
+        "capturedFrom": "ordera/rubros"
+      },
+      {
+        "file": "/images/projects/order-a/shot-04-planes.webp",
+        "bytes": 136946,
+        "width": 1920,
+        "height": 1200,
+        "sha256": "ea950cf08d118579b10ca9b4caa36e4e5709912b4046cec394af9aaede7cd183",
+        "capturedFrom": "ordera/planes"
+      }
+    ],
+    "nexvia": [
+      {
+        "file": "/images/projects/nexvia/shot-01-inicio.webp",
+        "bytes": 110728,
+        "width": 1920,
+        "height": 1200,
+        "sha256": "99de888673aba0fb8e84605af28cbca0e4da07499129faa957c38bdf793c27a3",
+        "capturedFrom": "nexvia/hero"
+      },
+      {
+        "file": "/images/projects/nexvia/shot-02-como-usar.webp",
+        "bytes": 68150,
+        "width": 1920,
+        "height": 1200,
+        "sha256": "cc0b3dd1c21f676a79aae6c640c804b1e257878bd15158210b254f37ad8623e2",
+        "capturedFrom": "nexvia/como-usar"
+      },
+      {
+        "file": "/images/projects/nexvia/shot-03-formulario-envio.webp",
+        "bytes": 96760,
+        "width": 1920,
+        "height": 1200,
+        "sha256": "cae4a013b4ed36ec6e43ba66a6f26f81321ff7f711d43fef9777a554dbba5f98",
+        "capturedFrom": "nexvia/que-enviar"
+      },
+      {
+        "file": "/images/projects/nexvia/shot-04-seguridad.webp",
+        "bytes": 63026,
+        "width": 1920,
+        "height": 1200,
+        "sha256": "ce42f8d7235abc0b18f3d75e9cb7bd23421ad81a60d224c1ab7d8f3d90907a1d",
+        "capturedFrom": "nexvia/seguridad"
+      }
+    ],
+    "zatobox": [
+      {
+        "file": "/images/projects/zatobox/shot-01-inicio.webp",
+        "bytes": 61700,
+        "width": 1920,
+        "height": 1200,
+        "sha256": "89aa9fe15aa3b21ab002bd350598fa5cb131f5035bab9328b720594f8f7deb61",
+        "capturedFrom": "zatobox/hero"
+      },
+      {
+        "file": "/images/projects/zatobox/shot-02-funciones.webp",
+        "bytes": 54054,
+        "width": 1920,
+        "height": 1200,
+        "sha256": "9f04c7f2ae387fb8972b38e1b5206e23fe6fab69f12ad8361c5e28ebc6977c38",
+        "capturedFrom": "zatobox/features"
+      },
+      {
+        "file": "/images/projects/zatobox/shot-03-planes.webp",
+        "bytes": 42578,
+        "width": 1920,
+        "height": 1200,
+        "sha256": "805469b506282eecd261928b53f28ce68e97e279bdacbc6ebe766a5b9602e78c",
+        "capturedFrom": "zatobox/planes"
+      }
+    ]
+  }
+}

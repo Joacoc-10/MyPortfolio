@@ -53,6 +53,32 @@ export interface Company {
   summary?: Localized;
 }
 
+/** Campos comunes de cada elemento multimedia de un proyecto. */
+interface ProjectMediaBase {
+  /** Ruta pública (bajo /public) del archivo. */
+  src: string;
+  /** Texto alternativo / descripción accesible, por idioma. */
+  alt: Localized;
+  /** Pie opcional que indica qué sección o pantalla se ve (ej. "Áreas de práctica"). */
+  caption?: Localized;
+  /** Dimensiones intrínsecas en píxeles (evitan saltos de layout). */
+  width: number;
+  height: number;
+}
+
+export interface ProjectImage extends ProjectMediaBase {
+  type: "image";
+}
+
+/** Reservado para una fase futura: el modelo ya lo admite, pero hoy no se usa ninguno. */
+export interface ProjectVideo extends ProjectMediaBase {
+  type: "video";
+  /** Imagen de portada del video (obligatoria: el video nunca se precarga). */
+  poster: string;
+}
+
+export type ProjectMedia = ProjectImage | ProjectVideo;
+
 export type ProjectKind = "professional" | "personal" | "bootcamp";
 
 export interface Project {
@@ -68,7 +94,11 @@ export interface Project {
   contributions?: Localized<string[]>;
   /** Tecnologías que efectivamente usé en este proyecto (no el stack completo del proyecto). */
   techIds: string[];
-  image?: string;
+  /**
+   * Capturas (y, más adelante, videos) del proyecto, en orden de visualización.
+   * El primer elemento es la portada de la tarjeta. Solo material público o autorizado.
+   */
+  media?: ProjectMedia[];
   featured?: boolean;
   /** Estado del proyecto, independiente del estado laboral de la empresa. */
   inProduction?: boolean;

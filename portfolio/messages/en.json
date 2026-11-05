@@ -85,8 +85,10 @@
     "kindBootcamp": "Henry Bootcamp",
     "readMore": "Read more",
     "readLess": "Read less",
-    "viewProject": "View project",
-    "imageAlt": "Screenshot of the {name} project",
+    "visitSite": "Visit site",
+    "visitSiteLabel": "Visit site: {name}",
+    "viewRepo": "Code",
+    "viewRepoLabel": "Code: {name} repository",
     "technologies": "Technologies"
   },
   "Contact": {

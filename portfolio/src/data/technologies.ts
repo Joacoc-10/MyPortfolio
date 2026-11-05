@@ -19,6 +19,8 @@ export const technologies: Technology[] = [
   { id: "yup", name: "Yup", category: "frontend", inStack: false },
   { id: "react-icons", name: "React Icons", category: "frontend", url: "https://react-icons.github.io/react-icons/", inStack: false },
   { id: "framer-motion", name: "Framer Motion", category: "frontend", inStack: false },
+  { id: "gsap", name: "GSAP", category: "frontend", url: "https://gsap.com/", inStack: false },
+  { id: "lenis", name: "Lenis", category: "frontend", url: "https://lenis.darkroom.engineering/", inStack: false },
   { id: "mui", name: "Material UI", category: "frontend", url: "https://mui.com/", inStack: true },
 
   // Backend
@@ -57,6 +59,7 @@ export const technologies: Technology[] = [
   // Servicios de terceros usados en proyectos
   { id: "auth0", name: "Auth0", category: "services", inStack: false },
   { id: "stripe", name: "Stripe", category: "services", inStack: false },
+  { id: "emailjs", name: "EmailJS", category: "services", url: "https://www.emailjs.com/", inStack: false },
   { id: "cloudinary", name: "Cloudinary", category: "services", inStack: false },
   { id: "firebase", name: "Firebase", category: "services", url: "https://firebase.google.com/", inStack: false },
   { id: "whatsapp-cloud-api", name: "WhatsApp Cloud API", category: "services", url: "https://developers.facebook.com/docs/whatsapp/cloud-api", inStack: false },
