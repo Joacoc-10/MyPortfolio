@@ -7,7 +7,21 @@
     "sha256": "f1c716bd33760bc3ad003d5446f53b798b1da20b5db3da26f015066a56aee35a",
     "width": 3420,
     "height": 2214,
-    "byteIdentical": true
+    "byteIdentical": true,
+    "optimized": {
+      "file": "/images/projects/lienzo-culinario/shot-01-inicio.webp",
+      "format": "webp",
+      "bytes": 269482,
+      "width": 1920,
+      "height": 1243,
+      "sha256": "fd9ec90db60c6310308d8f308819c39f9f67ef20f3417dac0c2cf149a3e764b5",
+      "source": "derivado de 'local' (mismo contenido, sin recortes; ancho 1920 px, calidad 82)"
+    },
+    "removedFromRepo": {
+      "phase": 6,
+      "reason": "reemplazado por la versión WebP indicada en 'optimized'; recuperable desde el commit d4cca42",
+      "sha256Kept": "f1c716bd33760bc3ad003d5446f53b798b1da20b5db3da26f015066a56aee35a"
+    }
   },
   {
     "url": "https://ik.imagekit.io/i1pxujmp5t/My%20Portfolio/Captura%20de%20pantalla%20PM4.png?updatedAt=1758201255537",
@@ -17,7 +31,21 @@
     "sha256": "b874df9422ff694b03b1ab9769bee538ab94f2e1940266bb3a0d75c609dcd557",
     "width": 3420,
     "height": 2064,
-    "byteIdentical": true
+    "byteIdentical": true,
+    "optimized": {
+      "file": "/images/projects/futura-tech/shot-01-inicio.webp",
+      "format": "webp",
+      "bytes": 83292,
+      "width": 1920,
+      "height": 1159,
+      "sha256": "44eb9a939aa380d50cd4acaac88191ee6aa362cdc78d58a03f24bf9090836fa5",
+      "source": "derivado de 'local' (mismo contenido, sin recortes; ancho 1920 px, calidad 82)"
+    },
+    "removedFromRepo": {
+      "phase": 6,
+      "reason": "reemplazado por la versión WebP indicada en 'optimized'; recuperable desde el commit d4cca42",
+      "sha256Kept": "b874df9422ff694b03b1ab9769bee538ab94f2e1940266bb3a0d75c609dcd557"
+    }
   },
   {
     "url": "https://ik.imagekit.io/i1pxujmp5t/My%20Portfolio/Captura%20de%20pantalla%20PM3.png?updatedAt=1758201256355",
@@ -27,7 +55,21 @@
     "sha256": "a3467f2f2c86dbf31caf15ca26bd6b82940c4e21f7b481336dc1e98aa0a09b6b",
     "width": 3420,
     "height": 2064,
-    "byteIdentical": true
+    "byteIdentical": true,
+    "optimized": {
+      "file": "/images/projects/bodega-cepa-real/shot-01-inicio.webp",
+      "format": "webp",
+      "bytes": 276620,
+      "width": 1920,
+      "height": 1159,
+      "sha256": "459ceeabfe5e1cdbcca03dad1f4f0196dda1ea8a29f6562f366b280dc81607f5",
+      "source": "derivado de 'local' (mismo contenido, sin recortes; ancho 1920 px, calidad 82)"
+    },
+    "removedFromRepo": {
+      "phase": 6,
+      "reason": "reemplazado por la versión WebP indicada en 'optimized'; recuperable desde el commit d4cca42",
+      "sha256Kept": "a3467f2f2c86dbf31caf15ca26bd6b82940c4e21f7b481336dc1e98aa0a09b6b"
+    }
   },
   {
     "url": "https://ik.imagekit.io/i1pxujmp5t/My%20Portfolio/Captura%20de%20pantalla%20PM2.png?updatedAt=1758201256321",
@@ -37,7 +79,21 @@
     "sha256": "7ed4ca0a5b5e31bc0997ad9b22905a2b1b26527a3a01c763f30c322ba949c708",
     "width": 3420,
     "height": 2214,
-    "byteIdentical": true
+    "byteIdentical": true,
+    "optimized": {
+      "file": "/images/projects/movie-reel/shot-01-inicio.webp",
+      "format": "webp",
+      "bytes": 248520,
+      "width": 1920,
+      "height": 1243,
+      "sha256": "d53202dd353b4be3a1ede51d109a2c7da8bfbcfb0e0a19045fc7e1579c09f142",
+      "source": "derivado de 'local' (mismo contenido, sin recortes; ancho 1920 px, calidad 82)"
+    },
+    "removedFromRepo": {
+      "phase": 6,
+      "reason": "reemplazado por la versión WebP indicada en 'optimized'; recuperable desde el commit d4cca42",
+      "sha256Kept": "7ed4ca0a5b5e31bc0997ad9b22905a2b1b26527a3a01c763f30c322ba949c708"
+    }
   },
   {
     "url": "https://ik.imagekit.io/i1pxujmp5t/My%20Portfolio/Captura%20de%20pantalla%20PM1.png?updatedAt=1758201256159",
@@ -47,6 +103,20 @@
     "sha256": "42996490d7f7f6cf674142026a1084f5aa9fe3c97a6148b7dd2810c4bad212c2",
     "width": 3420,
     "height": 2214,
-    "byteIdentical": true
+    "byteIdentical": true,
+    "optimized": {
+      "file": "/images/projects/portfolio-v1/shot-01-inicio.webp",
+      "format": "webp",
+      "bytes": 121110,
+      "width": 1920,
+      "height": 1243,
+      "sha256": "5c2e1d4c0b0222601a5df11aa38731c2de465d07632df73dadf2d05842dbe5de",
+      "source": "derivado de 'local' (mismo contenido, sin recortes; ancho 1920 px, calidad 82)"
+    },
+    "removedFromRepo": {
+      "phase": 6,
+      "reason": "reemplazado por la versión WebP indicada en 'optimized'; recuperable desde el commit d4cca42",
+      "sha256Kept": "42996490d7f7f6cf674142026a1084f5aa9fe3c97a6148b7dd2810c4bad212c2"
+    }
   }
 ]

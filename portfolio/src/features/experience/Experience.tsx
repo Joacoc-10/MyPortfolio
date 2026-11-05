@@ -10,6 +10,7 @@ import {
   type Company,
 } from "@/data";
 import { ProjectCard } from "@/features/projects/ProjectCard";
+import { getCover } from "@/features/projects/ProjectCover";
 import { cn } from "@/lib/utils";
 import { FeaturedProject } from "./FeaturedProject";
 
@@ -57,6 +58,11 @@ export async function Experience() {
           const featured = projects.find((project) => project.featured);
           const others = projects.filter((project) => !project.featured);
           const period = periodLabel(company);
+          // Si solo algunas tarjetas tienen portada (p. ej. UES × Mercado Libre no), no se estiran a la misma altura
+          // para no dejar espacio vacío dentro de la que no tiene captura.
+          const mixedCovers =
+            others.some((project) => getCover(project)) &&
+            others.some((project) => !getCover(project));
 
           return (
             <li
@@ -125,6 +131,7 @@ export async function Experience() {
                           className={cn(
                             "grid gap-5",
                             others.length > 1 && "xl:grid-cols-2",
+                            mixedCovers && "items-start",
                           )}
                         >
                           {others.map((project) => (
@@ -133,7 +140,14 @@ export async function Experience() {
                               project={project}
                               locale={locale}
                               layout={others.length === 1 ? "wide" : "default"}
+                              imageSizes={
+                                others.length === 1
+                                  ? "(min-width: 1024px) 450px, 100vw"
+                                  : "(min-width: 1280px) 330px, (min-width: 1024px) 760px, 100vw"
+                              }
                               headingAs="h4"
+                              // Sin captura y junto a otra con captura: altura propia (h-full se resolvería contra la fila y la estiraría).
+                              className={mixedCovers && !getCover(project) ? "h-auto" : undefined}
                             />
                           ))}
                         </div>

@@ -1,0 +1,102 @@
+{
+ "es-mobile": {
+  "perf": [
+   89,
+   92,
+   92
+  ],
+  "a11y_bp_seo": [
+   100,
+   100,
+   100
+  ],
+  "lcpMsMedian": 3228,
+  "tbtMs": [
+   4,
+   4,
+   3
+  ],
+  "cls": [
+   0,
+   0,
+   0
+  ],
+  "kbMedian": 483,
+  "lighthouse": "13.5.0"
+ },
+ "en-mobile": {
+  "perf": [
+   92,
+   92,
+   92
+  ],
+  "a11y_bp_seo": [
+   100,
+   100,
+   100
+  ],
+  "lcpMsMedian": 3228,
+  "tbtMs": [
+   4,
+   4,
+   2
+  ],
+  "cls": [
+   0,
+   0,
+   0
+  ],
+  "kbMedian": 481,
+  "lighthouse": "13.5.0"
+ },
+ "es-desktop": {
+  "perf": [
+   100,
+   100,
+   100
+  ],
+  "a11y_bp_seo": [
+   100,
+   100,
+   100
+  ],
+  "lcpMsMedian": 664,
+  "tbtMs": [
+   0,
+   0,
+   0
+  ],
+  "cls": [
+   0,
+   0,
+   0
+  ],
+  "kbMedian": 507,
+  "lighthouse": "13.5.0"
+ },
+ "en-desktop": {
+  "perf": [
+   100,
+   100,
+   100
+  ],
+  "a11y_bp_seo": [
+   100,
+   100,
+   100
+  ],
+  "lcpMsMedian": 717,
+  "tbtMs": [
+   0,
+   0,
+   0
+  ],
+  "cls": [
+   0,
+   0,
+   0
+  ],
+  "kbMedian": 505,
+  "lighthouse": "13.5.0"
+ }
+}

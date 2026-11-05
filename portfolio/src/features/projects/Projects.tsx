@@ -27,14 +27,29 @@ export async function Projects() {
             <h3 className="font-mono text-xs tracking-wide text-ink-subtle uppercase">
               {t("personalHeading")}
             </h3>
-            <div className="mt-4 space-y-5">
-              {personal.map((project) => (
-                <Reveal key={project.id}>
+            {/* 3 columnas en escritorio, 2 en tablet (la tercera ocupa el ancho completo) y 1 en móvil */}
+            <div className="mt-4 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+              {personal.map((project, index) => (
+                <Reveal
+                  key={project.id}
+                  delay={(index % 3) * 70}
+                  className={cn(
+                    index === personal.length - 1 &&
+                      index % 2 === 0 &&
+                      "md:col-span-2 lg:col-span-1",
+                  )}
+                >
                   <ProjectCard
                     project={project}
                     locale={locale}
-                    layout="wide"
                     headingAs="h4"
+                    imageSizes="(min-width: 1024px) 33vw, 100vw"
+                    // En tablet la última tarjeta ocupa todo el ancho: portada panorámica para que no domine la fila.
+                    coverClassName={
+                      index === personal.length - 1 && index % 2 === 0
+                        ? "md:aspect-[21/9] lg:aspect-[16/10]"
+                        : undefined
+                    }
                   />
                 </Reveal>
               ))}
@@ -71,6 +86,12 @@ export async function Projects() {
                       index < 3
                         ? "(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
                         : "(min-width: 1024px) 50vw, (min-width: 768px) 50vw, 100vw"
+                    }
+                    // Última tarjeta a ancho completo en tablet: portada panorámica (como en personales).
+                    coverClassName={
+                      index === bootcamp.length - 1 && index % 2 === 0
+                        ? "md:aspect-[21/9] lg:aspect-[16/10]"
+                        : undefined
                     }
                   />
                 </Reveal>
