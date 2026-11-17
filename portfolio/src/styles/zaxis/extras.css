@@ -123,3 +123,65 @@ html.lite .hero [data-in], html.lite .hero .ch, html.lite .hero .ch2, html.lite 
 .jp-hit::after { content: ""; position: absolute; inset: 0; z-index: 3; border-radius: 16px; }
 .jp-hit:focus-visible { outline: none; }
 .jp:has(.jp-hit:focus-visible) { outline: 2px solid var(--brand); outline-offset: 3px; }
+
+/* rol acoplable del hero */
+.h-role { transform-origin: 0 0; will-change: transform; width: max-content; }
+.seg button { display: inline-grid; place-items: center; }
+/* el selector ES/EN del menú no hereda la tipografía grande de los enlaces */
+@media (max-width: 1060px) {
+  .nav-links .seg .seg-link { display: grid; grid-template-columns: none; place-items: center; font-family: var(--mono); font-size: 11px; letter-spacing: 0.08em; line-height: 1; padding: 0; border: 0; color: var(--mut); }
+  .nav-links .seg .seg-link:hover { color: var(--ink); }
+  .nav-links .seg button { font-size: 11px; letter-spacing: 0.08em; }
+}
+
+/* Sobre mí: las tres etiquetas caben en una sola línea en móvil (tamaño y espaciado fluidos; si no caben, envuelven) */
+.traits li { white-space: nowrap; }
+@media (max-width: 600px) {
+  .traits { flex-wrap: wrap; gap: clamp(4px, 1.4vw, 8px); margin-top: 22px; }
+  .traits li { font-size: clamp(10.5px, 3.2vw, 14px); padding: clamp(6px, 1.7vw, 7px) clamp(7px, 2.2vw, 14px); }
+}
+
+/* ---------- composición móvil intencional (≤ 700 px) ----------
+   Menos aire entre secciones, controles de proyectos en dos filas con intención (vista a ancho completo y grupos en una fila
+   deslizable), capas del Stack más compactas y botones de tecnología más densos. */
+@media (max-width: 700px) {
+  .sec { padding-block: 64px 72px; }
+  .sec-head { margin-bottom: 26px; }
+  .eyebrow { margin-bottom: 14px; }
+  .proj { padding-top: 56px; }
+  .p-bar { gap: 12px; margin-top: 0; }
+  .p-view { order: -1; width: 100%; display: grid; grid-template-columns: 1fr 1fr; }
+  .p-view button { min-height: 40px; }
+  .p-groups { width: calc(100% + var(--pad) * 2); margin-inline: calc(var(--pad) * -1); padding-inline: var(--pad); flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; scroll-snap-type: x proximity; scroll-padding-inline: var(--pad); -webkit-mask-image: linear-gradient(to right, #000 calc(100% - 28px), transparent); mask-image: linear-gradient(to right, #000 calc(100% - 28px), transparent); }
+  .p-groups::-webkit-scrollbar { display: none; }
+  .p-group { flex: none; scroll-snap-align: start; }
+  .p-explore { margin-top: 18px; }
+  .panel { margin-top: 14px; }
+  .timeline { gap: 44px; }
+  .job-ph { margin: 26px 0 12px; }
+  .layer { padding: 18px; gap: 12px; }
+  .ly-name { font-size: 1.85rem; }
+  .ly-chips { gap: 6px; }
+  .tech { min-height: 38px; padding: 0 12px; gap: 7px; font-size: 13.5px; }
+  .usage { margin-top: 16px; padding: 16px 18px; min-height: 76px; }
+  .marquee { margin-top: 48px; }
+  .about-grid { gap: 30px; }
+  .ab-open { margin-top: 26px; padding: 18px; }
+  .ct-title { font-size: clamp(2.7rem, 14vw, 4.2rem); }
+  .ct-lead { margin-top: 18px; }
+  .ct-grid { margin-top: 34px; gap: 28px; }
+  .cform { padding: 20px; }
+}
+
+/* portada de integración: logos reales + conector sutil (sin captura ficticia) */
+.ic { aspect-ratio: 16 / 10; display: grid; grid-template-columns: 1fr minmax(48px, 22%) 1fr; align-items: center; justify-items: center; gap: clamp(8px, 2vw, 20px); padding: clamp(18px, 5%, 44px);
+  background: radial-gradient(60% 80% at 50% 50%, rgba(45, 212, 191, 0.13), transparent 70%), radial-gradient(70% 90% at 90% 0%, rgba(155, 214, 255, 0.08), transparent 70%), linear-gradient(160deg, #0d1522, #080c14); }
+.ic-logo { display: grid; place-items: center; width: 100%; max-width: 220px; }
+.ic-logo img { width: auto; height: auto; max-width: 100%; max-height: clamp(34px, 9vw, 84px); object-fit: contain; }
+.ic-link { width: 100%; height: auto; color: var(--brand); overflow: visible; }
+.ic-line { fill: none; stroke: currentColor; stroke-width: 1; stroke-dasharray: 3 4; opacity: 0.55; animation: icFlow 2.4s linear infinite; }
+.ic-dot { fill: currentColor; opacity: 0.8; }
+.ic-chev { fill: none; stroke: currentColor; stroke-width: 1.4; stroke-linecap: round; stroke-linejoin: round; }
+@keyframes icFlow { to { stroke-dashoffset: -14; } }
+html.rm .ic-line, html.lite .ic-line { animation: none; }
+.m-type .ic { border-radius: 0; }

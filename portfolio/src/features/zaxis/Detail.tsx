@@ -9,6 +9,7 @@ import { useTranslations } from "next-intl";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { kindOf, useZ } from "./ctx";
 import { getMotionPrefs, host, pad2 } from "./lib";
+import { IntegrationCover } from "./IntegrationCover";
 import { TechLogo } from "./TechLogo";
 import type { ZProject } from "./types";
 import type { TechCategory } from "@/data";
@@ -90,11 +91,11 @@ export function Detail({ index, onClose, onStep }: { index: number | null; onClo
                 <>
                   <div className="m-type">
                     <div className="chrome" aria-hidden="true"><i /><i /><i /><span>{z("internal")}</span></div>
-                    <div className="m-type-in">
+                    {p.integration ? <IntegrationCover logos={p.integration.logos} /> : <div className="m-type-in">
                       <p className="mono">{kindOf(p, content.companies, t("kindPersonal"), t("kindBootcamp"))}</p>
                       <p className="m-type-name serif">{p.name}</p>
                       <ul className="m-type-tech">{p.techs.slice(0, 9).map((tc) => <li key={tc.id}><TechLogo tech={tc} size={13} />{tc.name}</li>)}</ul>
-                    </div>
+                    </div>}
                   </div>
                   <p className="m-note">{z("internalNote")}</p>
                 </>

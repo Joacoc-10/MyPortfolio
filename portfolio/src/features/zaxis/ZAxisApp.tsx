@@ -27,8 +27,7 @@ export function ZAxisApp({ content }: { content: ZContent }) {
   const z = useTranslations("Z");
   const [detail, setDetail] = useState<number | null>(null);
   const opener = useRef<HTMLElement | null>(null);
-  const [first, ...rest] = content.name.split(" ");
-
+  
   const openDetail = useCallback((id: string, from?: HTMLElement | null) => {
     const i = content.projects.findIndex((p) => p.id === id);
     if (i < 0) return;
@@ -151,7 +150,7 @@ export function ZAxisApp({ content }: { content: ZContent }) {
   return (
     <ZProvider value={ctx}>
       <div className="depth-bg" aria-hidden="true" />
-      <Navbar first={first} last={rest.join(" ")} />
+      <Navbar role={content.headline} />
       <div className="zrail" id="zrail" aria-hidden="true">
         <i className="zrail-fill" />
         {stops.map((_, i) => <i className="zrail-tick" key={i} style={{ top: `${(i / (stops.length - 1)) * 100}%` }} />)}

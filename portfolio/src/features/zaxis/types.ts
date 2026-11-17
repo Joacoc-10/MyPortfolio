@@ -1,6 +1,6 @@
 // Modelo serializable que el servidor entrega a los componentes cliente de Z-AXIS (textos ya resueltos por idioma).
 import type { Locale } from "@/i18n/routing";
-import type { TechCategory, ProjectKind } from "@/data";
+import type { TechCategory, ProjectKind, IntegrationLogo } from "@/data";
 
 export interface ZTech {
   id: string;
@@ -30,6 +30,7 @@ export interface ZProject {
   media: ZMedia[];
   deploy?: string;
   repo?: string;
+  integration?: { logos: [IntegrationLogo, IntegrationLogo] };
 }
 export interface ZCompany {
   id: string;

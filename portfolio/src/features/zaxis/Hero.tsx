@@ -51,11 +51,12 @@ export function Hero({ content }: { content: ZContent }) {
     const track = el;
     const hset = el.querySelector<HTMLElement>("#hset")!;
     const n1 = el.querySelector<HTMLElement>("#n1")!;
-    const n2 = el.querySelector<HTMLElement>("#n2")!;
-    const dock = document.getElementById("dock")!;
+        const dock = document.getElementById("dock")!;
     const nav = document.getElementById("nav")!;
     const winEls = [...el.querySelectorAll<HTMLElement>(".win")];
-    const fades = [...hero.querySelectorAll<HTMLElement>("[data-fade]")];
+    const rl = hero.querySelector<HTMLElement>("#hrole")!;
+    // El nombre se desvanece con el scroll; el rol («Full Stack Developer») es lo que se acopla al navbar.
+    const fades = [hero.querySelector<HTMLElement>(".h-name")!, ...hero.querySelectorAll<HTMLElement>("[data-fade]")];
     const letters = [...n1.querySelectorAll<HTMLElement>(".ch")];
     const field = createWeightField(letters);
     let skipIntro = false;
@@ -65,7 +66,7 @@ export function Hero({ content }: { content: ZContent }) {
 
     let narrow = innerWidth < 760;
     let ready = false;
-    let m: { s1: number; s2: number; dx1: number; dy1: number; dx2: number; dy2: number } | null = null;
+    let m: { s: number; dx: number; dy: number } | null = null;
     const focusW = winEls.map(() => 0.5);
     let focus = 0, lastPick = 0, lastAuto = performance.now();
     const tint = new Map<number, [number, number, number]>();
@@ -123,15 +124,11 @@ export function Hero({ content }: { content: ZContent }) {
     function measure() {
       narrow = innerWidth < 760;
       if (calm) { place(0); return; }
-      n1.style.transform = n2.style.transform = "none";
-      const h = hero.getBoundingClientRect(), a1 = n1.getBoundingClientRect(), a2 = n2.getBoundingClientRect();
-      const b1 = dock.querySelector(".d1")!.getBoundingClientRect(), b2 = dock.querySelector(".d2")!.getBoundingClientRect();
+      rl.style.transform = "none";
+      const h = hero.getBoundingClientRect(), a1 = rl.getBoundingClientRect();
+      const b1 = dock.querySelector(".dock-role")!.getBoundingClientRect();
       // El hero está fijo (sticky) durante el acople: se mide respecto del hero y se lleva al viewport.
-      m = {
-        s1: b1.width / a1.width, s2: b2.width / a2.width,
-        dx1: b1.left - a1.left, dy1: b1.top - (a1.top - h.top),
-        dx2: b2.left - a2.left, dy2: b2.top - (a2.top - h.top),
-      };
+      m = { s: b1.width / a1.width, dx: b1.left - a1.left, dy: b1.top - (a1.top - h.top) };
     }
     const onResize = () => requestAnimationFrame(() => {
       if (disposed) return;
@@ -215,10 +212,7 @@ export function Hero({ content }: { content: ZContent }) {
         const dive = smooth(range(y, vh * 0.3, vh * 1.2));
         hero.style.setProperty("--dive", dive.toFixed(4));
         hero.style.setProperty("--gy", `${((y * 0.9) % 80).toFixed(1)}px`); // avanza por el plano; el módulo evita que se acabe la cuadrícula
-        if (m) {
-          n1.style.transform = `translate3d(${(m.dx1 * e).toFixed(2)}px, ${(m.dy1 * e).toFixed(2)}px, 0) scale(${(1 + (m.s1 - 1) * e).toFixed(4)})`;
-          n2.style.transform = `translate3d(${(m.dx2 * e).toFixed(2)}px, ${(m.dy2 * e).toFixed(2)}px, 0) scale(${(1 + (m.s2 - 1) * e).toFixed(4)})`;
-        }
+        if (m) rl.style.transform = `translate3d(${(m.dx * e).toFixed(2)}px, ${(m.dy * e).toFixed(2)}px, 0) scale(${(1 + (m.s - 1) * e).toFixed(4)})`;
         fades.forEach((f, i) => {
           const out = clamp(e * 2.4 - i * 0.06);
           f.style.opacity = (1 - out).toFixed(3);
@@ -227,7 +221,7 @@ export function Hero({ content }: { content: ZContent }) {
         });
         const docked = y >= vh * 0.5;
         nav.toggleAttribute("data-docked", docked);
-        n1.style.visibility = n2.style.visibility = docked ? "hidden" : "";
+        rl.style.visibility = docked ? "hidden" : "";
         place(dive);
       },
     };
@@ -279,7 +273,7 @@ export function Hero({ content }: { content: ZContent }) {
             </span>
             <span className="n2 serif" id="n2" aria-hidden="true"><span className="mk"><span className="ch2">{last}</span></span></span>
           </h1>
-          <p className="h-role mono" data-fade data-in="up" style={{ "--at": "380ms" } as CSSProperties}>{content.headline}</p>
+          <p className="h-role mono" id="hrole" data-in="up" style={{ "--at": "380ms" } as CSSProperties}>{content.headline}</p>
           <p className="h-lead" data-fade data-in="up" style={{ "--at": "480ms" } as CSSProperties}>{content.valueProposition}</p>
           {role && (
             <p className="h-now mono" data-fade data-in="fade" style={{ "--at": "620ms" } as CSSProperties}>

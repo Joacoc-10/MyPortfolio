@@ -9,6 +9,7 @@ import { Fragment, useCallback, useEffect, useRef, useState } from "react";
 import { kindOf, useZ } from "./ctx";
 import { createCoverflow, type Coverflow } from "./coverflow";
 import { bridge, getMotionPrefs, host, pad2, watchVisible } from "./lib";
+import { IntegrationCover } from "./IntegrationCover";
 import { TechLogo } from "./TechLogo";
 import type { ZProject } from "./types";
 
@@ -23,6 +24,14 @@ function Frame({ p }: { p: ZProject }) {
       <div className="frame">
         <div className="chrome" aria-hidden="true"><i /><i /><i /><span>{host(p.deploy)}</span></div>
         <Image src={m.src} alt={m.alt} width={m.w} height={m.h} sizes="(max-width: 700px) 78vw, (max-width: 900px) 60vw, 46vw" draggable={false} />
+      </div>
+    );
+  }
+  if (p.integration) {
+    return (
+      <div className="frame frame-type">
+        <div className="chrome" aria-hidden="true"><i /><i /><i /><span>{z("internal")}</span></div>
+        <IntegrationCover logos={p.integration.logos} />
       </div>
     );
   }
