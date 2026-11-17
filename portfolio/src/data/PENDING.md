@@ -38,3 +38,12 @@ en la web: los campos opcionales se omiten hasta que haya información confirmad
 ## Verificación manual
 
 - LinkedIn (`links.ts`) responde 999 a clientes automatizados; abrir el perfil manualmente para confirmar que el enlace funciona.
+
+## Rediseño Z-AXIS (2026)
+
+- **EmailJS**: el formulario de «Trabajemos juntos» está implementado y probado con mocks; falta crear la cuenta/servicio/plantilla
+  y cargar `NEXT_PUBLIC_EMAILJS_*` (local en `.env.local` y en Vercel). Hasta entonces el formulario avisa y ofrece el correo directo.
+- **Textos de interfaz nuevos** (namespaces `Z` y `ContactForm` en `messages/*.json`): redactados para el rediseño; revisar tono y redacción.
+  Incluyen los rasgos de «Sobre mí» (Curioso · Autodidacta · Aprendo mientras construyo) y las etiquetas de las capas (Interfaz · Lógica · Datos · Entrega).
+- «Servicios e integraciones» (capa Lógica del Stack) se toma de las tecnologías reales de los proyectos; la sección Stack original no las mostraba.
+- Se eliminó la opción «Explorar demo»/iframes del portfolio definitivo (siguen intactas en `prototypes/`).
