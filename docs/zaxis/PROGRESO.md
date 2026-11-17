@@ -10,7 +10,7 @@ Port a Next 15 / React 19 / Tailwind 4 / next-intl en `portfolio/src/features/za
 | 2 Proyectos | hecho | coverflow 3D, mazo móvil, índice, detalle (`<dialog>`), sin demos |
 | 3 Experiencia y Stack | hecho | timeline, capas con logos, carrusel de logos al final de Stack |
 | 4 Sobre mí, Contacto, Footer | hecho | formulario EmailJS con validación y estados |
-| 5 Efectos y pulido | en curso | |
-| 6 Auditoría final | pendiente | |
+| 5 Efectos y pulido | hecho | borde brillante, spotlight, sparkles únicos, hover de marca, clic geométrico en el hero |
+| 6 Auditoría final | hecho | ver `INFORME.md` |
 
 Reanudar: `cd portfolio && npm run dev`; prototipo: `node --no-warnings prototypes/serve.mjs` → http://127.0.0.1:4747/e-z-axis/

@@ -154,6 +154,7 @@ export function Hero({ content }: { content: ZContent }) {
       // foco: la ventana más cercana al puntero; sin puntero, la luz recorre los proyectos despacio
       if (active && now - lastPick > 140 && !narrow) {
         lastPick = now;
+        hset.style.cursor = winAt(pointer.x, pointer.y) ? "pointer" : "";
         let best = focus, bd = 1e9;
         winEls.forEach((w, i) => {
           if (w.hidden || +w.style.opacity < 0.3) return;
@@ -182,13 +183,23 @@ export function Hero({ content }: { content: ZContent }) {
     document.addEventListener("visibilitychange", sync);
     sync();
 
-    /* ---------- clic en una ventana: lleva al proyecto en el explorador ---------- */
-    const onClick = (e: Event) => {
-      const w = (e.target as HTMLElement).closest<HTMLElement>(".win");
-      if (!w || +w.style.opacity < 0.4) return;
-      bridge.goProject(w.dataset.id!);
+    /* ---------- clic en una ventana: lleva al proyecto en el explorador ----------
+       El hit-test nativo solo alcanza a la ventana frontal de un grupo 3D con perspectiva, así que se resuelve por
+       geometría: la ventana más cercana a la cámara (orden de la lista) cuyo recuadro contiene el puntero. */
+    const winAt = (x: number, y: number) => {
+      for (const w of winEls) {
+        if (w.hidden || +w.style.opacity < 0.4) continue;
+        const r = w.getBoundingClientRect();
+        if (x >= r.left && x <= r.right && y >= r.top && y <= r.bottom) return w;
+      }
+      return null;
     };
-    hset.addEventListener("click", onClick);
+    const onClick = (e: MouseEvent) => {
+      if ((e.target as HTMLElement).closest(".h-copy > *")) return; // el texto y los botones tienen prioridad
+      const w = winAt(e.clientX, e.clientY);
+      if (w) bridge.goProject(w.dataset.id!);
+    };
+    hero.addEventListener("click", onClick);
 
     const api = {
       /** Lo llama el único manejador de scroll de ZAxisApp. */
@@ -230,7 +241,7 @@ export function Hero({ content }: { content: ZContent }) {
       unwatch();
       removeEventListener("resize", onResize);
       document.removeEventListener("visibilitychange", sync);
-      hset.removeEventListener("click", onClick);
+      hero.removeEventListener("click", onClick);
       nav.removeAttribute("data-docked");
     };
   }, []);
