@@ -249,7 +249,7 @@ export function Hero({ content }: { content: ZContent }) {
                   <div className="win" data-id={p.id} style={{ "--i": i } as CSSProperties} key={p.id}>
                     <div className="win-in">
                       <div className="chrome" aria-hidden="true"><i /><i /><i /><span>{host(p.deploy)}</span></div>
-                      <Image src={m.src} alt="" width={m.w} height={m.h} sizes="(max-width: 760px) 62vw, (max-width: 1100px) 42vw, 640px" draggable={false} priority={i < 2} />
+                      <Image src={m.src} alt="" width={m.w} height={m.h} sizes="(max-width: 760px) 62vw, (max-width: 1100px) 42vw, 640px" draggable={false} loading={i < 3 ? "eager" : "lazy"} />
                       <b className="win-dim" aria-hidden="true" />
                     </div>
                   </div>

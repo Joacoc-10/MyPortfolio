@@ -54,6 +54,8 @@ export const viewport: Viewport = {
 // para que el hero y el coverflow nazcan estáticos y no haya salto de diseño al hidratar.
 const motionPrefsScript = `(function(){try{var d=document.documentElement,q=new URLSearchParams(location.search),rm=q.get("rm")==="1"||matchMedia("(prefers-reduced-motion: reduce)").matches,c=navigator.connection,lite=!rm&&(q.get("lite")==="1"||(c&&c.saveData)||(navigator.hardwareConcurrency||8)<=2);if(rm)d.classList.add("rm");if(lite)d.classList.add("lite")}catch(e){}})()`;
 
+const noScriptCss = `[data-reveal]{opacity:1!important;transform:none!important}.mask-line>span{transform:none!important}.sec-rule,.eyebrow::after{transform:scaleX(1)!important}.hero [data-in],.hero .ch,.hero .ch2,.hero .win-in{visibility:visible!important}.htrack{height:auto!important}.hero{position:relative!important;height:auto!important;min-height:100svh}`;
+
 export default async function LocaleLayout({ children, params }: Props) {
   const { locale } = await params;
   if (!hasLocale(routing.locales, locale)) notFound();
@@ -63,6 +65,10 @@ export default async function LocaleLayout({ children, params }: Props) {
     <html lang={locale} className={`${geistSans.variable} ${geistMono.variable} ${instrumentSerif.variable}`} suppressHydrationWarning>
       <head>
         <script dangerouslySetInnerHTML={{ __html: motionPrefsScript }} />
+        {/* Sin JavaScript: todo el contenido queda visible (las animaciones de entrada dependen de JS). */}
+        <noscript>
+          <style>{noScriptCss}</style>
+        </noscript>
       </head>
       <body>
         <NextIntlClientProvider>

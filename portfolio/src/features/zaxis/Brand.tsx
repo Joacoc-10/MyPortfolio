@@ -9,7 +9,7 @@ const SIZE = { w: 800, h: 182 };
 export function LogoLayers({ width = 124, intro = false, label = "JCoding", onIntroEnd }: { width?: number; intro?: boolean; label?: string; onIntroEnd?: () => void }) {
   return (
     <span className={`jlogo${intro ? " intro" : ""}`} style={{ "--w": `${width}px` } as CSSProperties} role="img" aria-label={label} onAnimationEnd={intro ? (e) => { if ((e.target as HTMLElement).classList.contains("jl-sheen")) onIntroEnd?.(); } : undefined}>
-      <Image className="jl-fallback" src={LOGO_SRC} alt="" width={SIZE.w} height={SIZE.h} priority unoptimized />
+      <Image className="jl-fallback" src={LOGO_SRC} alt="" width={SIZE.w} height={SIZE.h} unoptimized />
       <i className="jl-ring" aria-hidden="true" />
       <i className="jl-code" aria-hidden="true" />
       <i className="jl-word" aria-hidden="true" />

@@ -50,14 +50,13 @@ html.rm .htrack, html.lite .htrack { height: auto; }
 .h-hint { position: absolute; z-index: 6; left: 50%; bottom: 22px; translate: -50% 0; display: flex; flex-direction: column; align-items: center; gap: 10px; color: var(--mut2); font-size: 11px; pointer-events: none; }
 .h-hint i { width: 1px; height: 38px; background: linear-gradient(var(--brand), transparent); transform-origin: top; animation: hint 2.4s var(--out) infinite; }
 @keyframes hint { 0% { transform: scaleY(0); } 55% { transform: scaleY(1); opacity: 1; } 100% { transform: scaleY(1); opacity: 0; } }
-.hero:not(.go):not(.skip-intro) [data-in], .hero:not(.go):not(.skip-intro) .ch, .hero:not(.go):not(.skip-intro) .ch2, .hero:not(.go):not(.skip-intro) .win-in { visibility: hidden; }
 
 /* entrada (una sola vez): nombre → titular → texto → CTAs; la escena entra desde la profundidad sin bloquear el texto */
-html:not(.rm) .hero.go:not(.skip-intro) .ch { animation: rise 0.95s var(--out) both; animation-delay: calc(var(--i) * 45ms); }
-html:not(.rm) .hero.go:not(.skip-intro) .ch2 { animation: rise 1s var(--out) 170ms both; }
-html:not(.rm) .hero.go:not(.skip-intro) [data-in="up"] { animation: up 0.7s var(--out) both; animation-delay: var(--at, 0ms); }
-html:not(.rm) .hero.go:not(.skip-intro) [data-in="fade"] { animation: fade 0.6s ease both; animation-delay: var(--at, 0ms); }
-html:not(.rm) .hero.go:not(.skip-intro) .win-in { animation: winIn 1.3s var(--out) both; animation-delay: calc(320ms + var(--i) * 95ms); }
+html:not(.rm) .hero:not(.skip-intro) .ch { animation: rise 0.95s var(--out) both; animation-delay: calc(var(--i) * 45ms); }
+html:not(.rm) .hero:not(.skip-intro) .ch2 { animation: rise 1s var(--out) 170ms both; }
+html:not(.rm) .hero:not(.skip-intro) [data-in="up"] { animation: up 0.7s var(--out) both; animation-delay: var(--at, 0ms); }
+html:not(.rm) .hero:not(.skip-intro) [data-in="fade"] { animation: fade 0.6s ease both; animation-delay: var(--at, 0ms); }
+html:not(.rm) .hero:not(.skip-intro) .win-in { animation: winIn 1.3s var(--out) both; animation-delay: calc(320ms + var(--i) * 95ms); }
 @keyframes rise { from { transform: translateY(112%); } }
 @keyframes up { from { opacity: 0; translate: 0 10px; } }
 @keyframes fade { from { opacity: 0; } }

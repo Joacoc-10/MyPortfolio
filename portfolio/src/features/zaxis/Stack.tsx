@@ -87,7 +87,8 @@ export function Stack() {
               const cats = LAYER_MAP[ly.id].filter((c) => content.stack[c]?.length);
               const multi = cats.length > 1;
               return (
-                <li className="layer glow" data-spot data-layer={ly.id} style={{ "--n": n } as CSSProperties} data-reveal key={ly.id}>
+                <li className="layer" data-spot data-layer={ly.id} style={{ "--n": n } as CSSProperties} data-reveal key={ly.id}>
+                  <span className="spot" aria-hidden="true" />
                   <div className="ly-head">
                     <span className="ly-n mono" aria-hidden="true">0{n + 1}</span>
                     <h3 className="ly-name">{ly.name}</h3>

@@ -14,7 +14,7 @@ import type { ZProject } from "./types";
 
 const GROUPS = ["professional", "personal", "bootcamp"] as const;
 
-function Frame({ p, i }: { p: ZProject; i: number }) {
+function Frame({ p }: { p: ZProject }) {
   const z = useTranslations("Z");
   const kind = useKindLabel();
   const m = p.media[0];
@@ -22,7 +22,7 @@ function Frame({ p, i }: { p: ZProject; i: number }) {
     return (
       <div className="frame">
         <div className="chrome" aria-hidden="true"><i /><i /><i /><span>{host(p.deploy)}</span></div>
-        <Image src={m.src} alt={m.alt} width={m.w} height={m.h} sizes="(max-width: 700px) 78vw, (max-width: 900px) 60vw, 46vw" draggable={false} priority={i < 1} />
+        <Image src={m.src} alt={m.alt} width={m.w} height={m.h} sizes="(max-width: 700px) 78vw, (max-width: 900px) 60vw, 46vw" draggable={false} />
       </div>
     );
   }
@@ -157,10 +157,10 @@ export function Projects() {
         <div className="cf" id="cf" ref={cf} role="group" aria-roledescription="carousel" aria-label={z("cfLabel")} tabIndex={-1}>
           <div className="cf-stage" id="cfStage" ref={stage}>
             {projects.map((p, i) => (
-              <article key={p.id} className={`card${i === active ? " on" : ""}`} data-i={i} data-id={p.id} data-kind={p.kind} role="group" aria-roledescription="slide" aria-label={`${i + 1} / ${N} — ${p.name}`}>
-                <div className="tilt"><Frame p={p} i={i} /><span className="glare" aria-hidden="true" /></div>
+              <div key={p.id} className={`card${i === active ? " on" : ""}`} data-i={i} data-id={p.id} data-kind={p.kind} role="group" aria-roledescription="slide" aria-label={`${i + 1} / ${N} — ${p.name}`}>
+                <div className="tilt"><Frame p={p} /><span className="glare" aria-hidden="true" /></div>
                 <button className="card-hit" type="button" tabIndex={i === active ? 0 : -1} data-i={i} aria-label={(i === active ? z("open", { name: p.name }) : z("show", { name: p.name }))} />
-              </article>
+              </div>
             ))}
           </div>
         </div>
@@ -217,8 +217,8 @@ export function Projects() {
                 {(!prev || prev.kind !== p.kind) && <li className="ix-group mono" aria-hidden="true">{groupName(p.kind)}</li>}
                 <li className="row" ref={(el) => { rowsRef.current[i] = el; }} data-i={i} data-id={p.id} data-kind={p.kind} data-open={isOpen ? "" : undefined}>
                   <h3>
-                    <button className="rowbtn" type="button" aria-expanded={isOpen} aria-controls={`rp-${i}`} aria-label={z("rowOpen", { name: p.name })} onClick={() => toggleRow(i)}>
-                      <span className="rn mono">{pad2(i + 1)}</span><span className="rt">{p.name}</span>
+                    <button className="rowbtn" type="button" aria-expanded={isOpen} aria-controls={`rp-${i}`} onClick={() => toggleRow(i)}>
+                      <span className="rn mono" aria-hidden="true">{pad2(i + 1)}</span><span className="rt">{p.name}</span>
                       <span className="rk mono">{kind(p)}<span className="rar" aria-hidden="true">+</span></span>
                     </button>
                   </h3>

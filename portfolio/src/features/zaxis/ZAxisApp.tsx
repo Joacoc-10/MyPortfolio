@@ -3,12 +3,12 @@
 // Orquestador de Z-AXIS: provee el contenido, abre el detalle y mantiene UN solo manejador de scroll
 // (un frame, lecturas baratas) que alimenta al hero, al riel de profundidad, al navbar y a la línea de tiempo.
 // Idea: Full Stack es trabajar en profundidad. Cuanto más se baja, más hondo y oscuro el plano.
+import dynamic from "next/dynamic";
 import { useTranslations } from "next-intl";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { About } from "./About";
 import { Contact } from "./Contact";
 import { ZProvider } from "./ctx";
-import { Detail } from "./Detail";
 import { Experience } from "./Experience";
 import { Footer } from "./Footer";
 import { Hero } from "./Hero";
@@ -18,6 +18,9 @@ import { Projects } from "./Projects";
 import { Stack } from "./Stack";
 import { SECTIONS, sectionStore } from "./store";
 import type { ZContent } from "./types";
+
+// El diálogo de detalle no hace falta hasta que alguien abre un proyecto: se carga bajo demanda.
+const Detail = dynamic(() => import("./Detail").then((m) => m.Detail), { ssr: false });
 
 export function ZAxisApp({ content }: { content: ZContent }) {
   const nav = useTranslations("Nav");
@@ -105,6 +108,24 @@ export function ZAxisApp({ content }: { content: ZContent }) {
     addEventListener("scroll", onScroll, { passive: true });
     addEventListener("resize", onScroll);
 
+    // Spotlight y borde brillante: UN listener delegado escribe --mx/--my en la tarjeta bajo el cursor (solo ratón).
+    let spotRaf = 0;
+    let spot: { el: HTMLElement; x: number; y: number } | null = null;
+    const onSpot = (e: PointerEvent) => {
+      if (e.pointerType !== "mouse" || prefs.calm) return;
+      const el = (e.target as Element).closest<HTMLElement>("[data-spot]");
+      if (!el) return;
+      spot = { el, x: e.clientX, y: e.clientY };
+      if (!spotRaf) spotRaf = requestAnimationFrame(() => {
+        spotRaf = 0;
+        if (!spot) return;
+        const r = spot.el.getBoundingClientRect();
+        spot.el.style.setProperty("--mx", `${(spot.x - r.left).toFixed(0)}px`);
+        spot.el.style.setProperty("--my", `${(spot.y - r.top).toFixed(0)}px`);
+      });
+    };
+    document.addEventListener("pointermove", onSpot, { passive: true });
+
     // Al cambiar de idioma se restaura la posición (el hero omite la intro).
     let restoreY: number | null = null;
     try {
@@ -118,6 +139,8 @@ export function ZAxisApp({ content }: { content: ZContent }) {
     return () => {
       removeEventListener("scroll", onScroll);
       removeEventListener("resize", onScroll);
+      document.removeEventListener("pointermove", onSpot);
+      if (spotRaf) cancelAnimationFrame(spotRaf);
       mq.removeEventListener("change", onMq);
       io?.disconnect();
       delete root.dataset.ready;
@@ -144,7 +167,7 @@ export function ZAxisApp({ content }: { content: ZContent }) {
         <Contact content={content} />
       </main>
       <Footer content={content} />
-      <Detail index={detail} onClose={closeDetail} onStep={step} />
+      {detail !== null && <Detail index={detail} onClose={closeDetail} onStep={step} />}
     </ZProvider>
   );
 }

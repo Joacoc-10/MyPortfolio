@@ -61,7 +61,7 @@ export function Experience() {
                           const badge = p.pilot ? c("activePilot") : p.inProduction ? c("inProduction") : null;
                           return (
                             <li key={p.id}>
-                              <button type="button" className={`jp glow${p.featured ? " is-featured" : ""}`} data-spot style={{ "--ji": ji } as React.CSSProperties} aria-label={z("openProject", { name: p.name })} onClick={(e) => openDetail(p.id, e.currentTarget)}>
+                              <div className={`jp glow${p.featured ? " is-featured" : ""}`} data-spot style={{ "--ji": ji } as React.CSSProperties}>
                                 {p.featured && <Sparkles />}
                                 <span className="jp-thumb" aria-hidden="true">
                                   {m ? <Image src={m.src} alt="" width={m.w} height={m.h} sizes="(max-width: 860px) 90vw, 230px" draggable={false} /> : <span className="serif">{p.name.split(" ")[0]}</span>}
@@ -71,7 +71,7 @@ export function Experience() {
                                     {p.featured && <span className="mono jp-feat">{t("featured")}</span>}
                                     {badge && <span className={`badge${p.pilot ? " pilot" : ""}`}>{badge}</span>}
                                   </span>
-                                  <span className="jp-name">{p.name}</span>
+                                  <button type="button" className="jp-name jp-hit" aria-haspopup="dialog" aria-label={z("openProject", { name: p.name })} onClick={(e) => openDetail(p.id, e.currentTarget)}>{p.name}</button>
                                   <span className="jp-sum">{p.summary}</span>
                                   <span className="jp-tech" aria-hidden="true">
                                     {p.techs.slice(0, 3).map((tc) => <i className="tc" key={tc.id} style={tc.brandColor ? ({ "--c": tc.brandColor } as React.CSSProperties) : undefined}><TechLogo tech={tc} size={12} />{tc.name}</i>)}
@@ -79,7 +79,7 @@ export function Experience() {
                                   </span>
                                 </span>
                                 <span className="jp-go" aria-hidden="true">→</span>
-                              </button>
+                              </div>
                             </li>
                           );
                         })}

@@ -97,8 +97,10 @@ html.rm .marquee-set[data-duplicate], html.lite .marquee-set[data-duplicate] { d
 @media (hover: hover) and (pointer: fine) { .glow:hover::before, .glow:hover::after { opacity: 1; } }
 .glow > * { position: relative; z-index: 1; }
 .glow.is-featured::after { opacity: 0.8; background: radial-gradient(240px circle at var(--mx, 88%) var(--my, 0%), rgba(45, 212, 191, 0.9), transparent 70%), linear-gradient(135deg, rgba(45, 212, 191, 0.55), transparent 38%, transparent 70%, rgba(45, 212, 191, 0.3)); }
-.panel.glow > .panel-in, .layer.glow > * { z-index: 1; }
-.layer.glow { overflow: hidden; }
+.layer .spot { position: absolute; inset: 0; z-index: 0; pointer-events: none; opacity: 0; transition: opacity 0.4s var(--out); background: radial-gradient(460px circle at var(--mx, 50%) var(--my, 0%), rgba(155, 214, 255, 0.09), transparent 62%); }
+.layer > :not(.spot) { position: relative; z-index: 1; }
+@media (hover: hover) and (pointer: fine) { .layer:hover .spot { opacity: 1; } }
+html.rm .layer .spot, html.lite .layer .spot { display: none; }
 .jp .sparkles { position: absolute; inset: 0; z-index: 3; pointer-events: none; }
 .sparkles i { position: absolute; left: var(--x); top: var(--y); width: 3px; height: 3px; border-radius: 9999px; background: #a7f3e9; box-shadow: 0 0 6px 1px rgba(45, 212, 191, 0.8); opacity: 0.15; animation: twinkle var(--duration, 4s) ease-in-out infinite; animation-delay: var(--delay, 0s); }
 @keyframes twinkle { 0%, 100% { opacity: 0.15; transform: scale(0.7); } 50% { opacity: 1; transform: scale(1.15); } }
@@ -112,3 +114,12 @@ html.rm .htrack, html.lite .htrack { height: auto; }
 html.rm .hero [data-in], html.rm .hero .ch, html.rm .hero .ch2, html.rm .hero .win-in,
 html.lite .hero [data-in], html.lite .hero .ch, html.lite .hero .ch2, html.lite .hero .win-in { visibility: visible !important; }
 .reveal-fallback [data-reveal] { opacity: 1; transform: none; }
+
+/* tarjeta de proyecto en Experiencia: el nombre es el único botón y su ::after cubre toda la tarjeta (patrón «stretched link»):
+   el nombre accesible es el del proyecto y el clic funciona en cualquier parte de la tarjeta. */
+.jp { position: relative; cursor: pointer; text-align: left; }
+.jp.glow > .jp-txt { position: static; }
+.jp-name.jp-hit { display: block; text-align: left; letter-spacing: -0.03em; }
+.jp-hit::after { content: ""; position: absolute; inset: 0; z-index: 3; border-radius: 16px; }
+.jp-hit:focus-visible { outline: none; }
+.jp:has(.jp-hit:focus-visible) { outline: 2px solid var(--brand); outline-offset: 3px; }

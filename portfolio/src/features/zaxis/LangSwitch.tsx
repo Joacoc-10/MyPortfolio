@@ -30,7 +30,7 @@ export function LangSwitch({ idPrefix }: { idPrefix: string }) {
             scroll={false}
             lang={target}
             hrefLang={target}
-            aria-label={target === "en" ? t("switchToEnglish") : t("switchToSpanish")}
+            aria-label={`${target.toUpperCase()}: ${target === "en" ? t("switchToEnglish") : t("switchToSpanish")}`}
             onClick={remember}
             className="seg-link"
           >

@@ -16,6 +16,7 @@ interface WeightOpts {
 export function createWeightField(letters: HTMLElement[], { min = 330, rest = 440, max = 800, mid = 560, radius = 170, wave = 0.3, ampX = 1 }: WeightOpts = {}) {
   const amp = letters.map(() => 0);
   const last = letters.map(() => -1);
+  let settled = false;
   const base = (l: HTMLElement) => {
     l.style.fontWeight = String(rest);
   };
@@ -32,10 +33,12 @@ export function createWeightField(letters: HTMLElement[], { min = 330, rest = 44
       base(l);
     });
     last.fill(-1);
+    settled = false;
   }
 
   /** `strength` 0..1 permite apagar el efecto (p. ej. mientras el nombre se acopla). */
   function tick(now: number, strength = 1) {
+    if (strength < 0.01 && settled) return; // apagado y en reposo: ni una lectura de layout
     const rects = letters.map((l) => l.getBoundingClientRect());
     const hasPointer = pointer.x > -999 && now - pointer.last < 2600;
     const out: number[] = new Array(letters.length);
@@ -52,6 +55,7 @@ export function createWeightField(letters: HTMLElement[], { min = 330, rest = 44
       amp[i] = lerp(amp[i], t * strength, 0.16);
       out[i] = strength < 0.01 && amp[i] < 0.01 ? rest : Math.round(lerp(rest, max, amp[i]));
     }
+    settled = strength < 0.01 && amp.every((a) => a < 0.01);
     for (let i = 0; i < letters.length; i++) {
       const w = clamp(out[i], min, max);
       if (w !== last[i]) {
@@ -65,6 +69,7 @@ export function createWeightField(letters: HTMLElement[], { min = 330, rest = 44
     letters.forEach(base);
     amp.fill(0);
     last.fill(-1);
+    settled = false;
   }
   return { fix, tick, reset };
 }
