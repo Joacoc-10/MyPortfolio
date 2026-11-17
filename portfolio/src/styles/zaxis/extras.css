@@ -1,0 +1,114 @@
+/* Z-AXIS · extras de la implementación real (no existen en el prototipo):
+   logos de tecnologías, carrusel, formulario de contacto, efectos selectivos y estados sin JavaScript / reducidos. */
+
+/* ---------- 404 ---------- */
+.nf { min-height: 100svh; display: grid; place-content: center; justify-items: center; gap: 14px; padding: 24px; text-align: center; }
+.nf-code { color: var(--brand); }
+.nf-title { font-size: clamp(2rem, 6vw, 3.4rem); font-weight: 400; letter-spacing: -0.04em; line-height: 1.05; }
+.nf-text { color: var(--mut); margin-bottom: 10px; }
+
+/* ---------- selector de idioma con enlaces reales ---------- */
+.seg a { display: inline-grid; place-items: center; min-width: 36px; min-height: 28px; padding: 0 9px; border-radius: 999px; color: var(--mut); text-decoration: none; transition: background-color 0.2s, color 0.2s; }
+@media (hover: hover) { .seg a:hover { color: var(--ink); } }
+
+/* ---------- logos de tecnologías ----------
+   Íconos de marca (react-icons) con currentColor; sin ícono → monograma neutro. Al pasar el cursor (o enfocar)
+   el logo toma el color de marca (--c) de la tecnología. */
+.tl { display: inline-grid; place-items: center; flex: none; width: var(--sz, 16px); height: var(--sz, 16px); color: var(--mut); transition: color 0.25s var(--out), transform 0.35s var(--out), filter 0.35s; }
+.tl svg { display: block; }
+.tl-mono b { display: grid; place-items: center; width: 100%; height: 100%; border: 1px solid currentColor; border-radius: 28%; font-family: var(--mono); font-weight: 500; font-size: calc(var(--sz) * 0.46); letter-spacing: -0.02em; line-height: 1; }
+.tc:hover .tl, .tc:focus-visible .tl, .tc:focus-within .tl, .tc[aria-pressed="true"] .tl { color: var(--c, var(--ice)); transform: scale(1.12); }
+.tc:hover .tl:not(.tl-mono), .tc[aria-pressed="true"] .tl:not(.tl-mono) { filter: drop-shadow(0 0 8px color-mix(in srgb, var(--c, var(--ice)) 55%, transparent)); }
+.chip, .tech, .techs li, .ft-tech li, .m-type-tech li, .jp-tech i, .d-chips li { display: inline-flex; align-items: center; gap: 8px; }
+.chip .tl, .techs .tl, .jp-tech .tl, .d-chips .tl, .ft-tech .tl, .m-type-tech .tl { color: #c3cbda; }
+.tech .tl { color: #c3cbda; }
+.ft-tech li, .m-type-tech li { gap: 6px; }
+.jp-tech i { gap: 6px; }
+.jp-tech .tl { color: var(--mut); }
+
+/* ---------- carrusel de logos (cierre de Stack → Sobre mí) ---------- */
+.stack { padding-bottom: 0; }
+.stack::after { content: ""; position: absolute; inset: auto 0 0 0; height: 40%; pointer-events: none; background: linear-gradient(transparent, #04060a 92%, #04060a); z-index: 0; }
+.marquee { position: relative; z-index: 1; margin-top: clamp(56px, 8vw, 110px); padding-block: clamp(26px, 4vw, 44px); overflow: hidden; border-block: 1px solid var(--line); background: rgba(5, 8, 13, 0.5); -webkit-mask-image: linear-gradient(to right, transparent, #000 10%, #000 90%, transparent); mask-image: linear-gradient(to right, transparent, #000 10%, #000 90%, transparent); --marquee-duration: 80s; }
+.marquee-track { display: flex; width: max-content; animation: marquee var(--marquee-duration) linear infinite; will-change: transform; }
+.marquee:hover .marquee-track { animation-play-state: paused; }
+.marquee-set { display: flex; flex-shrink: 0; }
+.marquee-item { display: flex; flex-direction: column; align-items: center; gap: 0.7rem; min-width: 5.5rem; margin-inline: clamp(14px, 2vw, 24px); padding-block: 6px; color: var(--mut); font-family: var(--mono); font-size: 0.75rem; white-space: nowrap; transition: color 0.3s; }
+.marquee-item .tl { color: var(--mut2); }
+.marquee-item:hover { color: var(--ink); }
+.marquee-item:hover .tl { color: var(--c, var(--ink)); transform: translateY(-3px) scale(1.12); }
+.marquee-bottom { height: clamp(48px, 8vw, 96px); }
+@keyframes marquee { to { transform: translateX(-50%); } }
+@media (max-width: 640px) { .marquee { --marquee-duration: 60s; } }
+/* Sin movimiento: grilla estática centrada, sin copia duplicada ni degradado */
+html.rm .marquee, html.lite .marquee { -webkit-mask-image: none; mask-image: none; }
+html.rm .marquee-track, html.lite .marquee-track { width: auto; animation: none; justify-content: center; }
+html.rm .marquee-set, html.lite .marquee-set { flex-shrink: 1; flex-wrap: wrap; justify-content: center; row-gap: 10px; }
+html.rm .marquee-set[data-duplicate], html.lite .marquee-set[data-duplicate] { display: none; }
+@media (prefers-reduced-motion: reduce) {
+  .marquee { -webkit-mask-image: none; mask-image: none; }
+  .marquee-track { width: auto; animation: none; justify-content: center; }
+  .marquee-set { flex-shrink: 1; flex-wrap: wrap; justify-content: center; row-gap: 10px; }
+  .marquee-set[data-duplicate] { display: none; }
+}
+
+/* ---------- contacto: correo + formulario ---------- */
+.ct-grid { display: grid; grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr); gap: clamp(32px, 6vw, 96px); align-items: start; margin-top: clamp(40px, 6vw, 80px); }
+.ct-grid .ct-links { margin-top: 0; max-width: none; }
+@media (max-width: 1000px) { .ct-grid { grid-template-columns: 1fr; } }
+.cform { position: relative; display: grid; gap: 18px; padding: clamp(22px, 3vw, 34px); border: 1px solid var(--line2); border-radius: 20px; background: linear-gradient(160deg, rgba(14, 21, 34, 0.78), rgba(8, 12, 20, 0.78)); -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); box-shadow: 0 40px 100px rgba(0, 0, 0, 0.45); }
+.cform-title { font-size: clamp(1.5rem, 2.4vw, 2rem); font-weight: 400; letter-spacing: -0.03em; line-height: 1.1; }
+.cform-lead { margin-top: -10px; color: var(--mut); font-size: 15px; }
+.field { display: grid; gap: 8px; }
+.field label { font-family: var(--mono); font-size: 11.5px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--mut); }
+.field input, .field textarea { width: 100%; min-height: 48px; padding: 12px 16px; border: 1px solid var(--line2); border-radius: 12px; background: rgba(5, 7, 11, 0.6); color: var(--ink); font: inherit; font-size: 16px; line-height: 1.5; transition: border-color 0.2s, background-color 0.2s, box-shadow 0.2s; }
+.field textarea { resize: vertical; min-height: 140px; }
+.field input::placeholder, .field textarea::placeholder { color: #6f7b90; }
+.field input:hover, .field textarea:hover { border-color: rgba(190, 215, 255, 0.45); }
+.field input:focus-visible, .field textarea:focus-visible { outline: none; border-color: var(--brand); box-shadow: 0 0 0 3px rgba(45, 212, 191, 0.2); background: rgba(5, 7, 11, 0.85); }
+.field [aria-invalid="true"] { border-color: #ff8a7a; }
+.field [aria-invalid="true"]:focus-visible { box-shadow: 0 0 0 3px rgba(255, 138, 122, 0.22); }
+.field-err { color: #ff9d8f; font-size: 14px; line-height: 1.4; }
+.field-count { justify-self: end; color: var(--mut2); font-size: 11px; }
+.field-count.over { color: #ff9d8f; }
+.hp { position: absolute; left: -9999px; top: auto; width: 1px; height: 1px; overflow: hidden; }
+.cform-summary, .cform-error { padding: 12px 14px; border: 1px solid rgba(255, 138, 122, 0.5); border-radius: 12px; background: rgba(255, 138, 122, 0.08); color: #ffc3ba; font-size: 14.5px; line-height: 1.5; }
+.cform-error a { color: var(--ink); text-underline-offset: 3px; }
+.cform-send { width: 100%; min-height: 52px; }
+.cform-send .spin { width: 18px; height: 18px; border-radius: 50%; border: 2px solid rgba(4, 32, 28, 0.35); border-top-color: var(--brand-ink); animation: spin 0.8s linear infinite; }
+@keyframes spin { to { rotate: 360deg; } }
+.cform-done { justify-items: start; align-content: center; min-height: 340px; }
+.cform-check { display: grid; place-items: center; width: 56px; height: 56px; border-radius: 50%; color: var(--brand); border: 1px solid rgba(45, 212, 191, 0.5); background: rgba(45, 212, 191, 0.1); }
+.cform-check svg { width: 26px; height: 26px; }
+.cform-ok { font-size: clamp(1.6rem, 3vw, 2.2rem); font-weight: 400; letter-spacing: -0.03em; }
+.cform-done p { color: #c3cbda; max-width: 38ch; }
+@media (max-width: 700px) { .ct-actions .btn { flex: 1 1 auto; } }
+
+/* ---------- efectos selectivos ----------
+   · Borde brillante y spotlight que siguen al cursor (.glow + [data-spot]; --mx/--my los escribe un solo listener).
+   · Sparkles en UN único punto destacado (el proyecto destacado de la experiencia).
+   Todo es opacidad/gradiente (sin layout); sin cursor fino o con movimiento reducido no se muestra. */
+.glow { position: relative; --mx: 50%; --my: 0%; }
+.glow::before, .glow::after { content: ""; position: absolute; inset: 0; border-radius: inherit; pointer-events: none; opacity: 0; transition: opacity 0.4s var(--out); }
+.glow::before { z-index: 0; background: radial-gradient(380px circle at var(--mx) var(--my), rgb(var(--tr, 45) var(--tg, 212) var(--tb, 191) / 0.1), transparent 65%); }
+.glow::after { z-index: 2; padding: 1px; background: radial-gradient(260px circle at var(--mx) var(--my), rgba(45, 212, 191, 0.85), transparent 70%);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0); -webkit-mask-composite: xor; mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0); mask-composite: exclude; }
+.glow:focus-within::after { opacity: 0.5; }
+@media (hover: hover) and (pointer: fine) { .glow:hover::before, .glow:hover::after { opacity: 1; } }
+.glow > * { position: relative; z-index: 1; }
+.glow.is-featured::after { opacity: 0.8; background: radial-gradient(240px circle at var(--mx, 88%) var(--my, 0%), rgba(45, 212, 191, 0.9), transparent 70%), linear-gradient(135deg, rgba(45, 212, 191, 0.55), transparent 38%, transparent 70%, rgba(45, 212, 191, 0.3)); }
+.panel.glow > .panel-in, .layer.glow > * { z-index: 1; }
+.layer.glow { overflow: hidden; }
+.jp .sparkles { position: absolute; inset: 0; z-index: 3; pointer-events: none; }
+.sparkles i { position: absolute; left: var(--x); top: var(--y); width: 3px; height: 3px; border-radius: 9999px; background: #a7f3e9; box-shadow: 0 0 6px 1px rgba(45, 212, 191, 0.8); opacity: 0.15; animation: twinkle var(--duration, 4s) ease-in-out infinite; animation-delay: var(--delay, 0s); }
+@keyframes twinkle { 0%, 100% { opacity: 0.15; transform: scale(0.7); } 50% { opacity: 1; transform: scale(1.15); } }
+html.rm .glow::before, html.lite .glow::before { display: none; }
+html.rm .sparkles i, html.lite .sparkles i { animation: none; opacity: 0.55; }
+@media (prefers-reduced-motion: reduce) { .sparkles i { animation: none; opacity: 0.55; } }
+
+/* ---------- estados sin JavaScript, reducidos y modestos (antes de hidratar) ---------- */
+html.rm .hero, html.lite .hero { position: relative; height: auto; min-height: 100svh; }
+html.rm .htrack, html.lite .htrack { height: auto; }
+html.rm .hero [data-in], html.rm .hero .ch, html.rm .hero .ch2, html.rm .hero .win-in,
+html.lite .hero [data-in], html.lite .hero .ch, html.lite .hero .ch2, html.lite .hero .win-in { visibility: visible !important; }
+.reveal-fallback [data-reveal] { opacity: 1; transform: none; }
