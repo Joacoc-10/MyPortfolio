@@ -3,7 +3,7 @@
 import { useTranslations } from "next-intl";
 import { useEffect, useRef, useState } from "react";
 import { withEm } from "./About";
-import { ContactForm } from "./ContactForm";
+import { MessagePortal } from "./MessagePortal";
 import { IconGitHub, IconLinkedIn } from "./icons";
 import { bindPointer, createLoop, getMotionPrefs, watchVisible } from "./lib";
 import type { ZContent } from "./types";
@@ -82,20 +82,18 @@ export function Contact({ content }: { content: ZContent }) {
           <a className="btn primary" href={`mailto:${email}`}>{t("sendEmail")}</a>
           <button className="btn" type="button" id="ctCopy" onClick={copy}>{t("copyEmail")}</button>
         </div>
-        <div className="ct-grid">
-          <div className="ct-links" data-reveal>
-            <p className="mono ct-links-l">{z("contactLinks")}</p>
-            <ul>
-              {rows.map((r) => (
-                <li key={r.href}>
-                  <a href={r.href} {...(r.ext ? { target: "_blank", rel: "noopener noreferrer", "aria-label": `${r.label} (${c("opensInNewTab")})` } : {})} {...(r.dl ? { download: true, hrefLang: r.lg } : {})}>
-                    {r.ic}<span>{r.label}</span><b aria-hidden="true">{r.dl ? "↓" : "↗"}</b>
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
-          <div className="ct-form" data-reveal><ContactForm email={email} /></div>
+        <MessagePortal email={email} />
+        <div className="ct-links" data-reveal>
+          <p className="mono ct-links-l">{z("contactLinks")}</p>
+          <ul>
+            {rows.map((r) => (
+              <li key={r.href}>
+                <a href={r.href} {...(r.ext ? { target: "_blank", rel: "noopener noreferrer", "aria-label": `${r.label} (${c("opensInNewTab")})` } : {})} {...(r.dl ? { download: true, hrefLang: r.lg } : {})}>
+                  {r.ic}<span>{r.label}</span><b aria-hidden="true">{r.dl ? "↓" : "↗"}</b>
+                </a>
+              </li>
+            ))}
+          </ul>
         </div>
       </div>
       <div className={`toast${toast ? " on" : ""}${toast?.bad ? " bad" : ""}`} id="toast" role="status" aria-live="polite">{toast?.text}</div>

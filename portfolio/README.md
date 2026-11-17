@@ -29,7 +29,8 @@ src/features/zaxis/
   coverflow.ts              motor 3D del coverflow / mazo móvil (rAF, sin renders de React por frame)
   weight.ts                 campo de peso tipográfico (nombre del hero y correo)
   TechLogo.tsx              logo de marca (react-icons) o monograma neutro
-  ContactForm.tsx · email.ts formulario + envío con EmailJS
+  MessagePortal.tsx · email.ts  formulario «Message Portal» + envío con EmailJS
+  portal/                       escena 3D (Three.js, carga diferida): scene · parts · portal · particles · motion · driver
 src/styles/zaxis/           CSS del sistema visual (base, hero, projects, detail, sections, extras)
 messages/{es,en}.json       textos; los de la interfaz Z-AXIS están en «Z» y «ContactForm»
 ```

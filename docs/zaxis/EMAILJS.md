@@ -1,6 +1,6 @@
 # Conectar EmailJS (guía para tu cuenta personal)
 
-Estado: el formulario (`portfolio/src/features/zaxis/ContactForm.tsx` + `email.ts`) está implementado y probado con mocks de red.
+Estado: el formulario (`portfolio/src/features/zaxis/MessagePortal.tsx` + `email.ts`) está implementado y probado con mocks de red.
 **No hay credenciales en el repo** y no se reutiliza ninguna de otros proyectos. Falta lo que solo vos podés hacer en tu cuenta.
 Los nombres de menús de EmailJS pueden variar un poco; si algo no coincide, buscá la opción equivalente en https://dashboard.emailjs.com.
 
