@@ -13,8 +13,8 @@ import type { ZContent } from "./types";
 import { createWeightField } from "./weight";
 
 // Fabio Producciones ocupa SIEMPRE la última ventana (la más profunda) del recorrido, en escritorio y en móvil.
-const WIDE_IDS = ["order-a", "zatobox", "nexvia", "florencia-biaturi", "olibar", "fabio-producciones"];
-const NARROW_IDS = ["order-a", "zatobox", "fabio-producciones"];
+const WIDE_IDS = ["order-a", "nexvia", "zatobox", "olibar", "florencia-biaturi", "fabio-producciones"];
+const NARROW_IDS = ["order-a", "nexvia", "fabio-producciones"];
 interface Pose { x: number; y: number; z: number; ry: number; rx: number }
 // x, y: fracción del viewport desde el centro · z: profundidad (px) · ry, rx: giro (°)
 const POSES_WIDE: Pose[] = [

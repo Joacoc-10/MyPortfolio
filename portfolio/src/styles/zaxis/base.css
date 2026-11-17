@@ -196,7 +196,7 @@ body { background: var(--bg); color: var(--ink); font-family: var(--sans); font-
    Escritorio: logo · navegación · idioma+redes / copyright · volver arriba.
    Móvil: logo + botón «arriba» · navegación en rejilla de 3 · idioma y redes en una fila · copyright. */
 .foot { position: relative; z-index: 2; border-top: 1px solid var(--line); padding-block: 56px 36px; background: rgba(3, 5, 10, 0.96); }
-.foot-grid { display: grid; grid-template-columns: auto 1fr auto; grid-template-areas: "logo nav side" "copy copy up"; align-items: center; row-gap: 36px; }
+.foot-grid { display: grid; grid-template-columns: auto 1fr auto; grid-template-areas: "logo nav side"; align-items: center; row-gap: 36px; }
 .foot-logo { grid-area: logo; display: block; }
 .foot-logo img { width: 150px; height: auto; }
 .foot nav { grid-area: nav; padding-inline: 48px; }
@@ -208,8 +208,10 @@ body { background: var(--bg); color: var(--ink); font-family: var(--sans); font-
 .foot-social a { display: grid; place-items: center; width: 44px; height: 44px; border: 1px solid var(--line); border-radius: 50%; color: var(--mut); transition: color 0.2s, border-color 0.2s; }
 .foot-social a:hover { color: var(--ink); border-color: var(--brand); }
 .foot-social svg { width: 18px; height: 18px; fill: currentColor; }
-.foot-copy { grid-area: copy; padding-top: 22px; border-top: 1px solid var(--line); color: var(--mut2); font-size: 14px; }
-.foot-up { grid-area: up; padding-top: 22px; border-top: 1px solid var(--line); align-self: stretch; display: flex; align-items: center; justify-content: flex-end; }
+/* La línea pertenece a la fila completa (no a una columna del grid): continua de borde a borde del contenedor. */
+.foot-bot { grid-column: 1 / -1; display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-top: 22px; border-top: 1px solid var(--line); }
+.foot-copy { grid-area: copy; color: var(--mut2); font-size: 14px; }
+.foot-up { grid-area: up; display: flex; align-items: center; justify-content: flex-end; }
 .foot-up a { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; color: var(--mut); text-decoration: none; font-size: 14px; }
 .foot-up a:hover { color: var(--ink); }
 @media (max-width: 860px) {
@@ -220,7 +222,8 @@ body { background: var(--bg); color: var(--ink); font-family: var(--sans); font-
   .foot nav ul { display: grid; grid-template-columns: repeat(3, auto); justify-content: space-between; gap: 0 12px; }
   .foot nav a { padding: 9px 0; }
   .foot-side { justify-content: space-between; }
-  .foot-copy { padding-top: 16px; font-size: 13px; line-height: 1.5; }
+  .foot-bot { display: contents; }
+  .foot-copy { padding-top: 16px; border-top: 1px solid var(--line); font-size: 13px; line-height: 1.5; }
   .foot-up { padding: 0; border: 0; align-self: center; }
   .foot-up a { width: 44px; height: 44px; min-height: 0; justify-content: center; border: 1px solid var(--line2); border-radius: 50%; color: var(--ink); }
   .foot-up a:hover, .foot-up a:active { border-color: var(--brand); color: var(--brand); }

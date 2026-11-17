@@ -132,3 +132,8 @@ html.rm .card, html.lite .card { transition: opacity 0.2s; }
 }
 @media (max-width: 1000px) { .panel-in { grid-template-columns: 1fr 1fr; } .p-side { grid-column: 1 / -1; } }
 @media (max-width: 700px) { .panel { padding: 20px; } .p-sum { -webkit-line-clamp: 7; line-clamp: 7; } }
+
+/* pieza gráfica (portada, no captura): proporción original, sin recorte 16:10 */
+.frame-full img { aspect-ratio: auto; object-fit: contain; }
+.rshot-full { aspect-ratio: auto; }
+.rshot-full img { height: auto; object-fit: contain; }

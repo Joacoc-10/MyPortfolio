@@ -9,7 +9,6 @@ import { Fragment, useCallback, useEffect, useRef, useState } from "react";
 import { kindOf, useZ } from "./ctx";
 import { createCoverflow, type Coverflow } from "./coverflow";
 import { bridge, getMotionPrefs, host, pad2, watchVisible } from "./lib";
-import { IntegrationCover } from "./IntegrationCover";
 import { TechLogo } from "./TechLogo";
 import type { ZProject } from "./types";
 
@@ -21,17 +20,9 @@ function Frame({ p }: { p: ZProject }) {
   const m = p.media[0];
   if (m) {
     return (
-      <div className="frame">
-        <div className="chrome" aria-hidden="true"><i /><i /><i /><span>{host(p.deploy)}</span></div>
+      <div className={`frame${m.full ? " frame-full" : ""}`}>
+        <div className="chrome" aria-hidden="true"><i /><i /><i /><span>{host(p.deploy) || z("internal")}</span></div>
         <Image src={m.src} alt={m.alt} width={m.w} height={m.h} sizes="(max-width: 700px) 78vw, (max-width: 900px) 60vw, 46vw" draggable={false} />
-      </div>
-    );
-  }
-  if (p.integration) {
-    return (
-      <div className="frame frame-type">
-        <div className="chrome" aria-hidden="true"><i /><i /><i /><span>{z("internal")}</span></div>
-        <IntegrationCover logos={p.integration.logos} />
       </div>
     );
   }
@@ -233,7 +224,7 @@ export function Projects() {
                   </h3>
                   <div className="rp" id={`rp-${i}`} role="region" aria-label={p.name} inert={!isOpen}>
                     <div className="rpi"><div className="rbody">
-                      <div className="rshot" aria-hidden="true">
+                      <div className={`rshot${m?.full ? " rshot-full" : ""}`} aria-hidden="true">
                         {m ? <Image src={m.src} alt="" width={m.w} height={m.h} sizes="(max-width: 760px) 100vw, 40vw" draggable={false} /> : <div className="rshot-t serif">{p.name}</div>}
                       </div>
                       <div className="rinfo">

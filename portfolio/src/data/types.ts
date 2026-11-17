@@ -68,6 +68,8 @@ interface ProjectMediaBase {
 
 export interface ProjectImage extends ProjectMediaBase {
   type: "image";
+  /** Pieza gráfica (no captura): se muestra completa en su proporción original, sin recorte 16:10. */
+  full?: boolean;
 }
 
 /** Reservado para una fase futura: el modelo ya lo admite, pero hoy no se usa ninguno. */
@@ -78,15 +80,6 @@ export interface ProjectVideo extends ProjectMediaBase {
 }
 
 export type ProjectMedia = ProjectImage | ProjectVideo;
-
-/** Logo oficial de una plataforma integrada (archivo en /public, sin alterar). */
-export interface IntegrationLogo {
-  src: string;
-  /** Nombre de la marca (texto alternativo). */
-  alt: string;
-  width: number;
-  height: number;
-}
 
 export type ProjectKind = "professional" | "personal" | "bootcamp";
 
@@ -113,10 +106,5 @@ export interface Project {
   inProduction?: boolean;
   /** Etapa comercial, independiente de `inProduction` (ej. "pilot": en producción pero aún en piloto con comercios reales). */
   stage?: "pilot";
-  /**
-   * Portada para proyectos sin capturas que integran dos plataformas (ej. UES × Mercado Libre):
-   * los logos reales sobre fondo oscuro. Si se omite, se usa la portada tipográfica.
-   */
-  integration?: { logos: [IntegrationLogo, IntegrationLogo] };
   links: { deploy?: string; repo?: string };
 }

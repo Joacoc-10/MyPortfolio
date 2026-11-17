@@ -30,8 +30,10 @@ export function Footer({ content }: { content: ZContent }) {
             <a href={content.links.linkedin} target="_blank" rel="noopener noreferrer" aria-label={`LinkedIn${ext}`}><IconLinkedIn /></a>
           </div>
         </div>
+        <div className="foot-bot">
         <p className="foot-copy">© <CurrentYear /> JCoding. {t("rights")}</p>
         <div className="foot-up"><a href="#top"><span aria-hidden="true">↑</span><span className="foot-up-t">{t("backToTop")}</span></a></div>
+        </div>
       </div>
     </footer>
   );

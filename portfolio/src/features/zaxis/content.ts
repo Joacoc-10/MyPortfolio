@@ -30,12 +30,12 @@ export function getZContent(locale: Locale): ZContent {
       src: m.src,
       alt: m.alt[locale],
       ...(m.caption ? { caption: m.caption[locale] } : {}),
+      ...(m.full ? { full: true } : {}),
       w: m.width,
       h: m.height,
     })),
     ...(p.links.deploy ? { deploy: p.links.deploy } : {}),
     ...(p.links.repo ? { repo: p.links.repo } : {}),
-    ...(p.integration ? { integration: p.integration } : {}),
   }));
 
   const stack = {} as Record<TechCategory, ZTech[]>;

@@ -193,7 +193,20 @@ export const projects: Project[] = [
       ],
     },
     techIds: ["java", "spring-boot", "hibernate", "flyway", "mariadb", "sqs", "react", "typescript", "docker"],
-    // Sistema interno: sin URL pública. No se usan logos de UES ni de Mercado Libre.
+    // Sistema interno: sin URL pública. La portada es una pieza gráfica 16:9 (no una captura): se muestra completa, sin recortar.
+    media: [
+      {
+        type: "image",
+        src: "/images/projects/ues-mercado-libre/ues-mercado-libre-cover.png",
+        alt: {
+          es: "Portada de UES × Mercado Libre: los logos de ambas plataformas unidos por un conector de código",
+          en: "UES × Mercado Libre cover: both platforms' logos joined by a code connector",
+        },
+        width: 1672,
+        height: 941,
+        full: true,
+      },
+    ],
     links: {},
   },
 

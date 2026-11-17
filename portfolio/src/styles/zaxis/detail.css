@@ -63,3 +63,5 @@
   .d-info { overflow: visible; }
 }
 html.rm .detail[open], html.rm .detail[open]::backdrop { animation: none; }
+
+.g-full img { aspect-ratio: auto; object-fit: contain; }

@@ -173,15 +173,3 @@ html.lite .hero [data-in], html.lite .hero .ch, html.lite .hero .ch2, html.lite 
   .cform { padding: 20px; }
 }
 
-/* portada de integración: logos reales + conector sutil (sin captura ficticia) */
-.ic { aspect-ratio: 16 / 10; display: grid; grid-template-columns: 1fr minmax(48px, 22%) 1fr; align-items: center; justify-items: center; gap: clamp(8px, 2vw, 20px); padding: clamp(18px, 5%, 44px);
-  background: radial-gradient(60% 80% at 50% 50%, rgba(45, 212, 191, 0.13), transparent 70%), radial-gradient(70% 90% at 90% 0%, rgba(155, 214, 255, 0.08), transparent 70%), linear-gradient(160deg, #0d1522, #080c14); }
-.ic-logo { display: grid; place-items: center; width: 100%; max-width: 220px; }
-.ic-logo img { width: auto; height: auto; max-width: 100%; max-height: clamp(34px, 9vw, 84px); object-fit: contain; }
-.ic-link { width: 100%; height: auto; color: var(--brand); overflow: visible; }
-.ic-line { fill: none; stroke: currentColor; stroke-width: 1; stroke-dasharray: 3 4; opacity: 0.55; animation: icFlow 2.4s linear infinite; }
-.ic-dot { fill: currentColor; opacity: 0.8; }
-.ic-chev { fill: none; stroke: currentColor; stroke-width: 1.4; stroke-linecap: round; stroke-linejoin: round; }
-@keyframes icFlow { to { stroke-dashoffset: -14; } }
-html.rm .ic-line, html.lite .ic-line { animation: none; }
-.m-type .ic { border-radius: 0; }
