@@ -3,7 +3,7 @@
 // cambios de objetivo en resortes + un puñado de eventos en una línea de tiempo; nunca como saltos de valor.
 import * as THREE from "three";
 import { Channels, Timeline, ease, clamp, lerp, smoothstep, rand } from "./motion";
-import { makeShared, makeSlab, LetterTexture, makeEnvironment, Shards, makeFloor, type LetterLabels, type Shared, type Slab } from "./parts";
+import { makeShared, makeSlab, makeTick, LetterTexture, makeEnvironment, Shards, makeFloor, type LetterLabels, type Shared, type Slab } from "./parts";
 import { Portal, makeRing } from "./portal";
 import { Particles, type EmitOpts } from "./particles";
 import type { PortalDriver } from "./driver";
@@ -49,7 +49,7 @@ export class PortalScene implements PortalDriver {
   root = new THREE.Group(); tilt = new THREE.Group(); env = new THREE.Group(); halo = new THREE.Group(); hinge = new THREE.Group();
   floor!: ReturnType<typeof makeFloor>; key!: THREE.PointLight; rim!: THREE.PointLight; portalLight!: THREE.PointLight;
   letter!: LetterTexture; P!: Record<"back" | "pocL" | "pocR" | "pocB" | "flap" | "letter", Slab>; def!: Record<string, Part>;
-  seal!: SealMesh; badge!: SealMesh; shards!: Shards; portal!: Portal; particles!: Particles;
+  seal!: SealMesh; badge!: SealMesh; tick!: ReturnType<typeof makeTick>; shards!: Shards; portal!: Portal; particles!: Particles;
   haloA!: ReturnType<typeof makeRing>; haloB!: ReturnType<typeof makeRing>;
   ro!: ResizeObserver; io!: IntersectionObserver;
   constructor(o: SceneOptions) {
@@ -104,7 +104,7 @@ export class PortalScene implements PortalDriver {
     add("pOpen", 0, 34, 0.6); add("pScale", 0, 28, 0.58); add("pEnergy", 0, 24, 1); add("pSpeed", 0, 12, 1);
     add("pFlash", 0, 90, 0.85); add("amber", 0, 18, 1); add("unstable", 0, 40, 1); add("flow", 0, 16, 1);
     add("hot", 0, 30, 1); add("shake", 0, 140, 0.4); add("fov", 0, 80, 0.5); add("flash", 0, 120, 0.9);
-    add("idle", 1, 14, 1); add("aim", 0, 14, 1); add("badge", 0, 120, 0.5); add("breath", 0, 90, 0.6); add("light", 0.45, 30, 1);
+    add("idle", 1, 14, 1); add("aim", 0, 14, 1); add("badge", 0, 120, 0.5); add("tick", 0, 70, 0.62); add("tickPulse", 0, 16, 1); add("gem", 1, 40, 1); add("breath", 0, 90, 0.6); add("light", 0.45, 30, 1);
     add("wave", -10, 1, 1); add("waveAmp", 0, 8, 1); add("done", 0, 12, 1);
     this.spinPhase = 0; this.pPhase = 0;
   }
@@ -160,6 +160,7 @@ export class PortalScene implements PortalDriver {
 
     this.shards = new Shards(this.tier.shards); this.tilt.add(this.shards.mesh);
     this.badge = this.makeSealMesh(0.5); this.badge.position.set(0, 0.1, 0.2); this.tilt.add(this.badge); this.badge.visible = false;
+    this.tick = makeTick(0.74, this.tierName === "low" ? 2 : 4); this.badge.add(this.tick.group);
     this.portal = new Portal(S); this.tilt.add(this.portal.group);
     this.particles = new Particles(this.tier.particles); this.tilt.add(this.particles.points);
   }
@@ -300,7 +301,7 @@ export class PortalScene implements PortalDriver {
   success() {
     const C = this.C, tl = this.tl; tl.clear(); this.setPhase("launch");
     if (this.reduced) {
-      C.get("envScale").set(0); C.get("pOpen").set(0); C.get("pScale").set(0); C.get("badge").set(1);
+      C.get("envScale").set(0); C.get("pOpen").set(0); C.get("pScale").set(0); C.get("badge").set(1); C.get("gem").snap(0); C.get("tick").snap(1);
       tl.at(0.3, () => { this.setPhase("sent"); this.badge.visible = true; });
       return this.wake();
     }
@@ -318,6 +319,9 @@ export class PortalScene implements PortalDriver {
     tl.at(2.4, () => { C.get("pOpen").snap(0); C.get("pFlash").snap(0.8); C.get("pFlash").set(0); this.pBurst(40, 0, 0.1, -2.7, 2.2, { life: 0.8, size: 6, color: 0x9ff7ea }); C.get("shake").kick(2); });
     // la escena se estabiliza + confirmación
     tl.at(2.15, () => { this.trail = false; this.env.visible = false; this.badge.visible = true; C.get("badge").set(1); C.get("aim").set(0); C.get("light").set(0.8); C.get("done").set(1); C.get("pSpeed").set(0.8); this.setPhase("sent"); });
+    // el rombo se transforma en el tick 3D (solo tras éxito confirmado) y emite un pulso suave
+    tl.at(2.15 + 0.5, () => { C.get("gem").tween(0, 0.35, ease.inCubic); C.get("tick").set(1); });
+    tl.at(2.15 + 0.85, () => { C.get("tickPulse").snap(1); C.get("tickPulse").set(0); this.pBurst(14, 0, 0.1, 0.25, 0.9, { life: 0.9, size: 5, color: 0x9ff7ea, drag: 2 }); });
     tl.at(2.8, () => { C.get("pEnergy").set(0.0); this.clearEnvChannels(); });
     this.wake();
   }
@@ -353,14 +357,14 @@ export class PortalScene implements PortalDriver {
   reset() {
     this.tl.clear(); const C = this.C; this.setPhase("resetting"); this.queued = null; this.trail = false;
     this.clearEnvChannels(true); this.env.visible = true; this.badge.visible = true;
-    C.get("badge").set(0); C.get("done").set(0); C.get("idle").set(1); C.get("light").set(0.45); C.get("amber").snap(0); C.get("hot").set(0);
+    C.get("badge").set(0); C.get("tick").set(0, 120, 1); C.get("tickPulse").snap(0); C.get("gem").snap(0); C.get("done").set(0); C.get("idle").set(1); C.get("light").set(0.45); C.get("amber").snap(0); C.get("hot").set(0);
     C.get("pName").snap(0); C.get("pEmail").snap(0); C.get("pMsg").snap(0); C.get("build").snap(0);
-    if (this.reduced) { C.get("envScale").snap(1); this.badge.visible = false; this.tl.at(0.2, () => this.setPhase("idle")); return this.wake(); }
+    if (this.reduced) { C.get("envScale").snap(1); C.get("tick").snap(0); C.get("gem").snap(1); this.badge.visible = false; this.tl.at(0.2, () => this.setPhase("idle")); return this.wake(); }
     C.get("envScale").snap(0); C.get("envScale").set(1, 46, 0.5);
     for (let i = 0; i < 110; i++) { const a = rand(0, TAU), r = rand(2.4, 3.4); this.pEmit(Math.cos(a) * r, rand(-1.4, 1.4), Math.sin(a) * r * 0.5, 0, 0, 0, { life: rand(0.8, 1.3), size: rand(5, 10), pull: [0, 0, 0.1], pullK: rand(7, 12), drag: 3, color: 0x7ef2e2 }); }
     C.get("wave").snap(4); C.get("wave").tween(-10, 1.4, ease.outCubic); C.get("waveAmp").set(1);
     C.get("shake").kick(2); C.get("breath").kick(5);
-    this.tl.at(1.0, () => { this.badge.visible = false; this.setPhase("idle"); });
+    this.tl.at(1.0, () => { this.badge.visible = false; C.get("tick").snap(0); C.get("gem").snap(1); this.setPhase("idle"); });
     this.wake();
   }
   clearEnvChannels(snap = false) {
@@ -468,6 +472,14 @@ export class PortalScene implements PortalDriver {
     const bd = v("badge"); this.badge.scale.setScalar(Math.max(0.0001, bd) * (1 + Math.sin(t * 1.6) * 0.03));
     this.badge.rotation.y = t * 0.6; this.badge.userData.gem.rotation.x = t * 1.3; this.badge.userData.ring2.rotation.x = t * 0.4;
     this.badge.position.y = 0.1 + Math.sin(t * 1.1) * 0.06;
+    const tk = v("tick"), tp = clamp(v("tickPulse"), 0, 1.2), tkm = this.tick;
+    tkm.group.visible = tk > 0.002; tkm.group.scale.setScalar(Math.max(0.0001, tk));
+    tkm.group.rotation.y = -this.badge.rotation.y + Math.sin(t * 0.7) * 0.5 - (1 - clamp(tk, 0, 1)) * 1.4; // siempre de frente (balanceo suave) y se desenrolla al aparecer
+    tkm.group.rotation.z = -0.08;
+    tkm.mat.opacity = clamp(tk * 1.4, 0, 1); tkm.mat.emissiveIntensity = 1.25 + tp * 2.2;
+    tkm.glowMat.opacity = clamp(tk, 0, 1) * (0.28 + tp * 0.45);
+    this.badge.userData.ring2.scale.setScalar(1 + tp * 0.1);
+    this.badge.userData.gem.scale.setScalar(Math.max(0.0001, v("gem")));
 
     // sobre
     const hov = v("hover"), env = this.env;

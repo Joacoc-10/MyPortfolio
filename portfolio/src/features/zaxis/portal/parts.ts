@@ -194,6 +194,25 @@ function wrap(ctx: CanvasRenderingContext2D, text: string, max: number, maxLines
 }
 function roundRect(ctx: CanvasRenderingContext2D, x: number, y: number, w: number, h: number, r: number) { ctx.beginPath(); ctx.moveTo(x + r, y); ctx.arcTo(x + w, y, x + w, y + h, r); ctx.arcTo(x + w, y + h, x, y + h, r); ctx.arcTo(x, y + h, x, y, r); ctx.arcTo(x, y, x + w, y, r); ctx.closePath(); }
 
+/** Tick 3D: trazo extruido con bisel (volumen real) + cascarón aditivo de brillo. Devuelve el grupo y sus materiales. */
+export function makeTick(size: number, detail: number) {
+  const pts: [number, number][] = [[-0.5, -0.02], [-0.16, -0.36], [0.52, 0.36]]; // brazo corto → vértice → brazo largo
+  const h = 0.115; // medio grosor del trazo
+  const nrm = (a: [number, number], b: [number, number]): [number, number] => { const dx = b[0] - a[0], dy = b[1] - a[1], l = Math.hypot(dx, dy); return [-dy / l, dx / l]; };
+  const n0 = nrm(pts[0], pts[1]), n1 = nrm(pts[1], pts[2]);
+  const mx = n0[0] + n1[0], my = n0[1] + n1[1], mk = h / (1 + n0[0] * n1[0] + n0[1] * n1[1]); // vértice con inglete
+  const L: [number, number][] = [[pts[0][0] + n0[0] * h, pts[0][1] + n0[1] * h], [pts[1][0] + mx * mk, pts[1][1] + my * mk], [pts[2][0] + n1[0] * h, pts[2][1] + n1[1] * h]];
+  const R: [number, number][] = [[pts[2][0] - n1[0] * h, pts[2][1] - n1[1] * h], [pts[1][0] - mx * mk, pts[1][1] - my * mk], [pts[0][0] - n0[0] * h, pts[0][1] - n0[1] * h]];
+  const shape = new THREE.Shape([...L, ...R].map(([x, y]) => new THREE.Vector2(x, y)));
+  const geo = new THREE.ExtrudeGeometry(shape, { depth: 0.07, bevelEnabled: true, bevelThickness: 0.035, bevelSize: 0.03, bevelSegments: detail, curveSegments: 4 });
+  geo.center(); geo.scale(size, size, size);
+  const mat = new THREE.MeshPhysicalMaterial({ color: 0x2bb9ab, emissive: 0x2dd4bf, emissiveIntensity: 1.25, roughness: 0.2, metalness: 0.3, clearcoat: 1, clearcoatRoughness: 0.06, envMapIntensity: 3.2, transparent: true, opacity: 0 });
+  const glowMat = new THREE.MeshBasicMaterial({ color: new THREE.Color().setRGB(0.3, 1.9, 1.7), toneMapped: false, transparent: true, opacity: 0, blending: THREE.AdditiveBlending, depthWrite: false, side: THREE.BackSide });
+  const mesh = new THREE.Mesh(geo, mat), glow = new THREE.Mesh(geo, glowMat); glow.scale.setScalar(1.1); glow.renderOrder = 9; mesh.renderOrder = 10;
+  const group = new THREE.Group(); group.add(glow, mesh); group.scale.setScalar(0.0001); group.visible = false;
+  return { group, mat, glowMat };
+}
+
 /** Entorno procedural (cajas de luz turquesa/blanca) para reflejos del cristal. */
 export function makeEnvironment(renderer: THREE.WebGLRenderer) {
   const s = new THREE.Scene();
