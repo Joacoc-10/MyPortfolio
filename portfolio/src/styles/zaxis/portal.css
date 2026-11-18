@@ -50,11 +50,12 @@
 .mp[data-s="success"] .mp-card { border-color: rgba(45, 212, 191, 0.5); box-shadow: 0 40px 100px rgba(0, 0, 0, 0.5), 0 0 80px rgba(45, 212, 191, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.06); }
 .mp[data-s="error"] .mp-card { border-color: rgba(255, 154, 92, 0.5); }
 
-.mp-form { display: block; }
-.mp-fields { display: grid; grid-template-rows: 1fr; transition: grid-template-rows 0.9s var(--io), opacity 0.5s var(--io); }
-.mp-fields-in { min-height: 0; overflow: hidden; display: grid; gap: 18px; padding: clamp(22px, 3vw, 32px); align-content: start; }
-.mp[data-s="success"] .mp-fields { grid-template-rows: 0fr; opacity: 0; pointer-events: none; }
-.mp[data-s="success"] .mp-fields-in { padding-block: 0; transition: padding 0.9s var(--io); }
+/* Formulario ⇄ confirmación: dos capas en el mismo hueco. La activa está en flujo y fija la altura; la inactiva se superpone (absoluta, invisible, recortada).
+   La altura de `.mp-swap` se anima UNA sola vez, de la altura medida antes a la de después (ver MessagePortal.tsx), sin pasar por alturas intermedias. */
+.mp-swap { position: relative; overflow: hidden; border-radius: inherit; overflow-anchor: none; }
+.mp-form, .mp-done { display: block; transition: opacity 0.5s var(--io) 0.2s, visibility 0s; }
+.mp[data-s="success"] .mp-form, .mp:not([data-s="success"]) .mp-done { position: absolute; inset: 0 0 auto 0; opacity: 0; visibility: hidden; pointer-events: none; transition: opacity 0.35s var(--io), visibility 0s linear 0.35s; }
+.mp-fields-in { display: grid; gap: 18px; padding: clamp(22px, 3vw, 32px); align-content: start; }
 .mp-title { margin: 0; font-size: clamp(1.4rem, 2.2vw, 1.8rem); font-weight: 400; letter-spacing: -0.03em; line-height: 1.1; }
 .mp-lead { margin: -10px 0 0; color: var(--mut); font-size: 15px; }
 .mp-field { display: grid; gap: 8px; }
@@ -87,10 +88,7 @@
 @keyframes mp-spin { to { rotate: 360deg; } }
 
 /* confirmación */
-.mp-done { display: grid; grid-template-rows: 0fr; transition: grid-template-rows 0.9s var(--io) 0.05s; }
-.mp-done-in { min-height: 0; overflow: hidden; display: grid; gap: 14px; justify-items: start; padding: 0 clamp(22px, 3vw, 34px); }
-.mp[data-s="success"] .mp-done { grid-template-rows: 1fr; }
-.mp[data-s="success"] .mp-done-in { padding-block: clamp(30px, 4vw, 48px); }
+.mp-done-in { display: grid; gap: 14px; justify-items: start; padding: clamp(30px, 4vw, 48px) clamp(22px, 3vw, 34px); }
 .mp-done-k { margin: 0; display: inline-flex; align-items: center; gap: 10px; color: var(--brand); opacity: 0; }
 .mp-done-k .pulse { width: 8px; height: 8px; border-radius: 50%; background: var(--brand); box-shadow: 0 0 0 0 rgba(45, 212, 191, 0.6); animation: mp-ping 2.2s var(--out) infinite; }
 @keyframes mp-ping { 0% { box-shadow: 0 0 0 0 rgba(45, 212, 191, 0.55); } 70%, 100% { box-shadow: 0 0 0 12px rgba(45, 212, 191, 0); } }
@@ -148,6 +146,6 @@ html[data-nav="hidden"] { --mp-top: 0px; }
 
 /* movimiento reducido: sin trayectorias ni parpadeos; solo fundidos cortos */
 .mp[data-motion="reduce"] *, .mp[data-motion="reduce"] *::before, .mp[data-motion="reduce"] *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; animation-delay: 0ms !important; }
-.mp[data-motion="reduce"] .mp-fields, .mp[data-motion="reduce"] .mp-done { transition: opacity 0.25s linear, grid-template-rows 0.01ms; }
+.mp[data-motion="reduce"] .mp-form, .mp[data-motion="reduce"] .mp-done { transition: opacity 0.25s linear, visibility 0s linear 0.25s; }
 .mp[data-motion="reduce"] .mp-card::before { display: none; }
 .mp[data-motion="reduce"] .mp-stage { transition: none; }

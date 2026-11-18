@@ -5,7 +5,7 @@
 // responde, y si falla devuelve el sobre en un estado recuperable con los datos intactos.
 // Fases de la escena → ver portal/scene.ts. Sin WebGL 2 se usa un respaldo CSS con las mismas fases.
 import { useLocale, useTranslations } from "next-intl";
-import { useCallback, useEffect, useId, useRef, useState, type CSSProperties, type FormEvent, type ReactNode } from "react";
+import { useCallback, useEffect, useId, useLayoutEffect, useRef, useState, type CSSProperties, type FormEvent, type ReactNode } from "react";
 import { EmailNotConfiguredError, sendContactMessage } from "./email";
 import { getMotionPrefs } from "./lib";
 import { FallbackDriver, type PortalDriver } from "./portal/driver";
@@ -88,6 +88,9 @@ export function MessagePortal({ email: directEmail, head, foot }: { email: strin
   const stage = useRef<HTMLDivElement>(null);
   const anchor = useRef<HTMLDivElement>(null);
   const card = useRef<HTMLDivElement>(null);
+  const swap = useRef<HTMLDivElement>(null);
+  const fromH = useRef<number | null>(null);
+  const hold = useRef<HTMLElement | null>(null);
   const doneTitle = useRef<HTMLHeadingElement>(null);
   const sendBtn = useRef<HTMLButtonElement>(null);
   const trap = useRef<HTMLInputElement>(null);
@@ -107,6 +110,9 @@ export function MessagePortal({ email: directEmail, head, foot }: { email: strin
   const setS = useCallback((s: Status) => { statusRef.current = s; setStatus(s); }, []);
   const later = (fn: () => void, ms: number) => { const h = window.setTimeout(() => { timers.current.delete(h); fn(); }, ms); timers.current.add(h); };
 
+  /** Libera la compensación de alto de página (ver más abajo). */
+  const release = () => { if (hold.current) { hold.current.style.paddingBottom = ""; hold.current = null; } };
+
   const errors = validate(values, t);
   const show = (k: FieldName) => ((touched[k] || submitted) && errors[k] ? errors[k] : undefined);
   const busy = status === "sending" || (status === "error" && !canRetry);
@@ -123,6 +129,7 @@ export function MessagePortal({ email: directEmail, head, foot }: { email: strin
         slow.current = window.setTimeout(() => { if (statusRef.current === "sending") { setHud("hudSlow"); setLive(t("liveSlow")); } }, 5500); break;
       case "launch": case "cross": setSteps({ on: 4, ok: 3 }); break;
       case "sent": {
+        fromH.current = swap.current?.offsetHeight ?? null; // altura de partida de la transición formulario → confirmación
         const v = valuesRef.current, first = v.name.trim().split(/\s+/)[0] ?? "";
         setDone({ name: first, time: new Date().toLocaleTimeString(locale, { hour: "2-digit", minute: "2-digit" }) });
         setSteps({ on: 0, ok: 4 }); setBad(false); setS("success");
@@ -208,7 +215,7 @@ export function MessagePortal({ email: directEmail, head, foot }: { email: strin
     return () => {
       disposed = true; io.disconnect(); if (typeof window.cancelIdleCallback === "function") window.cancelIdleCallback(idle); clearTimeout(idle); ro.disconnect(); mqMobile.removeEventListener("change", onMobile); mqReduce.removeEventListener("change", onReduce);
       vv?.removeEventListener("resize", onVv); stageEl.removeEventListener("pointerdown", poke);
-      pending.forEach(clearTimeout); pending.clear(); clearTimeout(slow.current); tok.current++;
+      pending.forEach(clearTimeout); pending.clear(); if (rootEl.parentElement) rootEl.parentElement.style.paddingBottom = ""; clearTimeout(slow.current); tok.current++;
       driver.current?.dispose(); driver.current = null; promise = null; setDriverReady(false);
       ensure.current = () => Promise.reject(new Error("no montado"));
     };
@@ -218,11 +225,42 @@ export function MessagePortal({ email: directEmail, head, foot }: { email: strin
   // La escena sigue lo que se escribe (progreso por campo + texto de la carta)
   useEffect(() => { driver.current?.setFields(progress(values), values, focusField); }, [values, focusField, driverReady]);
 
-  // Foco y desplazamiento tras éxito / recuperación
+  // Transición de altura formulario ⇄ confirmación: del alto medido antes al alto natural de la capa activa, en una sola animación.
+  const isDone = dataS === "success";
+  useLayoutEffect(() => {
+    const el = swap.current, from = fromH.current;
+    fromH.current = null;
+    if (!el || from == null) return;
+    el.style.transition = "none"; el.style.height = ""; // medir la altura natural de la capa que acaba de entrar en flujo
+    const to = el.offsetHeight;
+    if (reducedRef.current || Math.abs(from - to) < 2) { el.style.transition = ""; return; }
+    // Al encoger, el documento se acortaría a la vez y el navegador recortaría el scroll (la tarjeta «saltaría»): se compensa
+    // con relleno temporal que se libera cuando la página ya se ha recolocado con scroll suave.
+    release();
+    if (to < from && root.current?.parentElement) { hold.current = root.current.parentElement; hold.current.style.paddingBottom = `${from - to}px`; }
+    el.style.height = `${from}px`; void el.offsetHeight;
+    el.style.transition = "height 0.8s cubic-bezier(0.65, 0, 0.35, 1)"; el.style.height = `${to}px`;
+    const end = () => { el.removeEventListener("transitionend", onEnd); window.clearTimeout(fb); el.style.transition = ""; el.style.height = ""; };
+    const onEnd = (e: TransitionEvent) => { if (e.target === el && e.propertyName === "height") end(); };
+    const fb = window.setTimeout(end, 1000);
+    el.addEventListener("transitionend", onEnd);
+    return () => { el.removeEventListener("transitionend", onEnd); window.clearTimeout(fb); };
+  }, [isDone]);
+
+  // Foco tras éxito; el desplazamiento espera a que la altura se asiente para no mover la página mientras la tarjeta cambia de tamaño
   useEffect(() => {
     if (status !== "success") return;
     doneTitle.current?.focus({ preventScroll: true });
-    card.current?.scrollIntoView({ block: "nearest", behavior: reducedRef.current ? "auto" : "smooth" });
+    const behavior = reducedRef.current ? "auto" : "smooth", pause = reducedRef.current ? 0 : 750;
+    later(() => {
+      card.current?.scrollIntoView({ block: "nearest", behavior });
+      later(() => {
+        const h = hold.current;
+        const max = document.documentElement.scrollHeight - (h ? parseFloat(h.style.paddingBottom) || 0 : 0) - window.innerHeight;
+        if (window.scrollY > max + 1) window.scrollTo({ top: Math.max(0, max), behavior });
+        later(release, pause);
+      }, pause);
+    }, reducedRef.current ? 0 : 850);
   }, [status]);
   useEffect(() => {
     if (status === "error" && canRetry) { const a = document.activeElement; if (!a || a === document.body) sendBtn.current?.focus({ preventScroll: true }); }
@@ -273,7 +311,8 @@ export function MessagePortal({ email: directEmail, head, foot }: { email: strin
 
   function again() {
     if (statusRef.current !== "success") return;
-    token.current++; setS("resetting");
+    fromH.current = swap.current?.offsetHeight ?? null; // altura de partida de la transición confirmación → formulario
+    release(); token.current++; setS("resetting");
     const empty: Values = { name: "", email: "", message: "" };
     valuesRef.current = empty; setValues(empty); setTouched({}); setSubmitted(false); celebrated.current = {};
     setBad(false); setSteps({ on: 0, ok: 0 }); setHud("hudIdle"); setCanRetry(true);
@@ -307,6 +346,7 @@ export function MessagePortal({ email: directEmail, head, foot }: { email: strin
       <div className="mp-grid">
         {head && <div className="mp-head">{head}</div>}
         <div className="mp-card" ref={card}>
+          <div className="mp-swap" ref={swap}>
           <form className="mp-form" noValidate onSubmit={onSubmit} aria-labelledby={id("title")} aria-busy={status === "sending"}
             onFocusCapture={() => { void ensure.current().catch(() => {}); }}>
             <div className="mp-fields" inert={status === "success"}>
@@ -360,6 +400,7 @@ export function MessagePortal({ email: directEmail, head, foot }: { email: strin
                 <a className="btn" href={`mailto:${directEmail}`}>{t("mailCta")}</a>
               </div>
             </div>
+          </div>
           </div>
         </div>
 
