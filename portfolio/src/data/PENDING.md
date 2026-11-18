@@ -30,7 +30,10 @@ en la web: los campos opcionales se omiten hasta que haya información confirmad
 
 ## Otros
 
-- Fase 5: imagen Open Graph propia implementada en `public/share.png`; preview real de plataformas pendiente del lanzamiento autorizado.
+- Imagen Open Graph/Twitter: `public/og-zaxis-v1.jpg` (1200×630, JPEG 86 KB, composición «Túnel Z» de Z-AXIS), configurada en `src/data/seo.ts`. `public/share.png` (fase 5) quedó sin uso: se puede eliminar.
+  Para cambiarla, usar un nombre nuevo (`og-zaxis-v2.jpg`): las plataformas cachean por URL. Pendiente tras el despliegue: comprobar la URL absoluta de la imagen y forzar el recrawl (Facebook Debugger, LinkedIn Post Inspector; probar WhatsApp y X con un enlace de prueba).
+- Dominio: hoy `https://jcoding.vercel.app` (por defecto). Para migrar a `jcoding.app`, definir `NEXT_PUBLIC_SITE_URL=https://jcoding.app` en el entorno y volver a desplegar; además, actualizar enlaces externos (LinkedIn, GitHub, CV), configurar la redirección 301 desde vercel.app y dar de alta el sitio en Search Console.
+- La miniatura compacta de WhatsApp recorta el centro cuadrado de la imagen OG y corta el nombre; en la tarjeta grande se ve completa.
 - OliBar: descripción más detallada (opcional). Capturas incorporadas.
 - UES × Mercado Libre: sin capturas (sistema interno; pendiente de material autorizado).
 - Capturas de Florencia y Fabio omiten a propósito las secciones de contacto/formulario (teléfonos y correos visibles). Las imágenes de Fabio son ilustraciones de IA marcadas «ilustrativa» en el sitio.
@@ -38,3 +41,12 @@ en la web: los campos opcionales se omiten hasta que haya información confirmad
 ## Verificación manual
 
 - LinkedIn (`links.ts`) responde 999 a clientes automatizados; abrir el perfil manualmente para confirmar que el enlace funciona.
+
+## Rediseño Z-AXIS (2026)
+
+- **EmailJS**: el formulario de «Trabajemos juntos» está implementado y probado con mocks; falta crear la cuenta/servicio/plantilla
+  y cargar `NEXT_PUBLIC_EMAILJS_*` (local en `.env.local` y en Vercel). Hasta entonces el formulario avisa y ofrece el correo directo.
+- **Textos de interfaz nuevos** (namespaces `Z` y `ContactForm` en `messages/*.json`): redactados para el rediseño; revisar tono y redacción.
+  Incluyen los rasgos de «Sobre mí» (Curioso · Autodidacta · Aprendo mientras construyo) y las etiquetas de las capas (Interfaz · Lógica · Datos · Entrega).
+- «Servicios e integraciones» (capa Lógica del Stack) se toma de las tecnologías reales de los proyectos; la sección Stack original no las mostraba.
+- Se eliminó la opción «Explorar demo»/iframes del portfolio definitivo (siguen intactas en `prototypes/`).

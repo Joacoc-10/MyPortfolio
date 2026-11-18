@@ -68,6 +68,8 @@ interface ProjectMediaBase {
 
 export interface ProjectImage extends ProjectMediaBase {
   type: "image";
+  /** Pieza gráfica (no captura): se muestra completa en su proporción original, sin recorte 16:10. */
+  full?: boolean;
 }
 
 /** Reservado para una fase futura: el modelo ya lo admite, pero hoy no se usa ninguno. */

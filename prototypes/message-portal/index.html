@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="color-scheme" content="dark">
+  <title>Z-AXIS · Message Portal — prototipo</title>
+  <meta name="description" content="Prototipo de la sección de contacto de JCoding Z-AXIS: el mensaje se ensambla mientras escribís y cruza un portal al enviarlo.">
+  <link rel="icon" href="data:,">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&family=Geist+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <a class="skip" href="#f-name">Saltar al formulario</a>
+
+  <header class="topbar">
+    <img class="logo" src="/assets/brand/logo-white.png" alt="JCoding" width="800" height="182">
+    <span class="mono tag">Prototipo · Message Portal</span>
+  </header>
+
+  <main>
+    <section class="contact" id="contact" aria-labelledby="ct-h" data-state="idle">
+      <div class="floor-glow" aria-hidden="true"></div>
+
+      <!-- Escena 3D: decorativa (la información real está en el formulario y en las regiones en vivo) -->
+      <div class="stage" id="stage" aria-hidden="true">
+        <canvas id="gl"></canvas>
+        <div class="flash"></div>
+        <div class="fallback" id="fallback" hidden>
+          <div class="fb-env"><i></i><i></i><i></i></div><div class="fb-portal"></div>
+        </div>
+      </div>
+
+      <div class="wrap ct-grid">
+        <div class="ct-main">
+          <p class="mono eyebrow"><span class="dot"></span>04 · Contacto</p>
+          <h2 id="ct-h" class="ct-title">¿Trabajamos <em class="serif">juntos</em>?</h2>
+          <p class="ct-lead">Estoy abierto a oportunidades laborales y a proyectos freelance. Escribime y lo conversamos.</p>
+
+          <div class="card" id="card">
+            <form id="form" class="cform" novalidate aria-labelledby="f-title" aria-busy="false">
+              <div class="fields" id="fields">
+                <div class="fields-in">
+                  <h3 id="f-title" class="cform-title">Escribime por acá</h3>
+                  <p class="cform-lead">Contame qué tenés en mente y te respondo por correo.</p>
+                  <p class="cform-summary" id="summary" role="alert" hidden>Revisá los campos marcados antes de enviar.</p>
+
+                  <div class="field" data-field="name">
+                    <label for="f-name">Nombre</label>
+                    <input id="f-name" name="name" type="text" autocomplete="name" maxlength="80" placeholder="Cómo te llamás" required aria-required="true">
+                    <p class="field-err" id="e-name" hidden></p>
+                  </div>
+                  <div class="field" data-field="email">
+                    <label for="f-email">Correo electrónico</label>
+                    <input id="f-email" name="email" type="email" autocomplete="email" inputmode="email" maxlength="120" placeholder="tu@correo.com" required aria-required="true">
+                    <p class="field-err" id="e-email" hidden></p>
+                  </div>
+                  <div class="field" data-field="message">
+                    <label for="f-message">Mensaje</label>
+                    <textarea id="f-message" name="message" rows="5" placeholder="Contame sobre tu proyecto, la oportunidad o lo que necesites…" required aria-required="true" aria-describedby="count"></textarea>
+                    <p class="field-count mono" id="count">0 / 2000</p>
+                    <p class="field-err" id="e-message" hidden></p>
+                  </div>
+                  <div class="hp" aria-hidden="true"><label>Website<input type="text" name="website" tabindex="-1" autocomplete="off"></label></div>
+
+                  <p class="cform-error" id="send-error" role="alert" hidden></p>
+
+                  <button class="btn primary cform-send" id="send" type="submit">
+                    <span class="spin" aria-hidden="true"></span><span class="lbl">Enviar mensaje</span>
+                  </button>
+                </div>
+              </div>
+            </form>
+
+            <!-- Confirmación integrada en la propia experiencia (reemplaza la tarjeta con check) -->
+            <div class="done" id="done" aria-hidden="true">
+              <div class="done-in">
+                <p class="mono done-k"><span class="pulse"></span><span id="done-time">Entregado</span></p>
+                <h3 class="done-t" id="done-title" tabindex="-1"><span class="ln"><span>Tu mensaje cruzó</span></span> <span class="ln"><span>el <em class="serif">portal</em>.</span></span></h3>
+                <p class="done-p" id="done-p"></p>
+                <div class="done-act">
+                  <button type="button" class="btn primary" id="again">Enviar otro mensaje</button>
+                  <a class="btn" href="mailto:joacoc-10@hotmail.com">Escribir por correo</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Zona donde "vive" el objeto 3D -->
+        <div class="ct-anchor" id="anchor">
+          <div class="hud" id="hud" aria-hidden="true">
+            <ol class="steps"><li data-i="1">Componer</li><li data-i="2">Sellar</li><li data-i="3">Portal</li><li data-i="4">Entrega</li></ol>
+            <p class="mono hud-l" id="hud-l">Esperando mensaje</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Anuncios para lectores de pantalla (la escena es decorativa) -->
+  <p class="sr" id="live" role="status" aria-live="polite" aria-atomic="true"></p>
+
+  <!-- Controles de prueba del prototipo: NO forman parte de la sección real -->
+  <aside class="dock" id="dock" aria-label="Controles de prueba (solo prototipo)">
+    <button class="dock-t" id="dock-t" type="button" aria-expanded="false" aria-controls="dock-b"><span class="led"></span>Panel de pruebas</button>
+    <div class="dock-b" id="dock-b" hidden>
+      <fieldset><legend>Resultado simulado</legend>
+        <label><input type="radio" name="res" value="success" checked> Éxito</label>
+        <label><input type="radio" name="res" value="error"> Fallo</label>
+      </fieldset>
+      <fieldset><legend>Latencia del “servidor”</legend>
+        <label><input type="radio" name="lat" value="900" checked> Rápida · 0,9 s</label>
+        <label><input type="radio" name="lat" value="7000"> Lenta · 7 s</label>
+        <label><input type="radio" name="lat" value="16000"> Muy lenta · 16 s</label>
+      </fieldset>
+      <fieldset><legend>Entorno</legend>
+        <label class="sel">Calidad <select id="tier"><option value="auto">Auto</option><option value="high">Alta</option><option value="mid">Media</option><option value="low">Baja</option></select></label>
+        <label><input type="checkbox" id="rm"> Forzar movimiento reducido</label>
+      </fieldset>
+      <div class="dock-row">
+        <button type="button" class="mini" id="fill">Rellenar ejemplo</button>
+        <button type="button" class="mini" id="clear">Vaciar</button>
+        <button type="button" class="mini" id="remount">Desmontar / montar</button>
+      </div>
+      <p class="mono dock-r" id="dock-r" aria-live="off">—</p>
+    </div>
+  </aside>
+
+  <script type="module" src="js/main.js"></script>
+</body>
+</html>

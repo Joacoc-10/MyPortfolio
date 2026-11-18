@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <link rel="icon" href="data:,">
+  <title>JCoding · Comparador de prototipos</title>
+  <link rel="stylesheet" href="/picker.css">
+  <link rel="stylesheet" href="/harness.css">
+</head>
+<body>
+  <div class="tools" role="toolbar" aria-label="Vista previa">
+    <div class="group" role="group" aria-label="Viewport">
+      <button class="tool" data-w="desktop" aria-pressed="true">Escritorio</button>
+      <button class="tool" data-w="820" aria-pressed="false">Tablet 820</button>
+      <button class="tool" data-w="390" aria-pressed="false">Móvil 390</button>
+    </div>
+    <div class="group" role="group" aria-label="Idioma">
+      <button class="tool" data-lang="es" aria-pressed="true">ES</button>
+      <button class="tool" data-lang="en" aria-pressed="false">EN</button>
+    </div>
+    <div class="group" role="group" aria-label="Movimiento">
+      <button class="tool" data-rm="0" aria-pressed="true">Movimiento</button>
+      <button class="tool" data-rm="1" aria-pressed="false">Reducido</button>
+    </div>
+  </div>
+
+  <main class="stage-wrap" id="wrap">
+    <iframe id="stage" title="Prototipo" allow="clipboard-write"></iframe>
+  </main>
+
+  <nav class="proto-picker" aria-label="Prototype variants">
+    <span class="proto-picker-highlight" aria-hidden="true"></span>
+    <button class="proto-picker-item" data-active aria-current="true">Digital Dimensions</button>
+    <button class="proto-picker-item">Experimental Type</button>
+    <button class="proto-picker-item">Immersive Showcase</button>
+    <button class="proto-picker-item">JCoding Hybrid Experience</button>
+    <button class="proto-picker-item">Z-AXIS</button>
+    <span class="proto-picker-divider" aria-hidden="true"></span>
+    <button class="proto-picker-item proto-picker-replay" aria-label="Replay animation (R)">↻</button>
+  </nav>
+
+  <script type="module" src="/harness.js"></script>
+</body>
+</html>

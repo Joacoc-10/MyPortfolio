@@ -2,15 +2,12 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { hasLocale } from "next-intl";
 import { getTranslations, setRequestLocale } from "next-intl/server";
-import { Footer } from "@/components/layout/Footer";
-import { About } from "@/features/about/About";
-import { Contact } from "@/features/contact/Contact";
-import { Experience } from "@/features/experience/Experience";
-import { Hero } from "@/features/hero/Hero";
-import { Projects } from "@/features/projects/Projects";
-import { Stack } from "@/features/stack/Stack";
+import { getZContent } from "@/features/zaxis/content";
+import { ZAxisApp } from "@/features/zaxis/ZAxisApp";
 import { profile } from "@/data/profile";
 import { links, siteUrl } from "@/data/links";
+import { ogImage } from "@/data/seo";
+import { getStackTechnologies } from "@/data";
 import { routing } from "@/i18n/routing";
 
 export async function generateMetadata({
@@ -20,8 +17,10 @@ export async function generateMetadata({
   if (!hasLocale(routing.locales, locale)) return {};
   const t = await getTranslations({ locale, namespace: "Metadata" });
 
+  const ogAlt = t("ogAlt");
+  const image = { url: ogImage.path, width: ogImage.width, height: ogImage.height, type: ogImage.type, alt: ogAlt };
+
   return {
-    metadataBase: new URL(siteUrl),
     robots: { index: true, follow: true },
     title: t("title"),
     description: t("description"),
@@ -30,7 +29,7 @@ export async function generateMetadata({
       card: "summary_large_image",
       title: t("title"),
       description: t("description"),
-      images: [{ url: "/share.png", alt: "JCoding — Joaquín Curbelo, Full Stack Developer" }],
+      images: [{ url: ogImage.path, alt: ogAlt }],
     },
     alternates: {
       canonical: `/${locale}`,
@@ -42,7 +41,7 @@ export async function generateMetadata({
     },
     openGraph: {
       type: "website",
-      images: [{ url: "/share.png", width: 1200, height: 630, alt: "JCoding — Joaquín Curbelo, Full Stack Developer" }],
+      images: [image],
       url: `/${locale}`,
       siteName: "JCoding",
       title: t("title"),
@@ -67,19 +66,21 @@ export default async function Home({
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
         "@context": "https://schema.org",
         "@graph": [
-          { "@type": "Person", "@id": `${siteUrl}/#person`, name: profile.name, url: siteUrl, sameAs: [links.github, links.linkedin] },
-          { "@type": "WebSite", "@id": `${siteUrl}/#website`, name: "JCoding", url: siteUrl, inLanguage: ["es", "en"], author: { "@id": `${siteUrl}/#person` } },
+          {
+            "@type": "Person",
+            "@id": `${siteUrl}/#person`,
+            name: profile.name,
+            alternateName: "JCoding",
+            jobTitle: profile.headline[locale as "es" | "en"],
+            url: `${siteUrl}/${locale}`,
+            image: `${siteUrl}/images/joaquin.png`,
+            knowsAbout: getStackTechnologies().map((t) => t.name),
+            sameAs: [links.github, links.linkedin],
+          },
+          { "@type": "WebSite", "@id": `${siteUrl}/#website`, name: "JCoding", url: `${siteUrl}/${locale}`, inLanguage: ["es", "en"], publisher: { "@id": `${siteUrl}/#person` }, author: { "@id": `${siteUrl}/#person` } },
         ],
       }).replace(/</g, "\\u003c") }} />
-      <main id="main">
-        <Hero />
-        <About />
-        <Experience />
-        <Stack />
-        <Projects />
-        <Contact />
-      </main>
-      <Footer />
+      <ZAxisApp content={getZContent(locale)} />
     </>
   );
 }
