@@ -237,3 +237,18 @@ html.rm .nav { transition: background-color 0.35s, border-color 0.35s; }
 html.rm *, html.rm *::before, html.rm *::after { animation-duration: 0.01ms !important; animation-delay: 0ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; transition-delay: 0ms !important; scroll-behavior: auto !important; }
 html.rm [data-reveal], html.rm .mask-line > span { opacity: 1; transform: none; }
 html.rm .sec-rule, html.rm .eyebrow::after { transform: scaleX(1); }
+
+/* El navbar fijo se repinta con el scroll: con puntero táctil (o nivel medio) el cristal con desenfoque se cambia por un fondo
+   más opaco, visualmente equivalente sobre este fondo oscuro, sin el coste de backdrop-filter en cada frame. */
+@media (pointer: coarse) {
+  .nav::before { background: rgba(5, 7, 11, 0.9); -webkit-backdrop-filter: none; backdrop-filter: none; }
+  .nav-scrim { background: rgba(2, 4, 8, 0.8); -webkit-backdrop-filter: none; backdrop-filter: none; }
+}
+html.mid .nav::before { background: rgba(5, 7, 11, 0.9); -webkit-backdrop-filter: none; backdrop-filter: none; }
+html.mid .nav-scrim { background: rgba(2, 4, 8, 0.8); -webkit-backdrop-filter: none; backdrop-filter: none; }
+html.mid .glare, html.mid .sparkles { display: none; }
+html.mid .detail::backdrop { -webkit-backdrop-filter: none; backdrop-filter: none; background: rgba(3, 5, 9, 0.9); }
+
+/* Animaciones decorativas infinitas (pulso, destellos, marquesina) pausadas mientras su contenedor está fuera de pantalla:
+   una animación en marcha obliga al navegador a recalcular estilos en cada frame aunque no se vea. */
+.off-screen, .off-screen *, .off-screen::before, .off-screen::after, .off-screen *::before, .off-screen *::after { animation-play-state: paused !important; }

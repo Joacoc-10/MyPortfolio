@@ -57,7 +57,7 @@ export class PortalScene implements PortalDriver {
     this.tierName = o.tier ?? "high"; this.tier = TIERS[this.tierName];
     this.reduced = !!o.reduced; this.onPhase = o.onPhase || (() => {});
 
-    const r = new THREE.WebGLRenderer({ canvas: o.canvas, antialias: true, alpha: true, powerPreference: "high-performance" });
+    const r = new THREE.WebGLRenderer({ canvas: o.canvas, antialias: this.tierName !== "low", alpha: true, powerPreference: this.tierName === "high" ? "high-performance" : "default" });
     this.renderer = r;
     r.setClearColor(0x000000, 0); r.outputColorSpace = THREE.SRGBColorSpace;
     r.toneMapping = THREE.ACESFilmicToneMapping; r.toneMappingExposure = 1.05;

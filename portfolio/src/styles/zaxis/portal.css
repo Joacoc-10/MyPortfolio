@@ -90,7 +90,10 @@
 /* confirmación */
 .mp-done-in { display: grid; gap: 14px; justify-items: start; padding: clamp(30px, 4vw, 48px) clamp(22px, 3vw, 34px); }
 .mp-done-k { margin: 0; display: inline-flex; align-items: center; gap: 10px; color: var(--brand); opacity: 0; }
-.mp-done-k .pulse { width: 8px; height: 8px; border-radius: 50%; background: var(--brand); box-shadow: 0 0 0 0 rgba(45, 212, 191, 0.6); animation: mp-ping 2.2s var(--out) infinite; }
+.mp-done-k .pulse { width: 8px; height: 8px; border-radius: 50%; background: var(--brand); box-shadow: 0 0 0 0 rgba(45, 212, 191, 0.6); }
+/* el anillo (box-shadow animado = repintado en cada frame) solo corre cuando la confirmación es visible */
+.mp[data-s="success"] .mp-done-k .pulse { animation: mp-ping 2.2s var(--out) infinite; }
+.mp:not([data-s="success"]) .mp-done-k .pulse::after { animation: none; }
 @keyframes mp-ping { 0% { box-shadow: 0 0 0 0 rgba(45, 212, 191, 0.55); } 70%, 100% { box-shadow: 0 0 0 12px rgba(45, 212, 191, 0); } }
 .mp-done-t { margin: 0; font-size: clamp(2rem, 3.6vw, 3rem); font-weight: 400; letter-spacing: -0.045em; line-height: 1.04; outline: none; }
 .mp-done-t em { color: var(--brand); padding-right: 0.05em; font-style: italic; }
@@ -149,3 +152,7 @@ html[data-nav="hidden"] { --mp-top: 0px; }
 .mp[data-motion="reduce"] .mp-form, .mp[data-motion="reduce"] .mp-done { transition: opacity 0.25s linear, visibility 0s linear 0.25s; }
 .mp[data-motion="reduce"] .mp-card::before { display: none; }
 .mp[data-motion="reduce"] .mp-stage { transition: none; }
+
+/* Móvil táctil o equipo de nivel medio: el cristal con desenfoque de fondo se sustituye por un fondo casi opaco equivalente. */
+@media (pointer: coarse) { .mp-card { -webkit-backdrop-filter: none; backdrop-filter: none; background: linear-gradient(160deg, rgba(14, 21, 34, 0.88), rgba(8, 12, 20, 0.92)); } }
+html.mid .mp-card { -webkit-backdrop-filter: none; backdrop-filter: none; background: linear-gradient(160deg, rgba(14, 21, 34, 0.88), rgba(8, 12, 20, 0.92)); }

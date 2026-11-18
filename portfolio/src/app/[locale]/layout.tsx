@@ -52,7 +52,7 @@ export const viewport: Viewport = {
 
 // Se ejecuta antes del primer pintado: marca <html> con `rm` (reducir movimiento) o `lite` (equipo modesto)
 // para que el hero y el coverflow nazcan estáticos y no haya salto de diseño al hidratar.
-const motionPrefsScript = `(function(){try{var d=document.documentElement,q=new URLSearchParams(location.search),rm=q.get("rm")==="1"||matchMedia("(prefers-reduced-motion: reduce)").matches,c=navigator.connection,lite=!rm&&(q.get("lite")==="1"||(c&&c.saveData)||(navigator.hardwareConcurrency||8)<=2);if(rm)d.classList.add("rm");if(lite)d.classList.add("lite")}catch(e){}})()`;
+const motionPrefsScript = `(function(){try{var d=document.documentElement,q=new URLSearchParams(location.search),rm=q.get("rm")==="1"||matchMedia("(prefers-reduced-motion: reduce)").matches,n=navigator,c=n.connection,k=n.hardwareConcurrency||8,m=n.deviceMemory||8,lite=!rm&&(q.get("lite")==="1"||(c&&c.saveData)||k<=2||m<=2),co=matchMedia("(pointer: coarse)").matches,weak=co?(k<=4||m<=4):(k<=4&&m<=4),mid=!rm&&!lite&&(q.get("mid")==="1"||weak);if(rm)d.classList.add("rm");if(lite)d.classList.add("lite");if(mid)d.classList.add("mid")}catch(e){}})()`;
 
 const noScriptCss = `[data-reveal]{opacity:1!important;transform:none!important}.mask-line>span{transform:none!important}.sec-rule,.eyebrow::after{transform:scaleX(1)!important}.hero [data-in],.hero .ch,.hero .ch2,.hero .win-in{visibility:visible!important}.htrack{height:auto!important}.hero{position:relative!important;height:auto!important;min-height:100svh}`;
 

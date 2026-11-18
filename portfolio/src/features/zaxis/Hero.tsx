@@ -8,7 +8,7 @@
 import Image from "next/image";
 import { useTranslations } from "next-intl";
 import { useEffect, useMemo, useRef, type CSSProperties } from "react";
-import { bindPointer, bridge, clamp, createLoop, fmtMonth, getMotionPrefs, host, inOutCubic, lerp, pointer, range, smooth, subscribeScroll, tintOf, watchVisible } from "./lib";
+import { bindPointer, bridge, clamp, createLoop, fmtMonth, getMotionPrefs, host, inOutCubic, lerp, onPointerActivity, pointer, range, smooth, subscribeScroll, tintOf, watchVisible } from "./lib";
 import type { ZContent } from "./types";
 import { createWeightField } from "./weight";
 
@@ -57,6 +57,9 @@ export function Hero({ content }: { content: ZContent }) {
     const rl = hero.querySelector<HTMLElement>("#hrole")!;
     // El nombre se desvanece con el scroll; el rol («Full Stack Developer») es lo que se acopla al navbar.
     const fades = [hero.querySelector<HTMLElement>(".h-name")!, ...hero.querySelectorAll<HTMLElement>("[data-fade]")];
+    const deep = hero.querySelector<HTMLElement>(".h-deep")!;
+    const floor = hero.querySelector<HTMLElement>(".h-floor")!;
+    const tintEls = [...hero.querySelectorAll<HTMLElement>(".h-tint")];
     const letters = [...n1.querySelectorAll<HTMLElement>(".ch")];
     const field = createWeightField(letters);
     let skipIntro = false;
@@ -67,32 +70,55 @@ export function Hero({ content }: { content: ZContent }) {
     let narrow = innerWidth < 760;
     let ready = false;
     let m: { s: number; dx: number; dy: number } | null = null;
-    const focusW = winEls.map(() => 0.5);
     let focus = 0, lastPick = 0, lastAuto = performance.now();
+    let waveEnd = 0; // la onda tipográfica sin puntero dura solo unos segundos tras la entrada
     const tint = new Map<number, [number, number, number]>();
     const poseOf = (id: string): Pose | undefined => (narrow ? POSES_NARROW[NARROW_IDS.indexOf(id)] : POSES_WIDE[WIDE_IDS.indexOf(id)]);
     let disposed = false;
+    const timers = new Set<number>();
+    const later = (fn: () => void, ms: number) => { const id = window.setTimeout(() => { timers.delete(id); fn(); }, ms); timers.add(id); return id; };
 
     /* ---------- arranque: con fuentes e imágenes listas (con tope) para que no haya saltos ---------- */
     const imgs = [...hero.querySelectorAll<HTMLImageElement>(".win img")].slice(0, 2).map((i) => i.decode?.().catch(() => {}));
     const fonts = document.fonts?.ready ?? Promise.resolve();
     Promise.race([Promise.all([fonts, ...imgs]), new Promise((r) => setTimeout(r, 900))]).then(() => {
-      if (!disposed) hero.classList.add("go");
+      if (disposed) return;
+      hero.classList.add("go");
+      // Terminada la entrada se retiran las animaciones con `fill: both` (el estado final es idéntico): así sus capas
+      // de composición no quedan reservadas para siempre.
+      later(() => hero.classList.add("intro-done"), 2600);
     });
     fonts.then(() => requestAnimationFrame(() => {
       if (disposed) return;
       if (!calm) field.fix();
       measure();
       ready = true;
+      waveEnd = performance.now() + 6500;
       api.update(scrollY, innerHeight);
+      loop.wake();
     }));
 
-    /* ---------- luz ambiental por proyecto ---------- */
+    /* ---------- luz ambiental por proyecto ----------
+       Dos capas que se funden por opacidad (compositor): cambiar de proyecto ya no repinta el degradado ni recalcula
+       estilos de todo el hero durante la transición. */
+    let tintOn = 0;
     function setAmbient(i: number) {
       const c = tint.get(i);
-      if (!c) return;
-      hero.style.setProperty("--tr", String(c[0])); hero.style.setProperty("--tg", String(c[1])); hero.style.setProperty("--tb", String(c[2]));
+      if (!c || !tintEls.length) return;
+      const next = tintEls[(tintOn + 1) % tintEls.length];
+      if (tintEls.length > 1 && tintEls[tintOn].dataset.k === `${c[0]},${c[1]},${c[2]}`) return;
+      next.style.setProperty("--tr", String(c[0])); next.style.setProperty("--tg", String(c[1])); next.style.setProperty("--tb", String(c[2]));
+      next.dataset.k = `${c[0]},${c[1]},${c[2]}`;
+      next.classList.add("on");
+      if (next !== tintEls[tintOn]) tintEls[tintOn].classList.remove("on");
+      tintOn = tintEls.indexOf(next);
     }
+    function setFocus(k: number) {
+      focus = k;
+      winEls.forEach((w, i) => w.classList.toggle("is-focus", i === k));
+      setAmbient(k);
+    }
+    setFocus(0);
     hero.querySelectorAll<HTMLImageElement>(".win img").forEach((img, i) => {
       const apply = () => {
         if (disposed) return;
@@ -106,23 +132,30 @@ export function Hero({ content }: { content: ZContent }) {
     });
 
     /* ---------- geometría ---------- */
+    // Se escribe solo lo que cambia: sin escrituras idénticas no hay invalidación de estilo.
+    const winState = winEls.map(() => ({ t: "", o: "", pe: "", h: false }));
     function place(dive: number) {
       const W = innerWidth, H = innerHeight;
-      winEls.forEach((w) => {
+      winEls.forEach((w, i) => {
+        const st = winState[i];
         const pz = poseOf(w.dataset.id!);
-        if (!pz) { w.hidden = true; return; }
-        w.hidden = false;
+        if (!pz) { if (!st.h) { w.hidden = true; st.h = true; } return; }
+        if (st.h) { w.hidden = false; st.h = false; }
         const zz = pz.z + dive * DIVE_DEPTH;
         // se desvanece al atravesar el plano de la cámara y también cuando queda muy lejos
         const op = (1 - range(zz, 80, 760)) * (1 - range(-zz, 2400, 3400));
-        w.style.transform = `translate3d(calc(-50% + ${(pz.x * W).toFixed(1)}px), calc(-50% + ${(pz.y * H).toFixed(1)}px), ${zz.toFixed(1)}px) rotateY(${pz.ry}deg) rotateX(${pz.rx}deg)`;
-        w.style.opacity = op.toFixed(3);
-        w.style.pointerEvents = op < 0.4 ? "none" : "";
+        const t = `translate3d(calc(-50% + ${(pz.x * W).toFixed(1)}px), calc(-50% + ${(pz.y * H).toFixed(1)}px), ${zz.toFixed(1)}px) rotateY(${pz.ry}deg) rotateX(${pz.rx}deg)`;
+        const o = op.toFixed(3);
+        const pe = op < 0.4 ? "none" : "";
+        if (t !== st.t) { w.style.transform = t; st.t = t; }
+        if (o !== st.o) { w.style.opacity = o; st.o = o; }
+        if (pe !== st.pe) { w.style.pointerEvents = pe; st.pe = pe; }
       });
     }
 
     function measure() {
       narrow = innerWidth < 760;
+      lastE = -1;
       if (calm) { place(0); return; }
       rl.style.transform = "none";
       const h = hero.getBoundingClientRect(), a1 = rl.getBoundingClientRect();
@@ -132,26 +165,28 @@ export function Hero({ content }: { content: ZContent }) {
     }
     const onResize = () => requestAnimationFrame(() => {
       if (disposed) return;
-      if (!calm) field.fix();
+      if (!calm) field.fix(); // vuelve a medir las letras (caché invalidada)
       measure();
+      lastDive = -1;
       api.update(scrollY, innerHeight);
+      loop.wake();
     });
     addEventListener("resize", onResize);
 
-    /* ---------- bucle del puntero: parallax de la escena + peso del nombre + foco de luz ---------- */
-    let px = 0, py = 0;
+    /* ---------- bucle BAJO DEMANDA: parallax de la escena + peso del nombre ----------
+       No hay bucle permanente. Se despierta con el puntero (o con la entrada) y se duerme solo cuando todo ha convergido.
+       Las lecturas (ventana bajo el puntero) van antes de las escrituras de cada frame. */
+    let px = 0, py = 0, hsetKey = "", lastDive = -1, lastE = -1, lastDocked: boolean | null = null, lastGy = "";
+    let visible = true;
+    const dormant = () => !visible || document.hidden || calm || lastDive >= 0.999;
+    const ptrActive = (now: number) => pointer.x > -999 && now - pointer.last < 2600;
     const loop = createLoop((now) => {
-      const active = pointer.x > -999 && now - pointer.last < 2600;
-      const tx = active ? pointer.nx : Math.sin(now / 2900) * 0.45;
-      const ty = active ? pointer.ny : Math.cos(now / 3700) * 0.3;
-      px = lerp(px, tx, 0.05); py = lerp(py, ty, 0.05);
-      hset.style.transform = `translate3d(${(-px * 24).toFixed(1)}px, ${(-py * 15).toFixed(1)}px, 0) rotateY(${(px * 4).toFixed(2)}deg) rotateX(${(-py * 2.5).toFixed(2)}deg)`;
-      if (ready && scrollY < 24) field.tick(now, 1); else if (ready) field.tick(now, 0);
-
-      // foco: la ventana más cercana al puntero; sin puntero, la luz recorre los proyectos despacio
+      const active = ptrActive(now);
+      // lecturas
       if (active && now - lastPick > 140 && !narrow) {
         lastPick = now;
-        hset.style.cursor = winAt(pointer.x, pointer.y) ? "pointer" : "";
+        const over = winAt(pointer.x, pointer.y) ? "pointer" : "";
+        if (hset.style.cursor !== over) hset.style.cursor = over;
         let best = focus, bd = 1e9;
         winEls.forEach((w, i) => {
           if (w.hidden || +w.style.opacity < 0.3) return;
@@ -159,25 +194,48 @@ export function Hero({ content }: { content: ZContent }) {
           const d = Math.hypot(pointer.x - (r.left + r.width / 2), pointer.y - (r.top + r.height / 2));
           if (d < bd) { bd = d; best = i; }
         });
-        if (best !== focus) { focus = best; setAmbient(focus); }
-        lastAuto = now;
-      } else if (!active && now - lastAuto > 5200) {
-        // en móvil solo rotan las ventanas visibles
-        let k = focus;
-        for (let s = 0; s < winEls.length; s++) { k = (k + 1) % winEls.length; if (poseOf(winEls[k].dataset.id!)) break; }
-        focus = k;
-        setAmbient(focus);
+        if (best !== focus) setFocus(best);
         lastAuto = now;
       }
-      winEls.forEach((w, i) => {
-        focusW[i] = lerp(focusW[i], i === focus ? 1 : 0.42, 0.07);
-        w.style.setProperty("--f", focusW[i].toFixed(3));
-      });
+      // escrituras
+      const tx = active ? pointer.nx : 0, ty = active ? pointer.ny : 0;
+      px = lerp(px, tx, 0.05); py = lerp(py, ty, 0.05);
+      if (Math.abs(px - tx) < 0.0004) px = tx;
+      if (Math.abs(py - ty) < 0.0004) py = ty;
+      const key = `${px.toFixed(3)},${py.toFixed(3)}`;
+      if (key !== hsetKey) {
+        hsetKey = key;
+        hset.style.transform = `translate3d(${(-px * 24).toFixed(1)}px, ${(-py * 15).toFixed(1)}px, 0) rotateY(${(px * 4).toFixed(2)}deg) rotateX(${(-py * 2.5).toFixed(2)}deg)`;
+      }
+      const weightBusy = ready ? field.tick(now, scrollY < 24 ? 1 : 0, clamp((waveEnd - now) / 1800)) : false;
+      return px !== tx || py !== ty || weightBusy || (active && now - pointer.last < 120);
     });
-    let visible = true;
-    const sync = () => { if (visible && !document.hidden && !calm) loop.start(); else loop.stop(); };
-    const unwatch = watchVisible(hero, (v) => { visible = v; sync(); });
+    // Deriva ambiente (antes un bucle JS): ahora es una animación CSS de compositor, que se pausa con `.still`.
+    const sync = () => {
+      const still = dormant();
+      hero.classList.toggle("still", still);
+      if (still) loop.pause(); else loop.resume();
+    };
+    // Con el hero fuera de pantalla (margen de 200 px para no ver el repoblado) la escena 3D se oculta: sin pintado ni capas de composición.
+    const unwatch = watchVisible(hero, (v) => { visible = v; hero.classList.toggle("off", !v); sync(); }, "200px");
     document.addEventListener("visibilitychange", sync);
+    // El puntero despierta el bucle; pasado el tiempo de inactividad se despierta una vez más para devolver todo al reposo.
+    let idleT = 0;
+    const offPointer = calm ? () => {} : onPointerActivity(() => {
+      if (dormant()) return;
+      loop.wake();
+      clearTimeout(idleT);
+      idleT = window.setTimeout(() => loop.wake(), 2700);
+    });
+    // Rotación lenta de la luz entre proyectos cuando nadie interactúa: un temporizador, no un bucle.
+    const autoT = calm ? 0 : window.setInterval(() => {
+      const now = performance.now();
+      if (dormant() || ptrActive(now) || now - lastAuto < 5200) return;
+      let k = focus;
+      for (let s = 0; s < winEls.length; s++) { k = (k + 1) % winEls.length; if (poseOf(winEls[k].dataset.id!)) break; }
+      setFocus(k);
+      lastAuto = now;
+    }, 1300);
     sync();
 
     /* ---------- clic en una ventana: lleva al proyecto en el explorador ----------
@@ -199,10 +257,11 @@ export function Hero({ content }: { content: ZContent }) {
     hero.addEventListener("click", onClick);
 
     const api = {
-      /** Lo llama el único manejador de scroll de ZAxisApp. */
+      /** Lo llama el único manejador de scroll de ZAxisApp. Solo escribe cuando el valor cambia. */
       update(y: number, vh: number) {
         if (calm) {
-          nav.toggleAttribute("data-docked", y > vh * 0.5);
+          const d = y > vh * 0.5;
+          if (d !== lastDocked) { lastDocked = d; nav.toggleAttribute("data-docked", d); }
           return;
         }
         if (!ready) return;
@@ -210,19 +269,33 @@ export function Hero({ content }: { content: ZContent }) {
         if (y > total + vh) return; // el hero ya salió de pantalla
         const e = inOutCubic(range(y, 0, vh * 0.5));
         const dive = smooth(range(y, vh * 0.3, vh * 1.2));
-        hero.style.setProperty("--dive", dive.toFixed(4));
-        hero.style.setProperty("--gy", `${((y * 0.9) % 80).toFixed(1)}px`); // avanza por el plano; el módulo evita que se acabe la cuadrícula
-        if (m) rl.style.transform = `translate3d(${(m.dx * e).toFixed(2)}px, ${(m.dy * e).toFixed(2)}px, 0) scale(${(1 + (m.s - 1) * e).toFixed(4)})`;
-        fades.forEach((f, i) => {
-          const out = clamp(e * 2.4 - i * 0.06);
-          f.style.opacity = (1 - out).toFixed(3);
-          f.style.translate = `0 ${(-out * 22).toFixed(1)}px`;
-          f.style.visibility = out >= 1 ? "hidden" : "";
-        });
+        if (dive !== lastDive) {
+          const was = lastDive >= 0.999;
+          lastDive = dive;
+          deep.style.opacity = dive.toFixed(4);
+          place(dive);
+          if (was !== dive >= 0.999) sync(); // terminó (o se reanuda) la transición de profundidad
+        }
+        const gy = `${((y * 0.9) % 80).toFixed(0)}px`; // avanza por el plano; el módulo evita que se acabe la cuadrícula
+        if (gy !== lastGy) { lastGy = gy; floor.style.setProperty("--gy", gy); }
+        if (e !== lastE) {
+          lastE = e;
+          if (m) rl.style.transform = `translate3d(${(m.dx * e).toFixed(2)}px, ${(m.dy * e).toFixed(2)}px, 0) scale(${(1 + (m.s - 1) * e).toFixed(4)})`;
+          fades.forEach((f, i) => {
+            const out = clamp(e * 2.4 - i * 0.06);
+            f.style.opacity = (1 - out).toFixed(3);
+            f.style.translate = `0 ${(-out * 22).toFixed(1)}px`;
+            f.style.visibility = out >= 1 ? "hidden" : "";
+          });
+        }
         const docked = y >= vh * 0.5;
-        nav.toggleAttribute("data-docked", docked);
-        rl.style.visibility = docked ? "hidden" : "";
-        place(dive);
+        if (docked !== lastDocked) {
+          lastDocked = docked;
+          nav.toggleAttribute("data-docked", docked);
+          rl.style.visibility = docked ? "hidden" : "";
+        }
+        // al volver al inicio el nombre vuelve a responder al puntero
+        if (y < 24) loop.wake();
       },
     };
     place(0);
@@ -231,7 +304,11 @@ export function Hero({ content }: { content: ZContent }) {
     return () => {
       disposed = true;
       off();
-      loop.stop();
+      loop.pause();
+      timers.forEach(clearTimeout);
+      clearTimeout(idleT);
+      clearInterval(autoT);
+      offPointer();
       unwatch();
       removeEventListener("resize", onResize);
       document.removeEventListener("visibilitychange", sync);
@@ -245,6 +322,8 @@ export function Hero({ content }: { content: ZContent }) {
       <section className="hero" id="hero" aria-label={content.name}>
         <div className="h-bg" aria-hidden="true">
           <div className="h-aurora" />
+          <div className="h-tint" />
+          <div className="h-tint" />
           <div className="plane-grid h-floor"><i /></div>
           <div className="h-cam">
             <div className="h-set" id="hset">

@@ -57,7 +57,8 @@ html.rm .job[data-reveal] .jp { transform: none; opacity: 1; }
 .st-floor { opacity: 0.55; height: 50%; }
 .stack .wrap { position: relative; z-index: 1; }
 .layers-wrap { perspective: 1500px; perspective-origin: 50% 20%; }
-.layers { display: grid; gap: 12px; transform-style: flat; transition: transform 0.6s var(--out); will-change: transform; }
+.layers { display: grid; gap: 12px; transform-style: flat; transition: transform 0.6s var(--out); }
+.layers.tilting { will-change: transform; } /* capa de composición solo mientras se inclina con el puntero */
 .layer { position: relative; display: grid; grid-template-columns: minmax(180px, 0.55fr) minmax(0, 2fr); gap: clamp(16px, 3vw, 48px); align-items: start; padding: clamp(20px, 2.6vw, 34px); border: 1px solid var(--line); border-radius: 16px; background: linear-gradient(160deg, rgba(18, 28, 46, calc(0.7 - var(--n) * 0.13)), rgba(8, 12, 20, calc(0.78 - var(--n) * 0.1))); --s: calc(1500 / (1500 + var(--n) * 34)); transform: scale(var(--s)); transform-origin: 50% 0; transition: border-color 0.4s; overflow: hidden; }
 .layer::before { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 2px; background: linear-gradient(var(--brand), transparent); opacity: calc(1 - var(--n) * 0.22); }
 .layer::after { content: ""; position: absolute; inset: 0 0 auto 0; height: 1px; background: linear-gradient(90deg, rgba(155, 214, 255, 0.5), transparent 60%); opacity: calc(0.9 - var(--n) * 0.2); }

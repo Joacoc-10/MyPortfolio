@@ -23,13 +23,18 @@ const HUD: Record<Phase, string> = {
   sent: "hudSent", reject: "hudReject", bounce: "hudReject", error: "hudReject", recovered: "hudRecovered", resetting: "hudIdle",
 };
 
-function detectTier(lite: boolean): Tier {
+function detectTier(lite: boolean, mid: boolean): Tier {
   const nav = navigator as Navigator & { deviceMemory?: number };
   const mem = nav.deviceMemory ?? 8, cores = navigator.hardwareConcurrency || 8, coarse = matchMedia("(pointer: coarse)").matches;
   if (lite || mem <= 2 || cores <= 2) return "low";
-  if (coarse || mem <= 4 || cores <= 4 || innerWidth < 700) return "mid";
+  if (mid || coarse || mem <= 4 || cores <= 4 || innerWidth < 700) return "mid";
   return "high";
 }
+
+// El módulo de la escena (Three.js, ~130 KB gzip) se descarga UNA vez; puede pedirse antes (precarga en reposo) y la inicialización
+// de WebGL sigue ocurriendo solo al acercarse a Contacto.
+let sceneModule: Promise<typeof import("./portal/scene")> | null = null;
+const loadSceneModule = () => (sceneModule ??= import("./portal/scene").catch((e) => { sceneModule = null; throw e; }));
 
 const validate = (v: Values, t: Msg) => {
   const e: Partial<Record<FieldName, string>> = {};
@@ -163,13 +168,13 @@ export function MessagePortal({ email: directEmail, head, foot }: { email: strin
     const load = async (): Promise<PortalDriver> => {
       let d: PortalDriver;
       try {
-        const { PortalScene, webglSupported } = await import("./portal/scene"); // Three.js solo se descarga aquí
+        const { PortalScene, webglSupported } = await loadSceneModule(); // Three.js solo se descarga cuando hace falta
         if (disposed) throw new Error("desmontado");
         if (!webglSupported()) throw new Error("WebGL 2 no disponible");
         const canvas = document.createElement("canvas");
         stageEl.prepend(canvas);
         const scene = new PortalScene({
-          canvas, stage: stageEl, anchor: currentAnchor(), tier: detectTier(prefs.lite), reduced: reducedRef.current, onPhase,
+          canvas, stage: stageEl, anchor: currentAnchor(), tier: detectTier(prefs.lite, prefs.mid), reduced: reducedRef.current, onPhase,
           labels: { head: t("letterHead"), count: t("letterCount"), name: t("letterName"), email: t("letterEmail"), foot: t("letterFoot") },
         });
         await scene.init();
@@ -198,6 +203,17 @@ export function MessagePortal({ email: directEmail, head, foot }: { email: strin
       if (typeof window.requestIdleCallback === "function") idle = window.requestIdleCallback(start, { timeout: 1500 }); else idle = setTimeout(start, 200) as unknown as number;
     }, { rootMargin: "1600px 0px" });
     io.observe(rootEl);
+    // Precarga del módulo (solo descarga y evaluación; sin WebGL) cuando el navegador está ocioso, bien después de `load`, para no
+    // competir con el LCP ni con la entrada del hero. Se omite con ahorro de datos, red lenta o equipo muy limitado.
+    let prefetchT = 0, prefetchIdle = 0;
+    {
+      const conn = (navigator as Navigator & { connection?: { saveData?: boolean; effectiveType?: string } }).connection;
+      const slowNet = Boolean(conn?.saveData) || /(^|-)2g|3g/.test(conn?.effectiveType ?? "");
+      if (!prefs.lite && !slowNet && typeof window.requestIdleCallback === "function") {
+        const arm = () => { prefetchT = window.setTimeout(() => { prefetchIdle = window.requestIdleCallback(() => { void loadSceneModule().catch(() => {}); }, { timeout: 6000 }); }, 3500); };
+        if (document.readyState === "complete") arm(); else window.addEventListener("load", arm, { once: true });
+      }
+    }
     const ro = new ResizeObserver(syncFlash); ro.observe(stageEl); ro.observe(anchorEl);
     const onMobile = () => { const d = driver.current; if (d && d.kind === "webgl") { d.anchor = currentAnchor(); d.relayout(); } syncFlash(); };
     const onReduce = () => { reducedRef.current = getMotionPrefs().rm; setReduced(reducedRef.current); driver.current?.setReducedMotion(reducedRef.current); };
@@ -213,7 +229,7 @@ export function MessagePortal({ email: directEmail, head, foot }: { email: strin
       Object.defineProperty(window, "__zxPortal", { configurable: true, get: () => ({ driver: driver.current, status: statusRef.current }) });
     }
     return () => {
-      disposed = true; io.disconnect(); if (typeof window.cancelIdleCallback === "function") window.cancelIdleCallback(idle); clearTimeout(idle); ro.disconnect(); mqMobile.removeEventListener("change", onMobile); mqReduce.removeEventListener("change", onReduce);
+      disposed = true; clearTimeout(prefetchT); if (typeof window.cancelIdleCallback === "function") window.cancelIdleCallback(prefetchIdle); io.disconnect(); if (typeof window.cancelIdleCallback === "function") window.cancelIdleCallback(idle); clearTimeout(idle); ro.disconnect(); mqMobile.removeEventListener("change", onMobile); mqReduce.removeEventListener("change", onReduce);
       vv?.removeEventListener("resize", onVv); stageEl.removeEventListener("pointerdown", poke);
       pending.forEach(clearTimeout); pending.clear(); if (rootEl.parentElement) rootEl.parentElement.style.paddingBottom = ""; clearTimeout(slow.current); tok.current++;
       driver.current?.dispose(); driver.current = null; promise = null; setDriverReady(false);
