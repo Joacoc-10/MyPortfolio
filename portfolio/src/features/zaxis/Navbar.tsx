@@ -60,6 +60,59 @@ export function Navbar({ role }: { role: string }) {
     };
   }, [open, close]);
 
+  // Contacto inmersivo (≤960px, donde la escena queda fija arriba): el navbar se oculta al entrar en Message Portal,
+  // vuelve al desplazarse hacia arriba y permanece oculto mientras el teclado virtual está abierto con un campo enfocado.
+  // Se restaura al salir de Contacto. Solo escribe atributos en el DOM (sin re-render por frame). Con movimiento reducido el cambio es instantáneo (CSS).
+  useEffect(() => {
+    const h = header.current, mp = document.querySelector<HTMLElement>(".mp"), stage = mp?.querySelector<HTMLElement>(".mp-stage");
+    if (!h || !mp || !stage) return;
+    const mq = matchMedia("(max-width: 960px)");
+    const html = document.documentElement;
+    const navH = () => h.offsetHeight || 68;
+    let lastY = scrollY, dir: "up" | "down" = "down", raf = 0, fieldFocus = false, base = visualViewport?.height ?? innerHeight, hidden = false;
+    const isField = (el: EventTarget | null) => el instanceof HTMLElement && el.closest(".mp-form") !== null && /^(INPUT|TEXTAREA)$/.test(el.tagName);
+    const apply = () => {
+      raf = 0;
+      let hide = false;
+      if (mq.matches && !h.classList.contains("open")) {
+        const vvh = visualViewport?.height ?? innerHeight;
+        const kb = fieldFocus && vvh < Math.max(base, 1) * 0.85;
+        const inZone = stage.getBoundingClientRect().top <= navH() + 2 && (document.getElementById("foot")?.getBoundingClientRect().top ?? Infinity) > innerHeight * 0.92; // el pie de página marca la salida de Contacto
+        hide = kb || (inZone && dir === "down");
+      }
+      if (hide === hidden) return;
+      hidden = hide;
+      h.toggleAttribute("data-hide", hide);
+      if (hide) html.dataset.nav = "hidden"; else delete html.dataset.nav;
+    };
+    const queue = () => { if (!raf) raf = requestAnimationFrame(apply); };
+    const onScroll = () => {
+      const y = scrollY, dy = y - lastY;
+      if (Math.abs(dy) >= 6) { dir = dy > 0 ? "down" : "up"; lastY = y; }
+      queue();
+    };
+    const onFocusIn = (e: FocusEvent) => { if (isField(e.target)) { fieldFocus = true; queue(); } };
+    const onFocusOut = (e: FocusEvent) => { if (isField(e.target)) { fieldFocus = false; base = visualViewport?.height ?? innerHeight; queue(); } };
+    const onVv = () => { if (!fieldFocus) base = visualViewport?.height ?? innerHeight; queue(); };
+    addEventListener("scroll", onScroll, { passive: true });
+    mp.addEventListener("focusin", onFocusIn);
+    mp.addEventListener("focusout", onFocusOut);
+    visualViewport?.addEventListener("resize", onVv);
+    addEventListener("resize", queue);
+    mq.addEventListener("change", queue);
+    queue();
+    return () => {
+      removeEventListener("scroll", onScroll);
+      mp.removeEventListener("focusin", onFocusIn);
+      mp.removeEventListener("focusout", onFocusOut);
+      visualViewport?.removeEventListener("resize", onVv);
+      removeEventListener("resize", queue);
+      mq.removeEventListener("change", queue);
+      cancelAnimationFrame(raf);
+      h.removeAttribute("data-hide"); delete html.dataset.nav;
+    };
+  }, [open]);
+
   const activeId = cur > 0 ? SECTIONS[cur - 1] : null;
   const item = (i: number) => ({ "--i": i }) as CSSProperties;
 

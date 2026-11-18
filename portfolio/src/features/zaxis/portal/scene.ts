@@ -204,7 +204,7 @@ export class PortalScene implements PortalDriver {
     const D = this.camera.position.z, fov = THREE.MathUtils.degToRad(this.camera.fov);
     const f = (2 * D * Math.tan(fov / 2)) / this.ch; // unidades de mundo por píxel en z=0
     const cx = ar.left + ar.width / 2 - (sr.left + sr.width / 2), cy = ar.top + ar.height / 2 - (sr.top + sr.height / 2);
-    const compact = ar.width < 700 || ar.height < 420, s = Math.min((ar.width * f) / (compact ? 5.9 : 4.8), (ar.height * f) / (compact ? 4.7 : 3.9));
+    const compact = ar.width < 700 || ar.height < 420, mobileK = this.anchor === this.stage ? 0.82 : 1, s = mobileK * Math.min((ar.width * f) / (compact ? 5.9 : 4.8), (ar.height * f) / (compact ? 4.7 : 3.9));
     this.root.scale.setScalar(Math.max(0.05, s)); this.root.position.set(cx * f, -cy * f, 0);
     this.root.rotation.y = -Math.atan2(cx * f, D) * 0.55;
     this.srect = sr; this.f = f;

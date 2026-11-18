@@ -3,7 +3,7 @@
    con el canvas por detrás de toda la zona (los rayos de luz van del campo al objeto). ≤960px: escena fija compacta arriba. */
 @property --ang { syntax: "<angle>"; inherits: false; initial-value: 0deg; }
 
-.mp { --io: cubic-bezier(0.65, 0, 0.35, 1); --err: #ff9a5c; --err-ink: #ffc3ba; position: relative; isolation: isolate; margin-top: clamp(40px, 6vw, 80px); }
+.mp { --io: cubic-bezier(0.65, 0, 0.35, 1); --err: #ff9a5c; --err-ink: #ffc3ba; position: relative; isolation: isolate; }
 .mp [hidden] { display: none !important; }
 .mp-sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
 
@@ -15,8 +15,11 @@
 .mp[data-phase="reject"] .mp-flash, .mp[data-phase="bounce"] .mp-flash, .mp[data-phase="error"] .mp-flash {
   background: radial-gradient(46% 52% at var(--fx, 70%) var(--fy, 50%), rgba(255, 214, 190, 0.9), rgba(255, 140, 80, 0.3) 38%, transparent 72%); }
 
-.mp-grid { position: relative; z-index: 2; display: grid; grid-template-columns: minmax(0, 540px) minmax(0, 1fr); gap: clamp(32px, 5vw, 80px); align-items: center; }
-.mp-anchor { position: relative; min-height: clamp(460px, 62vh, 640px); pointer-events: none; }
+.mp-grid { position: relative; z-index: 2; display: grid; grid-template-columns: minmax(0, 540px) minmax(0, 1fr); grid-template-areas: "head anchor" "card anchor"; grid-template-rows: auto 1fr; column-gap: clamp(32px, 5vw, 80px); align-items: start; }
+.mp-head { grid-area: head; padding-bottom: clamp(22px, 2.6vw, 34px); }
+.mp-card { grid-area: card; }
+.mp-anchor { grid-area: anchor; align-self: stretch; position: relative; min-height: clamp(520px, 64vh, 700px); pointer-events: none; }
+.mp-foot { position: relative; z-index: 2; margin-top: clamp(36px, 4.5vw, 64px); }
 
 /* HUD: pasos + estado (decorativo; el estado real se anuncia por la región en vivo) */
 .mp-hud { position: absolute; left: 50%; bottom: 0; transform: translateX(-50%); display: grid; justify-items: center; gap: 10px; width: max-content; max-width: 100%; opacity: 0; transition: opacity 0.5s var(--out); }
@@ -117,11 +120,16 @@
 
 /* tablet / móvil: escena fija compacta arriba + formulario debajo */
 @media (max-width: 960px) {
-  .mp { margin-top: 28px; }
-  .mp-stage { position: sticky; top: var(--nav-h); left: auto; right: auto; bottom: auto; z-index: 4; height: clamp(250px, 40svh, 380px); margin-inline: calc(var(--pad) * -1); pointer-events: auto; touch-action: pan-y;
-    background: radial-gradient(70% 62% at 50% 46%, rgba(20, 70, 82, 0.4), transparent 72%), linear-gradient(180deg, #05070b 0, #05070b 90%, rgba(5, 7, 11, 0)); transition: height 0.5s var(--out); }
-  .mp[data-kb="1"] .mp-stage { height: clamp(104px, 16svh, 150px); }
-  .mp-grid { grid-template-columns: minmax(0, 1fr); padding-top: 8px; }
+  /* orden de lectura inmersivo: cabecera → escena fija (a pantalla, sin navbar encima) → formulario → canales. El scroll sigue siendo natural. */
+  .mp { display: flex; flex-direction: column; }
+  .mp-grid { display: contents; }
+  .mp-head { order: 1; position: relative; z-index: 2; padding-bottom: 22px; max-width: 640px; width: 100%; margin-inline: auto; }
+  .mp-stage { order: 2; }
+  /* Profundidad: la escena es un fondo sticky (z 1) y la tarjeta (z 2) pasa por delante y la va tapando al desplazarse; vale igual para formulario y confirmación. Capas fijas: nunca cambian de z-index. */
+  .mp-card { order: 3; z-index: 2; background: linear-gradient(160deg, rgba(14, 21, 34, 0.96), rgba(8, 12, 20, 0.97)); }
+  .mp-foot { max-width: 640px; width: 100%; margin-inline: auto; margin-top: 32px; }
+  .mp-stage { position: sticky; top: var(--mp-top, var(--nav-h)); left: auto; right: auto; bottom: auto; z-index: 1; height: clamp(270px, 44svh, 420px); margin-inline: calc(var(--pad) * -1); pointer-events: auto; touch-action: pan-y;
+    background: radial-gradient(70% 62% at 50% 46%, rgba(20, 70, 82, 0.4), transparent 72%), linear-gradient(180deg, #05070b 0, #05070b 90%, rgba(5, 7, 11, 0)); transition: height 0.5s var(--out), top 0.45s var(--out); }
   .mp-anchor { display: none; }
   .mp-card { max-width: 640px; width: 100%; margin-inline: auto; }
   .mp-stage > .mp-hud { position: absolute; z-index: 2; bottom: 6px; max-width: calc(100% - 24px); }
@@ -129,11 +137,14 @@
   .mp-steps li::before { left: 8px; }
 }
 @media (min-width: 961px) { .mp-stage > .mp-hud { display: none; } }
+@media (max-width: 600px) { .mp-stage { height: clamp(230px, 37svh, 340px); } }
 @media (max-width: 480px) {
   .mp-steps { gap: 4px; }
   .mp-steps li { padding-left: 17px; padding-right: 7px; letter-spacing: 0.04em; }
 }
 @media (max-height: 520px) and (orientation: landscape) and (max-width: 960px) { .mp-stage { position: relative; top: auto; height: 240px; } }
+/* navbar contextual: sin él la escena sube hasta el borde superior (ver Navbar.tsx) */
+html[data-nav="hidden"] { --mp-top: 0px; }
 
 /* movimiento reducido: sin trayectorias ni parpadeos; solo fundidos cortos */
 .mp[data-motion="reduce"] *, .mp[data-motion="reduce"] *::before, .mp[data-motion="reduce"] *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; animation-delay: 0ms !important; }

@@ -5,7 +5,7 @@
 // responde, y si falla devuelve el sobre en un estado recuperable con los datos intactos.
 // Fases de la escena → ver portal/scene.ts. Sin WebGL 2 se usa un respaldo CSS con las mismas fases.
 import { useLocale, useTranslations } from "next-intl";
-import { useCallback, useEffect, useId, useRef, useState, type CSSProperties, type FormEvent } from "react";
+import { useCallback, useEffect, useId, useRef, useState, type CSSProperties, type FormEvent, type ReactNode } from "react";
 import { EmailNotConfiguredError, sendContactMessage } from "./email";
 import { getMotionPrefs } from "./lib";
 import { FallbackDriver, type PortalDriver } from "./portal/driver";
@@ -60,7 +60,8 @@ function Hud({ steps, label, labels }: { steps: { on: number; ok: number }; labe
   );
 }
 
-export function MessagePortal({ email: directEmail }: { email: string }) {
+/** `head` (título + descripción) y `foot` (canales secundarios) se componen DENTRO del portal para compartir su rejilla y su escena. */
+export function MessagePortal({ email: directEmail, head, foot }: { email: string; head?: ReactNode; foot?: ReactNode }) {
   const tr = useTranslations("ContactForm");
   const locale = useLocale();
   const t: Msg = (key, vars) => tr(key as Parameters<typeof tr>[0], vars);
@@ -294,6 +295,7 @@ export function MessagePortal({ email: directEmail }: { email: string }) {
   const ledStyle = (k: FieldName) => ({ "--p": p[k].toFixed(2) }) as CSSProperties;
 
   return (
+    <>
     <div className="mp" ref={root} data-s={dataS} data-phase={phase} data-bad={bad ? "1" : "0"} data-motion={reduced ? "reduce" : "full"}>
       {/* Escena 3D: decorativa (la información real está en el formulario y en la región en vivo) */}
       <div className="mp-stage" ref={stage} aria-hidden="true">
@@ -303,6 +305,7 @@ export function MessagePortal({ email: directEmail }: { email: string }) {
       </div>
 
       <div className="mp-grid">
+        {head && <div className="mp-head">{head}</div>}
         <div className="mp-card" ref={card}>
           <form className="mp-form" noValidate onSubmit={onSubmit} aria-labelledby={id("title")} aria-busy={status === "sending"}
             onFocusCapture={() => { void ensure.current().catch(() => {}); }}>
@@ -365,5 +368,8 @@ export function MessagePortal({ email: directEmail }: { email: string }) {
 
       <p className="mp-sr" role="status" aria-live="polite" aria-atomic="true">{live}</p>
     </div>
+    {/* Fuera de `.mp`: el stage sticky de móvil termina con la tarjeta y nunca se superpone a los canales. */}
+    {foot && <div className="mp-foot">{foot}</div>}
+    </>
   );
 }

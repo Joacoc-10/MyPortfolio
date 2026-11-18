@@ -107,30 +107,26 @@ html.rm .layer, html.lite .layer { transform: none !important; }
 @media (max-width: 900px) { .about-grid { grid-template-columns: 1fr; } .portrait { max-width: min(340px, 100%); justify-self: center; margin-inline: auto; } .portrait::before { inset: 12px -10px -12px 10px; } }
 
 /* ---------- contacto ---------- */
-.contact { background: linear-gradient(#070b12, #03050a); overflow: clip; padding-bottom: clamp(100px, 14vw, 200px); }
+/* Message Portal manda: cabecera y canales secundarios se componen dentro de su rejilla (ver portal.css). */
+.contact, .contact * { overflow-anchor: none; } /* el stage sticky + alturas animadas del portal hacen que el scroll anchoring compense de más (saltos a otras secciones) */
+.contact { background: linear-gradient(#070b12, #03050a); overflow: clip; padding-bottom: clamp(64px, 8vw, 120px); }
 .ct-floor { height: 70%; opacity: 0.9; }
 .ct-glow { position: absolute; left: 50%; bottom: -10%; translate: -50% 0; width: min(1200px, 120vw); aspect-ratio: 2; border-radius: 50%; pointer-events: none; background: radial-gradient(closest-side, rgba(45, 212, 191, 0.2), transparent); filter: blur(20px); }
 .contact .wrap { position: relative; z-index: 1; }
-.ct-title { font-size: clamp(3rem, 10.5vw, 9.6rem); font-weight: 400; line-height: 0.92; letter-spacing: -0.055em; text-wrap: balance; max-width: 12ch; }
+.ct-title { font-size: clamp(2.4rem, 4.3vw, 3.9rem); font-weight: 400; line-height: 0.98; letter-spacing: -0.05em; text-wrap: balance; }
 .ct-title .serif { color: var(--brand); font-size: 1.08em; letter-spacing: -0.02em; }
-.ct-lead { margin-top: 26px; max-width: 46ch; color: #c3cbda; font-size: clamp(1.05rem, 1.6vw, 1.35rem); text-wrap: pretty; }
-.ct-mail { display: inline-block; margin-top: clamp(26px, 4vw, 54px); max-width: 100%; text-decoration: none; color: var(--ink); position: relative; }
-.ct-mail-in { display: flex; font-size: clamp(1.45rem, 6.2vw, 5rem); line-height: 1.1; letter-spacing: -0.04em; padding-bottom: 0.12em; }
-.ml { display: block; }
-.ml > span { display: block; font-weight: 320; text-align: center; }
-.ct-mail::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 2px; background: linear-gradient(90deg, var(--brand), var(--ice)); transform-origin: left; transform: scaleX(0.18); transition: transform 0.7s var(--out); }
-.ct-mail:hover::after, .ct-mail:focus-visible::after { transform: scaleX(1); }
-.ct-actions { margin-top: 28px; display: flex; flex-wrap: wrap; gap: 10px; }
-.ct-links { margin-top: clamp(40px, 6vw, 80px); max-width: 760px; }
-.ct-links-l { color: var(--mut2); margin-bottom: 8px; }
-.ct-links ul { border-top: 1px solid var(--line); }
-.ct-links a { display: flex; align-items: center; gap: 16px; min-height: 64px; padding: 12px 4px; border-bottom: 1px solid var(--line); text-decoration: none; font-size: clamp(1.1rem, 2vw, 1.5rem); letter-spacing: -0.02em; transition: padding 0.4s var(--out), color 0.2s, background-color 0.3s; }
-.ct-links a svg { width: 22px; height: 22px; fill: var(--mut); flex: none; transition: fill 0.2s; }
-.ct-links a span { flex: 1; }
-.ct-links a b { font-weight: 400; color: var(--mut); transition: translate 0.4s var(--out), color 0.2s; }
-@media (hover: hover) { .ct-links a:hover { padding-left: 14px; color: var(--brand); background: linear-gradient(90deg, rgba(45, 212, 191, 0.07), transparent); } .ct-links a:hover svg, .ct-links a:hover b { fill: var(--brand); color: var(--brand); } .ct-links a:hover b { translate: 4px -4px; } }
-.toast { position: fixed; z-index: 90; left: 50%; bottom: 28px; translate: -50% 20px; opacity: 0; padding: 12px 20px; border-radius: 999px; background: var(--ink); color: var(--bg); font-size: 14px; font-weight: 500; pointer-events: none; transition: opacity 0.35s var(--out), translate 0.5s var(--out); }
-.toast.on { opacity: 1; translate: -50% 0; }
-.toast.bad { background: var(--signal); }
-html.rm .ct-mail::after { transform: scaleX(1); }
-@media (max-width: 700px) { .ct-actions .btn { flex: 1 1 auto; } }
+.ct-lead { margin-top: 16px; max-width: 44ch; color: #c3cbda; font-size: clamp(1rem, 1.25vw, 1.15rem); text-wrap: pretty; }
+/* canales secundarios: barra compacta de enlaces de borde fino, cierre de la experiencia */
+.ct-links { position: relative; display: flex; align-items: center; justify-content: space-between; gap: 12px 28px; flex-wrap: wrap; padding-top: 22px; }
+.ct-links::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 1px; background: linear-gradient(90deg, var(--brand), var(--line2) 30%, var(--line) 70%, transparent); opacity: 0.8; }
+.ct-links-l { color: var(--mut2); margin: 0; font-size: 11px; }
+.ct-links ul { display: flex; flex-wrap: wrap; gap: 8px; list-style: none; padding: 0; margin: 0; }
+.ct-links a { display: inline-flex; align-items: center; gap: 9px; min-height: 44px; padding: 0 16px; border: 1px solid var(--line2); border-radius: 999px; background: rgba(8, 12, 20, 0.5); -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px);
+  text-decoration: none; font-size: 14px; letter-spacing: -0.005em; color: var(--ink); transition: border-color 0.3s var(--out), color 0.3s, background-color 0.3s, box-shadow 0.4s var(--out); }
+.ct-links a svg { width: 16px; height: 16px; fill: var(--mut); flex: none; transition: fill 0.3s; }
+.ct-links a b { font-weight: 400; font-size: 13px; color: var(--mut); transition: translate 0.4s var(--out), color 0.3s; }
+.ct-links a:focus-visible { outline-offset: 3px; border-radius: 999px; }
+@media (hover: hover) { .ct-links a:hover { border-color: rgba(45, 212, 191, 0.65); color: var(--brand); background: rgba(45, 212, 191, 0.07); box-shadow: 0 0 26px rgba(45, 212, 191, 0.16); }
+  .ct-links a:hover svg { fill: var(--brand); } .ct-links a:hover b { color: var(--brand); translate: 2px -2px; } .ct-links a[download]:hover b { translate: 0 2px; } }
+@media (max-width: 700px) { .ct-links { display: grid; gap: 12px; justify-content: stretch; } .ct-links ul { display: grid; grid-template-columns: 1fr 1fr; } .ct-links li { display: flex; } .ct-links a { flex: 1; justify-content: center; padding: 0 10px; font-size: 13.5px; } .ct-links a span { white-space: nowrap; } }
+@media (max-width: 360px) { .ct-links ul { grid-template-columns: 1fr; } }
