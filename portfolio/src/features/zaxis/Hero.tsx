@@ -273,6 +273,7 @@ export function Hero({ content }: { content: ZContent }) {
           const was = lastDive >= 0.999;
           lastDive = dive;
           deep.style.opacity = dive.toFixed(4);
+          hero.classList.toggle("diving", dive > 0.001 && dive < 0.999);
           place(dive);
           if (was !== dive >= 0.999) sync(); // terminó (o se reanuda) la transición de profundidad
         }
