@@ -42,7 +42,7 @@ export class PortalScene implements PortalDriver {
   disposed = false; raf = 0; last = 0; clock = 0; onscreen = true; tabVisible = !document.hidden; phase: Phase = "idle"; queued: "success" | "error" | null = null; pointerAt = -99;
   pointer = { x: 0, y: 0 }; fields = { name: 0, email: 0, message: 0 }; focusField: string | null = null;
   beams: Beam[] = []; listeners: (() => void)[] = []; frameTimes: number[] = []; flashShown = -1; trail = false; paused = false; lost = false; layoutDirty = false; behind = false;
-  ready = false; fps = 60; cw = 1; ch = 1; f = 0.01; srect: DOMRect | null = null; spinBase = 0; pPhase = 0; spinPhase = 0; clockOn = true;
+  ready = false; scrollAt = -1e9; dprLevel = 0; slowWin = 0; fps = 60; cw = 1; ch = 1; f = 0.01; srect: DOMRect | null = null; spinBase = 0; pPhase = 0; spinPhase = 0; clockOn = true;
   tiltX = { x: 0, y: 0 };
   renderer: THREE.WebGLRenderer; camera: THREE.PerspectiveCamera; scene: THREE.Scene; envRT?: THREE.WebGLRenderTarget;
   shared: Shared; C = new Channels(); tl = new Timeline();
@@ -182,15 +182,19 @@ export class PortalScene implements PortalDriver {
     this.io = new IntersectionObserver((e) => { this.onscreen = e[e.length - 1].isIntersecting; this.wake(); }, { threshold: 0 }); this.io.observe(this.stage);
     on(document, "visibilitychange", () => { this.tabVisible = !document.hidden; if (this.tabVisible) { this.last = 0; this.wake(); } });
     on(window, "pointermove", (e) => this.setPointer((e as PointerEvent).clientX, (e as PointerEvent).clientY), { passive: true });
-    on(window, "scroll", () => { this.layoutDirty = true; this.wake(); }, { passive: true });
+    on(window, "scroll", () => { this.layoutDirty = true; this.scrollAt = performance.now(); this.wake(); }, { passive: true });
     on(this.o.canvas, "webglcontextlost", (e) => { e.preventDefault(); this.lost = true; });
     on(this.o.canvas, "webglcontextrestored", () => { this.lost = false; this.wake(); });
   }
 
+  /** DPR efectivo: tope del nivel (high 2 · mid 1.5 · low 1) limitado por el de la pantalla y por el gobernador de fluidez
+   *  (cada escalón reduce un 20 %, sin bajar de 1). Un iPhone (DPR 3) nunca renderiza a 3: el canvas es pequeño y se escala. */
+  curDpr() { return Math.max(1, Math.min(window.devicePixelRatio || 1, this.tier.dpr) * Math.pow(0.8, this.dprLevel)); }
+
   resize() {
     if (this.disposed) return;
     const rect = this.stage.getBoundingClientRect(); this.cw = Math.max(1, rect.width); this.ch = Math.max(1, rect.height);
-    const dpr = Math.min(window.devicePixelRatio || 1, this.tier.dpr);
+    const dpr = this.curDpr();
     this.renderer.setPixelRatio(dpr); this.renderer.setSize(this.cw, this.ch, false);
     this.camera.aspect = this.cw / this.ch; this.camera.updateProjectionMatrix();
     this.particles.setPx(dpr * (this.ch > 500 ? 1.0 : 0.85) * 1.15); this.portal.setPx(dpr * 1.1);
@@ -391,23 +395,32 @@ export class PortalScene implements PortalDriver {
   frame(now: number) {
     this.raf = 0; if (this.disposed) return;
     if (!this.last) this.last = now;
-    const dt = Math.min(0.05, (now - this.last) / 1000); this.last = now;
     if (this.lost) return;
-    const run = this.onscreen || this.seqActive;
+    const seq = this.seqActive, run = this.onscreen || seq;
     if (!run) { this.last = 0; return; }
+    // Tope de fotogramas. En pantallas ProMotion (120 Hz) rAF llega cada ~8 ms: se renderiza como mucho a ~60 fps (la escena
+    // avanza por tiempo, no por fotograma: mismo movimiento con la mitad de trabajo de GPU). Además, en reposo (flotado ambiente)
+    // y mientras la página se desplaza, ~30 fps: el compositor ya está ocupado con el scroll y ese movimiento es lentísimo.
+    const throttled = !seq && now - this.scrollAt < 180;
+    const minGap = throttled ? 30 : 15;
+    if (now - this.last < minGap) { this.raf = requestAnimationFrame((t) => this.frame(t)); return; }
+    const dt = Math.min(0.05, (now - this.last) / 1000); this.last = now;
     const active = this.update(dt, now);
     this.fps = (this.fps || 60) * 0.92 + (1 / Math.max(dt, 0.001)) * 0.08;
     this.renderer.render(this.scene, this.camera);
-    this.adaptQuality(dt);
+    this.adaptQuality(dt, throttled);
     // modo "reducido": solo se anima mientras algo se mueve. En modo normal, el flotado continuo mantiene el bucle.
     if (!this.reduced || active || this.seqActive) this.raf = requestAnimationFrame((t) => this.frame(t)); else this.last = 0;
   }
 
-  adaptQuality(dt: number) {
-    if (this.reduced || this.tierName === "low" || !this.seqActive) { this.frameTimes.length = 0; return; }
-    this.frameTimes.push(dt); if (this.frameTimes.length < 50) return;
+  /** Gobernador de resolución: si los fotogramas a ritmo completo no bajan de ~54 fps de media (dos ventanas seguidas) se reduce el DPR un 20 %.
+   *  Solo reduce (sin oscilar) y solo mide fotogramas no limitados, así que un tope de 30 fps o un monitor de 120 Hz no lo disparan. */
+  adaptQuality(dt: number, throttled: boolean) {
+    if (this.reduced || throttled || this.dprLevel >= 3 || this.curDpr() <= 1) { this.frameTimes.length = 0; return; }
+    this.frameTimes.push(dt); if (this.frameTimes.length < 45) return;
     const avg = this.frameTimes.reduce((a, b) => a + b, 0) / this.frameTimes.length; this.frameTimes.length = 0;
-    if (avg > 0.028) { this.tierName = this.tierName === "high" ? "mid" : "low"; this.tier = TIERS[this.tierName]; this.resize(); this.stage.dataset.tier = this.tierName; }
+    this.slowWin = avg > 0.0185 ? this.slowWin + 1 : 0;
+    if (this.slowWin >= 2) { this.slowWin = 0; this.dprLevel++; this.resize(); this.stage.dataset.dpr = this.curDpr().toFixed(2); }
   }
 
   update(dt: number, now: number) {
@@ -523,7 +536,7 @@ export class PortalScene implements PortalDriver {
     this.camera.position.set(Math.sin(t * 37) * sh * 0.02 + this.tiltX.x * 0.0, 0.8 + Math.cos(t * 43) * sh * 0.02, 11 + 0);
     this.camera.fov = 30 + v("fov") * 0.35; this.camera.updateProjectionMatrix(); this.camera.lookAt(0, 0, 0);
     const fl = clamp(v("flash"), 0, 1);
-    if (Math.abs(fl - this.flashShown) > 0.004) { this.flashShown = fl; this.stage.style.setProperty("--flash", fl.toFixed(3)); }
+    if (Math.abs(fl - this.flashShown) > 0.004) { this.flashShown = fl; this.stage.style.setProperty("--flash", fl.toFixed(3)); this.stage.toggleAttribute("data-flash", fl > 0.004); }
 
     return moving;
   }

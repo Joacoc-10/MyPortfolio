@@ -26,6 +26,8 @@ html.rm .htrack, html.lite .htrack { height: auto; }
 }
 .hero.still *, .hero.still *::before, .hero.still *::after, .hero.calm *, .hero.calm *::before, .hero.calm *::after { animation-play-state: paused; }
 .hero.calm .h-set { animation: none; }
+/* durante el «dive» (la cámara atraviesa las ventanas con el scroll) la deriva ambiente se detiene: es una animación de ±10 px que compite con el scroll; se reanuda desde el mismo punto */
+.hero.diving .h-set { animation-play-state: paused; }
 .hero.off .h-cam, .hero.off .h-floor { visibility: hidden; }
 .h-veil { position: absolute; inset: 0; z-index: 3; pointer-events: none; background:
   linear-gradient(90deg, rgba(5, 7, 11, 0.94) 0%, rgba(5, 7, 11, 0.8) 28%, rgba(5, 7, 11, 0.3) 50%, transparent 66%),

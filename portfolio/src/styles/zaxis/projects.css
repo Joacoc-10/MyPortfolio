@@ -3,7 +3,8 @@
 .proj .sec-head { margin-bottom: clamp(24px, 3.4vw, 44px); }
 .proj::before { content: ""; position: absolute; inset: 0 0 auto 0; height: 38vh; pointer-events: none; background: linear-gradient(#05070b, transparent); }
 .p-light { position: absolute; left: 50%; top: 8%; translate: -50% 0; width: min(1300px, 130vw); aspect-ratio: 1.6; pointer-events: none; z-index: 0; border-radius: 50%;
-  background: radial-gradient(closest-side, rgb(var(--tr) var(--tg) var(--tb) / 0.2), transparent); filter: blur(30px); }
+  background: radial-gradient(closest-side, rgb(var(--tr) var(--tg) var(--tb) / 0.2), transparent); }
+/* (antes: filter: blur(30px). El degradado radial ya es suave; el filtro sobre una capa de ~130vw × DPR añadía un pase de desenfoque que provocaba un bloqueo al entrar en Proyectos.) */
 .proj > *:not(.p-light):not(.sec-rule) { position: relative; z-index: 1; }
 .p-top { display: block; }
 .p-bar { display: flex; flex-wrap: wrap; gap: 14px 28px; justify-content: space-between; align-items: center; margin-top: -8px; }

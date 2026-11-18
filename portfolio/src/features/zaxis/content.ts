@@ -6,10 +6,18 @@ import { technologies } from "@/data/technologies";
 import { stackCategories } from "@/data";
 import type { Locale } from "@/i18n/routing";
 import type { TechCategory } from "@/data";
+import type { Project } from "@/data";
 import type { ZContent, ZProject, ZTech } from "./types";
 
 const techById = new Map(technologies.map((t) => [t.id, t]));
 const toTech = (t: (typeof technologies)[number]): ZTech => ({ id: t.id, name: t.name, category: t.category, ...(t.brandColor ? { brandColor: t.brandColor } : {}) });
+
+/**
+ * Qué procedencias ofrecen «Visitar el sitio». Los proyectos del bootcamp Henry son ejercicios académicos:
+ * se conservan sus URLs en los datos (`links.deploy`), pero la interfaz no los presenta como sitios publicados.
+ * «Repositorio» se rige solo por `links.repo`, no por esta tabla.
+ */
+const SHOW_VISIT_BY_KIND: Record<Project["kind"], boolean> = { professional: true, personal: true, bootcamp: false };
 
 /** Orden de visualización: profesionales → personales → bootcamp (el mismo del portfolio actual). */
 export function getZContent(locale: Locale): ZContent {
@@ -35,6 +43,7 @@ export function getZContent(locale: Locale): ZContent {
       h: m.height,
     })),
     ...(p.links.deploy ? { deploy: p.links.deploy } : {}),
+    ...(p.links.deploy && SHOW_VISIT_BY_KIND[p.kind] ? { visitUrl: p.links.deploy } : {}),
     ...(p.links.repo ? { repo: p.links.repo } : {}),
   }));
 
