@@ -145,11 +145,11 @@ export function Detail({ index, onClose, onStep }: { index: number | null; onClo
                   </div>
                 ))}
               </section>
-              {(p.deploy || p.repo) && (
+              {(p.visitUrl || p.repo) && (
                 <section className="d-sec">
                   <h3 className="d-h mono">{z("links")}</h3>
                   <div className="d-links">
-                    {p.deploy && <a className="btn primary" href={p.deploy} target="_blank" rel="noopener noreferrer" aria-label={`${t("visitSiteLabel", { name: p.name })} (${c("opensInNewTab")})`}>{t("visitSite")} ↗</a>}
+                    {p.visitUrl && <a className="btn primary" href={p.visitUrl} target="_blank" rel="noopener noreferrer" aria-label={`${t("visitSiteLabel", { name: p.name })} (${c("opensInNewTab")})`}>{t("visitSite")} ↗</a>}
                     {p.repo && <a className="btn" href={p.repo} target="_blank" rel="noopener noreferrer" aria-label={`${t("viewRepoLabel", { name: p.name })} (${c("opensInNewTab")})`}>{t("viewRepo")} ↗</a>}
                   </div>
                 </section>

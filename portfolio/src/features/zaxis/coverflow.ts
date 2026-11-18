@@ -43,6 +43,7 @@ export function createCoverflow(o: CoverflowOpts) {
     sec.style.setProperty("--tg", String(t[1]));
     sec.style.setProperty("--tb", String(t[2]));
   }
+  const imgs = cards.map((c) => c.querySelector<HTMLImageElement>("img"));
   stage.querySelectorAll<HTMLImageElement>("img").forEach((img) => {
     const i = Number(img.closest<HTMLElement>(".card")!.dataset.i);
     const go = () => {
@@ -53,6 +54,52 @@ export function createCoverflow(o: CoverflowOpts) {
     if (img.complete && img.naturalWidth) go();
     else img.addEventListener("load", go, { once: true });
   });
+
+  /* ---------- precarga de portadas ----------
+     Las portadas son lazy (no pesan en la carga inicial), pero las tarjetas lejanas del activo quedan con
+     visibility:hidden y fuera de la zona visible: el navegador no las pide hasta que aparecen, y la tarjeta se ve negra
+     mientras descarga. Se «calientan» por cercanía al proyecto activo: primero el activo y sus vecinos, y el resto de
+     a una por vez en tiempo ocioso. Nada se fuerza al cargar la página: solo se arma al acercarse la sección o al navegar. */
+  const warmed = new Set<number>();
+  let ready = false, queueOn = false, idleId = 0;
+  function warm(i: number) {
+    const img = imgs[i];
+    if (!img || warmed.has(i)) return;
+    warmed.add(i);
+    if (img.loading !== "eager") img.loading = "eager"; // una imagen lazy pasada a eager se descarga de inmediato
+    img.decode?.().catch(() => {}); // decodificada de antemano: sin parpadeo negro al aparecer la tarjeta
+  }
+  function warmAround(i: number) {
+    warm(i);
+    warm(i - 1);
+    warm(i + 1);
+    warm(i + 2);
+    warm(i - 2);
+  }
+  function pumpQueue() {
+    if (disposed || idleId) return;
+    const pending = cards.map((_, i) => i).filter((i) => !warmed.has(i)).sort((a, b) => Math.abs(a - Math.max(active, 0)) - Math.abs(b - Math.max(active, 0)));
+    if (!pending.length) { queueOn = false; return; }
+    const run = () => {
+      idleId = 0;
+      if (disposed) return;
+      const i = pending[0];
+      warm(i);
+      const img = imgs[i];
+      const next = () => { img?.removeEventListener("load", next); img?.removeEventListener("error", next); pumpQueue(); };
+      if (img && !img.complete) { img.addEventListener("load", next, { once: true }); img.addEventListener("error", next, { once: true }); }
+      else next();
+    };
+    const ric = (window as Window & { requestIdleCallback?: (cb: () => void, o?: { timeout: number }) => number }).requestIdleCallback;
+    idleId = ric ? ric(run, { timeout: 1500 }) : window.setTimeout(run, 250);
+  }
+  /** La sección Proyectos está cerca del viewport: se precargan las portadas, de la más cercana a la más lejana. */
+  function prefetch() {
+    if (disposed) return;
+    ready = true;
+    warmAround(Math.max(active, 0));
+    if (!queueOn) { queueOn = true; pumpQueue(); }
+  }
 
   /* ---------- geometría ---------- */
   function measure() {
@@ -71,6 +118,9 @@ export function createCoverflow(o: CoverflowOpts) {
   }
 
   function layout() {
+    // El mazo móvil se posiciona con scroll-snap y deckUpdate(): esta geometría 3D de escritorio no le corresponde
+    // (dejaba visibility:hidden en las tarjetas lejanas del activo y quedaban sin portada).
+    if (deck) return;
     for (let i = 0; i < N; i++) {
       const d = i - c, a = Math.abs(d), s = Math.sign(d), k = Math.min(a, 1), k2 = Math.max(a - 1, 0);
       const card = cards[i];
@@ -125,6 +175,7 @@ export function createCoverflow(o: CoverflowOpts) {
     tilt.x = tilt.y = tilt.tx = tilt.ty = 0;
     tilts.forEach((t) => { t.style.transform = ""; });
     applyTint(i);
+    if (ready || userMoved) { ready = true; warmAround(i); }
     o.onActive(i, userMoved);
     kick();
   }
@@ -247,13 +298,14 @@ export function createCoverflow(o: CoverflowOpts) {
   setActive(0);
   c = cT = 0;
   layout();
-  if (deck) goTo(0, { smoothScroll: false });
+  if (deck) { goTo(0, { smoothScroll: false }); deckUpdate(); }
   userMoved = false;
   // Las fuentes cambian el alto del panel; se vuelve a medir cuando están listas.
   document.fonts?.ready.then(() => { if (!disposed) { measure(); layout(); } });
 
   return {
     goTo,
+    prefetch,
     next: () => goTo(active + 1),
     prev: () => goTo(active - 1),
     get active() { return active; },
@@ -268,6 +320,7 @@ export function createCoverflow(o: CoverflowOpts) {
     dispose() {
       disposed = true;
       if (raf) cancelAnimationFrame(raf);
+      if (idleId) { (window as Window & { cancelIdleCallback?: (n: number) => void }).cancelIdleCallback?.(idleId); clearTimeout(idleId); }
       cleanups.forEach((f) => f());
     },
   };

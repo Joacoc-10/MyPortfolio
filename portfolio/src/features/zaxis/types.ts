@@ -29,7 +29,10 @@ export interface ZProject {
   pilot: boolean;
   techs: ZTech[];
   media: ZMedia[];
+  /** URL publicada (referencia visual: dominio del marco). No implica que se ofrezca «Visitar el sitio»: ver `visitUrl`. */
   deploy?: string;
+  /** Enlace «Visitar el sitio». Ausente en los proyectos del bootcamp Henry (ver `SHOW_VISIT_BY_KIND` en content.ts). */
+  visitUrl?: string;
   repo?: string;
 }
 export interface ZCompany {

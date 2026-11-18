@@ -79,7 +79,7 @@ export function Projects() {
       onOpen: (i, from) => openDetail(projects[i].id, from),
     });
     eng.current = cv;
-    const unwatch = watchVisible(sec.current!, (v) => { if (v) cv.refresh(); }, "200px");
+    const unwatch = watchVisible(sec.current!, (v) => { if (v) { cv.refresh(); cv.prefetch(); } }, "200px");
     return () => { unwatch(); cv.dispose(); eng.current = null; };
     // El motor se crea una sola vez: los proyectos y openDetail son estables durante la vida de la página.
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -198,8 +198,8 @@ export function Projects() {
             </div>
             <div className="p-actions">
               <button className="btn primary" type="button" aria-label={z("open", { name: cur.name })} onClick={(e) => openDetail(cur.id, e.currentTarget)}>{z("more")} →</button>
-              {cur.deploy && (
-                <a className="btn" href={cur.deploy} target="_blank" rel="noopener noreferrer" aria-label={`${t("visitSiteLabel", { name: cur.name })} (${c("opensInNewTab")})`}>{t("visitSite")} ↗</a>
+              {cur.visitUrl && (
+                <a className="btn" href={cur.visitUrl} target="_blank" rel="noopener noreferrer" aria-label={`${t("visitSiteLabel", { name: cur.name })} (${c("opensInNewTab")})`}>{t("visitSite")} ↗</a>
               )}
             </div>
           </div>
@@ -232,7 +232,7 @@ export function Projects() {
                         <ul className="techs" aria-label={t("technologies")}>{p.techs.slice(0, 6).map((tc) => <li className="tc" key={tc.id} style={tc.brandColor ? ({ "--c": tc.brandColor } as React.CSSProperties) : undefined}><TechLogo tech={tc} size={14} />{tc.name}</li>)}</ul>
                         <div className="ractions">
                           <button type="button" className="btn primary sm" aria-label={z("open", { name: p.name })} onClick={(e) => openDetail(p.id, e.currentTarget)}>{z("more")} →</button>
-                          {p.deploy && <a className="btn sm" href={p.deploy} target="_blank" rel="noopener noreferrer" aria-label={`${t("visitSiteLabel", { name: p.name })} (${c("opensInNewTab")})`}>{t("visitSite")} ↗</a>}
+                          {p.visitUrl && <a className="btn sm" href={p.visitUrl} target="_blank" rel="noopener noreferrer" aria-label={`${t("visitSiteLabel", { name: p.name })} (${c("opensInNewTab")})`}>{t("visitSite")} ↗</a>}
                         </div>
                       </div>
                     </div></div>
