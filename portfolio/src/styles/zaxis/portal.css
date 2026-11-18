@@ -129,7 +129,7 @@
   /* Profundidad: la escena es un fondo sticky (z 1) y la tarjeta (z 2) pasa por delante y la va tapando al desplazarse; vale igual para formulario y confirmación. Capas fijas: nunca cambian de z-index. */
   .mp-card { order: 3; z-index: 2; background: linear-gradient(160deg, rgba(14, 21, 34, 0.96), rgba(8, 12, 20, 0.97)); }
   .mp-foot { max-width: 640px; width: 100%; margin-inline: auto; margin-top: 32px; }
-  .mp-stage { position: sticky; top: var(--mp-top, var(--nav-h)); left: auto; right: auto; bottom: auto; z-index: 1; height: clamp(270px, 44svh, 420px); margin-inline: calc(var(--pad) * -1); pointer-events: auto; touch-action: pan-y;
+  .mp-stage { position: sticky; top: var(--mp-top, var(--nav-h)); left: auto; right: auto; bottom: auto; z-index: 1; height: clamp(220px, 32svh, 320px); margin-inline: calc(var(--pad) * -1); pointer-events: auto; touch-action: pan-y;
     background: radial-gradient(70% 62% at 50% 46%, rgba(20, 70, 82, 0.4), transparent 72%), linear-gradient(180deg, #05070b 0, #05070b 90%, rgba(5, 7, 11, 0)); transition: height 0.5s var(--out), top 0.45s var(--out); }
   .mp-anchor { display: none; }
   .mp-card { max-width: 640px; width: 100%; margin-inline: auto; }
@@ -138,7 +138,15 @@
   .mp-steps li::before { left: 8px; }
 }
 @media (min-width: 961px) { .mp-stage > .mp-hud { display: none; } }
-@media (max-width: 600px) { .mp-stage { height: clamp(230px, 37svh, 340px); } }
+/* Móvil: escena compacta (≈64 % de la altura anterior; 150–210 px según el alto del dispositivo) y sin huecos entre cabecera, escena y formulario. */
+@media (max-width: 600px) {
+  .mp-stage { height: clamp(150px, 24svh, 210px); }
+  /* aire alrededor de la escena (sin agrandarla): cabecera → 16–24 px → escena → 16–24 px → formulario; menos aire en pantallas bajas para que el formulario no baje */
+  .mp-head { padding-bottom: clamp(16px, 2.3svh, 24px); }
+  .mp-stage { margin-bottom: clamp(16px, 2.3svh, 24px); }
+  .mp-stage > .mp-hud { bottom: 2px; gap: 6px; }
+  .mp-stage > .mp-hud .mp-hud-l { font-size: 10px; min-height: 1.2em; }
+}
 @media (max-width: 480px) {
   .mp-steps { gap: 4px; }
   .mp-steps li { padding-left: 17px; padding-right: 7px; letter-spacing: 0.04em; }

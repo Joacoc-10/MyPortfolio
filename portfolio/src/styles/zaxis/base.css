@@ -101,6 +101,8 @@ html.rm .nav { transition: background-color 0.35s, border-color 0.35s; }
 .nav-links a { position: relative; text-decoration: none; color: var(--mut); padding: 10px 0; transition: color 0.2s; }
 .nav-links a::after { content: ""; position: absolute; left: 0; right: 0; bottom: 4px; height: 1px; background: var(--brand); transform: scaleX(0); transform-origin: left; transition: transform 0.4s var(--out); }
 .nav-links a:hover, .nav-links a[aria-current="true"] { color: var(--ink); }
+/* El CTA turquesa conserva su tinta oscura en todos los estados (hover, foco, activo, página actual): sin esto la regla anterior lo volvía blanco. */
+.nav-links a.btn.primary, .nav-links a.btn.primary:hover, .nav-links a.btn.primary:focus-visible, .nav-links a.btn.primary:active, .nav-links a.btn.primary[aria-current="true"] { color: var(--brand-ink); }
 .nav-links a[aria-current="true"]::after { transform: scaleX(1); }
 .nav-tools { display: flex; align-items: center; gap: 10px; }
 .seg { display: inline-flex; padding: 3px; border: 1px solid var(--line); border-radius: 999px; font-family: var(--mono); font-size: 11px; letter-spacing: 0.08em; }
@@ -135,7 +137,7 @@ html.rm .nav { transition: background-color 0.35s, border-color 0.35s; }
   .nav-links > * { opacity: 0; transform: translateY(-8px); transition: opacity 0.3s var(--out), transform 0.45s var(--out); }
   .nav.open .nav-links > * { opacity: 1; transform: none; transition-delay: calc(var(--i, 0) * 45ms + 90ms); }
   .nav-links a:not(.btn) { display: grid; grid-template-columns: 2.2em 1fr auto; align-items: baseline; font-size: clamp(1.55rem, 7vw, 2.1rem); letter-spacing: -0.035em; line-height: 1.1; padding: 15px 0; border-bottom: 1px solid var(--line); color: var(--ink); }
-  .nav-links a:not(.btn)::after { display: none; }
+  .nav-links a::after { display: none; } /* subrayado de escritorio: el CTA (.btn) lo dejaba visible como línea turquesa tras la píldora cuando Contacto era la sección activa */
   .nav-links .nl-n { display: block; font-family: var(--mono); font-size: 11px; letter-spacing: 0.08em; color: var(--mut2); transform: translateY(-0.25em); }
   .nav-links .nl-arrow { display: block; color: var(--mut2); font-size: 1.1rem; transition: transform 0.4s var(--out), color 0.2s; }
   .nav-links a[aria-current="true"]:not(.btn) { color: var(--brand); }
