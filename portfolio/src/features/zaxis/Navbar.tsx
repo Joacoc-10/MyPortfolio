@@ -60,12 +60,12 @@ export function Navbar({ role }: { role: string }) {
     };
   }, [open, close]);
 
-  // Contacto inmersivo (≤960px, donde la escena queda fija arriba): el navbar se oculta al entrar en Message Portal,
+  // Contacto inmersivo (≤960px, donde la escena queda fija arriba): el navbar se oculta al entrar en la sección #contact,
   // vuelve al desplazarse hacia arriba y permanece oculto mientras el teclado virtual está abierto con un campo enfocado.
   // Se restaura al salir de Contacto. Solo escribe atributos en el DOM (sin re-render por frame). Con movimiento reducido el cambio es instantáneo (CSS).
   useEffect(() => {
-    const h = header.current, mp = document.querySelector<HTMLElement>(".mp"), stage = mp?.querySelector<HTMLElement>(".mp-stage");
-    if (!h || !mp || !stage) return;
+    const h = header.current, mp = document.querySelector<HTMLElement>(".mp"), contact = document.getElementById("contact");
+    if (!h || !mp || !contact) return;
     const mq = matchMedia("(max-width: 960px)");
     const html = document.documentElement;
     const navH = () => h.offsetHeight || 68;
@@ -77,7 +77,8 @@ export function Navbar({ role }: { role: string }) {
       if (mq.matches && !h.classList.contains("open")) {
         const vvh = visualViewport?.height ?? innerHeight;
         const kb = fieldFocus && vvh < Math.max(base, 1) * 0.85;
-        const inZone = stage.getBoundingClientRect().top <= navH() + 2 && (document.getElementById("foot")?.getBoundingClientRect().top ?? Infinity) > innerHeight * 0.92; // el pie de página marca la salida de Contacto
+        // Entra al llegar el INICIO de la sección #contact (no la escena); histéresis de 24 px para no parpadear en el límite.
+        const inZone = contact.getBoundingClientRect().top <= navH() + (hidden ? 26 : 2) && (document.getElementById("foot")?.getBoundingClientRect().top ?? Infinity) > innerHeight * 0.92; // el pie de página marca la salida de Contacto
         hide = kb || (inZone && dir === "down");
       }
       if (hide === hidden) return;
@@ -87,8 +88,11 @@ export function Navbar({ role }: { role: string }) {
     };
     const queue = () => { if (!raf) raf = requestAnimationFrame(apply); };
     const onScroll = () => {
-      const y = scrollY, dy = y - lastY;
-      if (Math.abs(dy) >= 6) { dir = dy > 0 ? "down" : "up"; lastY = y; }
+      // Histéresis de dirección: bajar 6 px la marca «down»; hay que subir 48 px desde el punto más bajo para reaparecer (un temblor del dedo no la cambia).
+      // `lastY` es el pico (bajando) o el valle (subiendo) más reciente.
+      const y = scrollY;
+      if (dir === "down") { if (y > lastY) lastY = y; else if (lastY - y >= 48) { dir = "up"; lastY = y; } }
+      else if (y < lastY) lastY = y; else if (y - lastY >= 6) { dir = "down"; lastY = y; }
       queue();
     };
     const onFocusIn = (e: FocusEvent) => { if (isField(e.target)) { fieldFocus = true; queue(); } };

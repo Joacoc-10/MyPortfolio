@@ -30,7 +30,7 @@
 .stack { padding-bottom: 0; }
 .stack::after { content: ""; position: absolute; inset: auto 0 0 0; height: 40%; pointer-events: none; background: linear-gradient(transparent, #04060a 92%, #04060a); z-index: 0; }
 .marquee { position: relative; z-index: 1; margin-top: clamp(56px, 8vw, 110px); padding-block: clamp(26px, 4vw, 44px); overflow: hidden; border-block: 1px solid var(--line); background: rgba(5, 8, 13, 0.5); -webkit-mask-image: linear-gradient(to right, transparent, #000 10%, #000 90%, transparent); mask-image: linear-gradient(to right, transparent, #000 10%, #000 90%, transparent); --marquee-duration: 80s; }
-.marquee-track { display: flex; width: max-content; animation: marquee var(--marquee-duration) linear infinite; will-change: transform; }
+.marquee-track { display: flex; width: max-content; animation: marquee var(--marquee-duration) linear infinite; }
 .marquee:hover .marquee-track { animation-play-state: paused; }
 .marquee-set { display: flex; flex-shrink: 0; }
 .marquee-item { display: flex; flex-direction: column; align-items: center; gap: 0.7rem; min-width: 5.5rem; margin-inline: clamp(14px, 2vw, 24px); padding-block: 6px; color: var(--mut); font-family: var(--mono); font-size: 0.75rem; white-space: nowrap; transition: color 0.3s; }
@@ -93,7 +93,7 @@ html.lite .hero [data-in], html.lite .hero .ch, html.lite .hero .ch2, html.lite 
 .jp:has(.jp-hit:focus-visible) { outline: 2px solid var(--brand); outline-offset: 3px; }
 
 /* rol acoplable del hero */
-.h-role { transform-origin: 0 0; will-change: transform; width: max-content; }
+.h-role { transform-origin: 0 0; width: max-content; }
 .seg button { display: inline-grid; place-items: center; }
 /* el selector ES/EN del menú no hereda la tipografía grande de los enlaces */
 @media (max-width: 1060px) {

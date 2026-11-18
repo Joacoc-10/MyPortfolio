@@ -12,7 +12,7 @@ import { ZProvider } from "./ctx";
 import { Experience } from "./Experience";
 import { Footer } from "./Footer";
 import { Hero } from "./Hero";
-import { bindPointer, clamp, frameThrottle, getMotionPrefs, runScrollSubs } from "./lib";
+import { bindPointer, clamp, frameThrottle, getMotionPrefs, runScrollSubs, watchFrames } from "./lib";
 import { Navbar } from "./Navbar";
 import { Projects } from "./Projects";
 import { Stack } from "./Stack";
@@ -51,6 +51,9 @@ export function ZAxisApp({ content }: { content: ZContent }) {
     const html = document.documentElement;
     html.classList.toggle("rm", prefs.rm);
     html.classList.toggle("lite", prefs.lite);
+    html.classList.toggle("mid", prefs.mid);
+    // Calidad adaptativa: si los frames reales no llegan a ~38 fps durante el primer scroll, se pasa al nivel medio (solo CSS).
+    const stopFrames = prefs.calm || prefs.mid ? () => {} : watchFrames(() => html.classList.add("mid"));
     const mq = matchMedia("(prefers-reduced-motion: reduce)");
     const onMq = () => location.reload();
     mq.addEventListener("change", onMq);
@@ -64,6 +67,13 @@ export function ZAxisApp({ content }: { content: ZContent }) {
       targets.forEach((t) => io!.observe(t));
     }
 
+    // Animaciones infinitas decorativas: solo corren mientras se ven (un observador para todas).
+    let ioAnim: IntersectionObserver | null = null;
+    if (!prefs.rm && "IntersectionObserver" in window) {
+      ioAnim = new IntersectionObserver((es) => es.forEach((e) => e.target.classList.toggle("off-screen", !e.isIntersecting)), { rootMargin: "80px" });
+      document.querySelectorAll(".pulse, .sparkles, .marquee").forEach((n) => ioAnim!.observe(n));
+    }
+
     /* ---- scroll: un único manejador ---- */
     const root = document.documentElement;
     const navEl = document.getElementById("nav")!;
@@ -75,20 +85,43 @@ export function ZAxisApp({ content }: { content: ZContent }) {
     const ticks = [...zrail.querySelectorAll(".zrail-tick")];
     const secEls = [document.getElementById("top")!, ...SECTIONS.map((id) => document.getElementById(id)!)];
     let lastCur = -2;
+    const depthBg = document.querySelector<HTMLElement>(".depth-bg");
+    // Geometría cacheada (posición en página de cada sección y de la línea de tiempo): se vuelve a medir solo cuando algo
+    // cambia de tamaño (ResizeObserver / resize / carga de fuentes), no en cada frame de scroll.
+    const geo = { dirty: true, tops: [] as number[], hs: [] as number[], tlTop: 0, tlH: 1, max: 1 };
+    const measureGeo = () => {
+      const sy = scrollY;
+      geo.tops = secEls.map((s) => s.getBoundingClientRect().top + sy);
+      geo.hs = secEls.map((s) => s.getBoundingClientRect().height);
+      if (timeline) { const r = timeline.getBoundingClientRect(); geo.tlTop = r.top + sy; geo.tlH = r.height || 1; }
+      geo.max = Math.max(1, root.scrollHeight - innerHeight);
+      geo.dirty = false;
+    };
+    const dirtyGeo = () => { geo.dirty = true; };
+    const ro = new ResizeObserver(dirtyGeo);
+    ro.observe(document.body);
+    document.fonts?.ready.then(dirtyGeo);
+    let lastSolid: boolean | null = null, lastOn: boolean | null = null, lastRot = "", lastZ = "", lastZp = "", lastTl = "";
     const onScroll = frameThrottle(() => {
+      // 1) LECTURAS (una sola vez, antes de escribir nada: sin layouts forzados)
       const y = scrollY, vh = innerHeight;
-      navEl.toggleAttribute("data-solid", y > 40);
-      runScrollSubs(y, vh);
-      if (!prefs.calm && navLogo) navLogo.style.setProperty("--rot", `${(y * 0.06).toFixed(1)}deg`);
-
-      const max = Math.max(1, root.scrollHeight - vh);
-      root.style.setProperty("--z", clamp(y / max).toFixed(4));
-
-      // sección actual + progreso dentro de ella (para el riel y el menú)
+      if (geo.dirty) measureGeo();
+      // 2) CÁLCULO
+      const solid = y > 40;
       let cur = 0;
-      secEls.forEach((s, i) => { if (s.getBoundingClientRect().top <= vh * 0.4) cur = i; });
-      const r = secEls[cur].getBoundingClientRect();
-      const prog = clamp((vh * 0.4 - r.top) / Math.max(1, r.height));
+      geo.tops.forEach((t, i) => { if (t - y <= vh * 0.4) cur = i; });
+      const prog = clamp((vh * 0.4 - (geo.tops[cur] - y)) / Math.max(1, geo.hs[cur]));
+      const z = clamp(y / geo.max).toFixed(3);
+      const zp = ((cur + prog * (cur === secEls.length - 1 ? 0 : 1)) / (secEls.length - 1)).toFixed(3);
+      const on = y > 80;
+      const tl = timeline ? clamp((vh * 0.65 - (geo.tlTop - y)) / geo.tlH).toFixed(3) : "";
+      const rot = !prefs.calm && navLogo ? (y * 0.06).toFixed(1) : "";
+      // 3) ESCRITURAS (solo si el valor cambió)
+      if (solid !== lastSolid) { lastSolid = solid; navEl.toggleAttribute("data-solid", solid); }
+      runScrollSubs(y, vh);
+      if (rot !== lastRot && navLogo) { lastRot = rot; navLogo.style.setProperty("--rot", `${rot}deg`); }
+      // `--z` se escribe en quienes lo usan (no en <html>, lo que invalidaba el estilo de TODO el documento en cada frame)
+      if (z !== lastZ) { lastZ = z; navEl.style.setProperty("--z", z); depthBg?.style.setProperty("--z", z); }
       if (cur !== lastCur) {
         lastCur = cur;
         sectionStore.set(cur);
@@ -96,16 +129,13 @@ export function ZAxisApp({ content }: { content: ZContent }) {
         zrN.textContent = stops[cur];
         ticks.forEach((t, i) => t.classList.toggle("on", i === cur));
       }
-      zrail.style.setProperty("--zp", ((cur + prog * (cur === secEls.length - 1 ? 0 : 1)) / (secEls.length - 1)).toFixed(4));
-      zrail.classList.toggle("on", y > 80);
-
-      if (timeline) {
-        const tl = timeline.getBoundingClientRect();
-        timeline.style.setProperty("--tl", clamp((vh * 0.65 - tl.top) / tl.height).toFixed(3));
-      }
+      if (zp !== lastZp) { lastZp = zp; zrail.style.setProperty("--zp", zp); }
+      if (on !== lastOn) { lastOn = on; zrail.classList.toggle("on", on); }
+      if (timeline && tl !== lastTl) { lastTl = tl; timeline.style.setProperty("--tl", tl); }
     });
     addEventListener("scroll", onScroll, { passive: true });
     addEventListener("resize", onScroll);
+    addEventListener("resize", dirtyGeo);
 
     // Spotlight y borde brillante: UN listener delegado escribe --mx/--my en la tarjeta bajo el cursor (solo ratón).
     let spotRaf = 0;
@@ -138,10 +168,13 @@ export function ZAxisApp({ content }: { content: ZContent }) {
     return () => {
       removeEventListener("scroll", onScroll);
       removeEventListener("resize", onScroll);
+      ro.disconnect();
+      stopFrames();
       document.removeEventListener("pointermove", onSpot);
       if (spotRaf) cancelAnimationFrame(spotRaf);
       mq.removeEventListener("change", onMq);
       io?.disconnect();
+      ioAnim?.disconnect();
       delete root.dataset.ready;
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps

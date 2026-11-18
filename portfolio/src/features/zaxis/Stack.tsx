@@ -56,19 +56,19 @@ export function Stack() {
     const loop = createLoop(() => {
       rx += (tx - rx) * 0.08; ry += (ty - ry) * 0.08;
       ly.style.transform = `rotateX(${rx.toFixed(2)}deg) rotateY(${ry.toFixed(2)}deg)`;
-      if (!over && Math.abs(rx) < 0.01 && Math.abs(ry) < 0.01) { ly.style.transform = ""; loop.stop(); }
+      if (!over && Math.abs(rx) < 0.01 && Math.abs(ry) < 0.01) { ly.style.transform = ""; ly.classList.remove("tilting"); return false; }
     });
     const move = (e: PointerEvent) => {
       if (e.pointerType !== "mouse") return;
       const r = w.getBoundingClientRect();
       ty = ((e.clientX - r.left) / r.width - 0.5) * 3.2;
       tx = -((e.clientY - r.top) / r.height - 0.5) * 3.2;
-      over = true; loop.start();
+      over = true; ly.classList.add("tilting"); loop.wake();
     };
-    const leave = () => { over = false; tx = ty = 0; loop.start(); };
+    const leave = () => { over = false; tx = ty = 0; loop.wake(); };
     w.addEventListener("pointermove", move);
     w.addEventListener("pointerleave", leave);
-    return () => { w.removeEventListener("pointermove", move); w.removeEventListener("pointerleave", leave); loop.stop(); };
+    return () => { w.removeEventListener("pointermove", move); w.removeEventListener("pointerleave", leave); loop.pause(); };
   }, []);
 
   return (
